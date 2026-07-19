@@ -1,186 +1,351 @@
+# MODULE 04 — Enumeration
 
+|Item|Memorize|
+|---|---|
+|Module Number|04|
+|Module Name|Enumeration|
+|Focus|Extracting usernames, groups, shares, services from target systems|
 
-Techniques of enumeration:
- - Extracting usernames using Email id
- - Default passwd
- - Brute force AD
- - DNS zone transfer -dig
- - Extract user groups from Windows
- - Extract user names using SNMP
- - Extract network resources and topology using SNMP
+---
 
-Services and ports to enumerate:
+## LEARNING OBJECTIVES (DO NOT SKIP — EXAM LIST)
 
-- TCP/UDP 53: DNS Zone tranfer
-- TCP/UDP 134: MS RCP endpoint Mapper
-- UDP 137: NetBIOS Name Service (NBNS)
-- TCP 139: NetBios Session Service (SMB over NetBIOS)
-- TCP/UDP 445: SMB over TCP (Direct Host) ((SMB = printers))
-- UDP 161: SNMP
-- TCP/UDP 389: LDAP
-- TCP 2049: NFS Network file System
-- TCP 25: Simple Mail Transfer Protocol (SMTP)
-- TCP/UDP 162: SNMP Trap
-- UDP 500: Internet security association key management protocol ISAKMP/Internet Key exchange (IKE)
-- TCP 22: Secure Shell (SSH)/SFTP
-- TCPUDP 3268: Global catalog Service
-- TCP/UDP 5060, 5061: Session initiation protocol SIP
-- TCP 20/21: FTP
-- TCP 23: Telnet
-- UDP 69: TFTP
-- TCP 179 BGP
+|Objective #|Description|
+|---|---|
+|01|Extract usernames using email ID|
+|02|Perform default password attacks|
+|03|Brute force Active Directory|
+|04|Perform DNS zone transfer using dig|
+|05|Extract user groups from Windows|
+|06|Extract usernames using SNMP|
+|07|Extract network resources and topology using SNMP|
 
-**NetBIOS enumeration**:
-Ports:
-	137 UDP Name service
-	138 UDP Datagram service
-	139 TCP Session service
-*Does not work on ipv6
+---
 
-| Name      | NetBIOS Code | Type   | Information obtained                         |
-| --------- | ------------ | ------ | -------------------------------------------- |
-| host name | <00>         | UNIQUE | Hostname                                     |
-| domain    | <00>         | Group  | Domain name                                  |
-| host name | <03>         | UNIQUE | Messenger service                            |
-| username  | <03>         | UNIQUE | Messenger service running for logged in user |
-| host name | <20>         | UNIQUE | Server service running                       |
-| domain    | 1B           | UNIQUE | Domain Master browser name                   |
-| domain    | 1E           | Group  | Browser service elections                    |
+## TECHNIQUES OF ENUMERATION
 
-Tools:
-	nbstat -m for local table
-	nbstat -A 10.10.10.10 for remote system table
-	nbastat -c for remote catche
-	PsExec - enumerate user accounts
-	PsFile 
+|Technique|Detail|
+|---|---|
+|Extracting usernames using Email id|Email harvesting reveals valid accounts|
+|Default password|Try vendor defaults on services|
+|Brute force AD|Password spray / brute force Active Directory|
+|DNS zone transfer — dig|AXFR request to replicate DNS records|
+|Extract user groups from Windows|Net group /domain|
+|Extract user names using SNMP|Walk the OID tree for user lists|
+|Extract network resources and topology using SNMP|SNMP MIB queries reveal hosts and routes|
 
-Enumerate shared resources:
-	net view \\computername
-	net view \\domain
+MEMORY HOOK:
+**Username → Default Pass → AD Brute → DNS Zone → Groups → SNMP Users → SNMP Topology**
 
-**SNMP enumeration:**
-Ports:
-	UDP 161 SNMP Agent
-	UDP 162 SNMP Trap
-Versions:
-	v1 - no security, plaintext security strings
-	v2c - no security byt faster, still plaintext
-	v3 - auth + encryption, secure and recommended
-Tools:
-	SNMPCheck
-	Engineers toolset
-	SNMP Scanner,
-	OpUtils 5
-	SNScan
-	snmpwalk -v1 -c public - view all OIDs 
-	snmp-check
-	SoftPerfect Network Scanner
-	
-Management information base MIB
-	DHCP.MIB - monitors network traffic between DHCP servers
-	HOSTMIB.MIB - monitors and manages host resources
-	LNMIB2.MIB contains object types for workstation and server services
-	MIB_II.MIB - Manages TCP/IP-based internet using simple architecture and system
-	WINS.MIB: For windows internet name service WINS
+---
 
-- 🟢 **MIB-II = TCP/IP networking**
-    
-- 🟡 **HOSTMIB = hardware & system stats**
-    
-- 🔵 **LMMIB2 = Windows LAN Manager services**
-    
-- 🟣 **WINS.MIB = NetBIOS name database**
-    
-- 🟠 **DHCP.MIB = DHCP service only**
+## SERVICES AND PORTS TO ENUMERATE
 
-**Ldap enumeration**
-Ports:
-	TCP 389 LDAP
-	TCP 636 Secure LDAP
-(Lightweight directory access protocol)
-Tools:
-	ldapsearch
-	AD Explorer
-	Softerra LDAP Adminstrator
-	nmap ldap-brute NSE script
+|Port|Protocol|Service|
+|---|---|---|
+|TCP/UDP 53|DNS|Zone transfer|
+|TCP/UDP 134|MS|RPC Endpoint Mapper|
+|UDP 137|NetBIOS|Name Service (NBNS)|
+|TCP 139|NetBIOS|Session Service (SMB over NetBIOS)|
+|TCP/UDP 445|SMB|SMB over TCP (Direct Host) — printers|
+|UDP 161|SNMP|Agent|
+|TCP/UDP 162|SNMP|Trap|
+|TCP/UDP 389|LDAP|Lightweight Directory Access Protocol|
+|TCP 636|LDAP|Secure LDAP (LDAPS)|
+|TCP 2049|NFS|Network File System|
+|TCP 25|SMTP|Simple Mail Transfer Protocol|
+|UDP 500|IPSec|ISAKMP / IKE|
+|TCP 22|SSH|Secure Shell / SFTP|
+|TCP/UDP 3268|AD|Global Catalog Service|
+|TCP/UDP 5060, 5061|VoIP|Session Initiation Protocol (SIP)|
+|TCP 20/21|FTP|File Transfer Protocol|
+|TCP 23|Telnet|Remote terminal|
+|UDP 69|TFTP|Trivial File Transfer Protocol|
+|TCP 179|BGP|Border Gateway Protocol|
+|UDP 123|NTP|Network Time Protocol|
 
-**NTP and NFS enumeration**
+---
 
-NTP Ports:
-	UDP 123
-Tools: 
-	ntptrace
-	ntpdc
-	ntpq
-NFS Ports:
-	2049
-Toools:
-	rpcinfo -p for open port
-	showmount
-	rpc-scan
-	SuperEnum
+## NETBIOS ENUMERATION
 
+|Item|Memorize|
+|---|---|
+|Port 137|UDP — Name Service|
+|Port 138|UDP — Datagram Service|
+|Port 139|TCP — Session Service|
+|IPv6 Support|Does NOT work on IPv6|
 
-**SMTP and DNS enumeration**
+### NETBIOS CODE TABLE (EXAM FAVORITE)
 
-Ports:
-	TCP 25
-Tools:
-	Telnet:
-	SMTP VRFY  - Check if address exists for user
-	SMTP EXPN - request or expand mailing list into individual recipients
-	SMTP RCPT TO - Specifies recipient of message
-	Telnet <email server> 
-	Nmap
-	Metasploit
-	NetScanTools Pro
-	smtp-user-enum
-DNS enumeration using zone transfer:
-	UDP 53
-Tools:
-	dig ns - retrieves all DNS name servers
-	nslookup - windows hosts, name servers, mail etc.
-	DNSRecon -t axfr -d -
-	
+|Name|NetBIOS Code|Type|Information Obtained|
+|---|---|---|---|
+|Host name|<00>|UNIQUE|Hostname|
+|Domain|<00>|Group|Domain name|
+|Host name|<03>|UNIQUE|Messenger service|
+|Username|<03>|UNIQUE|Messenger service for logged-in user|
+|Host name|<20>|UNIQUE|Server service running|
+|Domain|1B|UNIQUE|Domain Master Browser name|
+|Domain|1E|Group|Browser service elections|
 
-DNS catche snooping
+### NETBIOS TOOLS AND COMMANDS
 
-nonrecursive method - responds with root.hints dig +norecursive
-recursive method - TTL is examined
-	
-DNSSEC zone Walking:
-enumerating DNSSSEC zone
-Tools:
-	LDNS
-	DNSRecon
-	Knock
-	Raccoon
-	Turbolist3r
-OWASP AMASS
-	amass enum -d
-	
+|Tool / Command|Purpose|
+|---|---|
+|nbstat -m|Local NetBIOS table|
+|nbstat -A 10.10.10.10|Remote system NetBIOS table|
+|nbstat -c|Remote NetBIOS cache|
+|PsExec|Enumerate user accounts|
+|PsFile|View remotely opened files|
+|net view \\\\computername|Enumerate shared resources on host|
+|net view \\\\domain|Enumerate shared resources on domain|
 
-IPSec enumeration:
+---
 
-nmap -sU -p 500
+## SNMP ENUMERATION
 
-ike-scan -M
+|Port|Protocol|Service|
+|---|---|---|
+|UDP 161|SNMP|Agent|
+|UDP 162|SNMP|Trap|
 
-VoIP enumeration:
-Svmap
+### SNMP VERSIONS TABLE (EXAM FAVORITE)
 
-RPC enumeration:
- nmap -sR
- nmap -T4 -A
+|Version|Security|Detail|
+|---|---|---|
+|v1|None|Plaintext community strings|
+|v2c|None|Faster than v1, still plaintext|
+|v3|Auth + Encryption|Secure — recommended|
 
-Unix/Linux user enumeration
+EXAM TRAP:
+**v1 = none, v2c = none (faster), v3 = encrypted**
 
-rusers -a, -l, -u, -i
-rwho -a
-finger -s 
+### SNMP TOOLS
 
-SMB enumeration:
- nmap -p 445 -A
- nmap -p 445 --script smb-protocols
- nmap -p 139 --script smb-protocols
- 
+|Tool|Detail|
+|---|---|
+|SNMPCheck|Query target via SNMP|
+|Engineers Toolset|Multi-function SNMP scanner|
+|SNMP Scanner|Discover SNMP-enabled hosts|
+|OpUtils 5|IP and SNMP utilities|
+|SNScan|SNMP network scanner|
+|snmpwalk -v1 -c public|View all OIDs on target|
+|snmp-check|Query and dump SNMP data|
+|SoftPerfect Network Scanner|Network + SNMP scanner|
+
+### MANAGEMENT INFORMATION BASE (MIB) TABLE (EXAM FAVORITE)
+
+|MIB Module|Color|Purpose|
+|---|---|---|
+|MIB-II|🟢|TCP/IP networking management|
+|HOSTMIB|🟡|Hardware and system stats|
+|LNMIB2|🔵|Windows LAN Manager services|
+|WINS.MIB|🟣|NetBIOS name database|
+|DHCP.MIB|🟠|DHCP service monitoring|
+
+MEMORY HOOK:
+**MIB-II = TCP/IP, HOSTMIB = hardware, LNMIB2 = LAN Manager, WINS = NetBIOS, DHCP = DHCP only**
+
+---
+
+## LDAP ENUMERATION
+
+|Port|Protocol|Service|
+|---|---|---|
+|TCP 389|LDAP|Lightweight Directory Access Protocol|
+|TCP 636|LDAPS|Secure LDAP|
+
+### LDAP TOOLS
+
+|Tool|Detail|
+|---|---|
+|ldapsearch|Command-line LDAP query tool|
+|AD Explorer|Microsoft Active Directory explorer|
+|Softerra LDAP Administrator|GUI LDAP browser and editor|
+|nmap ldap-brute NSE script|Brute-force LDAP credentials via Nmap|
+
+---
+
+## NTP AND NFS ENUMERATION
+
+### NTP
+
+|Port|Protocol|Service|
+|---|---|---|
+|UDP 123|NTP|Network Time Protocol|
+
+|Tool|Detail|
+|---|---|
+|ntptrace|Trace NTP path to server|
+|ntpdc|Query NTP daemon|
+|ntpq|Query NTP server|
+
+### NFS
+
+|Port|Protocol|Service|
+|---|---|---|
+|TCP 2049|NFS|Network File System|
+
+|Tool|Detail|
+|---|---|
+|rpcinfo -p|List open RPC ports|
+|showmount|Show exported NFS shares|
+|rpc-scan|Scan RPC services|
+|SuperEnum|Enumerate NFS shares|
+
+---
+
+## SMTP AND DNS ENUMERATION
+
+### SMTP
+
+|Port|Protocol|Service|
+|---|---|---|
+|TCP 25|SMTP|Simple Mail Transfer Protocol|
+
+|Tool / Command|Purpose|
+|---|---|
+|Telnet SMTP VRFY|Check if address exists for user|
+|Telnet SMTP EXPN|Expand mailing list into individual recipients|
+|Telnet SMTP RCPT TO|Specify recipient of message|
+|Telnet <email server>|Manual SMTP interaction|
+|Nmap|Service and user enumeration|
+|Metasploit|SMTP auxiliary modules|
+|NetScanTools Pro|GUI network + SMTP scanner|
+|smtp-user-enum|Brute-force SMTP user enumeration|
+
+### DNS ENUMERATION USING ZONE TRANSFER
+
+|Port|Protocol|Service|
+|---|---|---|
+|UDP/TCP 53|DNS|Domain Name System|
+
+|Tool|Purpose|
+|---|---|
+|dig ns|Retrieve all DNS name servers|
+|nslookup|Windows hosts, name servers, mail records|
+|DNSRecon -t axfr -d -|Perform DNS zone transfer|
+
+### DNS CACHE SNOOPING
+
+|Method|Detail|
+|---|---|
+|Non-recursive|Responds with root hints — dig +norecursive|
+|Recursive|TTL is examined to determine cached entries|
+
+### DNSSEC ZONE WALKING
+
+|Item|Detail|
+|---|---|
+|Concept|Enumerating DNSSEC-signed zones|
+|Tools|LDNS, DNSRecon, Knock, Raccoon, Turbolist3r, OWASP Amass|
+|Amass Command|amass enum -d <domain>|
+
+---
+
+## IPSEC ENUMERATION
+
+|Tool / Command|Purpose|
+|---|---|
+|nmap -sU -p 500|Scan UDP 500 for IKE|
+|ike-scan -M|Discover and fingerprint IKE endpoints|
+
+---
+
+## VoIP ENUMERATION
+
+|Tool|Detail|
+|---|---|
+|Svmap|SIP VoIP scanner and enumerator|
+
+---
+
+## RPC ENUMERATION
+
+|Tool / Command|Purpose|
+|---|---|
+|nmap -sR|RPC service enumeration|
+|nmap -T4 -A|Aggressive scan with OS/service detection|
+
+---
+
+## UNIX/LINUX USER ENUMERATION
+
+|Tool / Command|Purpose|
+|---|---|
+|rusers -a, -l, -u, -i|Remote user enumeration with flags|
+|rwho -a|Show who is logged in across network|
+|finger -s|Display user information|
+
+---
+
+## SMB ENUMERATION
+
+|Tool / Command|Purpose|
+|---|---|
+|nmap -p 445 -A|Full scan on SMB port|
+|nmap -p 445 --script smb-protocols|Enumerate SMB protocol versions|
+|nmap -p 139 --script smb-protocols|Enumerate SMB over NetBIOS|
+
+---
+
+## EXAM EXTRAS (Boson Practice Test)
+
+### SMTP COMMANDS
+
+|Command|Purpose|
+|---|---|
+|EHLO|Connection initiation (servers that support EHLO; if not supported, falls back to HELO)|
+|RCPT TO|Indicate recipient|
+|VRFY|Verify existence of mailbox|
+|EXPN|Request recipients of mailing list|
+
+---
+
+### PORT NUMBERS — EXTRAS
+
+|Port|Protocol|Service|
+|---|---|---|
+|TCP 636|LDAPS|Secure LDAP|
+|TCP 389|LDAP|Lightweight Directory Access Protocol|
+|TCP 110|POP3|Post Office Protocol|
+|TCP 995|POP3S|POP3 over SSL|
+|TCP 445|SMB|Server Message Block|
+
+---
+
+## EXAM FLASHCARDS
+
+|Term|Memorize|
+|---|---|
+|Enumeration|Process of extracting usernames, groups, shares, and services|
+|NetBIOS Ports|137 UDP, 138 UDP, 139 TCP — does NOT work on IPv6|
+|SNMP v1|No security, plaintext community strings|
+|SNMP v2c|Faster than v1, still plaintext|
+|SNMP v3|Auth + encryption — recommended|
+|LDAP Port|TCP 389 — LDAPS is TCP 636|
+|NFS Port|TCP 2049|
+|NTP Port|UDP 123|
+|SMTP Port|TCP 25|
+|DNS Port|UDP/TCP 53 — zone transfer = AXFR|
+|IPSec Port|UDP 500 — IKE/ISAKMP|
+|SIP Ports|TCP/UDP 5060, 5061|
+|MIB-II|Manages TCP/IP networking|
+|HOSTMIB|Monitors hardware and system resources|
+|LNMIB2|Windows LAN Manager services|
+|WINS.MIB|NetBIOS name database|
+|DHCP.MIB|DHCP service monitoring|
+|NetBIOS Code <00>|Hostname (UNIQUE) or Domain (Group)|
+|NetBIOS Code <20>|Server service running|
+|NetBIOS Code 1B|Domain Master Browser|
+
+---
+
+## PRACTICE QUESTIONS
+
+|Q#|Question|Answer|
+|---|---|---|
+|1|Which SNMP version provides encryption and authentication?|SNMPv3|
+|2|What port does LDAP use for secure connections?|TCP 636 (LDAPS)|
+|3|Which NetBIOS code identifies a Domain Master Browser?|1B|
+|4|What command performs a DNS zone transfer with dig?|dig ns (then dig @server domain AXFR)|
+|5|Which tool is used to scan for IKE endpoints in IPSec enumeration?|ike-scan -M|
