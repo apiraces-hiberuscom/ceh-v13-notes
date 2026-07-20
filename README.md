@@ -1,5 +1,8 @@
 # CEH v13 Study Notes
 
+Link to page:
+https://apiraces-hiberuscom.github.io/ceh-v13-notes/
+
 Structured, beginner-friendly notes for CEH v13 certification exam preparation. All 20 modules covered with tables, flashcards, and practice questions.
 
 ---
