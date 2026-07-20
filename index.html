@@ -152,6 +152,67 @@ a:hover{text-decoration:underline}
 .search-hint{padding:8px 16px;border-top:1px solid var(--border);font-size:.75rem;color:var(--text-muted);display:flex;gap:12px}
 .search-hint kbd{background:var(--bg-tertiary);padding:2px 6px;border-radius:3px;font-family:var(--font-mono);font-size:.7rem;border:1px solid var(--border)}
 
+/* PRACTICE QUESTIONS */
+.practice-header{text-align:center;padding:40px 0 30px;border-bottom:1px solid var(--border);margin-bottom:30px}
+.practice-header h1{font-size:1.8rem;font-weight:700;margin-bottom:8px;background:linear-gradient(135deg,var(--accent),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.practice-header p{color:var(--text-secondary);font-size:.95rem}
+.practice-stats{display:flex;justify-content:center;gap:24px;margin-top:20px}
+.practice-stat{text-align:center}
+.practice-stat .stat-num{font-size:1.5rem;font-weight:700;color:var(--accent);font-family:var(--font-mono)}
+.practice-stat .stat-label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}
+.module-filter{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:24px 0;padding:16px;background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border)}
+.module-filter-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.8rem;font-family:var(--font-sans);cursor:pointer;transition:all .15s}
+.module-filter-btn:hover{background:var(--bg-hover);color:var(--text-primary)}
+.module-filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.question-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:16px;overflow:hidden;transition:all .2s}
+.question-card:hover{border-color:var(--border-light)}
+.question-header{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+.question-num{font-size:.75rem;font-weight:700;color:var(--accent);font-family:var(--font-mono);min-width:28px}
+.question-text{flex:1;font-size:.92rem;font-weight:500;color:var(--text-primary);line-height:1.5}
+.question-toggle{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--bg-tertiary);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-muted);transition:all .2s;flex-shrink:0}
+.question-card.open .question-toggle{background:var(--accent);color:#fff;border-color:var(--accent);transform:rotate(180deg)}
+.question-options{padding:0 20px 16px 60px}
+.question-option{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;margin-bottom:6px;border-radius:var(--radius);border:1px solid transparent;transition:all .15s;cursor:pointer}
+.question-option:hover{background:var(--bg-hover);border-color:var(--border)}
+.question-option .opt-letter{font-size:.8rem;font-weight:600;color:var(--text-muted);min-width:20px;font-family:var(--font-mono)}
+.question-option .opt-text{font-size:.88rem;color:var(--text-secondary);line-height:1.5}
+.question-option.selected{background:var(--accent-glow);border-color:var(--accent)}
+.question-option.selected .opt-letter{color:var(--accent)}
+.question-option.selected .opt-text{color:var(--text-primary)}
+.question-option.correct{background:rgba(74,222,128,.1);border-color:var(--green)}
+.question-option.correct .opt-letter{color:var(--green)}
+.question-option.correct .opt-text{color:var(--green)}
+.question-option.incorrect{background:rgba(248,113,113,.1);border-color:var(--red)}
+.question-option.incorrect .opt-letter{color:var(--red)}
+.question-option.incorrect .opt-text{color:var(--red)}
+.question-answer{display:none;padding:16px 20px 20px 60px;border-top:1px solid var(--border);margin-top:8px}
+.question-card.open .question-answer{display:block}
+.answer-label{font-size:.75rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.answer-text{font-size:.9rem;color:var(--text-primary);line-height:1.6}
+.answer-explanation{margin-top:12px;padding:12px 16px;background:var(--bg-tertiary);border-radius:var(--radius);border-left:3px solid var(--accent)}
+.answer-explanation p{margin:0;font-size:.85rem;color:var(--text-secondary);line-height:1.6}
+.question-actions{display:flex;gap:8px;margin-top:12px}
+.question-action-btn{padding:6px 12px;border-radius:var(--radius);border:1px solid var(--border);background:transparent;color:var(--text-secondary);font-size:.78rem;font-family:var(--font-sans);cursor:pointer;transition:all .15s}
+.question-action-btn:hover{background:var(--bg-hover);color:var(--text-primary)}
+.question-action-btn.show-answer{border-color:var(--accent);color:var(--accent)}
+.question-action-btn.show-answer:hover{background:var(--accent-glow)}
+.practice-progress{position:sticky;bottom:0;background:var(--bg-secondary);border-top:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;gap:16px;margin-top:24px;border-radius:var(--radius)}
+.practice-progress .bar{flex:1;height:6px;background:var(--bg-tertiary);border-radius:3px;overflow:hidden}
+.practice-progress .fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:3px;transition:width .3s ease}
+.practice-progress .stats{font-size:.8rem;color:var(--text-muted);white-space:nowrap}
+.practice-progress .stats strong{color:var(--accent)}
+.module-practice-link{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:var(--accent-glow);color:var(--accent);border-radius:4px;font-size:.75rem;font-weight:500;margin-left:8px;transition:all .15s}
+.module-practice-link:hover{background:var(--accent);color:#fff;text-decoration:none}
+.question-card .question-options{display:none}
+.question-card.open .question-options{display:block}
+.question-option.correct::before{content:'✓';margin-right:6px;font-weight:bold}
+.question-option.incorrect::before{content:'✗';margin-right:6px;font-weight:bold}
+.question-card{margin-bottom:16px}
+.question-card:last-child{margin-bottom:0}
+.module-filter{margin:24px 0}
+.module-filter-btn{margin:4px}
+.practice-progress{margin-top:32px}
+
 /* RESPONSIVE */
 @media(max-width:768px){
   .sidebar{transform:translateX(-100%)}
@@ -164,6 +225,10 @@ a:hover{text-decoration:underline}
   .topbar{padding:0 16px}
   .sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;display:none}
   .sidebar-overlay.visible{display:block}
+  .question-options{padding-left:20px}
+  .question-answer{padding-left:20px}
+  .practice-stats{flex-wrap:wrap}
+  .module-filter{padding:12px}
 }
 </style>
 </head>
@@ -224,6 +289,7 @@ a:hover{text-decoration:underline}
 <script>
 const MODULES = [
   {id:'home',title:'Home',files:[]},
+  {id:'practice',num:'&#x2726;',title:'Practice Questions',files:[]},
   {id:'m01',num:'01',title:'Introduction to Ethical Hacking',files:['01 - Intro.md']},
   {id:'m02',num:'02',title:'Footprinting & Reconnaissance',files:['02 - footprinting and reconnaissance.md']},
   {id:'m03',num:'03',title:'Scanning Networks',files:['03 - Scanning networks.md']},
@@ -301,7 +367,7 @@ function updateModuleCardProgress(){
 
 function buildSidebar(){
   const nav=document.getElementById('sidebarNav');
-  let html='';
+  let html=`<div class="nav-section"><div class="nav-items"><div class="nav-item" data-module="practice" onclick="navigateTo('practice')" style="margin-bottom:8px;padding:10px 14px;background:var(--accent-glow);border:1px solid var(--accent);border-radius:var(--radius)"><span class="mod-num">&#x2726;</span>Practice Questions<span class="progress-dot"></span></div></div></div>`;
   STUDY_PLAN.forEach(group=>{
     html+=`<div class="nav-section"><div class="nav-section-title" onclick="toggleSection(this)">${group.label}<span class="chevron">&#x25bc;</span></div><div class="nav-items">`;
     group.modules.forEach(mid=>{
@@ -329,6 +395,7 @@ function navigateTo(moduleId,fileIdx){
   });
   const m=MODULES.find(x=>x.id===moduleId);
   if(!m||moduleId==='home'){showHome();return}
+  if(moduleId==='practice'){navigateToPractice(fileIdx);return}
   const bc=document.getElementById('breadcrumb');
   bc.innerHTML=`<strong>${m.num?m.num+' — ':''}</strong> ${m.title}`;
   document.getElementById('btnBackHome').style.display='';
@@ -412,6 +479,11 @@ function showHome(){
     <div class="home-hero">
       <h1>CEH v13 Study Notes</h1>
       <p>Structured, beginner-friendly notes for the Certified Ethical Hacker v13 exam. 20 modules with tables, flashcards, and practice questions.</p>
+      <div style="margin-top:20px">
+        <a href="#" onclick="navigateTo('practice');return false" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--accent);color:#fff;border-radius:var(--radius);font-weight:600;font-size:.9rem;transition:all .15s">
+          &#x2726; Practice Questions
+        </a>
+      </div>
     </div>
     <div class="module-grid">${grid}</div>
   `;
@@ -559,6 +631,239 @@ document.getElementById('contentWrap').addEventListener('scroll',function(){
     }
   },100);
 });
+
+/* PRACTICE QUESTIONS */
+let practiceQuestions = {};
+let currentPracticeModule = 'all';
+let answeredQuestions = {};
+
+function getAnswered(){try{return JSON.parse(localStorage.getItem('ceh_quiz')||'{}')}catch(e){return{}}}
+function saveAnswered(a){localStorage.setItem('ceh_quiz',JSON.stringify(a))}
+answeredQuestions = getAnswered();
+
+function loadPracticeQuestions(){
+  return fetch('practice-questions.js')
+    .then(r => r.text())
+    .then(text => {
+      const fn = new Function(text + '; return practiceQuestions;');
+      practiceQuestions = fn();
+    })
+    .catch(e => {
+      console.error('Error loading practice questions:', e);
+      practiceQuestions = {};
+    });
+}
+
+function renderPracticePage(moduleFilter){
+  currentPracticeModule = moduleFilter || 'all';
+  const content = document.getElementById('contentArea');
+  const questions = getFilteredQuestions();
+  
+  let html = `
+    <div class="practice-header">
+      <h1>CEH v13 Practice Questions</h1>
+      <p>Test your knowledge with exam-style questions for each module</p>
+      <div class="practice-stats">
+        <div class="practice-stat">
+          <div class="stat-num">${questions.length}</div>
+          <div class="stat-label">Questions</div>
+        </div>
+        <div class="practice-stat">
+          <div class="stat-num">${Object.keys(practiceQuestions).length}</div>
+          <div class="stat-label">Modules</div>
+        </div>
+        <div class="practice-stat">
+          <div class="stat-num" id="answeredCount">0</div>
+          <div class="stat-label">Answered</div>
+        </div>
+      </div>
+    </div>
+    <div class="module-filter">
+      <button class="module-filter-btn ${currentPracticeModule==='all'?'active':''}" onclick="renderPracticePage('all')">All Modules</button>
+  `;
+  
+  Object.keys(practiceQuestions).sort().forEach(mod => {
+    const isActive = currentPracticeModule === mod;
+    html += `<button class="module-filter-btn ${isActive?'active':''}" onclick="renderPracticePage('${mod}')">Module ${mod}</button>`;
+  });
+  
+  html += `</div><div id="questionsContainer">`;
+  
+  questions.forEach((q, idx) => {
+    const qId = `${q.module}-${idx}`;
+    const isAnswered = answeredQuestions[qId];
+    html += renderQuestion(q, qId, idx + 1);
+  });
+  
+  html += `</div>`;
+  html += `
+    <div class="practice-progress">
+      <div class="bar"><div class="fill" id="practiceProgressFill" style="width:0%"></div></div>
+      <div class="stats"><strong id="practiceCorrect">0</strong> / ${questions.length} correct</div>
+      <button class="question-action-btn" onclick="resetAllAnswers()">Reset All</button>
+    </div>
+  `;
+  
+  content.innerHTML = html;
+  content.className = 'content';
+  updatePracticeProgress();
+}
+
+function getFilteredQuestions(){
+  const questions = [];
+  Object.keys(practiceQuestions).sort().forEach(mod => {
+    if(currentPracticeModule !== 'all' && mod !== currentPracticeModule) return;
+    practiceQuestions[mod].forEach(q => {
+      questions.push({...q, module: mod});
+    });
+  });
+  return questions;
+}
+
+function renderQuestion(q, qId, num){
+  const letters = ['A', 'B', 'C', 'D'];
+  const prev = answeredQuestions[qId];
+  let html = `
+    <div class="question-card${prev?' open':''}" id="q-${qId}">
+      <div class="question-header" onclick="toggleQuestion('${qId}')">
+        <span class="question-num">Q${num}</span>
+        <span class="question-text">${q.question}</span>
+        <span class="question-toggle">&#x25bc;</span>
+      </div>
+      <div class="question-options">
+  `;
+  
+  q.options.forEach((opt, i) => {
+    let cls = '';
+    if(prev){
+      if(letters[i] === prev.selected && !prev.correct) cls = ' incorrect';
+      else if(letters[i] === prev.selected && prev.correct) cls = ' correct';
+      else if(letters[i] === q.answer && !prev.correct) cls = ' correct';
+    }
+    html += `
+      <div class="question-option${cls}" id="opt-${qId}-${i}" onclick="selectOption('${qId}', ${i}, '${q.answer}')">
+        <span class="opt-letter">${letters[i]}</span>
+        <span class="opt-text">${opt}</span>
+      </div>
+    `;
+  });
+  
+  html += `
+      </div>
+      <div class="question-answer">
+        <div class="answer-label">Correct Answer: ${q.answer}</div>
+        <div class="answer-explanation">
+          <p>${q.explanation}</p>
+        </div>
+        <div class="question-actions">
+          <button class="question-action-btn" onclick="resetQuestion('${qId}')">Reset</button>
+          <button class="question-action-btn show-answer" onclick="showCorrectAnswer('${qId}', '${q.answer}')">Show Answer</button>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  return html;
+}
+
+function toggleQuestion(qId){
+  const card = document.getElementById(`q-${qId}`);
+  card.classList.toggle('open');
+}
+
+function selectOption(qId, selectedIdx, correctAnswer){
+  const letters = ['A', 'B', 'C', 'D'];
+  const selectedLetter = letters[selectedIdx];
+  const isCorrect = selectedLetter === correctAnswer;
+  
+  answeredQuestions[qId] = {selected: selectedLetter, correct: isCorrect};
+  saveAnswered(answeredQuestions);
+  
+  const card = document.getElementById(`q-${qId}`);
+  card.querySelectorAll('.question-option').forEach((opt, i) => {
+    opt.classList.remove('selected', 'correct', 'incorrect');
+    if(i === selectedIdx){
+      opt.classList.add(isCorrect ? 'correct' : 'incorrect');
+    }
+    if(letters[i] === correctAnswer && !isCorrect){
+      opt.classList.add('correct');
+    }
+  });
+  
+  updatePracticeProgress();
+}
+
+function resetQuestion(qId){
+  const card = document.getElementById(`q-${qId}`);
+  card.querySelectorAll('.question-option').forEach(opt => {
+    opt.classList.remove('selected', 'correct', 'incorrect');
+  });
+  delete answeredQuestions[qId];
+  saveAnswered(answeredQuestions);
+  updatePracticeProgress();
+}
+
+function showCorrectAnswer(qId, correctAnswer){
+  const letters = ['A', 'B', 'C', 'D'];
+  const correctIdx = letters.indexOf(correctAnswer);
+  const card = document.getElementById(`q-${qId}`);
+  
+  card.querySelectorAll('.question-option').forEach((opt, i) => {
+    opt.classList.remove('selected', 'incorrect');
+    if(i === correctIdx){
+      opt.classList.add('correct');
+    }
+  });
+  
+  if(!answeredQuestions[qId]){
+    answeredQuestions[qId] = {selected: correctAnswer, correct: true};
+    saveAnswered(answeredQuestions);
+  }
+  updatePracticeProgress();
+}
+
+function updatePracticeProgress(){
+  const total = Object.keys(answeredQuestions).length;
+  const correct = Object.values(answeredQuestions).filter(a => a.correct).length;
+  const allQuestions = getFilteredQuestions().length;
+  const pct = allQuestions > 0 ? (correct / allQuestions * 100) : 0;
+  
+  const fill = document.getElementById('practiceProgressFill');
+  const correctEl = document.getElementById('practiceCorrect');
+  const answeredEl = document.getElementById('answeredCount');
+  
+  if(fill) fill.style.width = pct + '%';
+  if(correctEl) correctEl.textContent = correct;
+  if(answeredEl) answeredEl.textContent = total;
+}
+
+function resetAllAnswers(){
+  if(!confirm('Reset all quiz answers?')) return;
+  answeredQuestions = {};
+  saveAnswered(answeredQuestions);
+  renderPracticePage(currentPracticeModule);
+}
+
+function navigateToPractice(moduleId){
+  currentModule = 'practice';
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.querySelector('.nav-item[data-module="practice"]')?.classList.add('active');
+  
+  document.getElementById('breadcrumb').innerHTML = '<strong>Practice</strong> Exam Questions';
+  document.getElementById('btnBackHome').style.display = '';
+  document.getElementById('btnMarkDone').style.display = 'none';
+  
+  const content = document.getElementById('contentArea');
+  content.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+  content.className = 'content loading';
+  
+  loadPracticeQuestions().then(() => {
+    renderPracticePage(moduleId || 'all');
+    document.getElementById('contentWrap').scrollTop = 0;
+  });
+  
+  closeSidebar();
+}
 
 /* INIT */
 buildSidebar();
