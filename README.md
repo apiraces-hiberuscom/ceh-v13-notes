@@ -1,71 +1,105 @@
 # CEH v13 Study Notes
 
-Link to page:
-https://apiraces-hiberuscom.github.io/ceh-v13-notes/
+<p align="center">
+  <a href="https://apiraces-hiberuscom.github.io/ceh-v13-notes/">
+    <img src="https://img.shields.io/badge/📖-Live%20Notes-blue?style=for-the-badge" alt="Live Notes">
+  </a>
+  <img src="https://img.shields.io/badge/CEH-v13-purple?style=for-the-badge" alt="CEH v13">
+  <img src="https://img.shields.io/badge/Modules-20-green?style=for-the-badge" alt="20 Modules">
+  <img src="https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge" alt="Complete">
+</p>
 
-Structured, beginner-friendly notes for CEH v13 certification exam preparation. All 20 modules covered with tables, flashcards, and practice questions.
-
----
-
-## Navigation
-
-| # | Module | Files | Key Topics |
-|---|--------|-------|------------|
-| 01 | Introduction to Ethical Hacking | `01 - Intro.md` | CIA triad, Cyber Kill Chain, MITRE ATT&CK, Diamond Model, Laws & Standards |
-| 02 | Footprinting and Reconnaissance | `02 - footprinting and reconnaissance.md` | Google Dorking, WHOIS, DNS, TCP/IP, OSINT |
-| 03 | Scanning Networks | `03 - Scanning networks.md` | Nmap, Hping3, Port Scans, Host Discovery, Timing Templates |
-| 04 | Enumeration | `04 - Enumeration.md` | NetBIOS, SNMP, LDAP, NTP/NFS, SMTP, DNS Zone Transfer |
-| 05 | Vulnerability Analysis | `05 - Vulnerability analysis.md` | CVSS, CVE, CWE, NVD, Nessus, OpenVAS, Qualys |
-| 06 | System Hacking | `06 - System hacking.md` | SAM/NTLM/Kerberos, Password Cracking, Metasploit, Privilege Escalation, Steganography |
-| 07 | Malware Threats | `07 - Malware threats.md` | Trojans, Viruses, Worms, Ransomware, APT, Malware Analysis |
-| 08 | Network Sniffing | `08 - Network sniffing.md` | ARP Spoofing, MAC Flooding, VLAN Hopping, DNS Poisoning, Wireshark |
-| 09 | Social Engineering | `09 - Social Engineering.md` | Phishing, Pretexting, Tailgating, AI Deepfakes, Insider Threats |
-| 10 | Denial of Service | `10 - Denial of service.md` | Botnets, DDoS Types, SYN Flood, Slowloris, Amplification |
-| 11 | Session Hijacking | `11 - Session hijacking.md` | XSS, CSRF, TCP/IP Hijacking, RST Hijacking, PetitPotam |
-| 12 | Evading IDS, Firewalls & Honeypots | `12 - Evading IDS, Firewalls and Honeypots.md` | IDS/IPS, Firewall Types, YARA, Tunneling, Honeypots |
-| 13 | Hacking Web Servers | `13 - Hacking Web Servers.md` | Apache/IIS/Nginx, DNS Attacks, Directory Traversal, HTTP Response Splitting |
-| 14 | Hacking Web Applications | `14 - Part 1 - Foundations.md`, `14 - Part 2 - OWASP Top 10.md`, `14 - Part 3 - Hacking Methodology.md`, `14 - Part 4 - APIs and Webhooks.md`, `14 - Part 5 - Security Testing.md` | OWASP Top 10, Web App Hacking Methodology, APIs, Security Testing |
-| 15 | SQL Injection | `15 - Part 1 - SQL Injection Fundamentals.md`, `15 - Part 2 - SQLi Types.md`, `15 - Part 3 - SQLi Methodology.md`, `15 - Part 4 - SQLi Evasion.md`, `15 - Part 5 - SQLi Countermeasures.md` | SQLi Types, Methodology, Evasion, Countermeasures, SQLmap |
-| 16 | Hacking Wireless Networks | `16 - Part 1 - Wireless Concepts.md`, `16 - Part 2 - Wireless Encryption.md`, `16 - Part 3 - Wireless Attacks.md`, `16 - Part 4 - Wireless Hacking Methodology.md`, `16 - Part 5 - Wireless Countermeasures.md` | WEP/WPA/WPA2/WPA3, Rogue AP, Evil Twin, Aircrack-ng |
-| 17 | Hacking Mobile Platforms | `17 - Part 1 - Mobile Attack Vectors.md`, `17 - Part 2 - Android Threats.md`, `17 - Part 3 - iOS Threats.md`, `17 - Part 4 - MDM and BYOD.md`, `17 - Part 5 - Mobile Security Tools.md` | OWASP Mobile Top 10, Android/iOS Threats, MDM, BYOD |
-| 18 | Hacking IoT & OT | `18 - Part 1 - IoT Concepts.md`, `18 - Part 2 - OT and SCADA.md`, `18 - Part 3 - IoT Threats.md`, `18 - Part 4 - IoT Hacking Methodology.md`, `18 - Part 5 - IoT Countermeasures.md` | IoT Concepts, SCADA/ICS, IoT Attacks, OT Security |
-| 19 | Cloud Computing | `19 - Part 1 - Cloud Concepts.md`, `19 - Part 2 - Cloud Threats.md`, `19 - Part 3 - Cloud Attacks.md`, `19 - Part 4 - Cloud Security.md` | Cloud Models, Threats, Attacks, DevSecOps |
-| 20 | Cryptography | `20 - Part 1 - Symmetric and Asymmetric.md`, `20 - Part 2 - Hashing.md`, `20 - Part 3 - PKI.md`, `20 - Part 4 - Wireless Crypto.md`, `20 - Part 5 - Email and Disk Crypto.md`, `20 - Part 6 - Cryptographic Attacks.md` | Symmetric/Asymmetric, Hashing, PKI, Email/Disk Crypto |
-| Extra | Web Servers Deep Dive | `Extra - Web Servers Deep Dive.md` | Apache/IIS/Nginx architecture in depth (exam supplement) |
+<p align="center">
+  <b>Structured, beginner-friendly notes for CEH v13 certification exam preparation.</b><br>
+  All 20 modules covered with tables, flashcards, and practice questions.
+</p>
 
 ---
 
-## How to Use These Notes
+## 📋 About
 
-1. **Read** the notes module by module
-2. **Study** the tables -- they are designed for quick scanning
-3. **Use Flashcards** at the end of each file for memorization
-4. **Test yourself** with the Practice Questions at the end of each file
-5. **Reference** the Exam Cheat Sheet below for last-minute review
+> **This is a fork.** The original notes were created by [Mr-Infect](https://github.com/Mr-Infect).  
+> All credit for the content goes to the original author. This fork has been reorganized and formatted for personal study use.
 
----
-
-## Suggested Study Plan
-
-| Week | Modules | Est. Time | Priority |
-|------|---------|-----------|----------|
-| 1 | 01, 02, 03, 04 | 4-6 hours | Foundation |
-| 2 | 05, 06, 07 | 4-6 hours | Core |
-| 3 | 08, 09, 10, 11 | 4-6 hours | Core |
-| 4 | 12, 13 | 3-4 hours | Core |
-| 5 | 14, 15 | 4-6 hours | Web (heavy exam weight) |
-| 6 | 16, 17 | 3-4 hours | Wireless & Mobile |
-| 7 | 18, 19, 20 | 3-4 hours | IoT, Cloud, Crypto |
-| 8 | Review all + Extra | 4-6 hours | Final review |
+🔗 **Original Repository:** [Mr-Infect/ceh-v13-notes](https://github.com/Mr-Infect/ceh-v13-notes)
 
 ---
 
-## Exam Cheat Sheet
+## ✨ Features
 
-### Must-Memorize Ports
+| Feature | Description |
+|---------|-------------|
+| 📚 **Comprehensive** | All 20 CEH modules fully covered |
+| 📊 **Quick Reference Tables** | Scan key concepts at a glance |
+| 🃏 **Flashcards** | End-of-module cards for memorization |
+| ❓ **Practice Questions** | Test your knowledge per module |
+| 📱 **Web Version** | Read online with GitHub Pages |
+| 🎯 **Exam Cheat Sheet** | Last-minute review essentials |
+
+---
+
+## 🧭 Navigation
+
+| # | Module | Files |
+|---|--------|-------|
+| 01 | Introduction to Ethical Hacking | `01 - Intro.md` |
+| 02 | Footprinting and Reconnaissance | `02 - footprinting and reconnaissance.md` |
+| 03 | Scanning Networks | `03 - Scanning networks.md` |
+| 04 | Enumeration | `04 - Enumeration.md` |
+| 05 | Vulnerability Analysis | `05 - Vulnerability analysis.md` |
+| 06 | System Hacking | `06 - System hacking.md` |
+| 07 | Malware Threats | `07 - Malware threats.md` |
+| 08 | Network Sniffing | `08 - Network sniffing.md` |
+| 09 | Social Engineering | `09 - Social Engineering.md` |
+| 10 | Denial of Service | `10 - Denial of service.md` |
+| 11 | Session Hijacking | `11 - Session hijacking.md` |
+| 12 | Evading IDS, Firewalls & Honeypots | `12 - Evading IDS, Firewalls and Honeypots.md` |
+| 13 | Hacking Web Servers | `13 - Hacking Web Servers.md` |
+| 14 | Hacking Web Applications | `14 - Part 1 - Foundations.md` ... `14 - Part 5 - Security Testing.md` |
+| 15 | SQL Injection | `15 - Part 1 - SQL Injection Fundamentals.md` ... `15 - Part 5 - SQLi Countermeasures.md` |
+| 16 | Hacking Wireless Networks | `16 - Part 1 - Wireless Concepts.md` ... `16 - Part 5 - Wireless Countermeasures.md` |
+| 17 | Hacking Mobile Platforms | `17 - Part 1 - Mobile Attack Vectors.md` ... `17 - Part 5 - Mobile Security Tools.md` |
+| 18 | Hacking IoT & OT | `18 - Part 1 - IoT Concepts.md` ... `18 - Part 5 - IoT Countermeasures.md` |
+| 19 | Cloud Computing | `19 - Part 1 - Cloud Concepts.md` ... `19 - Part 4 - Cloud Security.md` |
+| 20 | Cryptography | `20 - Part 1 - Symmetric and Asymmetric.md` ... `20 - Part 6 - Cryptographic Attacks.md` |
+| Extra | Web Servers Deep Dive | `Extra - Web Servers Deep Dive.md` |
+
+---
+
+## 📖 How to Use
+
+```
+1️⃣  READ        → Go through notes module by module
+2️⃣  SCAN        → Use tables for quick concept review
+3️⃣  MEMORIZE    → Flashcards at end of each file
+4️⃣  TEST        → Practice questions to check knowledge
+5️⃣  REVIEW      → Exam Cheat Sheet for last-minute prep
+```
+
+---
+
+## 📅 Suggested Study Plan
+
+| Week | Modules | Time | Focus |
+|:----:|---------|:----:|-------|
+| 1 | 01, 02, 03, 04 | 4-6h | 🟢 Foundation |
+| 2 | 05, 06, 07 | 4-6h | 🔴 Core |
+| 3 | 08, 09, 10, 11 | 4-6h | 🔴 Core |
+| 4 | 12, 13 | 3-4h | 🔴 Core |
+| 5 | 14, 15 | 4-6h | 🟣 Web (high exam weight) |
+| 6 | 16, 17 | 3-4h | 🔵 Wireless & Mobile |
+| 7 | 18, 19, 20 | 3-4h | 🟡 IoT, Cloud, Crypto |
+| 8 | Review + Extra | 4-6h | ⚫ Final Review |
+
+---
+
+## 🎯 Exam Cheat Sheet
+
+<details>
+<summary><b>🔌 Must-Memorize Ports</b></summary>
 
 | Port | Protocol | Service |
-|------|----------|---------|
+|:----:|:--------:|---------|
 | 20/21 | TCP | FTP |
 | 22 | TCP | SSH/SFTP |
 | 23 | TCP | Telnet |
@@ -92,34 +126,51 @@ Structured, beginner-friendly notes for CEH v13 certification exam preparation. 
 | 3389 | TCP | RDP |
 | 5060/5061 | TCP/UDP | SIP |
 
-### Must-Memorize Formulas
+</details>
+
+<details>
+<summary><b>📐 Must-Memorize Formulas</b></summary>
 
 | Formula | Definition |
 |---------|------------|
-| ALE = SLE x ARO | Annual Loss Expectancy |
-| SLE = Asset Value x Exposure Factor | Single Loss Expectancy |
-| ARO = Annual Rate of Occurrence | How often per year |
-| RISK = Threat x Vulnerability x Impact | Risk calculation |
+| `ALE = SLE × ARO` | Annual Loss Expectancy |
+| `SLE = Asset Value × Exposure Factor` | Single Loss Expectancy |
+| `ARO` | Annual Rate of Occurrence |
+| `RISK = Threat × Vulnerability × Impact` | Risk Calculation |
 
-### TTL Values
+</details>
+
+<details>
+<summary><b>🖥️ TTL Values</b></summary>
 
 | OS | TTL |
-|----|-----|
+|----|:---:|
 | Linux/Unix | 64 |
 | Windows | 128 |
 | Network Devices | 255 |
 
-### Key Frameworks
+</details>
+
+<details>
+<summary><b>🏗️ Key Frameworks</b></summary>
 
 | Framework | Purpose |
 |-----------|---------|
-| MITRE ATT&CK | Categorize adversary behavior (Tactics, Techniques, Procedures) |
-| Cyber Kill Chain | 7-phase attack lifecycle (Lockheed Martin) |
-| Diamond Model | Adversary, Capability, Infrastructure, Victim |
-| OWASP Top 10 | Top 10 web application security risks |
+| **MITRE ATT&CK** | Adversary behavior (TTPs) |
+| **Cyber Kill Chain** | 7-phase attack lifecycle |
+| **Diamond Model** | Adversary, Capability, Infrastructure, Victim |
+| **OWASP Top 10** | Top 10 web app security risks |
+
+</details>
 
 ---
 
-## Disclaimer
+## ⚠️ Disclaimer
 
-This repository is strictly for educational purposes. Use the knowledge only for ethical learning, research, and defensive cybersecurity practices.
+This repository is for **educational purposes only**. Use the knowledge exclusively for ethical learning, research, and defensive cybersecurity practices. Always obtain proper authorization before testing.
+
+---
+
+<p align="center">
+  <i>Built with ❤️ for the cybersecurity community</i>
+</p>
