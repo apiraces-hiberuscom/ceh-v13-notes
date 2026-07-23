@@ -165,15 +165,15 @@
 
 ---
 
-## 🛠️ Herramientas por Fase de Hacking (CEH v13)
+## 🛠️ Tools by Hacking Phase (CEH v13)
 
-> Tabla de herramientas relevantes para el examen CEH v13, organizadas por fase de hacking.  
-> Los enlaces redirigen a las páginas oficiales de descarga o documentación.
+> Relevant tools for the CEH v13 exam, organized by hacking phase.  
+> Links redirect to official download pages or documentation.
 
 <details open>
 <summary><b>🔍 1. Reconnaissance / Footprinting</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Maltego** | OSINT y análisis de relaciones entre entidades (dominios, emails, personas) | [Descargar](https://www.maltego.com/downloads/) |
 | **theHarvester** | Recolecta emails, subdominios, IPs y nombres de fuentes públicas | [GitHub](https://github.com/laramies/theHarvester) |
@@ -193,7 +193,7 @@
 <details open>
 <summary><b>📡 2. Scanning Networks</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Nmap** | Escáner de puertos, detección de servicios y SO (estándar en CEH) | [Descargar](https://nmap.org/download.html) |
 | **Zenmap** | Interfaz gráfica oficial de Nmap | [Descargar](https://nmap.org/zenmap/) |
@@ -210,7 +210,7 @@
 <details open>
 <summary><b>📋 3. Enumeration</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Enum4linux** | Enumeración de recursos compartidos, usuarios y OS en Samba/Windows | [GitHub](https://github.com/portcullis/enum4linux) |
 | **NetBIOS Enumerator** | Escanea y enumera recursos NetBIOS en redes Windows | [Web](https://www.solarwinds.com/free-tools) |
@@ -228,7 +228,7 @@
 <details open>
 <summary><b>🔬 4. Vulnerability Analysis</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Nessus** | Escáner de vulnerabilidades comercial (muy usado en CEH) | [Descargar](https://www.tenable.com/downloads/nessus) |
 | **OpenVAS** | Framework de escaneo de vulnerabilidades open-source | [Web](https://www.greenbone.net/en/) |
@@ -246,7 +246,7 @@
 <details open>
 <summary><b>💀 5. System Hacking / Gaining Access</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Metasploit Framework** | Framework de explotación (payloads, exploits, post-explotación) | [Descargar](https://www.metasploit.com/) |
 | **John the Ripper** | Crackeador de contraseñas offline (modos wordlist, incremental, single) | [Web](https://www.openwall.com/john/) |
@@ -267,9 +267,9 @@
 </details>
 
 <details open>
-<summary><b>🔐 6. Password Cracking (Específicas)</b></summary>
+<summary><b>🔐 6. Password Cracking</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Ophcrack** | Crackea contraseñas Windows con tablas rainbow (LM/NTLM) | [Web](https://ophcrack.sourceforge.io/) |
 | **CrackStation** | Servicio online de crackeo mediante diccionarios masivos | [Web](https://crackstation.net/) |
@@ -280,7 +280,7 @@
 <details open>
 <summary><b>🦠 7. Malware Threats</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **IDA Pro** | Desensamblador y depurador para análisis de malware | [Web](https://hex-rays.com/ida-pro/) |
 | **OllyDbg** | Depurador de ensamblador para análisis dinámico de binarios | [Web](https://www.ollydbg.de/) |
@@ -299,7 +299,7 @@
 <details open>
 <summary><b>🌐 8. Sniffing</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Wireshark** | Captura y análisis de paquetes de red | [Descargar](https://www.wireshark.org/download.html) |
 | **Tcpdump** | Capturador de tráfico por línea de comandos | [Web](https://www.tcpdump.org/) |
@@ -317,7 +317,7 @@
 <details open>
 <summary><b>🚫 9. Denial of Service</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **LOIC** | Herramienta de DoS por inundación TCP/UDP/HTTP | [GitHub](https://github.com/NewEraCracker/LOIC) |
 | **HOIC** | Herramienta de DoS con ataques HTTP de alta velocidad | [Web](https://www.softpedia.com/get/Internet/Other-Internet-Related/HOIC.shtml) |
@@ -331,7 +331,7 @@
 <details open>
 <summary><b>🔄 10. Session Hijacking</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Burp Suite** | Captura y manipula cookies de sesión para secuestro | [Descargar](https://portswigger.net/burp/communitydownload) |
 | **OWASP ZAP** | Intercepta peticiones y permite modificar tokens de sesión | [Descargar](https://www.zaproxy.org/download/) |
@@ -346,7 +346,7 @@
 <details open>
 <summary><b>🛡️ 11. Evading IDS, Firewalls & Honeypots</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Nmap (evasion options)** | Opciones de evasión: fragmentación, decoy, spoofing, timing | [Documentación](https://nmap.org/book/man-bypass-firewalls-ids.html) |
 | **Hping3** | Falsificación de paquetes para eludir reglas de firewall | [Web](https://www.hping.org/) |
@@ -364,7 +364,7 @@
 <details open>
 <summary><b>🌍 12. Hacking Web Servers & Web Applications</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Burp Suite** | Proxy, scanner, intruder, repeater para auditoría web | [Descargar](https://portswigger.net/burp/communitydownload) |
 | **OWASP ZAP** | Escáner de seguridad web automatizado | [Descargar](https://www.zaproxy.org/download/) |
@@ -383,7 +383,7 @@
 <details open>
 <summary><b>📶 13. Hacking Wireless Networks</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Aircrack-ng** | Suite de auditoría WiFi (captura, cracking WEP/WPA) | [Web](https://www.aircrack-ng.org/) |
 | **Airodump-ng** | Captura de paquetes y monitorización de redes WiFi | [Web](https://www.aircrack-ng.org/) |
@@ -402,7 +402,7 @@
 <details open>
 <summary><b>📱 14. Hacking Mobile Platforms</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Drozer** | Framework de seguridad para Android | [GitHub](https://github.com/WithSecureLabs/drozer) |
 | **jadx** | Descompilador de APK a código Java | [GitHub](https://github.com/skylot/jadx) |
@@ -418,7 +418,7 @@
 <details open>
 <summary><b>🔌 15. Hacking IoT & OT</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **Firmwalker** | Escanea firmware de dispositivos embebidos | [GitHub](https://github.com/craigz28/firmwalker) |
 | **Binwalk** | Análisis y extracción de firmware | [GitHub](https://github.com/ReFirmLabs/binwalk) |
@@ -434,7 +434,7 @@
 <details open>
 <summary><b>☁️ 16. Cloud Computing</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **ScoutSuite** | Auditoría de seguridad multi-cloud (AWS, Azure, GCP) | [GitHub](https://github.com/nccgroup/ScoutSuite) |
 | **Pacu** | Framework de explotación cloud AWS | [GitHub](https://github.com/RhinoSecurityLabs/pacu) |
@@ -449,7 +449,7 @@
 <details open>
 <summary><b>🔐 17. Cryptography</b></summary>
 
-| Herramienta | Descripción | Enlace |
+| Tool | Description | Link |
 |-------------|-------------|--------|
 | **OpenSSL** | Toolkit de criptografía (cifrado, certificados, hashes) | [Descargar](https://openssl-library.org/source/) |
 | **HashCalc** | Calculadora de hashes (MD5, SHA1, SHA256, CRC) | [Web](https://hashcalc.soft112.com/) |
