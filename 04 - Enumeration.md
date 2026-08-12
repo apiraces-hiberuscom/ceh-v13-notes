@@ -285,7 +285,7 @@ MEMORY HOOK:
 |nmap -p 445 -A|Full scan on SMB port|
 |nmap -p 445 --script smb-protocols|Enumerate SMB protocol versions|
 |nmap -p 139 --script smb-protocols|Enumerate SMB over NetBIOS|
-
+|nmap -Pn -p445 --script smb2-security-mode|Comprobar funcion firma mensajes|
 ---
 
 ## EXAM EXTRAS (Boson Practice Test)
