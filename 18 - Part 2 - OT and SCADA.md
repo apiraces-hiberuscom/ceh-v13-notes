@@ -6,9 +6,9 @@
 
 |Term|Definition|
 |---|---|
-|IoT Threat|Any potential action or event that exploits vulnerabilities in IoT devices, networks, or platforms to compromise confidentiality, integrity, or availability|
+|IoT Threat|Cualquier acción potencial o evento que explota vulnerabilidades en dispositivos, redes o plataformas IoT para comprometer confidencialidad, integridad o disponibilidad|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Threat exploits weakness**
 
 ---
@@ -17,16 +17,16 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Default credentials|
-|Hardcoded passwords|
-|Weak/no encryption|
-|Insecure web interfaces|
-|Lack of patching|
-|Limited processing power|
-|Physical accessibility|
-|Long device lifecycle|
+|Credenciales por defecto|
+|Contraseñas codificadas|
+|Cifrado débil o inexistente|
+|Interfaces web inseguras|
+|Falta de parches|
+|Potencia de procesamiento limitada|
+|Accesibilidad física|
+|Ciclo de vida largo del dispositivo|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Cheap, old, exposed**
 
 ---
@@ -41,7 +41,7 @@ MEMORY HOOK:
 |Cloud|APIs, web apps|
 |Application|Web/mobile apps|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Every layer is attackable**
 
 ---
@@ -66,11 +66,11 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|Cause|Default usernames/passwords|
-|Method|Credential reuse|
-|Impact|Full device takeover|
+|Cause|Nombres de usuario/contraseñas por defecto|
+|Method|Reutilización de credenciales|
+|Impact|Takeover completo del dispositivo|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Default creds = instant access**
 
 ---
@@ -79,11 +79,11 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|Method|Modify firmware image|
-|Vector|Update mechanism|
-|Result|Persistent backdoor|
+|Method|Modificar imagen de firmware|
+|Vector|Mecanismo de actualización|
+|Result|Backdoor persistente|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Firmware = permanent control**
 
 ---
@@ -92,12 +92,12 @@ MEMORY HOOK:
 
 |Method|
 |---|
-|JTAG access|
-|UART access|
+|Acceso JTAG|
+|Acceso UART|
 |Chip-off attacks|
 |Side-channel attacks|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Physical access = root**
 
 ---
@@ -106,9 +106,9 @@ MEMORY HOOK:
 
 |Aspect|
 |---|
-|Malicious chips|
-|Supply chain compromise|
-|Undetectable persistence|
+|Chips maliciosos|
+|Compromiso de cadena de suministro|
+|Persistencia indetectable|
 
 ---
 
@@ -120,9 +120,9 @@ MEMORY HOOK:
 
 |Description|
 |---|
-|Intercepts device communication|
-|Alters commands/data|
-|Exploits weak encryption|
+|Intercepta la comunicación del dispositivo|
+|Alterar comandos/datos|
+|Explota cifrado débil|
 
 ---
 
@@ -132,11 +132,11 @@ MEMORY HOOK:
 
 |Attack|
 |---|
-|Unauthorized topic subscription|
-|Message injection|
-|Broker compromise|
+|Suscripción no autorizada a topics|
+|Inyección de mensajes|
+|Compromiso del broker|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **MQTT without auth = broadcast**
 
 ---
@@ -145,7 +145,7 @@ MEMORY HOOK:
 
 |Attack|
 |---|
-|Amplification|
+|Amplificación|
 |Spoofing|
 |Replay attacks|
 
@@ -165,11 +165,11 @@ MEMORY HOOK:
 
 |Aspect|
 |---|
-|Wireless interference|
-|DoS condition|
+|Interferencia inalámbrica|
+|Condición de DoS|
 |Targets ZigBee, Bluetooth|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Noise = DoS**
 
 ---
@@ -182,7 +182,7 @@ MEMORY HOOK:
 
 |Issue|
 |---|
-|Weak authentication|
+|Autenticación débil|
 |No HTTPS|
 |Command injection|
 |XSS|
@@ -193,9 +193,9 @@ MEMORY HOOK:
 
 |Issue|
 |---|
-|Hardcoded APIs|
-|Weak auth|
-|Improper certificate validation|
+|APIs codificadas|
+|Autenticación débil|
+|Validación de certificados incorrecta|
 
 ---
 
@@ -203,8 +203,8 @@ MEMORY HOOK:
 
 |Cause|
 |---|
-|Unsafe memory handling|
-|No bounds checking|
+|Manejo inseguro de memoria|
+|Sin verificación de límites|
 
 ---
 
@@ -226,9 +226,9 @@ MEMORY HOOK:
 
 |Issue|
 |---|
-|Weak authentication|
-|Broken authorization|
-|Excessive privileges|
+|Autenticación débil|
+|Autorización rota|
+|Exceso de privilegios|
 
 ---
 
@@ -236,8 +236,8 @@ MEMORY HOOK:
 
 |Cause|
 |---|
-|Misconfigured cloud storage|
-|Weak access controls|
+|Almacenamiento en la nube mal configurado|
+|Controles de acceso débiles|
 
 ---
 
@@ -258,7 +258,7 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|IoT Botnet|A network of compromised IoT devices controlled by an attacker|
+|IoT Botnet|Una red de dispositivos IoT comprometidos controlados por un atacante|
 
 ---
 
@@ -266,12 +266,12 @@ MEMORY HOOK:
 
 |Feature|
 |---|
-|Targets IoT devices|
-|Uses default credentials|
-|Performs DDoS attacks|
-|Scans Telnet/SSH|
+|Targeta dispositivos IoT|
+|Usa credenciales por defecto|
+|Realiza ataques DDoS|
+|Escanea Telnet/SSH|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Mirai = IoT DDoS**
 
 ---
@@ -289,18 +289,17 @@ MEMORY HOOK:
 
 # IoT DDoS ATTACK FLOW (STEP LOGIC)
 
-1. Attacker scans for vulnerable IoT devices
-    
-2. Compromises devices using default credentials
-    
-3. Installs bot malware
-    
-4. Botnet receives C2 commands
-    
-5. Devices flood target with traffic
-    
+1. El atacante escanea dispositivos IoT vulnerables
 
-MEMORY HOOK:  
+2. Compromete dispositivos usando credenciales por defecto
+
+3. Instala malware bot
+
+4. El botnet recibe comandos C2
+
+5. Los dispositivos inundan el objetivo con tráfico
+
+MEMORY HOOK:
 **Scan → Infect → Control → Flood**
 
 ---
@@ -309,11 +308,11 @@ MEMORY HOOK:
 
 |Attack|
 |---|
-|Compromised firmware|
-|Malicious updates|
-|Third-party library backdoors|
+|Firmware comprometido|
+|Actualizaciones maliciosas|
+|Backdoors en bibliotecas de terceros|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Trust vendor = risk**
 
 ---
@@ -322,18 +321,18 @@ MEMORY HOOK:
 
 |Threat|
 |---|
-|Location tracking|
-|Audio/video surveillance|
-|Behavioral profiling|
+|Rastreo de ubicación|
+|Vigilancia de audio/video|
+|Perfilado de comportamiento|
 
 ---
 
 # OBJECTIVE 02 — EXAM MEMORY BLOCK
 
-**IoT threats target devices, networks, software, and cloud components.  
-Default credentials, weak encryption, and insecure interfaces are primary weaknesses.  
-Botnets like Mirai exploit IoT at scale for DDoS attacks.  
-Physical access and firmware attacks enable persistent compromise.**
+**Las amenazas IoT targetan dispositivos, redes, software y componentes en la nube.
+Las credenciales por defecto, el cifrado débil y las interfaces inseguras son debilidades principales.
+Botnets como Mirai explotan IoT a escala para ataques DDoS.
+El acceso físico y los ataques a firmware permiten compromiso persistente.**
 
 ---
 
@@ -357,7 +356,7 @@ Physical access and firmware attacks enable persistent compromise.**
 
 |Item|Memorize|
 |---|---|
-|HMI attack|Human Machine Interface attack — targets monitor, touchscreen, usually in OT environments|
+|HMI attack|Ataque a la interfaz hombre-máquina — targeta monitor, pantalla táctil, usualmente en entornos OT|
 
 ---
 
@@ -365,57 +364,57 @@ Physical access and firmware attacks enable persistent compromise.**
 
 | Term | Definition |
 |------|------------|
-| IoT Threat | Any action exploiting IoT vulnerabilities to compromise confidentiality, integrity, or availability |
-| JTAG | Hardware debugging interface used to test, debug, and program embedded devices — provides root-level access |
-| UART | Universal Asynchronous Receiver/Transmitter — serial communication interface exposing debug consoles |
-| Chip-off Attack | Physically removing a memory chip to extract data when JTAG/UART are disabled |
-| Firmware Tampering | Modifying firmware images to create persistent backdoors |
-| MQTT Attack | Exploits unauthorized topic subscription, message injection, or broker compromise in IoT messaging |
-| CoAP Attack | Amplification, spoofing, or replay attacks exploiting UDP-based CoAP protocol |
-| IoT Botnet | Network of compromised IoT devices controlled by an attacker (e.g., Mirai) |
-| Mirai | Famous IoT botnet that scans Telnet/SSH using default credentials for DDoS attacks |
-| Reaper | IoT botnet that evolved beyond Mirai with additional exploit capabilities |
-| BlueBorne | Bluetooth-based attack vector for IoT device compromise |
-| Supply Chain Attack | Compromising devices through malicious firmware, updates, or third-party library backdoors |
-| Rolling Code Attack | Exploiting predictable code sequences in wireless entry systems |
-| Jamming Attack | Wireless interference causing denial of service, targeting ZigBee and Bluetooth |
-| Firmware Extraction | Obtaining firmware images via JTAG, UART, flash dump, or OTA interception |
+| IoT Threat | Cualquier acción que explota vulnerabilidades IoT para comprometer confidencialidad, integridad o disponibilidad |
+| JTAG | Interfaz de depuración de hardware usada para probar, depurar y programar dispositivos embebidos — proporciona acceso a nivel root |
+| UART | Universal Asynchronous Receiver/Transmitter — interfaz de comunicación serial que expone consolas de depuración |
+| Chip-off Attack | Extracción física de un chip de memoria para obtener datos cuando JTAG/UART están deshabilitados |
+| Firmware Tampering | Modificación de imágenes de firmware para crear backdoors persistentes |
+| MQTT Attack | Explota suscripción no autorizada a topics, inyección de mensajes o compromiso del broker en mensajería IoT |
+| CoAP Attack | Amplificación, spoofing o replay attacks que explotan el protocolo UDP-based CoAP |
+| IoT Botnet | Red de dispositivos IoT comprometidos controlados por un atacante (ej., Mirai) |
+| Mirai | Famoso IoT botnet que escanea Telnet/SSH usando credenciales por defecto para ataques DDoS |
+| Reaper | IoT botnet que evolucionó más allá de Mirai con capacidades de explotación adicionales |
+| BlueBorne | Vector de ataque basado en Bluetooth para compromiso de dispositivos IoT |
+| Supply Chain Attack | Compromiso de dispositivos a través de firmware malicioso, actualizaciones o backdoors en bibliotecas de terceros |
+| Rolling Code Attack | Explotación de secuencias de códigos predecibles en sistemas de entrada inalámbricos |
+| Jamming Attack | Interferencia inalámbrica que causa denegación de servicio, targetando ZigBee y Bluetooth |
+| Firmware Extraction | Obtención de imágenes de firmware vía JTAG, UART, flash dump o interceptación OTA |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** An attacker gains root access to an IoT device by connecting to exposed UART pins on the PCB. What type of attack is this?
+**1.** Un atacante obtiene acceso root a un dispositivo IoT conectándose a pines UART expuestos en la PCB. ¿Qué tipo de ataque es este?
 - a) Firmware tampering
 - b) Physical interface attack
 - c) Network protocol attack
 - d) Supply chain attack
-**Answer:** b) — UART access is a physical interface attack that exposes a debug console without authentication.
+**Answer:** b) — UART access es un ataque de interfaz física que expone una consola de depuración sin autenticación.
 
-**2.** The Mirai botnet primarily compromises IoT devices using which method?
+**2.** El botnet Mirai compromete dispositivos IoT principalmente usando ¿qué método?
 - a) SQL injection
 - b) Default credentials via Telnet/SSH brute force
 - c) Phishing emails
 - d) Zero-day exploits
-**Answer:** b) — Mirai scans for Telnet/SSH and uses a list of default credentials to compromise IoT devices.
+**Answer:** b) — Mirai escanea Telnet/SSH y usa una lista de credenciales por defecto para comprometer dispositivos IoT.
 
-**3.** Which attack involves physically removing a memory chip to extract firmware data?
+**3.** ¿Qué ataque implica la extracción física de un chip de memoria para obtener datos de firmware?
 - a) JTAG attack
 - b) UART attack
 - c) Chip-off attack
 - d) Side-channel attack
-**Answer:** c) — Chip-off attacks remove the memory chip directly when JTAG/UART are disabled.
+**Answer:** c) — Los chip-off attacks eliminan el chip de memoria directamente cuando JTAG/UART están deshabilitados.
 
-**4.** An attacker intercepts and alters commands between an IoT device and its cloud server. What attack is this?
+**4.** Un atacante intercepta y altera comandos entre un dispositivo IoT y su servidor en la nube. ¿Qué ataque es este?
 - a) Jamming
 - b) Man-in-the-Middle (MITM)
 - c) Firmware tampering
 - d) Rolling code attack
-**Answer:** b) — MITM attacks intercept and modify device-to-cloud communication exploiting weak encryption.
+**Answer:** b) — Los ataques MITM interceptan y modifican la comunicación dispositivo-nube explotando cifrado débil.
 
-**5.** Which IoT botnet is known for performing large-scale DDoS attacks using compromised IoT devices with default credentials?
+**5.** ¿Qué IoT botnet es conocido por realizar ataques DDoS a gran escala usando dispositivos IoT comprometidos con credenciales por defecto?
 - a) Stuxnet
 - b) Reaper
 - c) Mirai
 - d) Bashlite
-**Answer:** c) — Mirai is the most famous IoT botnet that scans for default credentials and performs DDoS attacks.
+**Answer:** c) — Mirai es el IoT botnet más famoso que escanea credenciales por defecto y realiza ataques DDoS.

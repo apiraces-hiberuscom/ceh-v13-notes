@@ -6,7 +6,7 @@
 
 |Term|Definition|
 |---|---|
-|Cloud Computing|On-demand delivery of IT capabilities, including infrastructure and applications, over the Internet on a metered basis|
+|Cloud Computing|Entrega bajo demanda de capacidades de TI, incluyendo infraestructura y aplicaciones, a través de Internet con un modelo de facturación basado en uso|
 
 MEMORY HOOK:  
 **On-demand + Internet + Metered**
@@ -30,12 +30,12 @@ MEMORY HOOK:
 
 |Characteristic|Explanation|
 |---|---|
-|On-demand self-service|Users can provision resources without human interaction|
-|Broad network access|Services available over network via standard platforms|
-|Resource pooling|Provider pools resources for multiple tenants|
-|Rapid elasticity|Resources scale up/down quickly|
-|Measured service|Pay-per-use billing model|
-|Automated management|Reduced manual administration|
+|On-demand self-service|Los usuarios pueden aprovisionar recursos sin interacción humana|
+|Broad network access|Servicios disponibles a través de la red mediante plataformas estándar|
+|Resource pooling|El proveedor agrupa recursos para múltiples inquilinos|
+|Rapid elasticity|Los recursos escalan hacia arriba y abajo rápidamente|
+|Measured service|Modelo de facturación por uso|
+|Automated management|Administración manual reducida|
 
 MEMORY HOOK:  
 **On-demand, pooled, elastic, measured**
@@ -46,12 +46,12 @@ MEMORY HOOK:
 
 |Limitation|
 |---|
-|Limited control and flexibility|
-|Security, privacy, and compliance issues|
-|Dependency on Internet|
+|Control y flexibilidad limitados|
+|Problemas de seguridad, privacidad y cumplimiento normativo|
+|Dependencia de Internet|
 |Vendor lock-in|
-|Technical vulnerabilities|
-|Migration difficulties|
+|Vulnerabilidades técnicas|
+|Dificultades de migración|
 
 EXAM TRAP:  
 Cloud does NOT automatically guarantee security.
@@ -66,8 +66,8 @@ Cloud does NOT automatically guarantee security.
 
 |Aspect|Details|
 |---|---|
-|What it provides|Virtual machines, storage, networks|
-|User controls|OS, applications, data|
+|What it provides|Máquinas virtuales, almacenamiento, redes|
+|User controls|SO, aplicaciones, datos|
 |Provider controls|Hardware, virtualization|
 |Examples|AWS EC2, Microsoft Azure, Google Compute Engine|
 
@@ -84,8 +84,8 @@ Cloud does NOT automatically guarantee security.
 
 |Disadvantage|
 |---|
-|Software security risks|
-|Performance dependency|
+|Riesgos de seguridad del software|
+|Dependencia del rendimiento|
 
 MEMORY HOOK:  
 **IaaS = rent hardware**
@@ -96,9 +96,9 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|What it provides|Application development platform|
-|User controls|Application code|
-|Provider controls|OS, runtime, middleware|
+|What it provides|Plataforma de desarrollo de aplicaciones|
+|User controls|Código de la aplicación|
+|Provider controls|SO, runtime, middleware|
 |Examples|Google App Engine, Azure App Service|
 
 ### ADVANTAGES
@@ -114,7 +114,7 @@ MEMORY HOOK:
 |Disadvantage|
 |---|
 |Vendor lock-in|
-|Data privacy issues|
+|Problemas de privacidad de datos|
 
 MEMORY HOOK:  
 **PaaS = build apps**
@@ -125,8 +125,8 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|What it provides|Ready-to-use applications|
-|Access|Browser-based|
+|What it provides|Aplicaciones listas para usar|
+|Access|Basado en navegador|
 |Examples|Gmail, Salesforce, Microsoft 365|
 
 ### ADVANTAGES
@@ -141,8 +141,8 @@ MEMORY HOOK:
 
 |Disadvantage|
 |---|
-|Internet dependency|
-|Switching vendors difficult|
+|Dependencia de Internet|
+|Cambiar de proveedor es difícil|
 
 MEMORY HOOK:  
 **SaaS = use software**
@@ -153,7 +153,7 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Purpose|Authentication and identity management|
+|Purpose|Autenticación y gestión de identidades|
 |Functions|MFA, SSO, IAM|
 |Examples|Azure AD, Okta|
 
@@ -162,7 +162,7 @@ MEMORY HOOK:
 |Disadvantage|
 |---|
 |Single point of failure|
-|Account hijacking risk|
+|Riesgo de secuestro de cuentas|
 
 MEMORY HOOK:  
 **IDaaS = cloud login**
@@ -173,7 +173,7 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Purpose|Cloud-based security services|
+|Purpose|Servicios de seguridad basados en cloud|
 |Services|IDS, IPS, DLP, SIEM|
 |Examples|Trend Micro, IBM Security|
 
@@ -186,7 +186,7 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Purpose|Manage containers|
+|Purpose|Gestionar contenedores|
 |Technology|Docker, Kubernetes|
 |Examples|AWS EKS, Google GKE|
 
@@ -199,7 +199,7 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Purpose|Run code without servers|
+|Purpose|Ejecutar código sin servidores|
 |Execution|Event-driven|
 |Examples|AWS Lambda, Azure Functions|
 
@@ -212,7 +212,7 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Meaning|Any IT service delivered via cloud|
+|Meaning|Cualquier servicio de TI entregado a través de cloud|
 |Includes|SaaS, PaaS, MaaS, DRaaS|
 
 MEMORY HOOK:  
@@ -231,7 +231,7 @@ MEMORY HOOK:
 |Hardware|User|Provider|Provider|Provider|
 
 EXAM TRAP:  
-Security is NOT fully provider’s responsibility.
+Security is NOT fully provider's responsibility.
 
 MEMORY HOOK:  
 **More service = less control**
@@ -246,7 +246,7 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Ownership|Third-party provider|
+|Ownership|Proveedor de terceros|
 |Access|Internet|
 |Examples|AWS, Azure|
 
@@ -254,8 +254,8 @@ MEMORY HOOK:
 
 |Disadvantage|
 |---|
-|Security not guaranteed|
-|Limited control|
+|La seguridad no está garantizada|
+|Control limitado|
 
 ---
 
@@ -263,9 +263,9 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Ownership|Single organization|
-|Security|High|
-|Cost|High|
+|Ownership|Una sola organización|
+|Security|Alta|
+|Cost|Alto|
 
 ---
 
@@ -273,8 +273,8 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Shared by|Multiple organizations|
-|Use case|Regulatory needs|
+|Shared by|Múltiples organizaciones|
+|Use case|Necesidades regulatorias|
 
 ---
 
@@ -282,8 +282,8 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Combination|Public + Private|
-|Benefit|Flexibility|
+|Combination|Público + Privado|
+|Benefit|Flexibilidad|
 
 ---
 
@@ -291,8 +291,8 @@ MEMORY HOOK:
 
 |Aspect|Details|
 |---|---|
-|Uses|Multiple providers|
-|Benefit|Avoid vendor lock-in|
+|Uses|Múltiples proveedores|
+|Benefit|Evitar vendor lock-in|
 
 MEMORY HOOK:  
 **Hybrid = mix, Multi = many**
@@ -301,10 +301,10 @@ MEMORY HOOK:
 
 # OBJECTIVE 01 — EXAM MEMORY BLOCK
 
-**Cloud computing delivers on-demand IT services over the Internet using a pay-per-use model.  
-Service models define responsibility.  
-Deployment models define ownership.  
-Shared responsibility is always tested.**
+**Cloud computing entrega servicios de TI bajo demanda a través de Internet usando un modelo de pago por uso.  
+Los modelos de servicio definen la responsabilidad.  
+Los modelos de despliegue definen la propiedad.  
+La responsabilidad compartida siempre se evalúa.**
 
 ---
 
@@ -319,18 +319,17 @@ Shared responsibility is always tested.**
 
 ---
 
-
 ## EXAM EXTRAS (Boson Practice Test)
 
 ### CLOUD ROLES
 
 |Role|Description|
 |---|---|
-|Cloud Consumer|Uses services of cloud provider|
-|Cloud Provider|Offers SaaS, deploys, configures, maintains software applications for cloud consumer|
-|Cloud Carrier|Provides connectivity and transport of cloud services between consumers and providers|
-|Cloud Broker|Negotiates relationships between providers and consumers|
-|Cloud Auditor|Independent assessment of cloud provider|
+|Cloud Consumer|Utiliza los servicios del proveedor de cloud|
+|Cloud Provider|Ofrece SaaS, despliega, configura y mantiene aplicaciones de software para el consumidor de cloud|
+|Cloud Carrier|Proporciona conectividad y transporte de servicios de cloud entre consumidores y proveedores|
+|Cloud Broker|Negocia relaciones entre proveedores y consumidores|
+|Cloud Auditor|Evaluación independiente del proveedor de cloud|
 
 ---
 
@@ -346,7 +345,7 @@ PaaS|Platform as a Service|
 
 |Item|Memorize|
 |---|---|
-|MITC|Man in the Cloud attack — can be avoided by installing CASB (Cloud Access Security Broker)|
+|MITC|Man in the Cloud attack — se puede evitar instalando CASB (Cloud Access Security Broker)|
 
 ---
 
@@ -354,7 +353,7 @@ PaaS|Platform as a Service|
 
 |Item|Memorize|
 |---|---|
-|Docker daemon|Processes API requests and handles Docker objects|
+|Docker daemon|Procesa solicitudes de API y maneja objetos de Docker|
 
 ---
 
@@ -362,59 +361,59 @@ PaaS|Platform as a Service|
 
 | Term | Definition |
 |------|------------|
-| Cloud Computing | On-demand delivery of IT capabilities over the Internet on a metered basis |
-| IaaS | Infrastructure as a Service — provides VMs, storage, networks; user manages OS and apps |
-| PaaS | Platform as a Service — provides application development platform; user manages code only |
-| SaaS | Software as a Service — ready-to-use applications accessed via browser |
-| IDaaS | Identity as a Service — cloud-based authentication and identity management |
-| SECaaS | Security as a Service — cloud-based security services like IDS, IPS, DLP, SIEM |
-| CaaS | Container as a Service — manages Docker/Kubernetes containers |
-| FaaS | Function as a Service — runs code without servers, event-driven execution |
-| XaaS | Anything as a Service — any IT service delivered via cloud |
-| Shared Responsibility Model | Framework defining security responsibilities between provider and customer |
-| Public Cloud | Third-party provider owns infrastructure, accessed over Internet |
-| Private Cloud | Single organization owns and controls infrastructure |
-| Hybrid Cloud | Combination of public and private clouds |
-| Multi-Cloud | Using multiple cloud providers simultaneously |
-| Cloud Consumer | Uses services of cloud provider |
-| Cloud Provider | Offers and maintains cloud services |
-| Cloud Carrier | Provides connectivity between consumers and providers |
+| Cloud Computing | Entrega bajo demanda de capacidades de TI a través de Internet con un modelo de pago por uso |
+| IaaS | Infrastructure as a Service — provee VMs, almacenamiento, redes; el usuario gestiona SO y aplicaciones |
+| PaaS | Platform as a Service — provee plataforma de desarrollo de aplicaciones; el usuario solo gestiona código |
+| SaaS | Software as a Service — aplicaciones listas para usar accedidas a través de navegador |
+| IDaaS | Identity as a Service — autenticación y gestión de identidades basadas en cloud |
+| SECaaS | Security as a Service — servicios de seguridad basados en cloud como IDS, IPS, DLP, SIEM |
+| CaaS | Container as a Service — gestiona contenedores de Docker/Kubernetes |
+| FaaS | Function as a Service — ejecuta código sin servidores, ejecución basada en eventos |
+| XaaS | Anything as a Service — cualquier servicio de TI entregado a través de cloud |
+| Shared Responsibility Model | Marco que define las responsabilidades de seguridad entre el proveedor y el cliente |
+| Public Cloud | Proveedor de terceros posee la infraestructura, accedida a través de Internet |
+| Private Cloud | Una sola organización posee y controla la infraestructura |
+| Hybrid Cloud | Combinación de cloud público y privado |
+| Multi-Cloud | Uso de múltiples proveedores de cloud simultáneamente |
+| Cloud Consumer | Utiliza los servicios del proveedor de cloud |
+| Cloud Provider | Ofrece y mantiene servicios de cloud |
+| Cloud Carrier | Proporciona conectividad entre consumidores y proveedores |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** In the shared responsibility model, who is responsible for data security in an IaaS deployment?
-- a) Cloud provider only
-- b) Customer only
-- c) Both equally
-- d) Neither
-**Answer:** b) — In IaaS, the customer is responsible for data, applications, and OS security.
+**1.** En el modelo de responsabilidad compartida, ¿quién es responsable de la seguridad de datos en un despliegue IaaS?
+- a) Solo el proveedor de cloud
+- b) Solo el cliente
+- c) Ambos por igual
+- d) Ninguno
+**Answer:** b) — En IaaS, el cliente es responsable de los datos, aplicaciones y seguridad del SO.
 
-**2.** Which cloud service model provides the most control to the customer?
+**2.** ¿Qué modelo de servicio de cloud brinda más control al cliente?
 - a) SaaS
 - b) PaaS
 - c) IaaS
 - d) FaaS
-**Answer:** c) — IaaS gives customers control over OS, applications, and data while provider manages hardware.
+**Answer:** c) — IaaS da a los clientes control sobre el SO, aplicaciones y datos mientras el proveedor gestiona el hardware.
 
-**3.** A company uses both AWS and Azure for different workloads. What deployment model is this?
+**3.** Una empresa usa tanto AWS como Azure para diferentes cargas de trabajo. ¿Qué modelo de despliegue es este?
 - a) Hybrid cloud
 - b) Private cloud
 - c) Multi-cloud
 - d) Community cloud
-**Answer:** c) — Multi-cloud uses multiple providers, while hybrid combines public and private.
+**Answer:** c) — Multi-cloud usa múltiples proveedores, mientras que hybrid combina público y privado.
 
-**4.** Which key characteristic of cloud computing allows users to provision resources without human interaction?
+**4.** ¿Qué característica clave de cloud computing permite a los usuarios aprovisionar recursos sin interacción humana?
 - a) Resource pooling
 - b) Rapid elasticity
 - c) On-demand self-service
 - d) Measured service
-**Answer:** c) — On-demand self-service enables users to provision resources automatically.
+**Answer:** c) — On-demand self-service permite a los usuarios aprovisionar recursos automáticamente.
 
-**5.** What is the primary disadvantage of SaaS?
-- a) High cost
-- b) Complex management
-- c) Internet dependency and vendor lock-in
-- d) Limited scalability
-**Answer:** c) — SaaS requires Internet access and makes switching vendors difficult due to data migration challenges.
+**5.** ¿Cuál es la principal desventaja de SaaS?
+- a) Alto costo
+- b) Gestión compleja
+- c) Dependencia de Internet y vendor lock-in
+- d) Escalabilidad limitada
+**Answer:** c) — SaaS requiere acceso a Internet y dificulta el cambio de proveedores debido a los desafíos de migración de datos.

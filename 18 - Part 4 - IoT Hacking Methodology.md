@@ -6,7 +6,7 @@
 
 |Term|Definition|
 |---|---|
-|Operational Technology (OT)|Hardware and software systems used to monitor, control, and automate physical industrial processes|
+|Operational Technology (OT)|Sistemas de hardware y software utilizados para monitorear, controlar y automatizar procesos industriales físicos|
 
 MEMORY HOOK:  
 **OT controls the physical world**
@@ -17,12 +17,12 @@ MEMORY HOOK:
 
 | Aspect       | IT              | OT                    |
 | ------------ | --------------- | --------------------- |
-| Focus        | Data            | Physical processes    |
-| Priority     | Confidentiality | Availability & Safety |
-| Downtime     | Tolerable       | Dangerous             |
-| Patch cycles | Frequent        | Rare                  |
-| Devices      | Servers, PCs    | PLCs, RTUs            |
-| Protocols    | TCP/IP          | Industrial protocols  |
+| Focus        | Datos           | Procesos físicos      |
+| Priority     | Confidencialidad| Disponibilidad y Seguridad |
+| Downtime     | Tolerable       | Peligroso             |
+| Patch cycles | Frecuentes      | Raros                 |
+| Devices      | Servidores, PCs | PLCs, RTUs            |
+| Protocols    | TCP/IP          | Protocolos industriales |
 
 MEMORY HOOK:  
 **IT = data, OT = safety**
@@ -33,12 +33,12 @@ MEMORY HOOK:
 
 |Industry|
 |---|
-|Power plants|
-|Water treatment|
-|Oil & gas|
-|Manufacturing|
-|Transportation|
-|Chemical plants|
+|Centrales eléctricas|
+|Tratamiento de agua|
+|Petróleo y gas|
+|Manufactura|
+|Transporte|
+|Plantas químicas|
 |Smart grids|
 
 ---
@@ -52,9 +52,9 @@ MEMORY HOOK:
 |Item|Explanation|
 |---|---|
 |PLC|Programmable Logic Controller|
-|Purpose|Control machinery and processes|
-|Input|Sensor signals|
-|Output|Actuator commands|
+|Purpose|Controlar maquinaria y procesos|
+|Input|Señales de sensores|
+|Output|Comandos de actuadores|
 
 MEMORY HOOK:  
 **PLC = industrial brain**
@@ -66,7 +66,7 @@ MEMORY HOOK:
 |Item|Explanation|
 |---|---|
 |RTU|Remote Terminal Unit|
-|Purpose|Monitor and control remote systems|
+|Purpose|Monitorear y controlar sistemas remotos|
 |Used in|SCADA|
 
 MEMORY HOOK:  
@@ -79,8 +79,8 @@ MEMORY HOOK:
 |Item|Explanation|
 |---|---|
 |HMI|Human Machine Interface|
-|Purpose|Operator interaction|
-|Example|Control panel screen|
+|Purpose|Interacción del operador|
+|Example|Pantalla de panel de control|
 
 MEMORY HOOK:  
 **HMI = human control panel**
@@ -95,13 +95,13 @@ MEMORY HOOK:
 
 ### SCADA FUNCTIONS
 
-- Monitoring
+- Monitoreo
     
 - Control
     
-- Data acquisition
+- Adquisición de datos
     
-- Alarm handling
+- Manejo de alarmas
     
 
 MEMORY HOOK:  
@@ -115,12 +115,12 @@ MEMORY HOOK:
 
 |Level|Description|
 |---|---|
-|Level 0|Physical process|
-|Level 1|Sensors & actuators|
-|Level 2|Control systems (PLCs)|
-|Level 3|Operations (SCADA/HMI)|
-|Level 4|IT systems|
-|Level 5|Enterprise network|
+|Level 0|Proceso físico|
+|Level 1|Sensores y actuadores|
+|Level 2|Sistemas de control (PLCs)|
+|Level 3|Operaciones (SCADA/HMI)|
+|Level 4|Sistemas IT|
+|Level 5|Red empresarial|
 
 MEMORY HOOK:  
 **0 = process, 5 = business**
@@ -135,9 +135,9 @@ MEMORY HOOK:
 
 |Item|Explanation|
 |---|---|
-|Modbus|Industrial communication protocol|
-|Security|NONE by default|
-|Risk|Read/write registers|
+|Modbus|Protocolo de comunicación industrial|
+|Security|NINGUNO por defecto|
+|Risk|Lectura/escritura de registros|
 
 MEMORY HOOK:  
 **Modbus = no auth**
@@ -149,8 +149,8 @@ MEMORY HOOK:
 |Item|Explanation|
 |---|---|
 |DNP3|Distributed Network Protocol|
-|Used in|Power utilities|
-|Risk|Weak encryption|
+|Used in|Utilidades de energía|
+|Risk|Cifrado débil|
 
 ---
 
@@ -158,8 +158,8 @@ MEMORY HOOK:
 
 |Protocol|Use|
 |---|---|
-|PROFIBUS|Field-level comms|
-|PROFINET|Ethernet-based|
+|PROFIBUS|Comunicaciones a nivel de campo|
+|PROFINET|Basado en Ethernet|
 
 ---
 
@@ -167,8 +167,8 @@ MEMORY HOOK:
 
 |Use|
 |---|
-|Building automation|
-|HVAC systems|
+|Automatización de edificios|
+|Sistemas HVAC|
 
 ---
 
@@ -180,11 +180,11 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Legacy systems|
-|No authentication|
-|Flat networks|
-|Long lifecycle|
-|Safety over security|
+|Sistemas legacy|
+|Sin autenticación|
+|Redes planas|
+|Largo ciclo de vida|
+|Seguridad sobre protección|
 
 MEMORY HOOK:  
 **Old + critical = vulnerable**
@@ -199,8 +199,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Equipment damage|
-|Safety incidents|
+|Daño a equipos|
+|Incidentes de seguridad|
 
 ---
 
@@ -208,8 +208,8 @@ MEMORY HOOK:
 
 |Example|
 |---|
-|Altering sensor values|
-|False readings|
+|Alterar valores de sensores|
+|Lecturas falsas|
 
 MEMORY HOOK:  
 **Lying sensors = chaos**
@@ -220,8 +220,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Production shutdown|
-|Physical damage|
+|Apagón de producción|
+|Daño físico|
 
 ---
 
@@ -229,8 +229,8 @@ MEMORY HOOK:
 
 |Effect|
 |---|
-|Command modification|
-|Data manipulation|
+|Modificación de comandos|
+|Manipulación de datos|
 
 ---
 
@@ -238,8 +238,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Plant shutdown|
-|Safety risk|
+|Apagón de planta|
+|Riesgo de seguridad|
 
 ---
 
@@ -251,10 +251,10 @@ MEMORY HOOK:
 
 |Feature|
 |---|
-|Targeted PLCs|
-|Sabotaged centrifuges|
-|Used zero-days|
-|First cyber-weapon|
+|Objetivo: PLCs|
+|Saboteó centrifugadoras|
+|Usó zero-days|
+|Primer ciberarma|
 
 MEMORY HOOK:  
 **Stuxnet = cyber-physical attack**
@@ -265,8 +265,8 @@ MEMORY HOOK:
 
 |Feature|
 |---|
-|Targeted safety systems|
-|Potential lethal impact|
+|Objetivo: sistemas de seguridad|
+|Impacto potencialmente letal|
 
 ---
 
@@ -274,22 +274,22 @@ MEMORY HOOK:
 
 |Feature|
 |---|
-|Power grid attack|
-|Ukraine blackout|
+|Ataque a red eléctrica|
+|Apagón en Ucrania|
 
 ---
 
 # OT ATTACK FLOW (EXAM LOGIC)
 
-1. Initial IT network compromise
+1. Compromiso inicial de red IT
     
-2. Lateral movement to OT
+2. Movimiento lateral hacia OT
     
-3. Protocol abuse
+3. Abuso de protocolos
     
-4. Process manipulation
+4. Manipulación de procesos
     
-5. Physical impact
+5. Impacto físico
     
 
 MEMORY HOOK:  
@@ -301,20 +301,20 @@ MEMORY HOOK:
 
 |Challenge|
 |---|
-|Cannot patch easily|
-|Downtime unacceptable|
-|Limited logging|
-|No encryption|
+|No se pueden parchear fácilmente|
+|El downtime es inaceptable|
+|Registro limitado|
+|Sin cifrado|
 
 ---
 
 # OBJECTIVE 04 — EXAM MEMORY BLOCK
 
-**OT systems control physical processes and prioritize availability and safety.  
-They use PLCs, RTUs, HMIs, and SCADA systems.  
-Legacy protocols lack authentication and encryption.  
-Attacks can cause real-world physical damage.  
-Stuxnet proved cyber attacks can destroy infrastructure.**
+**Los sistemas OT controlan procesos físicos y priorizan la disponibilidad y la seguridad.  
+Usan PLCs, RTUs, HMIs y sistemas SCADA.  
+Los protocolos legacy carecen de autenticación y cifrado.  
+Los ataques pueden causar daño físico real en el mundo.  
+Stuxnet demostró que los ciberataques pueden destruir infraestructura.**
 
 ---
 
@@ -334,58 +334,57 @@ Stuxnet proved cyber attacks can destroy infrastructure.**
 
 | Term | Definition |
 |------|------------|
-| OT | Operational Technology — hardware/software monitoring, controlling, and automating physical industrial processes |
-| PLC | Programmable Logic Controller — industrial brain controlling machinery and processes |
-| RTU | Remote Terminal Unit — monitors and controls remote systems in SCADA environments |
-| HMI | Human Machine Interface — operator control panel for interacting with industrial systems |
-| SCADA | Supervisory Control and Data Acquisition — system for monitoring and controlling industrial processes |
-| Modbus | Industrial communication protocol with NO security by default — allows read/write of registers |
-| DNP3 | Distributed Network Protocol used in power utilities with weak encryption |
-| PROFIBUS | Field-level communication protocol for industrial automation |
-| PROFINET | Ethernet-based industrial communication protocol |
-| BACnet | Protocol for building automation and HVAC systems |
-| ISA/IEC 62443 | Zone model defining OT security levels from Level 0 (physical process) to Level 5 (enterprise) |
-| Stuxnet | First cyber-weapon targeting PLCs, sabotaged centrifuges using zero-day exploits |
-| Triton/Trisis | Attack targeting safety systems with potential lethal impact |
-| BlackEnergy | Attack targeting power grids, caused Ukraine blackout |
-| Process Manipulation | Altering sensor values to cause false readings and chaos in OT systems |
+| OT | Operational Technology — hardware/software que monitorea, controla y automatiza procesos industriales físicos |
+| PLC | Programmable Logic Controller — cerebro industrial que controla maquinaria y procesos |
+| RTU | Remote Terminal Unit — monitorea y controla sistemas remotos en entornos SCADA |
+| HMI | Human Machine Interface — panel de control del operador para interactuar con sistemas industriales |
+| SCADA | Supervisory Control and Data Acquisition — sistema para monitorear y controlar procesos industriales |
+| Modbus | Protocolo de comunicación industrial SIN seguridad por defecto — permite lectura/escritura de registros |
+| DNP3 | Distributed Network Protocol utilizado en utilidades de energía con cifrado débil |
+| PROFIBUS | Protocolo de comunicación a nivel de campo para automatización industrial |
+| PROFINET | Protocolo de comunicación industrial basado en Ethernet |
+| BACnet | Protocolo para automatización de edificios y sistemas HVAC |
+| ISA/IEC 62443 | Modelo de zonas que define niveles de seguridad OT desde Level 0 (proceso físico) hasta Level 5 (empresarial) |
+| Stuxnet | Primer ciberarma que apuntó a PLCs, saboteó centrifugadoras usando exploits de día cero |
+| Triton/Trisis | Ataque que apuntó a sistemas de seguridad con impacto potencialmente letal |
+| BlackEnergy | Ataque que apuntó a redes eléctricas, causó apagón en Ucrania |
+| Process Manipulation | Alteración de valores de sensores para causar lecturas falsas y caos en sistemas OT |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** In the ISA/IEC 62443 zone model, which level represents the physical process?
+**1.** En el modelo de zonas ISA/IEC 62443, ¿qué nivel representa el proceso físico?
 - a) Level 0
 - b) Level 2
 - c) Level 3
 - d) Level 5
-**Answer:** a) — Level 0 is the physical process, while Level 5 is the enterprise network.
+**Answer:** a) — Level 0 es el proceso físico, mientras que Level 5 es la red empresarial.
 
-**2.** Which industrial protocol has NO security by default and allows attackers to read/write registers?
+**2.** ¿Qué protocolo industrial NO tiene seguridad por defecto y permite a los atacantes leer/escribir registros?
 - a) DNP3
 - b) BACnet
 - c) Modbus
 - d) PROFINET
-**Answer:** c) — Modbus has no authentication or encryption by default, making it highly vulnerable.
+**Answer:** c) — Modbus no tiene autenticación ni cifrado por defecto, lo que lo hace altamente vulnerable.
 
-**3.** The Stuxnet attack is significant because it:
-- a) Was the first ransomware attack
-- b) Was the first cyber-weapon that caused physical damage to infrastructure
-- c) Only targeted IT networks
-- d) Used social engineering exclusively
-**Answer:** b) — Stuxnet was the first cyber-weapon that targeted PLCs and caused physical damage to centrifuges.
+**3.** El ataque Stuxnet es significativo porque:
+- a) Fue el primer ataque de ransomware
+- b) Fue el primer ciberarma que causó daño físico a la infraestructura
+- c) Solo apuntó a redes IT
+- d) Usó ingeniería social exclusivamente
+**Answer:** b) — Stuxnet fue el primer ciberarma que apuntó a PLCs y causó daño físico a centrifugadoras.
 
-**4.** What is the primary difference between IT and OT priorities?
-- a) IT prioritizes availability, OT prioritizes confidentiality
-- b) IT prioritizes confidentiality, OT prioritizes availability and safety
-- c) Both prioritize the same things
-- d) OT prioritizes speed over safety
-**Answer:** b) — IT focuses on data confidentiality, while OT prioritizes availability and safety of physical processes.
+**4.** ¿Cuál es la principal diferencia entre las prioridades de IT y OT?
+- a) IT prioriza la disponibilidad, OT prioriza la confidencialidad
+- b) IT prioriza la confidencialidad, OT prioriza la disponibilidad y la seguridad
+- c) Ambos priorizan lo mismo
+- d) OT prioriza la velocidad sobre la seguridad
+**Answer:** b) — IT se enfoca en la confidencialidad de datos, mientras que OT prioriza la disponibilidad y seguridad de procesos físicos.
 
-**5.** An attacker compromises an IT network and then moves laterally to OT systems. What is this attack flow called?
-- a) Supply chain attack
-- b) IT-to-OT lateral movement
-- c) Firmware tampering
-- d) Physical intrusion
-**Answer:** b) — The attack flow starts with IT compromise, then lateral movement to OT, leading to process manipulation and physical impact.
-
+**5.** Un atacante compromete una red IT y luego se mueve lateralmente hacia sistemas OT. ¿Cómo se llama este flujo de ataque?
+- a) Ataque de cadena de suministro
+- b) Movimiento lateral de IT a OT
+- c) Alteración de firmware
+- d) Intrusión física
+**Answer:** b) — El flujo de ataque comienza con el compromiso de IT, luego el movimiento lateral hacia OT, lo que lleva a la manipulación de procesos y el impacto físico.

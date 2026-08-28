@@ -1,218 +1,218 @@
-# OBJECTIVE 05 — MOBILE SECURITY GUIDELINES AND TOOLS
+# OBJETIVO 05 — DIRECTRICES Y HERRAMIENTAS DE MOBILE SECURITY
 
 ---
 
-## MOBILE SECURITY — CORE DEFINITION (EXAM)
+## MOBILE SECURITY — DEFINICIÓN BÁSICA (EXAM)
 
 |Term|Definition|
 |---|---|
-|Mobile Security|The protection of mobile devices, applications, and data from threats, vulnerabilities, and unauthorized access|
+|Mobile Security|La protección de dispositivos móviles, aplicaciones y datos contra amenazas, vulnerabilidades y accesos no autorizados|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Device + App + Data**
 
 ---
 
-# MOBILE SECURITY GOALS (EXAM)
+# OBJETIVOS DE MOBILE SECURITY (EXAM)
 
 |Goal|
 |---|
-|Protect sensitive data|
-|Prevent unauthorized access|
-|Detect malicious activity|
-|Ensure compliance|
-|Maintain user privacy|
+|Proteger datos sensibles|
+|Prevenir accesos no autorizados|
+|Detectar actividad maliciosa|
+|Asegurar cumplimiento normativo|
+|Mantener privacidad del usuario|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Protect, Prevent, Detect**
 
 ---
 
-# MOBILE SECURITY GUIDELINES (CEH LIST — MUST MEMORIZE)
+# DIRECTRICES DE MOBILE SECURITY (LISTA CEH — MEMORIZAR OBLIGATORIO)
 
 ---
 
-## DEVICE-LEVEL SECURITY GUIDELINES
+## DIRECTRICES DE SEGURIDAD A NIVEL DE DISPOSITIVO
 
 |Guideline|
 |---|
-|Enable strong screen lock|
-|Use biometric authentication|
-|Encrypt device storage|
-|Disable USB debugging|
-|Disable Bluetooth when unused|
-|Enable remote wipe|
-|Install OS updates|
+|Habilitar bloqueo de pantalla fuerte|
+|Usar autenticación biométrica|
+|Cifrar almacenamiento del dispositivo|
+|Deshabilitar USB debugging|
+|Deshabilitar Bluetooth cuando no se use|
+|Habilitar borrado remoto|
+|Instalar actualizaciones del SO|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Lock, Encrypt, Update**
 
 ---
 
-## APPLICATION-LEVEL SECURITY GUIDELINES
+## DIRECTRICES DE SEGURIDAD A NIVEL DE APLICACIÓN
 
 |Guideline|
 |---|
-|Install apps from trusted sources|
-|Review app permissions|
-|Avoid rooted/jailbroken devices|
-|Remove unused apps|
-|Update apps regularly|
+|Instalar apps de fuentes confiables|
+|Revisar permisos de la app|
+|Evitar dispositivos root/jailbreak|
+|Eliminar apps no utilizadas|
+|Actualizar apps regularmente|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Trust source, limit permissions**
 
 ---
 
-## NETWORK-LEVEL SECURITY GUIDELINES
+## DIRECTRICES DE SEGURIDAD A NIVEL DE RED
 
 |Guideline|
 |---|
-|Avoid public Wi-Fi|
-|Use VPN|
-|Disable auto-connect|
-|Verify SSL certificates|
+|Evitar Wi-Fi público|
+|Usar VPN|
+|Deshabilitar auto-conexión|
+|Verificar certificados SSL|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Public Wi-Fi = VPN required**
 
 ---
 
-## DATA-LEVEL SECURITY GUIDELINES
+## DIRECTRICES DE SEGURIDAD A NIVEL DE DATOS
 
 |Guideline|
 |---|
-|Encrypt sensitive data|
-|Avoid plaintext storage|
-|Use secure key management|
-|Enable secure backups|
+|Cifrar datos sensibles|
+|Evitar almacenamiento en texto plano|
+|Usar gestión segura de claves|
+|Habilitar backups seguros|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Encrypt at rest and transit**
 
 ---
 
-# MOBILE SECURITY FOR ENTERPRISE ENVIRONMENTS
+# MOBILE SECURITY PARA AMBIENTES EMPRESARIALES
 
 |Control|
 |---|
-|Enforce MDM|
-|Apply containerization|
-|Enforce compliance policies|
-|Monitor device posture|
-|Restrict access to corporate resources|
+|Imponer MDM|
+|Aplicar containerization|
+|Imponer políticas de cumplimiento|
+|Monitorear posture del dispositivo|
+|Restringir acceso a recursos corporativos|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Enterprise = MDM + Policy**
 
 ---
 
-# MOBILE SECURITY TESTING (EXAM CONCEPT)
+# TESTING DE MOBILE SECURITY (CONCEPTO DE EXAM)
 
 ## MOBILE APPLICATION SECURITY TESTING (MAST)
 
 |Type|Description|
 |---|---|
-|Static Analysis (SAST)|Analyze source/binary|
-|Dynamic Analysis (DAST)|Runtime testing|
-|Interactive Analysis (IAST)|Combined approach|
+|Static Analysis (SAST)|Analizar código fuente/binario|
+|Dynamic Analysis (DAST)|Testing en tiempo de ejecución|
+|Interactive Analysis (IAST)|Enfoque combinado|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Static sees code, Dynamic sees behavior**
 
 ---
 
-# MOBILE SECURITY TOOLS (CEH EXPECTS RECOGNITION)
+# HERRAMIENTAS DE MOBILE SECURITY (CEH ESPERA RECONOCIMIENTO)
 
 ---
 
-## ANDROID SECURITY TOOLS
+## HERRAMIENTAS DE SEGURIDAD ANDROID
 
 |Tool|Purpose|
 |---|---|
-|Drozer|Android security assessment|
-|APKTool|Reverse engineering APKs|
-|JADX|Decompile DEX to Java|
-|Frida|Runtime instrumentation|
-|Burp Suite|Traffic interception|
-|Androguard|Malware analysis|
-|MobSF|Automated analysis|
+|Drozer|Evaluación de seguridad de Android|
+|APKTool|Ingeniería inversa de APKs|
+|JADX|Descompilar DEX a Java|
+|Frida|Instrumentación en runtime|
+|Burp Suite|Intercepción de tráfico|
+|Androguard|Análisis de malware|
+|MobSF|Análisis automatizado|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Drozer probes, APKTool breaks**
 
 ---
 
-## iOS SECURITY TOOLS
+## HERRAMIENTAS DE SEGURIDAD iOS
 
 |Tool|Purpose|
 |---|---|
-|Frida|Runtime analysis|
-|Objection|Runtime manipulation|
-|iFunBox|File system access|
-|Cycript|Runtime inspection|
-|Burp Suite|MITM analysis|
-|MobSF|iOS app analysis|
+|Frida|Análisis en runtime|
+|Objection|Manipulación en runtime|
+|iFunBox|Acceso al sistema de archivos|
+|Cycript|Inspección en runtime|
+|Burp Suite|Análisis MITM|
+|MobSF|Análisis de apps iOS|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Frida everywhere**
 
 ---
 
-## MOBILE MALWARE ANALYSIS TOOLS
+## HERRAMIENTAS DE ANÁLISIS DE MOBILE MALWARE
 
 |Tool|Purpose|
 |---|---|
-|VirusTotal|Malware detection|
-|Androguard|Static analysis|
-|MobSF|Automated framework|
-|Cuckoo Sandbox|Dynamic analysis|
+|VirusTotal|Detección de malware|
+|Androguard|Análisis estático|
+|MobSF|Framework automatizado|
+|Cuckoo Sandbox|Análisis dinámico|
 
 ---
 
-# VPN AND CERTIFICATE MANAGEMENT (EXAM)
+# VPN Y GESTIÓN DE CERTIFICADOS (EXAM)
 
 |Control|
 |---|
-|Enforce trusted certificates|
-|Block user-installed CAs|
-|Use enterprise VPN|
-|Prevent SSL stripping|
+|Imponer certificados confiables|
+|Bloquear CAs instaladas por el usuario|
+|Usar VPN empresarial|
+|Prevenir SSL stripping|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Bad cert = MITM**
 
 ---
 
-# MOBILE SECURITY ATTACK → DEFENSE MAPPING (HIGH-YIELD)
+# MAPEO DE ATAQUE → DEFENSA EN MOBILE SECURITY (ALTO RENDIMIENTO)
 
 |Attack|Defense|
 |---|---|
-|Malware|App vetting + MDM|
-|Smishing|User awareness|
+|Malware|Validación de apps + MDM|
+|Smishing|Concienciación del usuario|
 |MITM|VPN + TLS|
-|Root/Jailbreak|Device compliance checks|
-|Data leakage|Encryption|
-|Rogue Wi-Fi|Disable auto-connect|
+|Root/Jailbreak|Verificaciones de cumplimiento del dispositivo|
+|Data leakage|Cifrado|
+|Rogue Wi-Fi|Deshabilitar auto-conexión|
 
 ---
 
-# USER AWARENESS (EXAM EMPHASIS)
+# CONCIENCIACIÓN DEL USUARIO (ÉNFASIS EN EXAM)
 
 |Awareness Topic|
 |---|
 |Phishing|
 |Smishing|
-|Malicious apps|
-|Fake updates|
-|Public Wi-Fi risks|
+|Apps maliciosas|
+|Actualizaciones falsas|
+|Riesgos de Wi-Fi público|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Human = weakest link**
 
 ---
 
-# MOBILE SECURITY COMPLIANCE STANDARDS (RECOGNITION)
+# ESTÁNDARES DE CUMPLIMIENTO EN MOBILE SECURITY (RECONOCIMIENTO)
 
 |Standard|
 |---|
@@ -223,105 +223,104 @@ MEMORY HOOK:
 
 ---
 
-# MODULE 17 — FINAL MEMORY BLOCK
+# MÓDULOS 17 — BLOQUE FINAL DE MEMORIA
 
-**Mobile security protects devices, apps, and data.  
-Threats target OS, apps, networks, and users.  
-Android is open; iOS is controlled.  
-MDM enforces policy and enables remote actions.  
-Tools like Drozer, Frida, and MobSF analyze apps.  
-Encryption, updates, VPNs, and awareness are mandatory.**
+**Mobile security protege dispositivos, apps y datos.
+Las amenazas apuntan al SO, apps, redes y usuarios.
+Android es abierto; iOS es controlado.
+MDM impone políticas y permite acciones remotas.
+Herramientas como Drozer, Frida y MobSF analizan apps.
+Cifrado, actualizaciones, VPNs y concienciación son obligatorios.**
 
 ---
 
-# MODULE 17 — COMPLETE STATUS
+# MÓDULO 17 — ESTADO COMPLETO
 
 |Item|Status|
 |---|---|
-|Objective 01|COMPLETE|
-|Objective 02|COMPLETE|
-|Objective 03|COMPLETE|
-|Objective 04|COMPLETE|
-|Objective 05|COMPLETE|
-|Tools covered|COMPLETE|
-|Commands/concepts|COMPLETE|
-|Exam alignment|EXACT|
+|Objetivo 01|COMPLETO|
+|Objetivo 02|COMPLETO|
+|Objetivo 03|COMPLETO|
+|Objetivo 04|COMPLETO|
+|Objetivo 05|COMPLETO|
+|Herramientas cubiertas|COMPLETO|
+|Comandos/conceptos|COMPLETO|
+|Alineación con examen|EXACTO|
 
 ---
 
-## MODULE 17 COMPLETE
+## MÓDULO 17 COMPLETO
 
-You have now fully covered **Hacking Mobile Platforms** for CEH v13.
+Has cubierto completamente **Hacking Mobile Platforms** para CEH v13.
 
-Next options:
+Próximas opciones:
 
-- Next CEH module (tell me the number/name)
+- Siguiente módulo de CEH (indica el número/nombre)
     
-- Rapid-fire exam traps for Module 17
+- Trampas de examen para el módulo 17
     
-- One-page mobile attacks vs defenses sheet
+- Hoja de un página de ataques vs defensas móviles
     
-- Tool/command recognition drill
+- Ejercicio de reconocimiento de herramientas/comandos
     
 
 ---
 
-# EXAM FLASHCARDS
+# TARJETAS DE MEMORIA PARA EXAMEN
 
 | Term | Definition |
 |------|------------|
-| Drozer | Android security assessment framework for testing app vulnerabilities |
-| APKTool | Reverse engineering tool for decompiling and recompiling Android APKs |
-| JADX | Decompiler that converts Android DEX files to readable Java source code |
-| Frida | Dynamic instrumentation toolkit for runtime hooking on Android and iOS |
-| Objection | Runtime manipulation framework built on Frida for iOS/Android analysis |
-| Burp Suite | Intercepting proxy for analyzing and manipulating HTTP/HTTPS traffic |
-| MobSF | Mobile Security Framework for automated static and dynamic analysis |
-| Androguard | Android malware analysis tool for static reverse engineering |
-| Cycript | Runtime inspection tool for iOS application analysis |
-| iFunBox | File system access tool for browsing iOS device contents |
-| Cuckoo Sandbox | Automated malware dynamic analysis platform |
-| VirusTotal | Online service for scanning files against multiple antivirus engines |
-| SAST | Static Application Security Testing; analyzes source or binary without execution |
-| DAST | Dynamic Application Security Testing; tests apps at runtime |
-| IAST | Interactive Application Security Testing; combines static and dynamic approaches |
+| Drozer | Framework de evaluación de seguridad Android para testing de vulnerabilidades en apps |
+| APKTool | Herramienta de ingeniería inversa para descompilar y recompilar APKs de Android |
+| JADX | Descompilador que convierte archivos DEX de Android en código Java legible |
+| Frida | Toolkit de instrumentación dinámica para hooking en runtime en Android y iOS |
+| Objection | Framework de manipulación en runtime construido sobre Frida para análisis de iOS/Android |
+| Burp Suite | Proxy interceptador para analizar y manipular tráfico HTTP/HTTPS |
+| MobSF | Mobile Security Framework para análisis estático y dinámico automatizado |
+| Androguard | Herramienta de análisis de malware Android para ingeniería inversa estática |
+| Cycript | Herramienta de inspección en runtime para análisis de aplicaciones iOS |
+| iFunBox | Herramienta de acceso al sistema de archivos para navegar contenidos de dispositivos iOS |
+| Cuckoo Sandbox | Plataforma automatizada de análisis dinámico de malware |
+| VirusTotal | Servicio online para escanear archivos contra múltiples motores antivirus |
+| SAST | Static Application Security Testing; analiza código fuente o binario sin ejecución |
+| DAST | Dynamic Application Security Testing; testea apps en tiempo de ejecución |
+| IAST | Interactive Application Security Testing; combina enfoques estáticos y dinámicos |
 
 ---
 
-# PRACTICE QUESTIONS
+# PREGUNTAS DE PRÁCTICA
 
-**1.** Which tool is used to decompile an Android APK into readable Java source code?
+**1.** ¿Qué herramienta se usa para descompilar un APK de Android en código Java legible?
 - a) Drozer
 - b) Frida
 - c) JADX
 - d) Burp Suite
-**Answer:** C — JADX converts DEX bytecode back to Java source for static analysis.
+**Respuesta:** C — JADX convierte el bytecode DEX de vuelta a código fuente Java para análisis estático.
 
-**2.** What is the difference between SAST and DAST in mobile security testing?
-- a) SAST tests at runtime; DAST analyzes source code
-- b) SAST analyzes source/binary without execution; DAST tests at runtime
-- c) There is no difference
-- d) SAST is only for iOS; DAST is only for Android
-**Answer:** B — SAST inspects code statically; DAST performs runtime behavioral testing.
+**2.** ¿Cuál es la diferencia entre SAST y DAST en el testing de mobile security?
+- a) SAST testea en runtime; DAST analiza código fuente
+- b) SAST analiza código fuente/binario sin ejecución; DAST testea en runtime
+- c) No hay diferencia
+- d) SAST es solo para iOS; DAST es solo para Android
+**Respuesta:** B — SAST inspecciona código estáticamente; DAST realiza testing conductual en runtime.
 
-**3.** Which tool allows runtime hooking and instrumentation of mobile applications?
+**3.** ¿Qué herramienta permite hooking e instrumentación en runtime de aplicaciones móviles?
 - a) APKTool
 - b) VirusTotal
 - c) Frida
 - d) MobSF
-**Answer:** C — Frida injects scripts into running processes for dynamic analysis and hooking.
+**Respuesta:** C — Frida inyecta scripts en procesos en ejecución para análisis dinámico y hooking.
 
-**4.** What is the purpose of Burp Suite in mobile security?
-- a) Reverse engineering APKs
-- b) Intercepting and manipulating HTTP/HTTPS traffic (MITM analysis)
-- c) Analyzing malware samples
-- d) Decompile iOS binaries
-**Answer:** B — Burp Suite acts as an intercepting proxy to inspect and modify app traffic.
+**4.** ¿Cuál es el propósito de Burp Suite en mobile security?
+- a) Ingeniería inversa de APKs
+- b) Interceptar y manipular tráfico HTTP/HTTPS (análisis MITM)
+- c) Analizar muestras de malware
+- d) Descompilar binarios iOS
+**Respuesta:** B — Burp Suite actúa como proxy interceptador para inspeccionar y modificar tráfico de apps.
 
-**5.** Why should VPN and certificate management be enforced on mobile devices?
-- a) To increase download speed
-- b) To prevent MITM attacks and ensure trusted connections
-- c) To enable GPS tracking
-- d) To allow third-party app installs
-**Answer:** B — Enforcing VPNs and blocking user-installed CAs prevents interception and certificate spoofing.
-
+**5.** ¿Por qué se deben imponer VPN y gestión de certificados en dispositivos móviles?
+- a) Para aumentar la velocidad de descarga
+- b) Para prevenir ataques MITM y asegurar conexiones confiables
+- c) Para habilitar rastreo GPS
+- d) Para permitir instalación de apps de terceros
+**Respuesta:** B — Imponer VPNs y bloquear CAs instaladas por el usuario previene intercepción y suplantación de certificados.

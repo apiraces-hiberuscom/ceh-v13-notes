@@ -6,7 +6,7 @@
 
 |Item|Memorize|
 |---|---|
-|Web Application Security Testing|The process of identifying security weaknesses in a web application by analyzing its functionality, logic, and implementation|
+|Web Application Security Testing|El proceso de identificar debilidades de seguridad en una aplicación web analizando su funcionalidad, lógica e implementación|
 
 ---
 
@@ -14,10 +14,10 @@
 
 |Goal|
 |---|
-|Identify vulnerabilities|
-|Validate security controls|
-|Prevent unauthorized access|
-|Protect sensitive data|
+|Identificar vulnerabilidades|
+|Validar controles de seguridad|
+|Prevenir acceso no autorizado|
+|Proteger datos sensibles|
 
 ---
 
@@ -25,9 +25,9 @@
 
 |Testing Type|Description|
 |---|---|
-|Black-box testing|No knowledge of application|
-|White-box testing|Full knowledge of source code|
-|Gray-box testing|Partial knowledge|
+|Black-box testing|Sin conocimiento de la aplicación|
+|White-box testing|Conocimiento completo del código fuente|
+|Gray-box testing|Conocimiento parcial|
 
 MEMORY HOOK:  
 **Black = Blind, White = All, Gray = Some**
@@ -40,7 +40,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Input Validation Testing|Testing how the application handles user-supplied input|
+|Input Validation Testing|Prueba de cómo la aplicación maneja la entrada proporcionada por el usuario|
 
 ---
 
@@ -71,10 +71,10 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Special character injection|
-|Boundary value testing|
-|Unexpected input|
-|Encoding manipulation|
+|Inyección de caracteres especiales|
+|Prueba de valores límite|
+|Entrada inesperada|
+|Manipulación de codificación|
 
 ---
 
@@ -89,7 +89,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Authentication Testing|Testing login and identity verification mechanisms|
+|Authentication Testing|Prueba de mecanismos de inicio de sesión y verificación de identidad|
 
 ---
 
@@ -97,10 +97,10 @@ MEMORY HOOK:
 
 |Area|
 |---|
-|Password strength|
-|Login bypass|
-|Credential reuse|
-|Account lockout|
+|Fortaleza de contraseñas|
+|Bypass de inicio de sesión|
+|Reutilización de credenciales|
+|Bloqueo de cuentas|
 
 ---
 
@@ -108,10 +108,10 @@ MEMORY HOOK:
 
 |Weakness|
 |---|
-|Default credentials|
-|Weak passwords|
-|No MFA|
-|Predictable credentials|
+|Credenciales predeterminadas|
+|Contraseñas débiles|
+|Sin MFA|
+|Credenciales predecibles|
 
 ---
 
@@ -137,7 +137,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Session Management Testing|Evaluating how sessions are created, maintained, and terminated|
+|Session Management Testing|Evaluación de cómo se crean, mantienen y terminan las sesiones|
 
 ---
 
@@ -165,9 +165,9 @@ MEMORY HOOK:
 
 |Focus|
 |---|
-|Session ID randomness|
-|Secure flags|
-|Timeout enforcement|
+|Aleatoriedad del Session ID|
+|Flags seguros|
+|Aplicación de timeout|
 
 ---
 
@@ -182,7 +182,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Authorization Testing|Testing access control mechanisms after authentication|
+|Authorization Testing|Prueba de mecanismos de control de acceso después de la autenticación|
 
 ---
 
@@ -190,8 +190,8 @@ MEMORY HOOK:
 
 |Area|
 |---|
-|Role-based access|
-|Privilege escalation|
+|Acceso basado en roles|
+|Escalada de privilegios|
 |IDOR|
 
 ---
@@ -200,9 +200,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Parameter tampering|
-|Forced browsing|
-|Role manipulation|
+|Manipulación de parámetros|
+|Navegación forzada|
+|Manipulación de roles|
 
 ---
 
@@ -217,7 +217,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Client-Side Testing|Testing security controls implemented in the browser|
+|Client-Side Testing|Prueba de controles de seguridad implementados en el navegador|
 
 ---
 
@@ -236,9 +236,9 @@ MEMORY HOOK:
 
 |Issue|
 |---|
-|Client-side validation|
-|Hardcoded secrets|
-|Exposed logic|
+|Validación del lado del cliente|
+|Secretos hardcodeados|
+|Lógica expuesta|
 
 ---
 
@@ -246,8 +246,8 @@ MEMORY HOOK:
 
 |Trap|Correct|
 |---|---|
-|Client-side security is sufficient|NO|
-|Server-side validation required|YES|
+|La seguridad del lado del cliente es suficiente|NO|
+|Se requiere validación del lado del servidor|SÍ|
 
 ---
 
@@ -255,9 +255,9 @@ MEMORY HOOK:
 
 |Focus|
 |---|
-|Verbose error messages|
+|Mensajes de error detallados|
 |Stack traces|
-|Debug information|
+|Información de depuración|
 
 ---
 
@@ -265,8 +265,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Information disclosure|
-|Reconnaissance aid|
+|Divulgación de información|
+|Apoyo al reconocimiento|
 
 ---
 
@@ -274,9 +274,9 @@ MEMORY HOOK:
 
 |Test|
 |---|
-|File type validation|
-|File size limits|
-|Execution permissions|
+|Validación de tipo de archivo|
+|Límites de tamaño de archivo|
+|Permisos de ejecución|
 
 ---
 
@@ -293,9 +293,9 @@ MEMORY HOOK:
 
 |Focus|
 |---|
-|Workflow bypass|
-|Transaction tampering|
-|Race conditions|
+|Bypass de flujo de trabajo|
+|Manipulación de transacciones|
+|Condiciones de carrera|
 
 ---
 
@@ -308,10 +308,10 @@ MEMORY HOOK:
 
 |Area|
 |---|
-|Authentication|
-|Authorization|
+|Autenticación|
+|Autorización|
 |Rate limiting|
-|Input validation|
+|Validación de entrada|
 
 ---
 
@@ -329,8 +329,8 @@ MEMORY HOOK:
 
 |Type|Characteristics|
 |---|---|
-|Automated|Fast, scalable|
-|Manual|Accurate, contextual|
+|Automated|Rápido, escalable|
+|Manual|Preciso, contextual|
 
 ---
 
@@ -338,7 +338,7 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Burp Suite|Interception and testing|
+|Burp Suite|Intercepción y pruebas|
 |OWASP ZAP|Vulnerability scanning|
 |Nikto|Web server scanning|
 |SQLmap|SQL injection|
@@ -397,56 +397,56 @@ Say **which module** or **revision mode** you want next.
 
 | Term | Definition |
 |------|------------|
-| Black-box Testing | Testing with no prior knowledge of the application's internal workings |
-| White-box Testing | Testing with full access to source code and internal architecture |
-| Gray-box Testing | Testing with partial knowledge of the application (e.g., user credentials) |
-| Input Validation Testing | Testing how the application handles user-supplied input to find injection flaws |
-| Authentication Testing | Testing login and identity verification mechanisms for weaknesses |
-| Session Management Testing | Evaluating how sessions are created, maintained, and terminated securely |
-| Authorization Testing | Testing access control mechanisms after authentication (AuthZ ≠ AuthN) |
-| Client-Side Testing | Testing security controls implemented in the browser (JS, HTML, cookies, local storage) |
-| Business Logic Testing | Testing for workflow bypass, transaction tampering, and race conditions |
-| File Upload Testing | Validating file type checks, size limits, and execution permissions on uploads |
-| Session Fixation | Attack where an attacker sets a known session ID before the user authenticates |
-| IDOR in Authorization | Manipulating object references to access resources beyond the user's authorized scope |
-| Verbose Errors | Detailed error messages that disclose internal application details to attackers |
-| Web Shell Upload | Attack where a malicious script is uploaded to gain remote server access |
+| Black-box Testing | Prueba sin conocimiento previo del funcionamiento interno de la aplicación |
+| White-box Testing | Prueba con acceso completo al código fuente y arquitectura interna |
+| Gray-box Testing | Prueba con conocimiento parcial de la aplicación (por ejemplo, credenciales de usuario) |
+| Input Validation Testing | Prueba de cómo la aplicación maneja la entrada del usuario para encontrar errores de inyección |
+| Authentication Testing | Prueba de mecanismos de inicio de sesión y verificación de identidad en busca de debilidades |
+| Session Management Testing | Evaluación de cómo se crean, mantienen y terminan las sesiones de forma segura |
+| Authorization Testing | Prueba de mecanismos de control de acceso después de la autenticación (AuthZ ≠ AuthN) |
+| Client-Side Testing | Prueba de controles de seguridad implementados en el navegador (JS, HTML, cookies, local storage) |
+| Business Logic Testing | Prueba de bypass de flujo de trabajo, manipulación de transacciones y condiciones de carrera |
+| File Upload Testing | Validación de verificación de tipo de archivo, límites de tamaño y permisos de ejecución en cargas |
+| Session Fixation | Ataque donde un atacante establece un Session ID conocido antes de que el usuario se autentique |
+| IDOR in Authorization | Manipulación de referencias de objetos para acceder a recursos más allá del alcance autorizado del usuario |
+| Verbose Errors | Mensajes de error detallados que revelan detalles internos de la aplicación a los atacantes |
+| Web Shell Upload | Ataque donde se carga un script malicioso para obtener acceso remoto al servidor |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** A penetration tester is given the application source code and database schema before testing begins. Which testing approach is this?
+**1.** Un penetration tester recibe el código fuente de la aplicación y el esquema de la base de datos antes de que comience la prueba. ¿Qué enfoque de prueba es este?
 - a) Black-box testing
 - b) White-box testing
 - c) Gray-box testing
 - d) Automated testing
-**Answer:** B — White-box testing provides full knowledge of source code and internal architecture before testing starts.
+**Respuesta:** B — White-box testing proporciona conocimiento completo del código fuente y la arquitectura interna antes de que comience la prueba.
 
-**2.** Which testing area focuses on verifying that session IDs are random, have secure flags, and enforce timeouts?
+**2.** ¿Qué área de prueba se enfoca en verificar que los session IDs sean aleatorios, tengan flags seguros y apliquen timeouts?
 - a) Input Validation Testing
 - b) Authorization Testing
 - c) Session Management Testing
 - d) Client-Side Testing
-**Answer:** C — Session Management Testing evaluates session ID randomness, secure cookie flags, and timeout enforcement.
+**Respuesta:** C — Session Management Testing evalúa la aleatoriedad del session ID, los flags seguros de cookies y la aplicación de timeouts.
 
-**3.** An attacker uploads a PHP file disguised as an image through a web form. Which testing area should have caught this vulnerability?
+**3.** Un atacante carga un archivo PHP disfrazado de imagen a través de un formulario web. ¿Qué área de prueba debería haber detectado esta vulnerabilidad?
 - a) Authentication Testing
 - b) Business Logic Testing
 - c) File Upload Testing
 - d) Error Handling Testing
-**Answer:** C — File Upload Testing validates file type, extension, and execution permissions to prevent web shell uploads.
+**Respuesta:** C — File Upload Testing valida el tipo de archivo, la extensión y los permisos de ejecución para prevenir cargas de web shells.
 
-**4.** What is the key difference between Authentication (AuthN) and Authorization (AuthZ) testing?
-- a) AuthN tests access controls; AuthZ tests login mechanisms
-- b) AuthN tests identity verification; AuthZ tests access permissions after authentication
-- c) They are the same thing
-- d) AuthN is only for APIs; AuthZ is only for web apps
-**Answer:** B — Authentication (AuthN) verifies identity; Authorization (AuthZ) tests what the authenticated user is allowed to do.
+**4.** ¿Cuál es la diferencia clave entre las pruebas de Authentication (AuthN) y Authorization (AuthZ)?
+- a) AuthN prueba controles de acceso; AuthZ prueba mecanismos de inicio de sesión
+- b) AuthN prueba verificación de identidad; AuthZ prueba permisos de acceso después de la autenticación
+- c) Son lo mismo
+- d) AuthN es solo para APIs; AuthZ es solo para aplicaciones web
+**Respuesta:** B — Authentication (AuthN) verifica la identidad; Authorization (AuthZ) prueba lo que el usuario autenticado está autorizado a hacer.
 
-**5.** Which of the following is a limitation of automated security testing compared to manual testing?
-- a) Automated testing is slower than manual
-- b) Automated testing cannot detect business logic flaws accurately
-- c) Automated testing requires source code access
-- d) Manual testing cannot find injection vulnerabilities
-**Answer:** B — Automated testing is fast and scalable but often misses contextual business logic flaws that require human judgment.
+**5.** ¿Cuál de las siguientes es una limitación de la prueba automatizada de seguridad en comparación con la prueba manual?
+- a) La prueba automatizada es más lenta que la manual
+- b) La prueba automatizada no puede detectar errores de lógica de negocio con precisión
+- c) La prueba automatizada requiere acceso al código fuente
+- d) La prueba manual no puede encontrar vulnerabilidades de inyección
+**Respuesta:** B — La prueba automatizada es rápida y escalable pero a menudo pierde errores de lógica de negocio contextuales que requieren juicio humano.

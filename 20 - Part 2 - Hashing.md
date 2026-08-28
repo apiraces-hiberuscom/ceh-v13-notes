@@ -6,10 +6,10 @@
 
 |Property|Description|
 |---|---|
-|Keys|Same key for encryption and decryption|
-|Speed|Very fast|
-|Usage|Bulk data encryption|
-|Weakness|Key distribution|
+|Keys|La misma key para encryption y decryption|
+|Speed|Muy rápido|
+|Usage|Encriptación de datos masivos|
+|Weakness|Distribución de keys|
 
 MEMORY HOOK:  
 **Same key → speed**
@@ -22,8 +22,8 @@ MEMORY HOOK:
 
 |Type|Description|
 |---|---|
-|Block Cipher|Encrypts fixed-size blocks|
-|Stream Cipher|Encrypts bit/byte stream|
+|Block Cipher|Encripta bloques de tamaño fijo|
+|Stream Cipher|Encripta stream de bits/bytes|
 
 ---
 
@@ -42,13 +42,13 @@ MEMORY HOOK:
 
 LOGIC:
 
-- Uses substitution and permutation
+- Usa substitución y permutación
     
-- Vulnerable to brute-force attacks
+- Vulnerable a ataques brute-force
     
 
 EXAM TRAP:  
-DES is **NOT secure**, even if implemented correctly.
+DES **NO es seguro**, incluso si se implementa correctamente.
 
 MEMORY HOOK:  
 **DES = Dead Encryption Standard**
@@ -66,13 +66,13 @@ MEMORY HOOK:
 
 LOGIC:
 
-- Applies DES three times
+- Aplica DES tres veces
     
-- Slower than DES
+- Más lento que DES
     
 
 EXAM TRAP:  
-3DES ≠ three different algorithms.
+3DES ≠ tres algoritmos diferentes.
 
 MEMORY HOOK:  
 **DES × 3 = slow but safer**
@@ -92,13 +92,13 @@ MOST IMPORTANT SYMMETRIC ALGORITHM IN CEH
 
 LOGIC:
 
-- Faster than 3DES
+- Más rápido que 3DES
     
-- Resistant to known attacks
+- Resistente a ataques conocidos
     
 
 EXAM TRAP:  
-AES is **NOT Feistel-based**.
+AES **NO se basa en Feistel**.
 
 MEMORY HOOK:  
 **AES = gold standard**
@@ -116,9 +116,9 @@ MEMORY HOOK:
 
 LOGIC:
 
-- Fast in software
+- Rápido en software
     
-- Free and unpatented
+- Gratuito y sin patente
     
 
 MEMORY HOOK:  
@@ -136,7 +136,7 @@ MEMORY HOOK:
 |Status|Secure|
 
 EXAM TRAP:  
-Twofish ≠ Blowfish upgrade inside AES (AES won Rijndael).
+Twofish ≠ actualización de Blowfish dentro de AES (AES ganó con Rijndael).
 
 MEMORY HOOK:  
 **Twofish = AES finalist**
@@ -167,7 +167,7 @@ MEMORY HOOK:
 |Status|Broken|
 
 EXAM TRAP:  
-RC4 vulnerabilities allow keystream reuse attacks.
+Las vulnerabilidades de RC4 permiten ataques de keystream reuse.
 
 MEMORY HOOK:  
 **RC4 = Rapidly Cracked**
@@ -247,9 +247,9 @@ MEMORY HOOK:
 
 LOGIC:
 
-- Faster than AES on mobile devices
+- Más rápido que AES en dispositivos móviles
     
-- Resistant to timing attacks
+- Resistente a ataques de timing
     
 
 MEMORY HOOK:  
@@ -261,15 +261,15 @@ MEMORY HOOK:
 
 |Feature|Block|Stream|
 |---|---|---|
-|Data handling|Fixed blocks|Continuous stream|
-|Error impact|Whole block|Single bit|
+|Data handling|Bloques fijos|Stream continuo|
+|Error impact|Bloco entero|Un solo bit|
 |Examples|AES, DES|RC4, ChaCha20|
 
 ---
 
 # MODES OF OPERATION (VERY HIGH YIELD)
 
-Block ciphers **require modes**.
+Los Block ciphers **requieren modos**.
 
 |Mode|Description|
 |---|---|
@@ -281,7 +281,7 @@ Block ciphers **require modes**.
 |GCM|Galois/Counter Mode|
 
 EXAM TRAP:  
-ECB reveals patterns.
+ECB revela patrones.
 
 MEMORY HOOK:  
 **Never use ECB**
@@ -290,23 +290,23 @@ MEMORY HOOK:
 
 # OBJECTIVE 02 — MEMORY CHECKLIST
 
-You must remember:
+Debes recordar:
 
-- DES is broken
+- DES está roto
     
-- 3DES is slow
+- 3DES es lento
     
-- AES is standard
+- AES es el estándar
     
-- RC4 is insecure
+- RC4 no es seguro
     
-- ChaCha20 replaces RC4
+- ChaCha20 reemplaza a RC4
     
-- Block vs Stream differences
+- Diferencias entre Block y Stream
     
-- ECB mode is insecure
+- El modo ECB no es seguro
     
-- AES block size is always 128-bit
+- El block size de AES siempre es 128-bit
     
 
 ---
@@ -327,58 +327,58 @@ Reply **next** to continue with:
 
 | Term | Definition |
 |------|------------|
-| DES | Data Encryption Standard — 56-bit key, 64-bit block, broken/insecure |
-| 3DES | Triple DES — applies DES three times, 112/168-bit key, deprecated but stronger than DES |
-| AES | Advanced Encryption Standard — 128/192/256-bit key, 128-bit block, secure and recommended |
-| Blowfish | Symmetric cipher with 32-448 bit key, 64-bit block, created by Bruce Schneier |
-| Twofish | Successor to Blowfish, up to 256-bit key, 128-bit block, AES finalist |
-| RC4 | Stream cipher — 40-2048 bit key, broken, used in SSL/WEP historically |
-| ChaCha20 | Modern stream cipher — 256-bit key, faster than AES on mobile, RC4 replacement |
-| CAST | Symmetric cipher — 64/128-bit block, up to 256-bit key, used in PGP |
-| Camellia | AES-equivalent cipher — 128-bit block, 128/192/256-bit keys |
-| GOST | Russian symmetric cipher — 64-bit block, 256-bit key |
-| Block Cipher | Encrypts fixed-size blocks (AES, DES) |
-| Stream Cipher | Encrypts continuous data stream (RC4, ChaCha20) |
-| ECB | Electronic Codebook mode — INSECURE, reveals patterns |
-| CBC | Cipher Block Chaining mode — uses initialization vector |
-| GCM | Galois/Counter Mode — provides encryption and authentication |
-| Feistel Structure | DES cipher structure using substitution and permutation |
+| DES | Data Encryption Standard — key de 56-bit, block de 64-bit, broken/insecure |
+| 3DES | Triple DES — aplica DES tres veces, key de 112/168-bit, deprecated pero más fuerte que DES |
+| AES | Advanced Encryption Standard — key de 128/192/256-bit, block de 128-bit, secure y recomendado |
+| Blowfish | Cipher simétrico con key de 32-448 bit, block de 64-bit, creado por Bruce Schneier |
+| Twofish | Sucesor de Blowfish, key de hasta 256-bit, block de 128-bit, finalista de AES |
+| RC4 | Stream cipher — key de 40-2048 bit, broken, usado en SSL/WEP históricamente |
+| ChaCha20 | Stream cipher moderno — key de 256-bit, más rápido que AES en móviles, reemplazo de RC4 |
+| CAST | Cipher simétrico — block de 64/128-bit, key de hasta 256-bit, usado en PGP |
+| Camellia | Cipher equivalente a AES — block de 128-bit, keys de 128/192/256-bit |
+| GOST | Cipher simétrico ruso — block de 64-bit, key de 256-bit |
+| Block Cipher | Encripta bloques de tamaño fijo (AES, DES) |
+| Stream Cipher | Encripta stream continuo de datos (RC4, ChaCha20) |
+| ECB | Modo Electronic Codebook — INSECURE, revela patrones |
+| CBC | Modo Cipher Block Chaining — usa vector de inicialización |
+| GCM | Galois/Counter Mode — provee encryption y autenticación |
+| Feistel Structure | Estructura del cipher DES usando substitución y permutación |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** Which symmetric algorithm is considered the current gold standard for encryption?
+**1.** ¿Qué algoritmo simétrico se considera el gold standard actual para encriptación?
 - a) DES
 - b) 3DES
 - c) AES
 - d) RC4
-**Answer:** c) — AES is the secure, recommended standard with 128-bit blocks and variable key sizes.
+**Answer:** c) — AES es el estándar seguro y recomendado con blocks de 128-bit y keys de tamaño variable.
 
-**2.** Why is ECB mode considered insecure?
-- a) It uses weak keys
-- b) It reveals patterns in encrypted data
-- c) It is too slow
-- d) It requires hardware support
-**Answer:** b) — ECB mode encrypts identical blocks to identical ciphertext, revealing patterns.
+**2.** ¿Por qué el modo ECB se considera inseguro?
+- a) Usa keys débiles
+- b) Revela patrones en los datos encriptados
+- c) Es demasiado lento
+- d) Requiere soporte de hardware
+**Answer:** b) — El modo ECB encripta bloques idénticos a ciphertext idéntico, revelando patrones.
 
-**3.** What is the key difference between block ciphers and stream ciphers?
-- a) Block ciphers are always faster
-- b) Block ciphers encrypt fixed blocks, stream ciphers encrypt bit-by-bit
-- c) Stream ciphers are always more secure
-- d) Block ciphers only work on text
-**Answer:** b) — Block ciphers process fixed-size blocks, while stream ciphers encrypt data continuously.
+**3.** ¿Cuál es la diferencia clave entre block ciphers y stream ciphers?
+- a) Los block ciphers siempre son más rápidos
+- b) Los block ciphers encriptan bloques fijos, los stream ciphers encriptan bit por bit
+- c) Los stream ciphers siempre son más seguros
+- d) Los block ciphers solo funcionan con texto
+**Answer:** b) — Los block ciphers procesan bloques de tamaño fijo, mientras que los stream ciphers encriptan datos continuamente.
 
-**4.** Which cipher is considered the modern replacement for RC4?
+**4.** ¿Qué cipher se considera el reemplazo moderno de RC4?
 - a) DES
 - b) 3DES
 - c) Blowfish
 - d) ChaCha20
-**Answer:** d) — ChaCha20 is a modern stream cipher designed to replace insecure RC4.
+**Answer:** d) — ChaCha20 es un stream cipher moderno diseñado para reemplazar al inseguro RC4.
 
-**5.** What is the block size of AES regardless of key length?
+**5.** ¿Cuál es el block size de AES independientemente de la longitud de la key?
 - a) 64-bit
 - b) 128-bit
 - c) 256-bit
 - d) 512-bit
-**Answer:** b) — AES always uses 128-bit blocks, regardless of whether the key is 128, 192, or 256 bits.
+**Answer:** b) — AES siempre usa blocks de 128-bit, independientemente de si la key es de 128, 192 o 256 bits.

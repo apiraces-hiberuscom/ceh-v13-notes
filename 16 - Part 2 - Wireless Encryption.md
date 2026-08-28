@@ -6,8 +6,8 @@
 
 |Item|Memorize|
 |---|---|
-|Purpose|Protect confidentiality and integrity of wireless data|
-|Problem Addressed|Open broadcast medium|
+|Purpose|Proteger la confidencialidad e integridad de los datos inalámbricos|
+|Problem Addressed|Medio de difusión abierto|
 
 MEMORY HOOK:  
 **Wireless = everyone can hear**
@@ -33,7 +33,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|WEP|Security protocol designed to provide wired-equivalent privacy for WLANs|
+|WEP|Protocolo de seguridad diseñado para proporcionar privacidad equivalente a la red cableada para WLANs|
 
 ---
 
@@ -52,10 +52,10 @@ MEMORY HOOK:
 
 |Step|
 |---|
-|Shared secret key configured|
-|IV appended to key|
-|RC4 encrypts data|
-|Encrypted data transmitted|
+|Clave secreta compartida configurada|
+|IV se anexa a la clave|
+|RC4 cifra los datos|
+|Datos cifrados transmitidos|
 
 ---
 
@@ -63,11 +63,11 @@ MEMORY HOOK:
 
 |Weakness|
 |---|
-|Small IV size|
-|IV reuse|
-|Weak key scheduling|
-|No key management|
-|Easily crackable|
+|Tamaño de IV pequeño|
+|Reutilización de IV|
+|Programación de claves débil|
+|Sin gestión de claves|
+|Fácilmente crackeable|
 
 MEMORY HOOK:  
 **WEP = Weak Encryption Protocol**
@@ -78,7 +78,7 @@ MEMORY HOOK:
 
 |Outcome|
 |---|
-|Key can be cracked in minutes|
+|La clave puede ser crackeada en minutos|
 
 ---
 
@@ -90,7 +90,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|WPA|Security protocol introduced to fix WEP vulnerabilities|
+|WPA|Protocolo de seguridad introducido para corregir las vulnerabilidades de WEP|
 
 ---
 
@@ -100,7 +100,7 @@ MEMORY HOOK:
 |---|---|
 |Encryption|TKIP|
 |Cipher|RC4|
-|Key Management|Dynamic keys|
+|Key Management|Claves dinámicas|
 |Integrity|MIC (Message Integrity Check)|
 
 ---
@@ -109,7 +109,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|TKIP|Dynamically changes keys for each packet|
+|TKIP|Cambia dinámicamente las claves para cada paquete|
 
 ---
 
@@ -118,7 +118,7 @@ MEMORY HOOK:
 |Mode|Description|
 |---|---|
 |WPA-Personal|Pre-Shared Key (PSK)|
-|WPA-Enterprise|Uses RADIUS server|
+|WPA-Enterprise|Utiliza servidor RADIUS|
 
 ---
 
@@ -126,9 +126,9 @@ MEMORY HOOK:
 
 |Limitation|
 |---|
-|Still uses RC4|
-|Vulnerable to attacks|
-|Deprecated|
+|Aún utiliza RC4|
+|Vulnerable a ataques|
+|Obsoleto|
 
 MEMORY HOOK:  
 **WPA = WEP with patches**
@@ -143,7 +143,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|WPA2|IEEE 802.11i standard for WLAN security|
+|WPA2|Estándar IEEE 802.11i para seguridad de WLAN|
 
 ---
 
@@ -162,7 +162,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|CCMP|Encryption and integrity protocol used with AES|
+|CCMP|Protocolo de cifrado e integridad utilizado con AES|
 
 ---
 
@@ -171,7 +171,7 @@ MEMORY HOOK:
 |Mode|Description|
 |---|---|
 |WPA2-Personal|Pre-Shared Key|
-|WPA2-Enterprise|RADIUS authentication|
+|WPA2-Enterprise|Autenticación RADIUS|
 
 ---
 
@@ -179,9 +179,9 @@ MEMORY HOOK:
 
 |Weakness|
 |---|
-|Weak passphrases|
-|KRACK attack|
-|PSK cracking|
+|Frases de contraseña débiles|
+|Ataque KRACK|
+|Cracking de PSK|
 
 MEMORY HOOK:  
 **Strong crypto, weak passwords**
@@ -196,7 +196,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|WPA3|Latest WLAN security standard|
+|WPA3|Último estándar de seguridad para WLAN|
 
 ---
 
@@ -204,9 +204,9 @@ MEMORY HOOK:
 
 |Feature|Benefit|
 |---|---|
-|SAE|Protects against offline dictionary attacks|
-|Forward Secrecy|Prevents past session decryption|
-|Strong encryption|Enhanced protection|
+|SAE|Protege contra ataques de diccionario offline|
+|Forward Secrecy|Previene la descifrado de sesiones anteriores|
+|Strong encryption|Protección mejorada|
 
 ---
 
@@ -214,7 +214,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|SAE|Password-based authentication resistant to brute-force|
+|SAE|Autenticación basada en contraseña resistente a fuerza bruta|
 
 MEMORY HOOK:  
 **WPA3 stops offline guessing**
@@ -225,8 +225,8 @@ MEMORY HOOK:
 
 |Mode|Description|
 |---|---|
-|WPA3-Personal|SAE-based|
-|WPA3-Enterprise|192-bit encryption|
+|WPA3-Personal|Basado en SAE|
+|WPA3-Enterprise|Cifrado de 192-bit|
 
 ---
 
@@ -236,8 +236,8 @@ MEMORY HOOK:
 |---|---|---|---|---|
 |Cipher|RC4|RC4|AES|AES|
 |Key Mgmt|Static|TKIP|CCMP|SAE|
-|Security|Weak|Medium|Strong|Very Strong|
-|Status|Obsolete|Deprecated|Common|Latest|
+|Security|Débil|Medio|Fuerte|Muy Fuerto|
+|Status|Obsoleto|Obsoleto|Común|Último|
 
 ---
 
@@ -245,11 +245,11 @@ MEMORY HOOK:
 
 |Question|Correct Answer|
 |---|---|
-|Weakest WLAN security|WEP|
-|Uses AES|WPA2 / WPA3|
-|Uses TKIP|WPA|
-|Uses SAE|WPA3|
-|Vulnerable to IV reuse|WEP|
+|Seguridad WLAN más débil|WEP|
+|Utiliza AES|WPA2 / WPA3|
+|Utiliza TKIP|WPA|
+|Utiliza SAE|WPA3|
+|Vulnerable a reutilización de IV|WEP|
 
 ---
 
@@ -271,10 +271,10 @@ MEMORY HOOK:
 
 |Standard|Cipher / Handshake|Notes|
 |---|---|---|
-|**WEP**|RC4 + 24-bit IV|Totally broken|
-|**WPA**|RC4 + TKIP|Patch, still weak|
-|**WPA2**|AES-CCMP + 4-way|Strong, widely used|
-|**WPA3**|**SAE / Dragonfly**|Dragonblood vuln|
+|**WEP**|RC4 + 24-bit IV|Totalmente roto|
+|**WPA**|RC4 + TKIP|Parche, aún débil|
+|**WPA2**|AES-CCMP + 4-way|Fuerte, ampliamente utilizado|
+|**WPA3**|**SAE / Dragonfly**|Vulnerabilidad Dragonblood|
 
 ---
 
@@ -282,7 +282,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|KRACK|Key Reinstallation Attack — exploits WPA2 4-way handshake|
+|KRACK|Key Reinstallation Attack — explota el handshake de 4 vías de WPA2|
 
 ---
 
@@ -290,55 +290,55 @@ MEMORY HOOK:
 
 | Term | Definition |
 |------|------------|
-| WEP | Wireless encryption protocol using RC4 with 24-bit IV; considered totally broken |
-| WPA | Interim security standard using TKIP to fix WEP weaknesses; now deprecated |
-| WPA2 | IEEE 802.11i standard using AES-CCMP encryption; widely deployed |
-| WPA3 | Latest WLAN security standard using SAE for offline dictionary attack protection |
-| TKIP | Temporal Key Integrity Protocol; dynamically changes keys per packet (used in WPA) |
-| CCMP | Counter Mode with CBC-MAC Protocol; encryption and integrity protocol used with AES |
-| SAE | Simultaneous Authentication of Equals; password-based auth resistant to brute-force |
-| KRACK | Key Reinstallation Attack; exploits WPA2 4-way handshake to decrypt traffic |
-| PSK | Pre-Shared Key mode; used in WPA/WPA2/WPA3-Personal |
-| RADIUS | Authentication server used in Enterprise mode (WPA/WPA2/WPA3-Enterprise) |
-| IV | Initialization Vector; 24-bit in WEP, leading to reuse and easy cracking |
-| AES | Advanced Encryption Standard; used in WPA2 and WPA3 |
-| Dragonblood | Vulnerability affecting WPA3 SAE implementation |
+| WEP | Protocolo de cifrado inalámbrico que utiliza RC4 con IV de 24-bit; considerado totalmente roto |
+| WPA | Estándar de seguridad intermedio que utiliza TKIP para corregir las debilidades de WEP; ahora obsoleto |
+| WPA2 | Estándar IEEE 802.11i que utiliza cifrado AES-CCMP; ampliamente desplegado |
+| WPA3 | Último estándar de seguridad para WLAN que utiliza SAE para protección contra ataques de diccionario offline |
+| TKIP | Temporal Key Integrity Protocol; cambia dinámicamente las claves por paquete (utilizado en WPA) |
+| CCMP | Counter Mode with CBC-MAC Protocol; protocolo de cifrado e integridad utilizado con AES |
+| SAE | Simultaneous Authentication of Equals; autenticación basada en contraseña resistente a fuerza bruta |
+| KRACK | Key Reinstallation Attack; explota el handshake de 4 vías de WPA2 para descifrar tráfico |
+| PSK | Pre-Shared Key mode; utilizado en WPA/WPA2/WPA3-Personal |
+| RADIUS | Servidor de autenticación utilizado en modo Enterprise (WPA/WPA2/WPA3-Enterprise) |
+| IV | Initialization Vector; 24-bit en WEP, provocando reutilización y fácil cracking |
+| AES | Advanced Encryption Standard; utilizado en WPA2 y WPA3 |
+| Dragonblood | Vulnerabilidad que afecta a la implementación SAE de WPA3 |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** Which wireless encryption protocol uses AES with CCMP?
+**1.** ¿Qué protocolo de cifrado inalámbrico utiliza AES con CCMP?
 - a) WEP
 - b) WPA
 - c) WPA2
 - d) WPA3
-**Answer:** C — WPA2 uses AES-CCMP for both encryption and integrity.
+**Answer:** C — WPA2 utiliza AES-CCMP tanto para cifrado como para integridad.
 
-**2.** What is the primary weakness that allows WEP keys to be cracked quickly?
-- a) AES vulnerability
-- b) Small 24-bit IV size leading to IV reuse
-- c) Weak RADIUS authentication
-- d) SAE implementation flaw
-**Answer:** B — The 24-bit IV is too small, causing reuse that reveals the key.
+**2.** ¿Cuál es la debilidad principal que permite crackear las claves WEP rápidamente?
+- a) Vulnerabilidad de AES
+- b) Tamaño de IV pequeño de 24-bit que conduce a la reutilización de IV
+- c) Autenticación RADIUS débil
+- d) Fallo en la implementación de SAE
+**Answer:** B — El IV de 24-bit es demasiado pequeño, causando reutilización que revela la clave.
 
-**3.** Which protocol does WPA use instead of CCMP?
+**3.** ¿Qué protocolo utiliza WPA en lugar de CCMP?
 - a) AES
 - b) SAE
 - c) TKIP
 - d) RSA
-**Answer:** C — WPA introduced TKIP to dynamically change keys per packet, replacing WEP's static approach.
+**Answer:** C — WPA introdujo TKIP para cambiar dinámicamente las claves por paquete, reemplazando el enfoque estático de WEP.
 
-**4.** What does SAE protect against in WPA3?
-- a) KRACK attacks
-- b) Offline dictionary attacks
-- c) Evil twin attacks
+**4.** ¿Contra qué protege SAE en WPA3?
+- a) Ataques KRACK
+- b) Ataques de diccionario offline
+- c) Ataques evil twin
 - d) Jamming
-**Answer:** B — SAE (Simultaneous Authentication of Equals) prevents offline password guessing.
+**Answer:** B — SAE (Simultaneous Authentication of Equals) previene la adivinanza de contraseñas offline.
 
-**5.** Which statement about the KRACK attack is correct?
-- a) It targets WEP networks
-- b) It exploits the WPA2 4-way handshake
-- c) It only affects WPA3
-- d) It requires physical access to the AP
-**Answer:** B — KRACK forces nonce reuse in the WPA2 4-way handshake to decrypt traffic.
+**5.** ¿Qué afirmación sobre el ataque KRACK es correcta?
+- a) Se dirige a redes WEP
+- b) Explota el handshake de 4 vías de WPA2
+- c) Solo afecta a WPA3
+- d) Requiere acceso físico al AP
+**Answer:** B — KRACK fuerza la reutilización de nonce en el handshake de 4 vías de WPA2 para descifrar tráfico.

@@ -4,13 +4,13 @@
 
 ## WHY CLOUD IS A TARGET (EXAM LOGIC)
 
-|Reason|
+|Razón|
 |---|
-|Shared infrastructure|
-|Internet exposure|
-|Misconfiguration|
-|Weak access control|
-|API dependency|
+|Infraestructura compartida|
+|Exposición a Internet|
+|Mala configuración|
+|Control de acceso débil|
+|Dependencia de APIs|
 
 MEMORY HOOK:  
 **Shared + exposed + misconfigured**
@@ -19,12 +19,12 @@ MEMORY HOOK:
 
 # CLOUD THREAT ACTORS (EXAM)
 
-|Threat Actor|
+|Actores de Amenazas|
 |---|
-|External attackers|
-|Malicious insiders|
-|Compromised accounts|
-|Rogue administrators|
+|Atacantes externos|
+|Empleados maliciosos|
+|Cuentas comprometidas|
+|Administradores no autorizados|
 
 ---
 
@@ -34,11 +34,11 @@ MEMORY HOOK:
 
 ## DATA BREACH
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Unauthorized access to sensitive data|
-|Cause|Weak IAM, misconfiguration|
-|Impact|Data loss, compliance violation|
+|Qué|Acceso no autorizado a datos sensibles|
+|Causa|IAM débil, mala configuración|
+|Impacto|Pérdida de datos, violación de cumplimiento|
 
 EXAM TRAP:  
 Cloud provider does NOT prevent data breaches automatically.
@@ -50,21 +50,21 @@ MEMORY HOOK:
 
 ## DATA LOSS
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Permanent loss of data|
-|Cause|Accidental deletion, ransomware|
-|Impact|Business disruption|
+|Qué|Pérdida permanente de datos|
+|Causa|Eliminación accidental, ransomware|
+|Impacto|Interrupción del negocio|
 
 ---
 
 ## ACCOUNT OR SERVICE HIJACKING (VERY IMPORTANT)
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Attacker gains control of cloud account|
-|Method|Phishing, credential theft|
-|Impact|Full resource control|
+|Qué|El atacante obtiene el control de una cuenta cloud|
+|Método|Phishing, robo de credenciales|
+|Impacto|Control total de los recursos|
 
 MEMORY HOOK:  
 **Account = keys to kingdom**
@@ -73,11 +73,11 @@ MEMORY HOOK:
 
 ## INSECURE INTERFACES AND APIs
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Poorly protected cloud APIs|
-|Risk|Unauthorized access|
-|Example|No authentication, weak tokens|
+|Qué|APIs cloud mal protegidas|
+|Riesgo|Acceso no autorizado|
+|Ejemplo|Sin autenticación, tokens débiles|
 
 EXAM TRAP:  
 APIs are the PRIMARY cloud attack surface.
@@ -89,12 +89,12 @@ MEMORY HOOK:
 
 ## MISCONFIGURATION (TOP EXAM ITEM)
 
-|Example|
+|Ejemplo|
 |---|
-|Public S3 buckets|
-|Open storage|
-|Default credentials|
-|Over-permissive IAM|
+|S3 buckets públicos|
+|Almacenamiento abierto|
+|Credenciales predeterminadas|
+|IAM excesivamente permisivo|
 
 MEMORY HOOK:  
 **Most cloud breaches = misconfig**
@@ -103,21 +103,21 @@ MEMORY HOOK:
 
 ## MALICIOUS INSIDERS
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|Who|Employees, contractors|
-|Risk|Abuse of privileges|
-|Impact|Data theft, sabotage|
+|Quién|Empleados, contratistas|
+|Riesgo|Abuso de privilegios|
+|Impacto|Robo de datos, sabotaje|
 
 ---
 
 ## SHARED TECHNOLOGY VULNERABILITIES
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Weakness in shared components|
-|Example|Hypervisor escape|
-|Impact|Cross-tenant attacks|
+|Qué|Debilidades en componentes compartidos|
+|Ejemplo|Escapar del hypervisor|
+|Impacto|Ataques entre inquilinos|
 
 MEMORY HOOK:  
 **Shared hardware = shared risk**
@@ -126,11 +126,11 @@ MEMORY HOOK:
 
 ## DENIAL OF SERVICE (DoS/DDoS)
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Resource exhaustion|
-|Target|Availability|
-|Impact|Service outage|
+|Qué|Agotamiento de recursos|
+|Objetivo|Disponibilidad|
+|Impacto|Interrupción del servicio|
 
 EXAM TRAP:  
 Auto-scaling does NOT stop DDoS completely.
@@ -139,10 +139,10 @@ Auto-scaling does NOT stop DDoS completely.
 
 ## ABUSE AND NEFARIOUS USE OF CLOUD SERVICES
 
-|Example|
+|Ejemplo|
 |---|
-|Crypto mining|
-|Malware hosting|
+|Minería de criptomonedas|
+|Alojamiento de malware|
 |Botnet C2|
 
 MEMORY HOOK:  
@@ -156,11 +156,11 @@ MEMORY HOOK:
 
 ## CLOUD MALWARE INJECTION ATTACK
 
-|Step|
+|Paso|
 |---|
-|Attacker injects malicious service|
-|Instance treated as legitimate|
-|Malware executed|
+|El atacante inyecta un servicio malicioso|
+|La instancia se trata como legítima|
+|El malware se ejecuta|
 
 MEMORY HOOK:  
 **Fake instance attack**
@@ -169,11 +169,11 @@ MEMORY HOOK:
 
 ## METADATA SERVICE ATTACK
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|Target|Cloud metadata API|
-|Data|Credentials, tokens|
-|Example|SSRF to metadata|
+|Objetivo|API de metadatos cloud|
+|Datos|Credenciales, tokens|
+|Ejemplo|SSRF hacia metadatos|
 
 MEMORY HOOK:  
 **Metadata = secret store**
@@ -182,11 +182,11 @@ MEMORY HOOK:
 
 ## VM ESCAPE ATTACK
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Break out of VM|
-|Target|Hypervisor|
-|Impact|Host compromise|
+|Qué|Escapar de la VM|
+|Objetivo|Hypervisor|
+|Impacto|Compromiso del host|
 
 EXAM TRAP:  
 Rare but critical.
@@ -195,11 +195,11 @@ Rare but critical.
 
 ## SIDE-CHANNEL ATTACKS
 
-|Aspect|Explanation|
+|Aspecto|Explicación|
 |---|---|
-|What|Information leakage|
-|Method|Cache timing|
-|Target|Co-resident VMs|
+|Qué|Fuga de información|
+|Método|Análisis de tiempo de caché|
+|Objetivo|VMs co-residentes|
 
 ---
 
@@ -209,11 +209,11 @@ Rare but critical.
 
 ## IAM MISUSE
 
-|Issue|
+|Problema|
 |---|
-|Overprivileged roles|
-|No MFA|
-|Long-lived credentials|
+|Roles con exceso de privilegios|
+|Sin MFA|
+|Credenciales de larga duración|
 
 MEMORY HOOK:  
 **IAM mistakes = breach**
@@ -222,7 +222,7 @@ MEMORY HOOK:
 
 ## TOKEN THEFT
 
-|Method|
+|Método|
 |---|
 |XSS|
 |Malware|
@@ -232,15 +232,15 @@ MEMORY HOOK:
 
 # CLOUD ATTACK FLOW (EXAM LOGIC)
 
-1. Recon cloud assets
+1. Reconocer activos cloud
     
-2. Identify misconfiguration
+2. Identificar mala configuración
     
-3. Exploit IAM or API
+3. Explotar IAM o API
     
-4. Escalate privileges
+4. Escalar privilegios
     
-5. Persist access
+5. Mantener acceso
     
 
 MEMORY HOOK:  
@@ -250,105 +250,104 @@ MEMORY HOOK:
 
 # COMMON CLOUD ATTACK TOOLS (EXAM)
 
-|Tool|Purpose|
+|Herramienta|Propósito|
 |---|---|
-|ScoutSuite|Cloud security auditing|
-|Prowler|AWS security assessment|
-|Pacu|AWS exploitation|
-|CloudSploit|Misconfiguration scanning|
-|Metasploit|Cloud exploitation|
+|ScoutSuite|Auditoría de seguridad cloud|
+|Prowler|Evaluación de seguridad AWS|
+|Pacu|Explotación de AWS|
+|CloudSploit|Escaneo de mala configuración|
+|Metasploit|Explotación cloud|
 
 ---
 
 # EXAM TRAPS (VERY IMPORTANT)
 
-|Trap|Correct Understanding|
+|Trampa|Comprensión Correcta|
 |---|---|
-|Cloud is secure by default|False|
-|Provider handles all security|False|
-|Encryption prevents breaches|False|
-|No need for monitoring|False|
+|Cloud is secure by default|Falso|
+|Provider handles all security|Falso|
+|Encryption prevents breaches|Falso|
+|No need for monitoring|Falso|
 
 ---
 
 # OBJECTIVE 02 — EXAM MEMORY BLOCK
 
-**Cloud threats primarily arise from misconfiguration, weak IAM, and insecure APIs.  
-Account hijacking leads to full compromise.  
-Most attacks exploit configuration errors rather than vulnerabilities.  
-Shared infrastructure introduces unique risks.**
+**Las amenazas cloud surgen principalmente de la mala configuración, IAM débil y APIs inseguras.  
+El secuestro de cuentas lleva a un compromiso total.  
+La mayoría de los ataques explotan errores de configuración en lugar de vulnerabilidades.  
+La infraestructura compartida introduce riesgos únicos.**
 
 ---
 
 ## STATUS
 
-|Objective|Status|
+|Objetivo|Estado|
 |---|---|
-|Cloud threats|COMPLETE|
-|Attack types|COMPLETE|
-|Tools|COMPLETE|
-|Exam readiness|HIGH|
+|Cloud threats|COMPLETADO|
+|Attack types|COMPLETADO|
+|Tools|COMPLETADO|
+|Exam readiness|ALTO|
 
 ---
 
 # EXAM FLASHCARDS
 
-| Term | Definition |
+| Término | Definición |
 |------|------------|
-| Data Breach | Unauthorized access to sensitive data caused by weak IAM or misconfiguration |
-| Data Loss | Permanent loss of data due to accidental deletion or ransomware |
-| Account Hijacking | Attacker gains control of cloud account through phishing or credential theft |
-| Insecure APIs | Poorly protected cloud APIs allowing unauthorized access |
-| Misconfiguration | Most common cloud breach cause — public S3 buckets, open storage, default credentials |
-| Malicious Insiders | Employees or contractors abusing privileges for data theft or sabotage |
-| Shared Technology Vulnerabilities | Weaknesses in shared components like hypervisors enabling cross-tenant attacks |
-| Hypervisor Escape | Breaking out of a VM to compromise the host system |
-| Cloud Malware Injection | Injecting malicious service that appears as legitimate instance |
-| Metadata Service Attack | Exploiting SSRF to access cloud metadata endpoints containing credentials |
-| VM Escape Attack | Rare but critical attack breaking out of virtual machine boundaries |
-| Side-Channel Attack | Information leakage through cache timing or power analysis on co-resident VMs |
-| IAM Misuse | Overprivileged roles, missing MFA, long-lived credentials |
-| Token Theft | Stealing cloud tokens via XSS, malware, or SSRF |
-| ScoutSuite | Cloud security auditing tool |
-| Prowler | AWS security assessment tool |
-| Pacu | AWS exploitation framework |
+| Data Breach | Acceso no autorizado a datos sensibles causado por IAM débil o mala configuración |
+| Data Loss | Pérdida permanente de datos debido a eliminación accidental o ransomware |
+| Account Hijacking | El atacante obtiene el control de una cuenta cloud a través de phishing o robo de credenciales |
+| Insecure APIs | APIs cloud mal protegidas que permiten acceso no autorizado |
+| Misconfiguration | Causa más común de brechas cloud — S3 buckets públicos, almacenamiento abierto, credenciales predeterminadas |
+| Malicious Insiders | Empleados o contratistas que abusan de privilegios para robo de datos o sabotaje |
+| Shared Technology Vulnerabilities | Debilidades en componentes compartidos como hypervisores que permiten ataques entre inquilinos |
+| Hypervisor Escape | Escapar de una VM para comprometer el sistema host |
+| Cloud Malware Injection | Inyección de servicio malicioso que aparece como instancia legítima |
+| Metadata Service Attack | Explotación de SSRF para acceder a endpoints de metadatos cloud que contienen credenciales |
+| VM Escape Attack | Ataque raro pero crítico que escapa de los límites de la máquina virtual |
+| Side-Channel Attack | Fuga de información a través de análisis de tiempo de caché o análisis de energía en VMs co-residentes |
+| IAM Misuse | Roles con exceso de privilegios, MFA ausente, credenciales de larga duración |
+| Token Theft | Robo de tokens cloud a través de XSS, malware o SSRF |
+| ScoutSuite | Herramienta de auditoría de seguridad cloud |
+| Prowler | Herramienta de evaluación de seguridad AWS |
+| Pacu | Framework de explotación de AWS |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the most common cause of cloud data breaches?
-- a) Physical theft of servers
-- b) Misconfiguration of cloud services
-- c) Hardware failure
-- d) Natural disasters
-**Answer:** b) — Misconfiguration, such as public S3 buckets and over-permissive IAM, is the leading cause of cloud breaches.
+**1.** ¿Cuál es la causa más común de brechas de datos en cloud?
+- a) Robo físico de servidores
+- b) Mala configuración de servicios cloud
+- c) Fallo de hardware
+- d) Desastres naturales
+**Respuesta:** b) — La mala configuración, como S3 buckets públicos e IAM excesivamente permisivo, es la causa principal de brechas en cloud.
 
-**2.** An attacker exploits SSRF to access the cloud metadata service and extract instance credentials. What type of attack is this?
+**2.** Un atacante explota SSRF para acceder al servicio de metadatos cloud y extraer credenciales de la instancia. ¿Qué tipo de ataque es este?
 - a) Side-channel attack
 - b) VM escape attack
 - c) Metadata service attack
 - d) Cloud malware injection
-**Answer:** c) — Metadata service attacks use SSRF to query internal endpoints containing credentials and tokens.
+**Respuesta:** c) — Los metadata service attacks utilizan SSRF para consultar endpoints internos que contienen credenciales y tokens.
 
-**3.** Which tool is specifically designed for AWS exploitation?
+**3.** ¿Qué herramienta está diseñada específicamente para la explotación de AWS?
 - a) ScoutSuite
 - b) CloudSploit
 - c) Pacu
 - d) Metasploit
-**Answer:** c) — Pacu is an AWS exploitation framework, while ScoutSuite is for auditing and CloudSploit for scanning.
+**Respuesta:** c) — Pacu es un framework de explotación de AWS, mientras que ScoutSuite es para auditoría y CloudSploit para escaneo.
 
-**4.** Why are APIs considered the primary cloud attack surface?
-- a) APIs are always unencrypted
-- b) Cloud is entirely API-driven, and poor protection leads to unauthorized access
-- c) APIs are slower than direct connections
-- d) APIs cannot be monitored
-**Answer:** b) — Cloud services are accessed via APIs, making them the primary attack vector when poorly protected.
+**4.** ¿Por qué se consideran las APIs como la superficie principal de ataque en cloud?
+- a) Las APIs siempre están sin cifrar
+- b) Cloud es completamente impulsado por APIs, y una protección deficiente conduce a acceso no autorizado
+- c) Las APIs son más lentas que las conexiones directas
+- d) Las APIs no se pueden monitorear
+**Respuesta:** b) — Los servicios cloud se acceden a través de APIs, convirtiéndolas en el vector de ataque principal cuando están mal protegidas.
 
-**5.** What is a shared technology vulnerability in cloud computing?
-- a) Using the same password across services
-- b) Weaknesses in shared components like hypervisors enabling cross-tenant attacks
-- c) Sharing files with colleagues
-- d) Using public Wi-Fi
-**Answer:** b) — Shared technology vulnerabilities exploit weaknesses in hypervisors or shared infrastructure affecting multiple tenants.
-
+**5.** ¿Qué es una vulnerabilidad de tecnología compartida en cloud computing?
+- a) Usar la misma contraseña en todos los servicios
+- b) Debilidades en componentes compartidos como hypervisores que permiten ataques entre inquilinos
+- c) Compartir archivos con colegas
+- d) Usar Wi-Fi público
+**Respuesta:** b) — Las vulnerabilidades de tecnología compartida explotan debilidades en hypervisores o infraestructura compartida que afectan a múltiples inquilinos.

@@ -1,164 +1,164 @@
-# MODULE 20 — CRYPTOGRAPHY (CEHv13)
+# MÓDULO 20 — CRYPTOGRAPHY (CEHv13)
 
-SOURCE: _CEHv13 – Module 20 – Cryptography_
+FUENTE: _CEHv13 – Module 20 – Cryptography_
 
 ---
 
 ## LEARNING OBJECTIVES (EXAM-MANDATORY)
 
-You must be able to:
+Debes ser capaz de:
 
-|#|Learning Objective|
+|#|Objetivo de aprendizaje|
 |---|---|
-|01|Explain cryptography concepts|
-|02|Understand different encryption algorithms|
-|03|Use different cryptography tools|
-|04|Apply applications of cryptography|
-|05|Describe cryptography attacks|
-|06|Use cryptanalysis tools|
+|01|Explicar conceptos de Cryptography|
+|02|Entender diferentes algoritmos de encriptación|
+|03|Usar diferentes herramientas de Cryptography|
+|04|Aplicar aplicaciones de Cryptography|
+|05|Describir ataques de Cryptography|
+|06|Usar herramientas de Cryptanalysis|
 
 MEMORY HOOK:  
-**Concepts → Algorithms → Tools → Applications → Attacks → Analysis**
+**Conceptos → Algoritmos → Herramientas → Aplicaciones → Ataques → Análisis**
 
 ---
 
-# OBJECTIVE 01 — CRYPTOGRAPHY CONCEPTS AND ENCRYPTION ALGORITHMS
+# OBJETIVO 01 — CRYPTOGRAPHY CONCEPTS AND ENCRYPTION ALGORITHMS
 
 ---
 
 ## WHAT IS CRYPTOGRAPHY (DEFINITION — EXACT CEH MEANING)
 
-|Term|Definition|
+|Término|Definición|
 |---|---|
-|Cryptography|The practice of concealing information by converting readable data into an unreadable format using encryption|
+|Cryptography|La práctica de ocultar información convirtiendo datos legibles en un formato ilegible mediante encriptación|
 
-ORIGIN (EXAM FACT):
+ORIGEN (EXAM FACT):
 
-- Greek **kryptos** = hidden
+- Griego **kryptos** = oculto
     
-- Greek **graphia** = writing
+- Griego **graphia** = escritura
     
 
 MEMORY HOOK:  
-**Crypto = hidden writing**
+**Crypto = escritura oculta**
 
 ---
 
 ## WHAT ENCRYPTION DOES
 
-|Action|Description|
+|Acción|Descripción|
 |---|---|
-|Encryption|Converts plaintext into ciphertext|
-|Decryption|Converts ciphertext back into plaintext|
+|Encryption|Convierte plaintext en ciphertext|
+|Decryption|Convierte ciphertext de vuelta a plaintext|
 
 ---
 
 ## CRYPTOGRAPHY PROCESS (LOGIC FLOW)
 
-|Step|
+|Paso|
 |---|
 |Plaintext|
 |Encryption algorithm + key|
 |Ciphertext|
-|Transmission|
+|Transmisión|
 |Decryption algorithm + key|
 |Plaintext|
 
 EXAM TRAP:  
-Encryption **does not remove data**, it only **transforms representation**.
+Encryption **no elimina datos**, solo **transforma la representación**.
 
 ---
 
 ## OBJECTIVES OF CRYPTOGRAPHY (VERY HIGH YIELD)
 
-|Objective|Meaning|
+|Objetivo|Significado|
 |---|---|
-|Confidentiality|Only authorized users can access information|
-|Integrity|Data is not altered improperly|
-|Authentication|Identity of sender/receiver is verified|
-|Non-repudiation|Sender cannot deny sending the message|
+|Confidentiality|Solo usuarios autorizados pueden acceder a la información|
+|Integrity|Los datos no se alteran de manera inapropiada|
+|Authentication|Se verifica la identidad del emisor/receptor|
+|Non-repudiation|El emisor no puede negar haber enviado el mensaje|
 
 MEMORY HOOK:  
 **CIA + N**
 
 EXAM TRAP:  
-Encryption alone ≠ authentication or integrity.
+Encryption por sí sola ≠ authentication o integrity.
 
 ---
 
 ## BASIC CRYPTOGRAPHY TERMINOLOGY
 
-|Term|Meaning|
+|Término|Significado|
 |---|---|
-|Plaintext|Readable original data|
-|Ciphertext|Encrypted unreadable data|
-|Cipher|Algorithm used to encrypt/decrypt|
-|Key|Secret value controlling encryption|
-|Cryptanalysis|Breaking encryption|
-|Cryptosystem|Algorithms + keys + protocols|
+|Plaintext|Datos originales legibles|
+|Ciphertext|Datos encriptados ilegibles|
+|Cipher|Algoritmo utilizado para encriptar/desencriptar|
+|Key|Valor secreto que controla la encriptación|
+|Cryptanalysis|Ruptura de la encriptación|
+|Cryptosystem|Algoritmos + keys + protocolos|
 
 ---
 
 ## TYPES OF CRYPTOGRAPHY (TOP-TIER EXAM CONTENT)
 
-Cryptography is classified **based on number of keys used**.
+Cryptography se clasifica **según el número de claves utilizadas**.
 
 ---
 
 ### 1. SYMMETRIC KEY CRYPTOGRAPHY
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Keys used|Same key for encryption and decryption|
-|Speed|Fast|
-|Security issue|Key distribution problem|
-|Also called|Secret-key cryptography|
+|Claves utilizadas|Misma clave para encriptación y desencriptación|
+|Velocidad|Rápida|
+|Problema de seguridad|Problema de distribución de claves|
+|También llamada|Secret-key cryptography|
 
-LOGIC:
+LÓGICA:
 
-- Sender encrypts using shared secret key
+- El emisor encripta usando una clave secreta compartida
     
-- Receiver decrypts using same key
+- El receptor desencripta usando la misma clave
     
 
 MEMORY HOOK:  
-**One key → fast → hard to share**
+**Una clave → rápida → difícil de compartir**
 
 ---
 
 ### 2. ASYMMETRIC KEY CRYPTOGRAPHY
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Keys used|Public key + private key|
-|Speed|Slow|
-|Security|Solves key distribution problem|
-|Also called|Public-key cryptography|
+|Claves utilizadas|Public key + private key|
+|Velocidad|Lenta|
+|Seguridad|Resuelve el problema de distribución de claves|
+|También llamada|Public-key cryptography|
 
-LOGIC:
+LÓGICA:
 
-- Public key encrypts
+- La public key encripta
     
-- Private key decrypts
+- La private key desencripta
     
 
 MEMORY HOOK:  
-**Two keys → secure sharing → slower**
+**Dos claves → intercambio seguro → más lenta**
 
 ---
 
 ## ASYMMETRIC ENCRYPTION MESSAGE FLOW (EXAM LOGIC)
 
-|Step|Description|
+|Paso|Descripción|
 |---|---|
-|1|Sender finds receiver’s public key|
-|2|Sender encrypts message using public key|
-|3|Only receiver’s private key can decrypt|
-|4|Ensures confidentiality|
-|5|Digital signatures ensure authentication|
+|1|El emisor encuentra la public key del receptor|
+|2|El emisor encripta el mensaje usando la public key|
+|3|Solo la private key del receptor puede desencriptar|
+|4|Garantiza confidentiality|
+|5|Las digital signatures garantizan authentication|
 
 EXAM TRAP:  
-Public key **cannot decrypt** what it encrypts.
+La public key **no puede desencriptar** lo que ella misma encripta.
 
 ---
 
@@ -166,49 +166,49 @@ Public key **cannot decrypt** what it encrypts.
 
 ### SYMMETRIC ENCRYPTION
 
-|Strengths|Weaknesses|
+|Fortalezas|Debilidades|
 |---|---|
-|Fast|Key distribution problem|
-|Efficient|Difficult key management|
-|Less CPU usage|No authentication|
+|Rápida|Problema de distribución de claves|
+|Eficiente|Gestión de claves difícil|
+|Menor uso de CPU|No proporciona authentication|
 
 ---
 
 ### ASYMMETRIC ENCRYPTION
 
-|Strengths|Weaknesses|
+|Fortalezas|Debilidades|
 |---|---|
-|Secure key exchange|Slow|
-|Digital signatures|High CPU usage|
-|Authentication|Not suitable for bulk data|
+|Intercambio seguro de claves|Lenta|
+|Digital signatures|Alto uso de CPU|
+|Authentication|No adecuada para datos masivos|
 
 MEMORY HOOK:  
-**Symmetric = fast, Asymmetric = trust**
+**Symmetric = rápida, Asymmetric = confianza**
 
 ---
 
 ## GOVERNMENT ACCESS TO KEYS (GAK) — EXAM CONCEPT
 
-|Term|Explanation|
+|Término|Explicación|
 |---|---|
-|GAK|Government-mandated access to encryption keys|
-|Purpose|Lawful interception|
-|Method|Key escrow|
-|Risk|Weakens privacy|
+|GAK|Accceso gubernamental obligatorio a las claves de encriptación|
+|Propósito|Intercepción legal|
+|Método|Key escrow|
+|Riesgo|Debilita la privacidad|
 
 MEMORY HOOK:  
-**Key escrow = third party holds keys**
+**Key escrow = una tercera parte guarda las claves**
 
 EXAM TRAP:  
-Key escrow ≠ backdoor (but effect is similar).
+Key escrow ≠ backdoor (pero el efecto es similar).
 
 ---
 
 ## WHAT IS A CIPHER
 
-|Definition|
+|Definición|
 |---|
-|A cipher is a set of mathematical steps used to encrypt or decrypt data|
+|Un cipher es un conjunto de pasos matemáticos utilizados para encriptar o desencriptar datos|
 
 ---
 
@@ -216,12 +216,12 @@ Key escrow ≠ backdoor (but effect is similar).
 
 ### CLASSICAL CIPHERS
 
-|Type|Description|
+|Tipo|Descripción|
 |---|---|
-|Substitution|Replace characters|
-|Transposition|Rearrange characters|
+|Substitution|Reemplazar caracteres|
+|Transposition|Reorganizar caracteres|
 
-EXAMPLES (EXAM):
+EJEMPLOS (EXAM):
 
 - Caesar cipher
     
@@ -231,58 +231,58 @@ EXAMPLES (EXAM):
     
 
 MEMORY HOOK:  
-**Classical = letters**
+**Clásicos = letras**
 
 ---
 
 ### MODERN CIPHERS
 
-Classified by:
+Clasificados por:
 
-#### A. TYPE OF KEY USED
+#### A. TIPO DE CLAVE UTILIZADA
 
-|Type|
+|Tipo|
 |---|
 |Symmetric|
 |Asymmetric|
 
-#### B. TYPE OF INPUT DATA
+#### B. TIPO DE DATOS DE ENTRADA
 
-|Type|Description|
+|Tipo|Descripción|
 |---|---|
-|Block cipher|Encrypts fixed-size blocks|
-|Stream cipher|Encrypts data bit-by-bit|
+|Block cipher|Encripta bloques de tamaño fijo|
+|Stream cipher|Encripta datos bit por bit|
 
 MEMORY HOOK:  
-**Block = chunks, Stream = flow**
+**Block = bloques, Stream = flujo**
 
 ---
 
-## OBJECTIVE 01 — MEMORY CHECKLIST
+## OBJETIVO 01 — MEMORY CHECKLIST
 
-You must remember:
+Debes recordar:
 
-- Cryptography goals = **CIA + N**
+- Los objetivos de Cryptography = **CIA + N**
     
-- Symmetric vs Asymmetric differences
+- Diferencias entre Symmetric y Asymmetric
     
 - Encryption ≠ authentication
     
-- Public key encrypts, private key decrypts
+- La public key encripta, la private key desencripta
     
-- Block vs Stream cipher difference
+- Diferencia entre Block y Stream cipher
     
-- Key distribution problem
+- El problema de distribución de claves
     
-- Key escrow definition
+- Definición de key escrow
     
 
 ---
 
 ### STATUS
 
-Module 20  
-Objective 01: **COMPLETE**
+Módulo 20  
+Objetivo 01: **COMPLETADO**
 
 ---
 
@@ -291,105 +291,105 @@ Objective 01: **COMPLETE**
 
 ### BLOWFISH
 
-|Item|Memorize|
+|Elemento|Memorizar|
 |---|---|
-|Blowfish|Symmetric 64-bit block cipher, 32-448 bit key|
-|Standard|IDEA 64-bit block cipher with 128-bit key — used by PGP|
+|Blowfish|Symmetric block cipher de 64 bits, clave de 32-448 bits|
+|Estándar|IDEA block cipher de 64 bits con clave de 128 bits — utilizado por PGP|
 
 ---
 
 ### AES BLOCK SIZE
 
-|Item|Memorize|
+|Elemento|Memorizar|
 |---|---|
-|AES|128-bit block size regardless of key length|
+|AES|Tamaño de bloque de 128 bits independientemente de la longitud de la clave|
 
 ---
 
 ### SERPENT
 
-|Item|Memorize|
+|Elemento|Memorizar|
 |---|---|
-|Serpent|Symmetric 128-bit block cipher with key lengths of 128, 192, or 256 bits|
+|Serpent|Symmetric block cipher de 128 bits con longitudes de clave de 128, 192 o 256 bits|
 
 ---
 
 ### DROWN / SSLv2
 
-|Item|Memorize|
+|Elemento|Memorizar|
 |---|---|
-|DROWN attack|Disable SSLv2|
-|SSLv2|Extremely broken — should use TLS 1.2 or 1.3|
+|DROWN attack|Deshabilitar SSLv2|
+|SSLv2|Extremadamente roto — se debe usar TLS 1.2 o 1.3|
 
 ---
 
 ### SIDE-CHANNEL ATTACK
 
-|Item|Memorize|
+|Elemento|Memorizar|
 |---|---|
-|Side-channel attack|Attempt to break encryption by monitoring something external to the algorithm|
+|Side-channel attack|Intento de romper la encriptación monitoreando algo externo al algoritmo|
 
 ---
 
 # EXAM FLASHCARDS
 
-| Term | Definition |
+| Término | Definición |
 |------|------------|
-| Cryptography | Practice of concealing information by converting readable data into unreadable format using encryption |
-| Plaintext | Readable original data before encryption |
-| Ciphertext | Encrypted unreadable data after encryption |
-| Cipher | Algorithm used to encrypt or decrypt data |
-| Key | Secret value controlling encryption process |
-| Cryptanalysis | Breaking encryption without authorization |
-| Cryptosystem | Complete set of algorithms, keys, and protocols |
-| Symmetric Key Cryptography | Same key for encryption and decryption — fast but key distribution problem |
-| Asymmetric Key Cryptography | Public key encrypts, private key decrypts — solves key distribution but slower |
-| Key Distribution Problem | Challenge of securely sharing symmetric keys between parties |
-| Key Escrow | Third party holds encryption keys for government access (GAK) |
-| Block Cipher | Encrypts fixed-size blocks of data |
-| Stream Cipher | Encrypts data bit-by-bit continuously |
-| Confidentiality | Only authorized users can access information |
-| Integrity | Data is not altered improperly |
-| Authentication | Identity of sender/receiver is verified |
-| Non-repudiation | Sender cannot deny sending the message |
-| Substitution Cipher | Classical cipher replacing characters |
-| Transposition Cipher | Classical cipher rearranging characters |
+| Cryptography | Práctica de ocultar información convirtiendo datos legibles en formato ilegible mediante encriptación |
+| Plaintext | Datos originales legibles antes de la encriptación |
+| Ciphertext | Datos encriptados ilegibles después de la encriptación |
+| Cipher | Algoritmo utilizado para encriptar o desencriptar datos |
+| Key | Valor secreto que controla el proceso de encriptación |
+| Cryptanalysis | Ruptura de la encriptación sin autorización |
+| Cryptosystem | Conjunto completo de algoritmos, claves y protocolos |
+| Symmetric Key Cryptography | Misma clave para encriptación y desencriptación — rápida pero con problema de distribución de claves |
+| Asymmetric Key Cryptography | La public key encripta, la private key desencripta — resuelve la distribución de claves pero es más lenta |
+| Key Distribution Problem | El desafío de compartir claves de forma segura entre las partes |
+| Key Escrow | Una tercera parte guarda las claves de encriptación para acceso gubernamental (GAK) |
+| Block Cipher | Encripta bloques de datos de tamaño fijo |
+| Stream Cipher | Encripta datos continuamente bit por bit |
+| Confidentiality | Solo usuarios autorizados pueden acceder a la información |
+| Integrity | Los datos no se alteran de manera inapropiada |
+| Authentication | Se verifica la identidad del emisor/receptor |
+| Non-repudiation | El emisor no puede negar haber enviado el mensaje |
+| Substitution Cipher | Cipher clásico que reemplaza caracteres |
+| Transposition Cipher | Cipher clásico que reorganiza caracteres |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the primary advantage of symmetric encryption over asymmetric encryption?
-- a) Better key distribution
-- b) Faster speed and lower CPU usage
-- c) Provides authentication
-- d) Solves non-repudiation
-**Answer:** b) — Symmetric encryption is much faster and uses less CPU, but has key distribution challenges.
+**1.** ¿Cuál es la principal ventaja de la encryption symmetric sobre la asymmetric?
+- a) Mejor distribución de claves
+- b) Mayor velocidad y menor uso de CPU
+- c) Proporciona authentication
+- d) Resuelve la non-repudiation
+**Respuesta:** b) — La encryption symmetric es mucho más rápida y usa menos CPU, pero tiene desafíos en la distribución de claves.
 
-**2.** In asymmetric cryptography, which key encrypts the message?
+**2.** En la cryptography asymmetric, ¿qué clave encripta el mensaje?
 - a) Private key
 - b) Public key
 - c) Session key
 - d) Master key
-**Answer:** b) — Public key encrypts, and only the corresponding private key can decrypt.
+**Respuesta:** b) — La public key encripta, y solo la private key correspondiente puede desencriptar.
 
-**3.** What is the "key distribution problem" in symmetric cryptography?
-- a) Keys are too long to remember
-- b) Difficulty of securely sharing the same key between sender and receiver
-- c) Keys expire too quickly
-- d) Keys require hardware storage
-**Answer:** b) — The key distribution problem is the challenge of securely sharing symmetric keys without exposing them.
+**3.** ¿Qué es el "problema de distribución de claves" en la cryptography symmetric?
+- a) Las claves son demasiado largas para recordar
+- b) La dificultad de compartir la misma clave de manera segura entre emisor y receptor
+- c) Las claves expiran demasiado rápido
+- d) Las claves requieren almacenamiento en hardware
+**Respuesta:** b) — El problema de distribución de claves es el desafío de compartir claves de forma segura sin exponerlas.
 
-**4.** Which cryptography objective ensures the sender cannot deny sending a message?
+**4.** ¿Qué objetivo de cryptography garantiza que el emisor no pueda negar haber enviado un mensaje?
 - a) Confidentiality
 - b) Integrity
 - c) Authentication
 - d) Non-repudiation
-**Answer:** d) — Non-repudiation prevents the sender from denying they sent the message.
+**Respuesta:** d) — La non-repudiation impide que el emisor niegue haber enviado el mensaje.
 
-**5.** What type of cipher encrypts data bit-by-bit?
+**5.** ¿Qué tipo de cipher encripta datos bit por bit?
 - a) Block cipher
 - b) Stream cipher
 - c) Substitution cipher
 - d) Transposition cipher
-**Answer:** b) — Stream ciphers encrypt data continuously bit-by-bit, while block ciphers encrypt fixed-size blocks.
+**Respuesta:** b) — Los stream ciphers encriptan datos continuamente bit por bit, mientras que los block ciphers encriptan bloques de tamaño fijo.

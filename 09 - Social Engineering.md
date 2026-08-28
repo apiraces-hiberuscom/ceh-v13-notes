@@ -4,7 +4,7 @@
 |---|---|
 |Module Number|09|
 |Module Name|Social Engineering|
-|Focus|Concepts, types, attack techniques, AI-powered attacks, countermeasures|
+|Focus|Conceptos, tipos, técnicas de ataque, ataques impulsados por IA, contramedidas|
 
 ---
 
@@ -12,11 +12,11 @@
 
 |Objective #|Description|
 |---|---|
-|01|Understand social engineering concepts and lifecycle|
-|02|Explain social engineering principles and psychological triggers|
-|03|Identify all types of social engineering attacks|
-|04|Describe AI-powered social engineering threats|
-|05|Apply social engineering countermeasures|
+|01|Comprender los conceptos y el ciclo de vida de social engineering|
+|02|Explicar los principios de social engineering y los desencadenantes psicológicos|
+|03|Identificar todos los tipos de ataques de social engineering|
+|04|Describir las amenazas de social engineering impulsadas por IA|
+|05|Aplicar contramedidas de social engineering|
 
 ---
 
@@ -28,7 +28,7 @@
 
 |Term|Definition|
 |---|---|
-|Social Engineering|Manipulation of people into performing actions or divulging confidential information by exploiting human psychology rather than technical vulnerabilities|
+|Social Engineering|Manipulación de personas para que realicen acciones o divulguen información confidencial, explotando la psicología humana en lugar de vulnerabilidades técnicas|
 
 MEMORY HOOK:  
 **Hacking humans, not machines**
@@ -39,17 +39,17 @@ MEMORY HOOK:
 
 |Phase|Action|Detail|
 |---|---|---|
-|1. Research|Gather information|OSINT, social media, public records|
-|2. Develop|Craft attack vector|Tailor pretext, choose target|
-|3. Launch|Execute the attack|Deliver email, call, or in-person approach|
-|4. Access|Obtain entry or data|Credentials, physical access, system compromise|
-|5. Analyze|Evaluate results|Assess what was gained, plan next steps|
+|1. Research|Recopilar información|OSINT, redes sociales, registros públicos|
+|2. Develop|Crear vector de ataque|Personalizar el pretext, elegir objetivo|
+|3. Launch|Ejecutar el ataque|Entregar email, llamada o enfoque presencial|
+|4. Access|Obtener entrada o datos|Credenciales, acceso físico, compromiso del sistema|
+|5. Analyze|Evaluar resultados|Assess qué se obtuvo, planificar próximos pasos|
 
 MEMORY HOOK:  
 **R-D-L-A-A = "Really Devious Lying Attacker Achieves"**
 
 EXAM TRAP:  
-Lifecycle phases are sequential — exam may reorder them as distractors.
+Las fases del ciclo de vida son secuenciales — el examen puede reordenarlas como distractores.
 
 ---
 
@@ -57,18 +57,18 @@ Lifecycle phases are sequential — exam may reorder them as distractors.
 
 |Principle|Definition|Attack Example|
 |---|---|---|
-|Authority|People obey authority figures|Attacker impersonates CEO demanding wire transfer|
-|Scarcity|Limited availability drives action|"Only 2 slots left — act now"|
-|Urgency|Time pressure forces quick decisions|"Account suspended — verify within 1 hour"|
-|Social Proof|People follow what others do|"1,000 employees already enrolled"|
-|Likability|People trust those they like|Friendly attacker builds rapport before asking for info|
-|Reciprocity|People return favors|"I helped you — can you share your login?"|
+|Authority|Las personas obedecen a figuras de autoridad|El atacante se hace pasar por un CEO exigiendo una transferencia bancaria|
+|Scarcity|La disponibilidad limitada impulsa la acción|"Solo quedan 2 plazas — actúa ahora"|
+|Urgency|La presión del tiempo fuerza decisiones rápidas|"Cuenta suspendida — verifica en 1 hora"|
+|Social Proof|Las personas siguen lo que hacen otros|"1,000 empleados ya están inscritos"|
+|Likability|Las personas confían en quienes les caen bien|El atacante amistoso genera rapport antes de pedir información|
+|Reciprocity|Las personas devuelven favores|"Te ayudé — ¿puedes compartir tu inicio de sesión?"|
 
 MEMORY HOOK:  
 **A-S-U-S-L-R = "A Smart Undercover Spy Leverages Rapport"**
 
 EXAM TRAP:  
-Reciprocity = doing something first so the target feels obligated. Do NOT confuse with quid pro quo.
+Reciprocity = hacer algo primero para que el objetivo se sienta obligado. No confundir con quid pro quo.
 
 ---
 
@@ -79,21 +79,21 @@ Reciprocity = doing something first so the target feels obligated. Do NOT confus
 ## SOCIAL ENGINEERING ATTACKS — MASTER TABLE
 
 |Attack|Medium|Description|Key Detail|
-|---|---|---|---|
-|Phishing|Email|Mass fraudulent emails impersonating trusted entities|Broad target, low specificity|
-|Spear Phishing|Email|Targeted phishing aimed at specific individuals|Uses personal info gathered during Research phase|
-|Vishing|Voice/Phone|Voice-based phishing using phone calls|Often spoofed caller ID|
-|Smishing|SMS/Mobile|Phishing via SMS or text messages|Short links, urgent language|
-|Pharming|DNS/Network|Redirects traffic to attacker's website|DNS cache poisoning, host file modifications|
-|Baiting|Physical/Media|Leaves infected media (USB, CDs) for victims to find|Exploits curiosity|
-|Pretexting|In-person/Phone|Attacker creates fabricated scenario (pretext) to gain trust|Examples: IT support, auditor, vendor|
-|Tailgating|Physical|Follows authorized person through secured door|No consent needed — just walks in behind|
-|Piggybacking|Physical|Follows authorized person WITH consent|Victim holds door open for attacker|
-|Quid Pro Quo|Phone/Email|Offers service in exchange for data or credentials|"Free security audit — just provide your login"|
-|Honey Trap|Online/Romance|Uses romantic or sexual attraction to extract info|Targets executives, military, government|
-|Watering Hole|Web|Compromises website frequently visited by target group|Infects site, waits for targets to visit|
-|Diversion Theft|Physical/Logistics|Tricks delivery person into sending package to wrong location|Redirects shipments or parcels|
-|Shoulder Surfing|Physical|Observes victim entering PIN, password, or sensitive data|Works in cafes, ATMs, airports|
+|---|---|---|
+|Phishing|Email|Emails fraudulentos masivos que suplantan entidades confiables|Objetivo amplio, baja especificidad|
+|Spear Phishing|Email|Phishing dirigido a individuos específicos|Usa información personal recopilada en la fase de Research|
+|Vishing|Voice/Phone|Phishing basado en voz utilizando llamadas telefónicas|A menudo con ID de llamada falsificado|
+|Smishing|SMS/Mobile|Phishing a través de SMS o mensajes de texto|Enlaces cortos, lenguaje urgente|
+|Pharming|DNS/Network|Redirige tráfico al sitio web del atacante|DNS cache poisoning, modificaciones en archivos hosts|
+|Baiting|Physical/Media|Deja medios infectados (USB, CDs) para que las víctimas los encuentran|Explota la curiosidad|
+|Pretexting|In-person/Phone|El atacante crea un escenario fabricado (pretext) para ganar confianza|Ejemplos: soporte de TI, auditor, proveedor|
+|Tailgating|Physical|Sigue a una persona autorizada a través de una puerta asegurada|No se necesita consentimiento — simplemente entra detrás|
+|Piggybacking|Physical|Sigue a una persona autorizada CON consentimiento|La víctima sostiene la puerta abierta para el atacante|
+|Quid Pro Quo|Phone/Email|Ofrece un servicio a cambio de datos o credenciales|"Auditoría de seguridad gratuita — solo proporciona tu inicio de sesión"|
+|Honey Trap|Online/Romance|Usa atracción romántica o sexual para extraer información|Dirigido a ejecutivos, militares, gobierno|
+|Watering Hole|Web|Compromete un sitio web frecuentado por el grupo objetivo|Infecta el sitio, espera a que los objetivos lo visiten|
+|Diversion Theft|Physical/Logistics|Engaña al repartidor para enviar el paquete a la ubicación incorrecta|Redirige envíos o paquetes|
+|Shoulder Surfing|Physical|Observa a la víctima ingresando PIN, contraseña o datos sensibles|Funciona en cafés, cajeros automáticos, aeropuertos|
 
 ---
 
@@ -101,20 +101,20 @@ Reciprocity = doing something first so the target feels obligated. Do NOT confus
 
 |Variant|Description|Key Detail|
 |---|---|---|
-|Clone Phishing|Clones a legitimate email, website, or digital content|Replaces links/attachments with malicious versions|
-|E-wallet Phishing|Targets e-wallet credentials|Fake login pages for PayPal, Venmo, etc.|
-|Tabnabbing / Reverse Tabnabbing|Targets users with multiple open tabs|Inactive tab silently transforms into fake login page|
-|Consent Phishing|Exploits OAuth permissions|Tricks user into granting app access to accounts|
-|Search Engine Phishing|Manipulates search engine results|Fake sites appear in top search results|
-|Angler Phishing|Fake social media account impersonating org|Posts fake helpdesk service links in replies/comments|
+|Clone Phishing|Clona un email, sitio web o contenido digital legítimo|Reemplaza enlaces/adjuntos con versiones maliciosas|
+|E-wallet Phishing|Dirigido a credenciales de billetera electrónica|Páginas de inicio de sesión falsas para PayPal, Venmo, etc.|
+|Tabnabbing / Reverse Tabnabbing|Dirigido a usuarios con múltiples pestañas abiertas|La pestaña inactiva se transforma silenciosamente en una página de inicio de sesión falsa|
+|Consent Phishing|Explota permisos OAuth|Engaña al usuario para que otorgue acceso de aplicaciones a sus cuentas|
+|Search Engine Phishing|Manipula resultados de motores de búsqueda|Sitios falsos aparecen en los primeros resultados de búsqueda|
+|Angler Phishing|Cuenta falsa de redes sociales que suplanta a una organización|Publica enlaces falsos de servicio de asistencia en respuestas/comentarios|
 
 MEMORY HOOK (ADVANCED VARIANTS):  
 **C-E-T-C-S-A = "Cow Eats Tab Cookies So A"**
 
 EXAM TRAP:  
-Clone phishing uses a PREVIOUSLY legitimate email — not a new creation.  
-Tabnabbing targets IDLE tabs, not active ones.  
-Consent phishing exploits OAuth, NOT passwords directly.
+Clone phishing utiliza un email PREVIAMENTE legítimo — no es una creación nueva.  
+Tabnabbing se dirige a pestañas INACTIVAS, no activas.  
+Consent phishing explota OAuth, NO contraseñas directamente.
 
 ---
 
@@ -122,15 +122,15 @@ Consent phishing exploits OAuth, NOT passwords directly.
 
 |Technique|Description|
 |---|---|
-|DNS Cache Poisoning|Corrupts DNS resolver cache to redirect traffic|
-|Hosts File Modification|Modifies local hosts file to point domains to attacker IP|
-|Domain Spoofing|Registers look-alike domains|
+|DNS Cache Poisoning|Corrompe la caché del resolvedor DNS para redirigir el tráfico|
+|Hosts File Modification|Modifica el archivo hosts local para apuntar dominios a la IP del atacante|
+|Domain Spoofing|Registra dominios con apariencia similar|
 
 MEMORY HOOK:  
 **Pharming = "Phake DNS"**
 
 EXAM TRAP:  
-Pharming does NOT require the victim to click a link — it works at the DNS/network level.
+Pharming NO requiere que la víctima haga clic en un enlace — funciona a nivel de DNS/red.
 
 ---
 
@@ -138,8 +138,8 @@ Pharming does NOT require the victim to click a link — it works at the DNS/net
 
 |Item|Memorize|
 |---|---|
-|Spimming|Spam sent over instant messaging platforms|
-|Target|IM services (Skype, Slack, Teams, etc.)|
+|Spimming|Spam enviado a través de plataformas de mensajería instantánea|
+|Target|Servicios de mensajería instantánea (Skype, Slack, Teams, etc.)|
 
 ---
 
@@ -147,9 +147,9 @@ Pharming does NOT require the victim to click a link — it works at the DNS/net
 
 |Item|Memorize|
 |---|---|
-|QRL Jacking|Attack on Quick Response Login (QR-based login)|
-|Tool|QRTiger (used to generate fake QR codes)|
-|Method|Attacker creates phishing page with fake QR code|
+|QRL Jacking|Ataque a Quick Response Login (inicio de sesión basado en QR)|
+|Tool|QRTiger (usado para generar códigos QR falsos)|
+|Method|El atacante crea una página de phishing con un código QR falso|
 
 ---
 
@@ -157,8 +157,8 @@ Pharming does NOT require the victim to click a link — it works at the DNS/net
 
 |Item|Memorize|
 |---|---|
-|Elicitation|Technique of extracting information through casual, disarming conversation|
-|Nature|Non-confrontational, natural dialogue|
+|Elicitation|Técnica de extracción de información a través de conversación casual y despreocupada|
+|Nature|Diálogo no confrontativo y natural|
 
 MEMORY HOOK:  
 **Elicitation = "Casual chat that steals data"**
@@ -169,12 +169,12 @@ MEMORY HOOK:
 
 |Tool|Use Case|Detail|
 |---|---|---|
-|ShellPhish|Social network phishing|Creates fake login pages for social platforms|
-|Social Engineering Toolkit (SET)|Email, Web, USB attacks|Multi-vector attack framework|
-|OhPhish|Phishing simulation|Simulates phishing campaigns for training|
-|Netcraft|Anti-phishing toolbar|Browser extension for site reputation|
-|PhishTank|Anti-phishing database|Community-verified phishing URL database|
-|QRTiger|QR code generation|Used in QRL jacking attacks|
+|ShellPhish|Phishing en redes sociales|Crea páginas de inicio de sesión falsas para plataformas sociales|
+|Social Engineering Toolkit (SET)|Email, Web, USB attacks|Framework de ataque multi-vector|
+|OhPhish|Phishing simulation|Simula campañas de phishing para capacitación|
+|Netcraft|Anti-phishing toolbar|Extensión del navegador para reputación de sitios|
+|PhishTank|Anti-phishing database|Base de datos comunitaria verificada de URLs de phishing|
+|QRTiger|QR code generation|Usado en ataques de QRL jacking|
 
 ---
 
@@ -186,7 +186,7 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|Insider Threat|Security risk originating from within the organization — employees, contractors, or business associates|
+|Insider Threat|Riesgo de seguridad que se origina dentro de la organización — empleados, contratistas o asociados comerciales|
 
 ---
 
@@ -194,16 +194,16 @@ MEMORY HOOK:
 
 |Type|Description|Motivation|
 |---|---|---|
-|Malicious Insider|Deliberately harms the organization|Financial gain, revenge, ideology|
-|Negligent Insider|Accidentally causes security incidents|Lack of training, carelessness|
-|Compromised Insider|Account or credentials taken over by attacker|Unknowing participant — credentials stolen via phishing|
+|Malicious Insider|Daña deliberadamente a la organización|Ganancia financiera, venganza, ideología|
+|Negligent Insider|Causa incidentes de seguridad accidentalmente|Falta de capacitación, descuido|
+|Compromised Insider|Cuenta o credenciales tomadas por un atacante|Participante involuntario — credenciales robadas mediante phishing|
 
 MEMORY HOOK:  
 **M-N-C = "Malicious Needs Compensation"**
 
 EXAM TRAP:  
-Compromised insider is STILL an insider threat even though they didn't act intentionally.  
-Negligent insider is the MOST COMMON type.
+Compromised insider AÚN es una amenaza interna aunque no actuó intencionalmente.  
+Negligent insider es el tipo MÁS COMÚN.
 
 ---
 
@@ -211,11 +211,11 @@ Negligent insider is the MOST COMMON type.
 
 |Motivation|Description|
 |---|---|
-|Financial|Bribery, selling data, embezzlement|
-|Revenge|Disgruntled employee seeking retaliation|
-|Ideology|Political or social beliefs|
-|Curiosity|Accidental access to data outside job scope|
-|Coercion|Forced by external threat actor|
+|Financial|Soborno, venta de datos, malversación|
+|Revenge|Empleado descontento buscando represalias|
+|Ideology|Creencias políticas o sociales|
+|Curiosity|Accidental a datos fuera del alcance del puesto|
+|Coercion|Forzado por un actor de amenaza externo|
 
 ---
 
@@ -227,7 +227,7 @@ Negligent insider is the MOST COMMON type.
 
 |Term|Definition|
 |---|---|
-|AI-Powered Social Engineering|Uses artificial intelligence to generate realistic fake content (video, audio, text) for deception at scale|
+|AI-Powered Social Engineering|Usa inteligencia artificial para generar contenido falso realista (video, audio, texto) para engañar a gran escala|
 
 MEMORY HOOK:  
 **AI makes social engineering scalable and realistic**
@@ -238,9 +238,9 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Deepfake|AI-generated synthetic media — video or audio that convincingly mimics a real person|
-|Use in attacks|Impersonate executives, fabricate evidence, bypass biometric verification|
-|Risk|Extremely difficult to detect with naked eye|
+|Deepfake|Medios sintéticos generados por IA — video o audio que imita convincentemente a una persona real|
+|Use in attacks|Suplantar ejecutivos, fabricar evidencias, evadir verificación biométrica|
+|Risk|Extremadamente difícil de detectar a simple vista|
 
 ---
 
@@ -261,19 +261,19 @@ MEMORY HOOK:
 
 |Tool|Detail|
 |---|---|
-|ElevenLabs|High-fidelity voice cloning|
-|Resemble.AI|Real-time voice cloning|
-|Murf.AI|AI voice generation|
-|PlayHT|Text-to-speech with voice cloning|
-|VEED.IO|Video and voice AI tools|
-|voice.ai|Real-time voice changer and cloner|
+|ElevenLabs|Clonación de voz de alta fidelidad|
+|Resemble.AI|Clonación de voz en tiempo real|
+|Murf.AI|Generación de voz con IA|
+|PlayHT|Texto a voz con clonación de voz|
+|VEED.IO|Herramientas de IA para video y voz|
+|voice.ai|Cambiador y clonador de voz en tiempo real|
 
 MEMORY HOOK:  
 **"Eleven Labs Resembles Murf Playing at Voice"**
 
 EXAM TRAP:  
-AI voice cloning can bypass voice-based authentication (voice biometrics).  
-Deepfakes can be used for CEO fraud (fake video call approving transfer).
+La clonación de voz con IA puede evadir autenticación basada en voz (biometría de voz).  
+Los deepfakes pueden usarse para fraude de CEO (llamada de video falsa aprobando una transferencia).
 
 ---
 
@@ -285,19 +285,19 @@ Deepfakes can be used for CEO fraud (fake video call approving transfer).
 
 |Countermeasure|Description|
 |---|---|
-|Security Awareness Training|Regular training on recognizing social engineering tactics|
-|Phishing Simulations|Simulated phishing campaigns using tools like OhPhish|
-|Email Filtering|Block phishing emails before they reach users|
-|Anti-Phishing Toolbars|Browser tools like Netcraft, PhishTank for real-time warnings|
-|Verification Procedures|Always verify identity through secondary channel|
-|Least Privilege|Limit access to only what is needed|
-|Data Classification|Label and protect sensitive data|
-|Incident Response Plan|Establish procedures for reporting suspected attacks|
-|Physical Security|Badges, mantraps, access controls prevent tailgating/piggybacking|
-|Multi-Factor Authentication|Reduces impact of compromised credentials|
-|Patch Management|Prevents watering hole and pharming attacks|
-|DNS Security (DNSSEC)|Prevents DNS cache poisoning (pharming)|
-|Content Inspection|Detect deepfake media using AI detection tools|
+|Security Awareness Training|Capacitación regular sobre cómo reconocer tácticas de social engineering|
+|Phishing Simulations|Campañas de phishing simuladas usando herramientas como OhPhish|
+|Email Filtering|Bloquear emails de phishing antes de que lleguen a los usuarios|
+|Anti-Phishing Toolbars|Herramientas del navegador como Netcraft, PhishTank para advertencias en tiempo real|
+|Verification Procedures|Siempre verificar la identidad a través de un canal secundario|
+|Least Privilege|Limitar el acceso solo a lo necesario|
+|Data Classification|Etiquetar y proteger datos sensibles|
+|Incident Response Plan|Establecer procedimientos para reportar ataques sospechosos|
+|Physical Security|Insignias, mantraps, controles de acceso para prevenir tailgating/piggybacking|
+|Multi-Factor Authentication|Reduce el impacto de credenciales comprometidas|
+|Patch Management|Previene ataques de watering hole y pharming|
+|DNS Security (DNSSEC)|Previene DNS cache poisoning (pharming)|
+|Content Inspection|Detectar medios deepfake usando herramientas de detección con IA|
 
 MEMORY HOOK:  
 **"Train, Simulate, Filter, Verify, Limit, Classify, Respond, Secure, Patch, DNS"**
@@ -310,8 +310,8 @@ MEMORY HOOK:
 
 |Term|Description|
 |---|---|
-|Spimming|Spam sent over instant messaging platforms|
-|Smishing|Phishing via SMS/text messages|
+|Spimming|Spam enviado a través de plataformas de mensajería instantánea|
+|Smishing|Phishing a través de SMS/mensajes de texto|
 
 ---
 
@@ -319,7 +319,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Watering hole|Infecting a website that users are likely to visit|
+|Watering hole|Infectar un sitio web que los usuarios probablemente visitarán|
 
 ---
 
@@ -327,8 +327,8 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|MEDUSA|OSINT tool for social media|
-|Hootsuite|Social media management platform|
+|MEDUSA|Herramienta OSINT para redes sociales|
+|Hootsuite|Plataforma de gestión de redes sociales|
 
 ---
 
@@ -336,7 +336,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Evilginx|MITM tool that spoofs a website|
+|Evilginx|Herramienta MITM que suplanta un sitio web|
 
 ---
 
@@ -344,7 +344,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Clickjacking|Fake iframe technique to deceive users|
+|Clickjacking|Técnica de iframe falsa para engañar a los usuarios|
 
 ---
 
@@ -352,7 +352,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|VAWTRAK|Email disguised as package delivery notification; Trojan|
+|VAWTRAK|Email disfrazado de notificación de entrega de paquete; Trojan|
 
 ---
 
@@ -362,26 +362,26 @@ MEMORY HOOK:
 
 |Term|Quick Definition|
 |---|---|
-|Social Engineering|Exploiting human psychology to bypass security|
-|Phishing|Mass fraudulent emails impersonating trusted entities|
-|Spear Phishing|Targeted phishing using personal information|
-|Vishing|Voice-based phishing over phone calls|
-|Smishing|Phishing via SMS/text messages|
-|Pharming|DNS redirection to attacker-controlled website|
-|Pretexting|Fabricated scenario to gain trust and extract data|
-|Tailgating|Following authorized person through secured door without consent|
-|Piggybacking|Following authorized person WITH consent|
-|Quid Pro Quo|Offering service in exchange for credentials|
-|Baiting|Leaving infected media for curious victims|
-|Watering Hole|Compromising a website frequented by target group|
-|Diversion Theft|Redirecting deliveries to wrong location|
-|Clone Phishing|Cloning legitimate email with malicious replacements|
-|Tabnabbing|Inactive browser tab transforms into fake login page|
-|Consent Phishing|Exploiting OAuth to gain account permissions|
-|Deepfake|AI-generated synthetic video or audio|
-|Insider Threat|Security risk from within the organization|
-|Angler Phishing|Fake social media helpdesk account posting malicious links|
-|QRL Jacking|Phishing via fake QR code login|
+|Social Engineering|Explotar la psicología humana para evadir la seguridad|
+|Phishing|Emails fraudulentos masivos que suplantan entidades confiables|
+|Spear Phishing|Phishing dirigido usando información personal|
+|Vishing|Phishing basado en voz a través de llamadas telefónicas|
+|Smishing|Phishing a través de SMS/mensajes de texto|
+|Pharming|Redirección DNS a un sitio web controlado por el atacante|
+|Pretexting|Escenario fabricado para ganar confianza y extraer datos|
+|Tailgating|Seguir a una persona autorizada a través de una puerta asegurada sin consentimiento|
+|Piggybacking|Seguir a una persona autorizada CON consentimiento|
+|Quid Pro Quo|Ofrecer un servicio a cambio de credenciales|
+|Baiting|Dejar medios infectados para víctimas curiosas|
+|Watering Hole|Comprometer un sitio web frecuentado por el grupo objetivo|
+|Diversion Theft|Redirigir entregas a la ubicación incorrecta|
+|Clone Phishing|Clonar un email legítimo con reemplazos maliciosos|
+|Tabnabbing|Una pestaña inactiva del navegador se transforma en una página de inicio de sesión falsa|
+|Consent Phishing|Explotar OAuth para obtener permisos de cuenta|
+|Deepfake|Video o audio sintético generado por IA|
+|Insider Threat|Riesgo de seguridad desde dentro de la organización|
+|Angler Phishing|Cuenta falsa de asistencia en redes sociales que publica enlaces maliciosos|
+|QRL Jacking|Phishing a través de inicio de sesión con código QR falso|
 
 ---
 
@@ -389,44 +389,44 @@ MEMORY HOOK:
 
 ---
 
-**Q1.** An attacker calls an employee pretending to be from IT support and requests their password to "fix a remote issue." What type of social engineering is this?
+**Q1.** Un atacante llama a un empleado haciéndose pasar por soporte de TI y solicita su contraseña para "arreglar un problema remoto". ¿Qué tipo de social engineering es esto?
 
 |Answer|
 |---|
-|**Vishing** — voice-based phishing using a fabricated pretext (pretexting is also involved, but the medium makes it vishing) |
+|**Vishing** — phishing basado en voz que utiliza un pretext fabricado (también está involucrado pretexting, pero el medio lo convierte en vishing) |
 
 ---
 
-**Q2.** Which of the following redirects a user to a fake website WITHOUT requiring them to click a link?
+**Q2.** ¿Cuál de las siguientes redirige a un usuario a un sitio web falso SIN requerir que haga clic en un enlace?
 
 |Answer|
 |---|
-|**Pharming** — works via DNS cache poisoning or hosts file modification at the network level |
+|**Pharming** — funciona a través de DNS cache poisoning o modificación del archivo hosts a nivel de red |
 
 ---
 
-**Q3.** What is the difference between tailgating and piggybacking?
+**Q3.** ¿Cuál es la diferencia entre tailgating y piggybacking?
 
 |Answer|
 |---|
-|**Tailgating** = following without consent. **Piggybacking** = following with consent (victim holds door open) |
+|**Tailgating** = seguir sin consentimiento. **Piggybacking** = seguir con consentimiento (la víctima sostiene la puerta abierta) |
 
 ---
 
-**Q4.** An attacker compromises a website that CFOs in the finance industry frequently visit. They inject a keylogger into the site. What attack is this?
+**Q4.** Un atacante compromete un sitio web que los CFOs de la industria financiera frecuentan frecuentemente. Inyectan un keylogger en el sitio. ¿Qué ataque es este?
 
 |Answer|
 |---|
-|**Watering Hole** — compromising a site frequented by the target group |
+|**Watering Hole** — comprometer un sitio frecuentado por el grupo objetivo |
 
 ---
 
-**Q5.** Which Cialdini principle is exploited when an attacker says "Only 2 licenses remain — purchase now"?
+**Q5.** ¿Qué principio de Cialdini se explota cuando un atacante dice "Solo quedan 2 licencias — compra ahora"?
 
 |Answer|
 |---|
-|**Scarcity** — limited availability drives urgency in decision-making |
+|**Scarcity** — la disponibilidad limitada impulsa la urgencia en la toma de decisiones |
 
 ---
 
-*End of Module 09 — Social Engineering*
+*Fin del Module 09 — Social Engineering*

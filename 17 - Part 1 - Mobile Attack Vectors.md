@@ -6,7 +6,7 @@ Hacking Mobile Platforms
 
 ## WHY THIS MODULE MATTERS
 
-Mobile devices store sensitive personal and corporate data and are always connected to networks, making them high-value targets for attackers.
+Los dispositivos móviles almacenan datos personales y corporativos sensibles y están siempre conectados a redes, lo que los convierte en objetivos de alto valor para los atacantes.
 
 ---
 
@@ -14,13 +14,13 @@ Mobile devices store sensitive personal and corporate data and are always connec
 
 |Objective No.|Objective|
 |---|---|
-|01|Explain Mobile Platform Attack Vectors|
-|02|Explain Various Android OS Threats and Attacks|
-|03|Explain Various iOS Threats and Attacks|
-|04|Summarize Mobile Device Management (MDM) Concepts|
-|05|Present Mobile Security Guidelines and Tools|
+|01|Explicar los Vectores de Ataque en Plataformas Móviles|
+|02|Explicar Diversas Amenazas y Ataques en Android OS|
+|03|Explicar Diversas Amenazas y Ataques en iOS|
+|04|Resumir los Conceptos de Gestión de Dispositivos Móviles (MDM)|
+|05|Presentar Herramientas y Directrices de Seguridad Móvil|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Vectors → Android → iOS → MDM → Defense**
 
 ---
@@ -33,7 +33,7 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|Mobile Platform Attack Vector|A path or method used by attackers to compromise mobile devices, networks, or backend systems|
+|Mobile Platform Attack Vector|Una ruta o método utilizado por los atacantes para comprometer dispositivos móviles, redes o sistemas backend|
 
 ---
 
@@ -41,13 +41,13 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Always connected (Internet, Wi-Fi, Bluetooth, Cellular)|
-|Carry sensitive data|
-|Used for authentication (OTP, banking apps)|
-|User trust in apps|
+|Siempre conectados (Internet, Wi-Fi, Bluetooth, Cellular)|
+|Almacenan datos sensibles|
+|Se usan para autenticación (OTP, aplicaciones bancarias)|
+|Confianza del usuario en las aplicaciones|
 |Bring Your Own Device (BYOD)|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Always on + personal data = prime target**
 
 ---
@@ -58,16 +58,16 @@ MEMORY HOOK:
 
 |Area|
 |---|
-|Mobile device|
-|Wi-Fi device|
-|Telecom service provider|
+|Dispositivo móvil|
+|Dispositivo Wi-Fi|
+|Proveedor de servicios de telecomunicaciones|
 |Internet|
 |App store|
-|Website|
-|Corporate intranet|
-|Corporate VPN gateway|
+|Sitio web|
+|Intranet corporativa|
+|Gateway VPN corporativo|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Device → Network → Cloud**
 
 ---
@@ -76,9 +76,9 @@ MEMORY HOOK:
 
 |Layer|Description|
 |---|---|
-|Device|OS, apps, hardware|
-|Network|Wi-Fi, cellular, Bluetooth|
-|Data center / Cloud|Web servers, databases|
+|Device|Sistema operativo, aplicaciones, hardware|
+|Network|Wi-Fi, red celular, Bluetooth|
+|Data center / Cloud|Servidores web, bases de datos|
 
 ---
 
@@ -86,18 +86,18 @@ MEMORY HOOK:
 
 |ID|Risk|
 |---|---|
-|M1|Improper Credential Usage|
-|M2|Inadequate Supply Chain Security|
-|M3|Insecure Authentication/Authorization|
-|M4|Insufficient Input/Output Validation|
-|M5|Insecure Communication|
-|M6|Inadequate Privacy Controls|
-|M7|Insufficient Binary Protections|
-|M8|Security Misconfiguration|
-|M9|Insecure Data Storage|
-|M10|Insufficient Cryptography|
+|M1|Uso Improperio de Credenciales|
+|M2|Seguridad Inadecuada de la Cadena de Suministro|
+|M3|Autenticación/Autorización Insegura|
+|M4|Validación Insuficiente de Entrada/Salida|
+|M5|Comunicación Insegura|
+|M6|Controles de Privacidad Inadecuados|
+|M7|Protecciones Insuficientes de Binarios|
+|M8|Configuración de Seguridad Incorrecta|
+|M9|Almacenamiento de Datos Inseguro|
+|M10|Criptografía Insuficiente|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Credentials → Supply → Auth → Input → Comm → Privacy → Binary → Config → Storage → Crypto**
 
 ---
@@ -108,10 +108,10 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Weak credential handling|
-|Hardcoded passwords|
-|Insecure storage|
-|Transmission without encryption|
+|Manejo débil de credenciales|
+|Contraseñas hardcodeadas|
+|Almacenamiento inseguro|
+|Transmisión sin cifrado|
 
 ---
 
@@ -119,9 +119,9 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Vulnerable third-party libraries|
-|Poor app signing|
-|Weak update mechanisms|
+|Librerías de terceros vulnerables|
+|Firma de aplicaciones deficiente|
+|Mecanismos de actualización débiles|
 
 ---
 
@@ -129,9 +129,9 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Weak password policies|
-|Broken session handling|
-|Authorization bypass|
+|Políticas de contraseña débiles|
+|Gestión de sesiones comprometida|
+|Bypass de autorización|
 
 ---
 
@@ -149,9 +149,9 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Weak SSL/TLS|
-|Invalid certificates|
-|Unencrypted data transmission|
+|SSL/TLS débil|
+|Certificados inválidos|
+|Transmisión de datos sin cifrar|
 
 ---
 
@@ -159,8 +159,8 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Poor PII protection|
-|Non-compliance with privacy laws|
+|Protección deficiente de PII|
+|No cumplimiento de leyes de privacidad|
 
 ---
 
@@ -168,9 +168,9 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Reverse engineering|
-|Code tampering|
-|No obfuscation|
+|Ingeniería inversa|
+|Manipulación de código|
+|Sin ofuscación|
 
 ---
 
@@ -178,9 +178,9 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Weak encryption|
-|Improper permissions|
-|Debugging enabled|
+|Cifrado débil|
+|Permisos incorrectos|
+|Depuración habilitada|
 
 ---
 
@@ -188,9 +188,9 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Plaintext storage|
-|Unsecured databases|
-|Improper credential storage|
+|Almacenamiento en texto plano|
+|Bases de datos sin seguridad|
+|Almacenamiento inseguro de credenciales|
 
 ---
 
@@ -198,9 +198,9 @@ MEMORY HOOK:
 
 |Details|
 |---|
-|Weak algorithms|
-|Poor key management|
-|Improper randomness|
+|Algoritmos débiles|
+|Gestión deficiente de claves|
+|Aleatoriedad inadecuada|
 
 ---
 
@@ -210,11 +210,11 @@ MEMORY HOOK:
 
 |Point|Target|
 |---|---|
-|Point 01|Device|
-|Point 02|Network|
+|Point 01|Dispositivo|
+|Point 02|Red|
 |Point 03|Data Center / Cloud|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Device → Network → Cloud**
 
 ---
@@ -225,10 +225,10 @@ MEMORY HOOK:
 
 |Attack|Description|
 |---|---|
-|Phishing|Fake websites|
-|Framing|Hidden malicious iframes|
-|Clickjacking|UI deception|
-|Man-in-the-Mobile|Malware intercepting data|
+|Phishing|Sitios web falsos|
+|Framing|Iframes maliciosos ocultos|
+|Clickjacking|Engaño de interfaz de usuario|
+|Man-in-the-Mobile|Malware que intercepta datos|
 
 ---
 
@@ -236,9 +236,9 @@ MEMORY HOOK:
 
 |Attack|Description|
 |---|---|
-|Baseband attacks|GSM/3GPP exploitation|
-|Smishing|SMS phishing|
-|Call-based attacks|Premium numbers|
+|Baseband attacks|Explotación de GSM/3GPP|
+|Smishing|Phishing mediante SMS|
+|Call-based attacks|Números premium|
 
 ---
 
@@ -246,11 +246,11 @@ MEMORY HOOK:
 
 |Attack|Description|
 |---|---|
-|Insecure data storage|Sensitive data exposed|
-|Weak encryption|Data theft|
-|Improper validation|Input abuse|
-|Configuration manipulation|App logic abuse|
-|Escalated privileges|Root-level access|
+|Insecure data storage|Datos sensibles expuestos|
+|Weak encryption|Robo de datos|
+|Improper validation|Abuso de entrada|
+|Configuration manipulation|Abuso de lógica de aplicación|
+|Escalated privileges|Acceso a nivel root|
 
 ---
 
@@ -258,12 +258,12 @@ MEMORY HOOK:
 
 |Attack|Description|
 |---|---|
-|No passcode|Data exposure|
-|Jailbreaking (iOS)|Security bypass|
-|Rooting (Android)|Privilege escalation|
-|OS data caching|Sensitive data leaks|
-|Password cracking|Weak crypto|
-|User-initiated code|Malicious installs|
+|No passcode|Exposición de datos|
+|Jailbreaking (iOS)|Bypass de seguridad|
+|Rooting (Android)|Escalada de privilegios|
+|OS data caching|Fugas de datos sensibles|
+|Password cracking|Criptografía débil|
+|User-initiated code|Instalaciones maliciosas|
 
 ---
 
@@ -280,7 +280,7 @@ MEMORY HOOK:
 |SSL stripping|
 |Fake certificates|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Sniff → Intercept → Redirect**
 
 ---
@@ -291,11 +291,11 @@ MEMORY HOOK:
 
 |Attack|
 |---|
-|Platform vulnerabilities|
-|Server misconfiguration|
+|Vulnerabilidades de plataforma|
+|Mala configuración del servidor|
 |XSS|
 |CSRF|
-|Web input validation flaws|
+|Fallos de validación de entrada web|
 |Brute-force|
 |SQL injection|
 
@@ -305,22 +305,22 @@ MEMORY HOOK:
 
 |Category|Examples|
 |---|---|
-|Surveillance|Camera, mic, call logs|
-|Data theft|Contacts, SMS, files|
-|Botnet activity|DDoS, click fraud|
-|Impersonation|Fake emails, social posts|
+|Surveillance|Cámara, micrófono, registros de llamadas|
+|Data theft|Contactos, SMS, archivos|
+|Botnet activity|DDoS, fraude de clics|
+|Impersonation|Correos falsos, publicaciones en redes sociales|
 
-MEMORY HOOK:  
+MEMORY HOOK:
 **Spy → Steal → Spread → Impersonate**
 
 ---
 
 # OBJECTIVE 01 — EXAM MEMORY BLOCK
 
-**Mobile attacks target devices, networks, and clouds.  
-OWASP Mobile Top 10 define the risk model.  
-Apps, OS, SMS, browser, and Wi-Fi are entry points.  
-Compromise leads to surveillance, theft, impersonation, and botnets.**
+**Los ataques móviles objetivan dispositivos, redes y cloud.
+OWASP Mobile Top 10 define el modelo de riesgo.
+Las aplicaciones, OS, SMS, navegador y Wi-Fi son puntos de entrada.
+La compromisión conduce a vigilancia, robo, suplantación y botnets.**
 
 ---
 
@@ -335,14 +335,13 @@ Compromise leads to surveillance, theft, impersonation, and botnets.**
 
 ---
 
-
 ## EXAM EXTRAS (Boson Practice Test)
 
 ### INTENTFUZZER
 
 |Item|Memorize|
 |---|---|
-|IntentFuzzer|Targets Android inter-process communication (IPC)|
+|IntentFuzzer|Objetiva la comunicación inter-procesos (IPC) de Android|
 
 ---
 
@@ -350,7 +349,7 @@ Compromise leads to surveillance, theft, impersonation, and botnets.**
 
 |Item|Memorize|
 |---|---|
-|Semi-tethered jailbreak|Sideloaded app can jailbreak device even after reboot|
+|Semi-tethered jailbreak|Una aplicación sideloaded puede hacer jailbreak al dispositivo incluso después del reinicio|
 
 ---
 
@@ -358,7 +357,7 @@ Compromise leads to surveillance, theft, impersonation, and botnets.**
 
 |Item|Memorize|
 |---|---|
-|Trident|Monitors iPhone calls; requires remote jailbreak|
+|Trident|Monitorea llamadas de iPhone; requiere jailbreak remoto|
 
 ---
 
@@ -366,7 +365,7 @@ Compromise leads to surveillance, theft, impersonation, and botnets.**
 
 |Item|Memorize|
 |---|---|
-|Trustjacking|Compromised host with iTunes can control iPhone over wireless network|
+|Trustjacking|Un host comprometido con iTunes puede controlar iPhone a través de red inalámbrica|
 
 ---
 
@@ -374,7 +373,7 @@ Compromise leads to surveillance, theft, impersonation, and botnets.**
 
 |Item|Memorize|
 |---|---|
-|Spearphone|Exploits phone loudspeaker and accelerometer|
+|Spearphone|Explota el altavoz y acelerómetro del teléfono|
 
 ---
 
@@ -382,7 +381,7 @@ Compromise leads to surveillance, theft, impersonation, and botnets.**
 
 |Item|Memorize|
 |---|---|
-|aLTEr|Uses layer 2 meta-information to determine which sites user visits|
+|aLTEr|Utiliza meta-información de capa 2 para determinar qué sitios visita el usuario|
 
 ---
 
@@ -390,56 +389,56 @@ Compromise leads to surveillance, theft, impersonation, and botnets.**
 
 | Term | Definition |
 |------|------------|
-| Mobile Platform Attack Vector | A path or method used to compromise mobile devices, networks, or backend systems |
-| OWASP Mobile Top 10 | Industry-standard list of the most critical mobile security risks |
-| Smishing | Phishing attack delivered via SMS messages |
-| Man-in-the-Mobile (MITMO) | Malware that intercepts mobile traffic, targeting banking apps |
-| Clickjacking | UI deception tricking users into performing unintended actions |
-| Baseband Attack | Exploitation of GSM/3GPP cellular protocol stack |
-| Phishing | Fake websites designed to steal credentials |
-| Framing | Hidden malicious iframes injected into legitimate web pages |
-| Jailbreaking | Removing iOS restrictions to gain root access |
-| Rooting | Gaining superuser access on Android devices |
-| Botnet Activity | Compromised mobile devices used for DDoS or click fraud |
-| SSL Stripping | Downgrading HTTPS connections to HTTP for interception |
-| DNS Poisoning | Redirecting DNS queries to malicious servers |
-| BYOD | Bring Your Own Device; personal devices used for corporate access |
+| Mobile Platform Attack Vector | Una ruta o método utilizado para comprometer dispositivos móviles, redes o sistemas backend |
+| OWASP Mobile Top 10 | Lista estándar de la industria de los riesgos de seguridad móvil más críticos |
+| Smishing | Ataque de phishing entregado mediante mensajes SMS |
+| Man-in-the-Mobile (MITMO) | Malware que intercepta tráfico móvil, objetivando aplicaciones bancarias |
+| Clickjacking | Engaño de interfaz de usuario que engaña a los usuarios para realizar acciones no deseadas |
+| Baseband Attack | Explotación de la pila de protocolos celulares GSM/3GPP |
+| Phishing | Sitios web falsos diseñados para robar credenciales |
+| Framing | Iframes maliciosos ocultos inyectados en páginas web legítimas |
+| Jailbreaking | Eliminación de restricciones de iOS para obtener acceso root |
+| Rooting | Obtención de acceso superusuario en dispositivos Android |
+| Botnet Activity | Dispositivos móviles comprometidos utilizados para DDoS o fraude de clics |
+| SSL Stripping | Degradación de conexiones HTTPS a HTTP para su interceptación |
+| DNS Poisoning | Redireccionamiento de consultas DNS a servidores maliciosos |
+| BYOD | Bring Your Own Device; dispositivos personales utilizados para acceso corporativo |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** According to the OWASP Mobile Top 10, which risk involves weak credential handling and hardcoded passwords?
+**1.** Según OWASP Mobile Top 10, ¿qué riesgo implica un manejo débil de credenciales y contraseñas hardcodeadas?
 - a) M3 — Insecure Authentication
 - b) M1 — Improper Credential Usage
 - c) M9 — Insecure Data Storage
 - d) M5 — Insecure Communication
-**Answer:** B — M1 specifically addresses weak credential handling, hardcoded passwords, and insecure storage.
+**Answer:** B — M1 aborda específicamente el manejo débil de credenciales, contraseñas hardcodeadas y almacenamiento inseguro.
 
-**2.** What are the three primary attack points in a mobile attack?
+**2.** ¿Cuáles son los tres puntos principales de ataque en un ataque móvil?
 - a) App, Browser, SMS
-- b) Device, Network, Data Center/Cloud
+- b) Dispositivo, Red, Data Center/Cloud
 - c) Wi-Fi, Bluetooth, Cellular
 - d) OS, Applications, Hardware
-**Answer:** B — Mobile attacks target the device itself, the network layer, and the cloud/backend.
+**Answer:** B — Los ataques móviles objetivan el dispositivo en sí, la capa de red y el cloud/backend.
 
-**3.** Which attack uses SMS messages to deliver phishing links?
+**3.** ¿Qué ataque utiliza mensajes SMS para entregar enlaces de phishing?
 - a) Clickjacking
 - b) Framing
 - c) Smishing
 - d) Baseband attack
-**Answer:** C — Smishing (SMS phishing) delivers malicious links via text messages.
+**Answer:** C — Smishing (phishing mediante SMS) entrega enlaces maliciosos a través de mensajes de texto.
 
-**4.** What happens after a mobile device is compromised by spyware?
-- a) Only network speed decreases
-- b) Camera, mic, call logs, and contacts can be surveilled and stolen
-- c) The device automatically updates
-- d) Encryption is automatically enabled
-**Answer:** B — Compromised devices enable surveillance (camera/mic), data theft, and impersonation.
+**4.** ¿Qué ocurre después de que un dispositivo móvil es comprometido por spyware?
+- a) Solo disminuye la velocidad de la red
+- b) La cámara, micrófono, registros de llamadas y contactos pueden ser vigilados y robados
+- c) El dispositivo se actualiza automáticamente
+- d) El cifrado se habilita automáticamente
+**Answer:** B — Los dispositivos comprometidos permiten vigilancia (cámara/micrófono), robo de datos y suplantación.
 
-**5.** What is the Trustjacking attack vector?
-- a) Exploiting Bluetooth connections
-- b) A compromised host with iTunes can control iPhone over wireless
-- c) Intercepting SMS messages
-- d) Rooting the Android device
-**Answer:** B — Trustjacking exploits iTunes syncing to gain control of an iPhone over the network.
+**5.** ¿Cuál es el vector de ataque de Trustjacking?
+- a) Explotando conexiones Bluetooth
+- b) Un host comprometido con iTunes puede controlar iPhone a través de red inalámbrica
+- c) Interceptando mensajes SMS
+- d) Haciendo root al dispositivo Android
+**Answer:** B — Trustjacking explota la sincronización de iTunes para obtener control de un iPhone a través de la red.

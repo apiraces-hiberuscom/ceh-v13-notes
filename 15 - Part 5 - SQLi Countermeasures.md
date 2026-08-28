@@ -1,46 +1,46 @@
-# OBJECTIVE 05 — SQL INJECTION COUNTERMEASURES
+# OBJETIVO 05 — CONTRAMEDIDAS DE SQL INJECTION
 
 ---
 
-## CEH CORE DEFINITION (MEMORIZE)
+## DEFINICIÓN BÁSICA DE CEH (MEMORIZAR)
 
 |Item|Memorize|
 |---|---|
-|SQL Injection Countermeasures|Security controls implemented to prevent attackers from injecting malicious SQL code into queries|
+|Contramedidas de SQL Injection|Controles de seguridad implementados para evitar que los atacantes inyecten código SQL malicioso en las consultas|
 
 ---
 
-## ROOT CAUSE OF SQL INJECTION (EXAM STATEMENT)
+## CAUSA RAÍZ DE SQL INJECTION (EXAM STATEMENT)
 
 |Root Cause|
 |---|
-|Lack of proper input validation and unsafe dynamic SQL query construction|
+|Falta de validación de entrada adecuada y construcción insegura de consultas SQL dinámicas|
 
 MEMORY HOOK:  
 **Dynamic SQL = danger**
 
 ---
 
-## PRIMARY SQL INJECTION PREVENTION TECHNIQUES
+## TÉCNICAS PRINCIPALES DE PREVENCIÓN DE SQL INJECTION
 
 ---
 
-## 1. PARAMETERIZED QUERIES (MOST IMPORTANT)
+## 1. PARAMETERIZED QUERIES (MÁS IMPORTANTE)
 
 ### DEFINITION
 
 |Item|Memorize|
 |---|---|
-|Parameterized Query|A query where SQL logic is separated from user input|
+|Parameterized Query|Una consulta donde la lógica SQL se separa de la entrada del usuario|
 
 ---
 
-### WHY IT WORKS
+### POR QUÉ FUNCIONA
 
 |Reason|
 |---|
-|User input treated as data|
-|SQL structure cannot be altered|
+|La entrada del usuario se trata como datos|
+|La estructura SQL no puede ser alterada|
 
 ---
 
@@ -48,7 +48,7 @@ MEMORY HOOK:
 
 |Item|
 |---|
-|Most effective SQL injection prevention|
+|La técnica más efectiva para prevenir SQL injection|
 
 ---
 
@@ -63,7 +63,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Prepared Statement|SQL statement compiled once and executed multiple times with different parameters|
+|Prepared Statement|Sentencia SQL compilada una vez y ejecutada múltiples veces con diferentes parámetros|
 
 ---
 
@@ -71,8 +71,8 @@ MEMORY HOOK:
 
 |Advantage|
 |---|
-|Prevents injection|
-|Improves performance|
+|Previene la inyección|
+|Mejora el rendimiento|
 
 ---
 
@@ -98,7 +98,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Stored Procedure|Precompiled SQL code stored in the database|
+|Stored Procedure|Código SQL precompilado almacenado en la base de datos|
 
 ---
 
@@ -122,7 +122,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Input Validation|Ensuring user input matches expected format|
+|Input Validation|Garantizar que la entrada del usuario coincida con el formato esperado|
 
 ---
 
@@ -155,7 +155,7 @@ MEMORY HOOK:
 
 |Purpose|
 |---|
-|Neutralize special characters|
+|Neutralizar caracteres especiales|
 
 ---
 
@@ -163,7 +163,7 @@ MEMORY HOOK:
 
 |Item|
 |---|
-|Escaping alone is NOT sufficient|
+|El escaping por sí solo NO es suficiente|
 
 ---
 
@@ -178,7 +178,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Least Privilege|Granting minimum database permissions|
+|Least Privilege|Otorgar permisos mínimos de base de datos|
 
 ---
 
@@ -186,8 +186,8 @@ MEMORY HOOK:
 
 |Practice|
 |---|
-|No admin DB users|
-|Separate read/write users|
+|No usar usuarios admin en la DB|
+|Usuarios separados para lectura/escritura|
 
 ---
 
@@ -202,7 +202,7 @@ MEMORY HOOK:
 
 |Role|
 |---|
-|Detect and block SQL injection payloads|
+|Detectar y bloquear payloads de SQL injection|
 
 ---
 
@@ -210,7 +210,7 @@ MEMORY HOOK:
 
 |Limitation|
 |---|
-|Can be bypassed using evasion techniques|
+|Puede ser evadido usando técnicas de evasión|
 
 ---
 
@@ -219,29 +219,29 @@ MEMORY HOOK:
 
 ---
 
-## OBJECTIVE 06 — SQL INJECTION TOOLS
+## OBJETIVO 06 — HERRAMIENTAS DE SQL INJECTION
 
 ---
 
-## SQL INJECTION DETECTION TOOLS (EXAM MUST)
+## HERRAMIENTAS DE DETECCIÓN DE SQL INJECTION (EXAM MUST)
 
 |Tool|Purpose|
 |---|---|
-|SQLmap|Automated SQL injection exploitation|
-|Havij|Automated SQL injection|
-|jSQL Injection|Java-based SQL injection tool|
-|SQLninja|MSSQL exploitation|
+|SQLmap|Explotación automatizada de SQL injection|
+|Havij|SQL injection automatizado|
+|jSQL Injection|Herramienta de SQL injection basada en Java|
+|SQLninja|Explotación de MSSQL|
 |BBQSQL|Blind SQL injection|
 
 ---
 
-## SQLMAP — CEH FAVORITE TOOL
+## SQLMAP — HERRAMIENTA FAVORITA DE CEH
 
 ### PURPOSE
 
 |Purpose|
 |---|
-|Detect and exploit SQL injection|
+|Detectar y explotar SQL injection|
 
 ---
 
@@ -249,10 +249,10 @@ MEMORY HOOK:
 
 |Capability|
 |---|
-|Detect injection|
-|Enumerate DB|
-|Dump data|
-|Execute OS commands|
+|Detectar inyección|
+|Enumerar DB|
+|Volcar datos|
+|Ejecutar comandos del SO|
 
 ---
 
@@ -268,12 +268,12 @@ MEMORY HOOK:
 
 |Option|Purpose|
 |---|---|
-|-u|Target URL|
-|--dbs|List databases|
-|--tables|List tables|
-|--columns|List columns|
-|--dump|Dump data|
-|--os-shell|OS shell|
+|-u|URL objetivo|
+|--dbs|Listar bases de datos|
+|--tables|Listar tablas|
+|--columns|Listar columnas|
+|--dump|Volcar datos|
+|--os-shell|Shell del SO|
 
 ---
 
@@ -286,9 +286,9 @@ MEMORY HOOK:
 
 |Tool|Specialty|
 |---|---|
-|Havij|GUI-based SQLi|
-|SQLninja|MSSQL focus|
-|jSQL|Cross-platform|
+|Havij|SQLi basado en GUI|
+|SQLninja|Enfoque en MSSQL|
+|jSQL|Multiplataforma|
 |BBQSQL|Blind SQLi|
 
 ---
@@ -297,28 +297,28 @@ MEMORY HOOK:
 
 |#|Control|
 |---|---|
-|1|Use parameterized queries|
-|2|Use prepared statements|
-|3|Validate input|
-|4|Use least privilege|
-|5|Hide error messages|
-|6|Patch DBMS|
-|7|Deploy WAF|
+|1|Usar parameterized queries|
+|2|Usar prepared statements|
+|3|Validar entrada|
+|4|Usar least privilege|
+|5|Ocultar mensajes de error|
+|6|Parchear DBMS|
+|7|Desplegar WAF|
 
 ---
 
-## FINAL MODULE 15 MEMORY BLOCK
+## BLOQUE FINAL DE MEMORIA DEL MÓDULO 15
 
 ### OBJECTIVES
 
 |Objective|Status|
 |---|---|
-|Concepts|Covered|
-|Types|Covered|
-|Methodology|Covered|
-|Evasion|Covered|
-|Countermeasures|Covered|
-|Tools|Covered|
+|Conceptos|Cubiertos|
+|Tipos|Cubiertos|
+|Metodología|Cubierta|
+|Evasión|Cubierta|
+|Contramedidas|Cubiertas|
+|Herramientas|Cubiertas|
 
 ---
 
@@ -328,87 +328,87 @@ MEMORY HOOK:
 
 ---
 
-## MODULE 15 STATUS
+## ESTADO DEL MÓDULO 15
 
 |Item|Status|
 |---|---|
-|Pages covered|100%|
-|Concepts skipped|0|
-|Tools skipped|0|
-|Exam alignment|Exact|
+|Páginas cubiertas|100%|
+|Conceptos omitidos|0|
+|Herramientas omitidas|0|
+|Alineación con el examen|Exacta|
 
 ---
 
-## MODULE 15 COMPLETE
+## MÓDULO 15 COMPLETADO
 
-Next available modules:
+Próximos módulos disponibles:
 
-- **Module 16 – Hacking Wireless Networks**
+- **Módulo 16 – Hacking de Redes Inalámbricas**
     
-- **Module 17 – Hacking Mobile Platforms**
+- **Módulo 17 – Hacking de Plataformas Móviles**
     
-- **Rapid SQLi exam drills**
+- **Ejercicios prácticos rápidos de SQLi**
     
-- **One-page SQLi memory sheet**
+- **Hoja de memoria de SQLi de una página**
     
 
-Tell me **what’s next**.
+Dime **qué sigue**.
 ---
 
 # EXAM FLASHCARDS
 
 | Term | Definition |
 |------|------------|
-| Parameterized Queries | Queries where SQL logic is separated from user input; the most effective SQLi prevention |
-| Prepared Statements | SQL statements compiled once and executed multiple times with different safe parameters |
-| Stored Procedures | Precompiled SQL code in the database; safe ONLY when parameterized, not inherently secure |
-| Input Validation | Ensuring user input matches expected format; whitelisting is superior to blacklisting |
-| Whitelisting | Only allowing known-good input patterns; preferred over blacklisting for input validation |
-| Escaping User Input | Neutralizing special characters; helpful but NOT sufficient as a standalone defense |
-| Least Privilege | Granting minimum database permissions; no admin DB users, separate read/write users |
-| Web Application Firewall (WAF) | Detects and blocks SQL injection payloads but can be bypassed with evasion techniques |
-| SQLmap | Automated SQL injection detection and exploitation tool (CEH favorite) |
-| Havij | GUI-based automated SQL injection tool |
-| SQLninja | Specialized MSSQL exploitation tool |
-| BBQSQL | Tool focused on blind SQL injection attacks |
-| --dbs | SQLmap option to list all databases |
-| --os-shell | SQLmap option to execute operating system commands on the target |
+| Parameterized Queries | Consultas donde la lógica SQL se separa de la entrada del usuario; la prevención de SQLi más efectiva |
+| Prepared Statements | Sentencias SQL compiladas una vez y ejecutadas múltiples veces con diferentes parámetros seguros |
+| Stored Procedures | Código SQL precompilado en la base de datos; seguro SOLO cuando usa parameterized input, no inherentemente seguro |
+| Input Validation | Garantizar que la entrada del usuario coincida con el formato esperado; whitelisting es superior a blacklisting |
+| Whitelisting | Solo permitir patrones de entrada conocidos como buenos; preferido sobre blacklisting para la validación de entrada |
+| Escaping User Input | Neutralizar caracteres especiales; útil pero NO suficiente como defensa por sí solo |
+| Least Privilege | Otorgar permisos mínimos de base de datos; no usar usuarios admin en la DB, usuarios separados para lectura/escritura |
+| Web Application Firewall (WAF) | Detecta y bloquea payloads de SQL injection pero puede ser evadido con técnicas de evasión |
+| SQLmap | Herramienta automatizada de detección y explotación de SQL injection (favorita de CEH) |
+| Havij | Herramienta automatizada de SQL injection basada en GUI |
+| SQLninja | Herramienta especializada en explotación de MSSQL |
+| BBQSQL | Herramienta enfocada en ataques de blind SQL injection |
+| --dbs | Opción de SQLmap para listar todas las bases de datos |
+| --os-shell | Opción de SQLmap para ejecutar comandos del sistema operativo en el objetivo |
 
 ---
 
-# PRACTICE QUESTIONS
+# PREGUNTAS DE PRÁCTICA
 
-**1.** Which of the following is the MOST effective technique to prevent SQL injection?
-- a) Deploy a WAF
-- b) Use parameterized queries
-- c) Escape all user input
-- d) Disable database error messages
-**Answer:** b -- Parameterized queries separate SQL logic from user input, making it impossible to alter query structure via injection.
+**1.** ¿Cuál de las siguientes es la técnica MÁS efectiva para prevenir SQL injection?
+- a) Desplegar un WAF
+- b) Usar parameterized queries
+- c) Escapar toda la entrada del usuario
+- d) Deshabilitar los mensajes de error de la base de datos
+**Respuesta:** b -- Las parameterized queries separan la lógica SQL de la entrada del usuario, haciendo imposible alterar la estructura de la consulta mediante inyección.
 
-**2.** A developer claims stored procedures are always safe from SQL injection. Is this correct?
-- a) Yes, stored procedures are precompiled and always safe
-- b) No, stored procedures are safe only when they use parameterized input
-- c) Yes, but only for MySQL databases
-- d) No, stored procedures should never be used
-**Answer:** b -- Stored procedures are NOT inherently safe; they must use parameterized input to prevent injection.
+**2.** Un desarrollador afirma que los stored procedures siempre están seguros contra SQL injection. ¿Es correcto?
+- a) Sí, los stored procedures están precompilados y siempre son seguros
+- b) No, los stored procedures son seguros solo cuando usan parameterized input
+- c) Sí, pero solo para bases de datos MySQL
+- d) No, los stored procedures nunca deben usarse
+**Respuesta:** b -- Los stored procedures NO son inherentemente seguros; deben usar parameterized input para prevenir la inyección.
 
-**3.** Which SQLmap command would you use to enumerate all databases on a target URL?
+**3.** ¿Qué comando de SQLmap usarías para enumerar todas las bases de datos en una URL objetivo?
 - a) sqlmap -u "http://target/?id=1" --tables
 - b) sqlmap -u "http://target/?id=1" --dbs
 - c) sqlmap -u "http://target/?id=1" --dump
 - d) sqlmap -u "http://target/?id=1" --os-shell
-**Answer:** b -- --dbs lists all databases; --tables lists tables, --dump extracts data, --os-shell gives OS access.
+**Respuesta:** b -- --dbs lista todas las bases de datos; --tables lista tablas, --dump extrae datos, --os-shell da acceso al SO.
 
-**4.** Why is whitelisting preferred over blacklisting for SQL injection prevention?
-- a) Whitelisting is faster to implement
-- b) Whitelisting only allows known-good input, while blacklisting can be bypassed by new attack patterns
-- c) Blacklisting blocks all input
-- d) Whitelisting does not require code changes
-**Answer:** b -- Whitelisting accepts only input matching expected patterns, while blacklisting can be evaded with novel encoding or obfuscation.
+**4.** ¿Por qué se prefiere whitelisting sobre blacklisting para la prevención de SQL injection?
+- a) Whitelisting es más rápido de implementar
+- b) Whitelisting solo permite entrada conocida como buena, mientras que blacklisting puede ser evadido por nuevos patrones de ataque
+- c) Blacklisting bloquea toda la entrada
+- d) Whitelisting no requiere cambios en el código
+**Respuesta:** b -- Whitelisting acepta solo entrada que coincide con los patrones esperados, mientras que blacklisting puede ser evadido con codificación novedosa u ofuscación.
 
-**5.** What is the limitation of using escaping user input as the sole SQL injection defense?
-- a) It slows down the database
-- b) It is not sufficient alone and can be bypassed with certain encoding techniques
-- c) It only works for MySQL databases
-- d) It increases the attack surface
-**Answer:** b -- Escaping helps neutralize special characters but is not sufficient as a standalone defense; it can be bypassed through various evasion techniques.
+**5.** ¿Cuál es la limitación de usar escaping de entrada del usuario como la única defensa contra SQL injection?
+- a) Ralentiza la base de datos
+- b) No es suficiente por sí solo y puede ser evadido con ciertas técnicas de codificación
+- c) Solo funciona para bases de datos MySQL
+- d) Aumenta la superficie de ataque
+**Respuesta:** b -- El escaping ayuda a neutralizar caracteres especiales pero no es suficiente como defensa por sí solo; puede ser evadido a través de diversas técnicas de evasión.

@@ -4,7 +4,7 @@
 |---|---|
 |Module Number|01|
 |Module Name|Introduction to Ethical Hacking|
-|Focus|Security fundamentals, risk analysis, frameworks, attack types, pen testing|
+|Focus|Fundamentos de seguridad, análisis de riesgos, marcos de trabajo, tipos de ataques, pen testing|
 
 ---
 
@@ -12,17 +12,17 @@
 
 |Objective #|Description|
 |---|---|
-|01|Understand the elements of information security (CIA + Authenticity + Non-repudiation)|
-|02|Explain risk analysis concepts (ARO, SLE, ALE)|
-|03|Describe incident response phases|
-|04|Outline hacking methodology and the cyber kill chain|
-|05|Identify TTPs, IoCs, and adversary behavioral patterns|
-|06|Summarize MITRE ATT&CK and Diamond Model frameworks|
-|07|Explain information assurance and threat intelligence lifecycle|
-|08|Recognize relevant laws and standards (PCI DSS, ISO 27001, HIPAA, SOX, DMCA, FISMA, DPA 2018)|
-|09|Differentiate hacking types (white hat, black hat, gray hat, etc.)|
-|10|Categorize attack types (passive, active, close-in, insider, distribution)|
-|11|Describe pen test phases|
+|01|Comprender los elementos de la seguridad informática (CIA + Authenticity + Non-repudiation)|
+|02|Explicar los conceptos de análisis de riesgos (ARO, SLE, ALE)|
+|03|Describir las fases de respuesta a incidentes|
+|04|Describir la metodología de hacking y la cyber kill chain|
+|05|Identificar TTPs, IoCs y patrones de comportamiento de adversarios|
+|06|Resumir los marcos MITRE ATT&CK y Diamond Model|
+|07|Explicar information assurance y el ciclo de vida de threat intelligence|
+|08|Reconocer leyes y estándares relevantes (PCI DSS, ISO 27001, HIPAA, SOX, DMCA, FISMA, DPA 2018)|
+|09|Diferenciar tipos de hacking (white hat, black hat, gray hat, etc.)|
+|10|Categorizar tipos de ataques (passive, active, close-in, insider, distribution)|
+|11|Describir las fases de pen testing|
 
 ---
 
@@ -30,11 +30,11 @@
 
 |Element|Definition|
 |---|---|
-|Confidentiality|Data accessible only to those authorized|
-|Integrity|Preventing unauthorized changes so data can be trusted|
-|Availability|Resources available to authorized users when needed|
-|Authenticity|Guarantee that files, communications, and transactions are genuine|
-|Non-repudiation|Guarantee that the sender cannot deny having sent a message|
+|Confidentiality|Datos accesibles solo para personas autorizadas|
+|Integrity|Prevenir cambios no autorizados para que los datos sean confiables|
+|Availability|Recursos disponibles para usuarios autorizados cuando se necesitan|
+|Authenticity|Garantía de que archivos, comunicaciones y transacciones son genuinos|
+|Non-repudiation|Garantía de que el remitente no puede negar haber enviado un mensaje|
 
 MEMORY HOOK:
 **CIA + A + N = Can I Always Authenticate? No!**
@@ -45,11 +45,11 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|Risk Matrix|Tool to visualize and prioritize risks based on likelihood and impact|
-|ARO|Annual Rate of Occurrence — expected frequency of a threat per year|
-|SLE|Single Loss Expectancy — cost of a single loss event|
-|ALE|Annualized Loss Expectancy — expected yearly loss from a risk|
-|BCP|Business Continuity Plan — strategy for maintaining operations during disruption|
+|Risk Matrix|Herramienta para visualizar y priorizar riesgos según probabilidad e impacto|
+|ARO|Annual Rate of Occurrence — frecuencia esperada de una amenaza por año|
+|SLE|Single Loss Expectancy — costo de un evento de pérdida individual|
+|ALE|Annualized Loss Expectancy — pérdida anual esperada de un riesgo|
+|BCP|Business Continuity Plan — estrategia para mantener operaciones durante una interrupción|
 
 ### Key Formula
 
@@ -74,15 +74,15 @@ Integrity is assured via **hash functions** — not encryption.
 
 |Phase|Description|
 |---|---|
-|1. Preparation|Establish IR capability, train team, equip tools|
-|2. Recording and Assignment|Log the incident and assign ownership|
-|3. Triage|Assess severity and prioritize|
-|4. Notification|Alert stakeholders and relevant parties|
-|5. Containment|Isolate the incident to prevent spread|
-|6. Evidence Gathering|Collect forensic data for analysis|
-|7. Eradication|Remove the root cause of the incident|
-|8. Recovery|Restore systems to normal operation|
-|9. Post-Incident Activity|Review, document lessons learned, improve|
+|1. Preparation|Establecer capacidad de IR, capacitar al equipo, equipar herramientas|
+|2. Recording and Assignment|Registrar el incidente y asignar responsabilidad|
+|3. Triage|Evaluar la severidad y priorizar|
+|4. Notification|Alertar a las partes interesadas y relevantes|
+|5. Containment|Aislar el incidente para prevenir su propagación|
+|6. Evidence Gathering|Recopilar datos forenses para análisis|
+|7. Eradication|Eliminar la causa raíz del incidente|
+|8. Recovery|Restaurar sistemas a operación normal|
+|9. Post-Incident Activity|Revisar, documentar lecciones aprendidas, mejorar|
 
 MEMORY HOOK:
 **Prep → Record → Triage → Notify → Contain → Evidence → Erase → Recover → Review**
@@ -93,23 +93,23 @@ MEMORY HOOK:
 
 |Step|Phase|Description|
 |---|---|---|
-|1|Footprinting|Gathering information about the target. Passive = no direct interaction. Active = requires action.|
-|2|Scanning|Identifying live hosts, open ports, OS, architecture, and vulnerabilities|
-|3|Enumeration|Extracting detailed information (usually from intranet environment)|
-|4|Vulnerability Analysis|Identifying and assessing security weaknesses|
-|5|System Hacking|Gaining access → Escalating privileges → Maintaining access → Clearing logs|
+|1|Footprinting|Recopilar información sobre el objetivo. Passive = sin interacción directa. Active = requiere acción.|
+|2|Scanning|Identificar hosts activos, puertos abiertos, SO, arquitectura y vulnerabilidades|
+|3|Enumeration|Extraer información detallada (generalmente del entorno intranet)|
+|4|Vulnerability Analysis|Identificar y evaluar debilidades de seguridad|
+|5|System Hacking|Obtener acceso → Escalar privilegios → Mantener acceso → Limpiar registros|
 
 ### System Hacking Sub-Steps
 
 |Action|Description|
 |---|---|
 |Gaining Access|Password cracking, SQL injection|
-|Escalation of Privileges|Increase access rights, change passwords, delete files|
-|Maintaining Access|Ensure persistent access (backdoors, rootkits)|
-|Clearing Logs|Conceal attack by altering logs, hiding files, using tunneling|
+|Escalation of Privileges|Aumentar derechos de acceso, cambiar contraseñas, eliminar archivos|
+|Maintaining Access|Asegurar acceso persistente (backdoors, rootkits)|
+|Clearing Logs|Ocultar el ataque alterando registros, ocultando archivos, usando túneles|
 
 EXAM TRAP:
-**SIEM** (Security Incident and Event Management) tools like **Splunk** are used to detect and respond to incidents — not to conduct attacks.
+Las herramientas **SIEM** (Security Incident and Event Management) como **Splunk** se usan para detectar y responder a incidentes — no para realizar ataques.
 
 ---
 
@@ -117,13 +117,13 @@ EXAM TRAP:
 
 |Phase|Description|
 |---|---|
-|1. Reconnaissance|Gathering data, identifying vulnerabilities|
-|2. Weaponization|Creating a malicious payload using vulnerabilities and backdoors|
-|3. Delivery|Sending the payload to the target (email, USB, web)|
-|4. Exploitation|Executing the delivered code on the target system|
-|5. Installation|Installing malware or backdoor on the target|
-|6. Command & Control (C2)|Establishing a channel for data exfiltration and remote control|
-|7. Actions on Objectives|Carrying out the mission: data theft, destruction, botnet deployment|
+|1. Reconnaissance|Recopilar datos, identificar vulnerabilidades|
+|2. Weaponization|Crear un payload malicioso usando vulnerabilidades y backdoors|
+|3. Delivery|Enviar el payload al objetivo (email, USB, web)|
+|4. Exploitation|Ejecutar el código entregado en el sistema objetivo|
+|5. Installation|Instalar malware o backdoor en el objetivo|
+|6. Command & Control (C2)|Establecer un canal para exfiltración de datos y control remoto|
+|7. Actions on Objectives|Ejecutar la misión: robo de datos, destrucción, despliegue de botnets|
 
 MEMORY HOOK:
 **Recon → Weapon → Deliver → Exploit → Install → C2 → Act**
@@ -134,9 +134,9 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|Tactics|How a threat actor operates during different phases of an attack (e.g., APT behavior patterns)|
-|Techniques|The specific technical methods used (e.g., tools for privilege escalation)|
-|Procedures|A sequence of actions or steps taken to execute an attack|
+|Tactics|Cómo opera un actor de amenazas durante las diferentes fases de un ataque (ej. patrones de comportamiento APT)|
+|Techniques|Los métodos técnicos específicos utilizados (ej. herramientas para privilege escalation)|
+|Procedures|Una secuencia de acciones o pasos tomados para ejecutar un ataque|
 
 MEMORY HOOK:
 **TTP = How they think (tactics) → What they do (techniques) → Step by step (procedures)**
@@ -147,10 +147,10 @@ MEMORY HOOK:
 
 |Indicator Type|Examples|
 |---|---|
-|Email Indicators|Specific senders, addresses, subject lines, attachment types|
-|Network Indicators|Malicious URLs, domains, IP addresses|
-|Host-Based Indicators|Specific filenames, file hashes, registry keys|
-|Behavioral Indicators|PowerShell execution, remote command execution, unusual process behavior|
+|Email Indicators|Remitentes específicos, direcciones, líneas de asunto, tipos de adjuntos|
+|Network Indicators|URLs maliciosas, dominios, direcciones IP|
+|Host-Based Indicators|Nombres de archivo específicos, hashes de archivos, claves de registro|
+|Behavioral Indicators|Ejecución de PowerShell, ejecución de comandos remotos, comportamiento inusual de procesos|
 
 MEMORY HOOK:
 **IoC = Clues left behind. Check: Email → Network → Host → Behavior**
@@ -161,10 +161,10 @@ MEMORY HOOK:
 
 |Element|Description|
 |---|---|
-|Tactics|Why the attacker performs an action (the goal) — 14 tactics total|
-|Techniques|How the attacker achieves the goal|
-|Sub-Techniques|Lower-level description of adversarial behavior|
-|Procedures|Specific implementation or in-the-wild use of techniques|
+|Tactics|Por qué el atacante realiza una acción (el objetivo) — 14 tactics en total|
+|Techniques|Cómo el atacante logra el objetivo|
+|Sub-Techniques|Descripción de nivel más bajo del comportamiento adversarial|
+|Procedures|Implementación específica o uso en el mundo real de las techniques|
 
 ### 14 Tactics
 
@@ -189,7 +189,7 @@ MEMORY HOOK:
 **Recon → Resource → Access → Execute → Persist → Escalate → Evade → Credentials → Discover → Move → Collect → C2 → Exfil → Impact**
 
 EXAM TRAP:
-MITRE ATT&CK is a **free, nonprofit framework** — not a commercial product. Use it to map adversary behavior systematically.
+MITRE ATT&CK es un marco de trabajo **gratuito y sin fines de lucro** — no es un producto comercial. Úsalo para mapear el comportamiento de adversarios de forma sistemática.
 
 ---
 
@@ -197,10 +197,10 @@ MITRE ATT&CK is a **free, nonprofit framework** — not a commercial product. Us
 
 |Element|Question|Examples|
 |---|---|---|
-|Adversary|Who?|APT groups, cybercriminal organizations|
-|Capability|What?|Malware, exploits, ransomware|
-|Infrastructure|Where?|C2 servers, malicious domains, IP addresses|
-|Victim|Who is targeted?|Organizations, individuals, industries|
+|Adversary|¿Quién?|Grupos APT, organizaciones de ciberdelincuentes|
+|Capability|¿Qué?|Malware, exploits, ransomware|
+|Infrastructure|¿Dónde?|Servidores C2, dominios maliciosos, direcciones IP|
+|Victim|¿Quién es el objetivo?|Organizaciones, individuos, industrias|
 
 MEMORY HOOK:
 **Diamond = Who + What + Where + Whom**
@@ -234,39 +234,39 @@ MEMORY HOOK:
 
 |Formula|Meaning|
 |---|---|
-|RISK = Threats × Vulnerabilities × Impact|Standard risk equation|
-|RISK = Threat × Vulnerability × Asset Value|Alternative risk equation|
-|Level of RISK = Consequence × Likelihood|Risk matrix calculation|
+|RISK = Threats × Vulnerabilities × Impact|Ecuación estándar de riesgo|
+|RISK = Threat × Vulnerability × Asset Value|Ecuación alternativa de riesgo|
+|Level of RISK = Consequence × Likelihood|Cálculo de matriz de riesgo|
 
 EXAM TRAP:
-Risk is multiplicative — a zero in any factor means no risk.
+El riesgo es multiplicativo — un cero en cualquier factor significa sin riesgo.
 
 ---
 
 ## CYBER THREAT INTELLIGENCE (CTI)
 
-|Definition|Evidence-based knowledge about threats that helps organizations make better security decisions|
+|Definition|Conocimiento basado en evidencia sobre amenazas que ayuda a las organizaciones a tomar mejores decisiones de seguridad|
 |---|---|
 
 ### CTI Types
 
 |Type|Audience|Purpose|
 |---|---|---|
-|Strategic Intelligence|Executives|High-level trends, risk posture, business decisions|
-|Tactical Intelligence|Security Teams|Upcoming attack methods, tools, patterns|
-|Operational Intelligence|Incident Response|Specific campaigns, attacker intent, timing|
-|Technical Intelligence|Systems/SIEM/IDS|IPs, hashes, domains, signatures|
+|Strategic Intelligence|Ejecutivos|Tendencias de alto nivel, postura de riesgo, decisiones de negocio|
+|Tactical Intelligence|Equipos de Seguridad|Métodos de ataque próximos, herramientas, patrones|
+|Operational Intelligence|Respuesta a Incidentes|Campañas específicas, intención del atacante, cronograma|
+|Technical Intelligence|Sistemas/SIEM/IDS|IPs, hashes, dominios, firmas|
 
 ### CTI Lifecycle
 
 |Phase|Description|
 |---|---|
-|1. Direction|Define what to know and why|
-|2. Collection|Gather data (logs, OSINT, feeds)|
-|3. Processing|Clean, normalize, enrich raw data|
-|4. Analysis|Transform data into actionable intelligence|
-|5. Dissemination|Deliver intelligence to the right people|
-|6. Feedback|Refine requirements based on outcomes|
+|1. Direction|Definir qué saber y por qué|
+|2. Collection|Recopilar datos (registros, OSINT, feeds)|
+|3. Processing|Limpiar, normalizar, enriquecer datos sin procesar|
+|4. Analysis|Transformar datos en inteligencia accionable|
+|5. Dissemination|Entregar inteligencia a las personas adecuadas|
+|6. Feedback|Refinar requisitos según los resultados|
 
 MEMORY HOOK:
 **Direction → Collect → Process → Analyze → Disseminate → Feedback**
@@ -275,14 +275,14 @@ MEMORY HOOK:
 
 ## THREAT MODELING
 
-|Definition|Process of identifying what can go wrong, how it can be attacked, and how to mitigate|
+|Definition|Proceso de identificar qué puede salir mal, cómo puede ser atacado, y cómo mitigarlo|
 |---|---|
 
 ---
 
 ## INCIDENT MANAGEMENT
 
-|Definition|Identify, prioritize, analyze, resolve, and improve incident handling|
+|Definition|Identificar, priorizar, analizar, resolver y mejorar el manejo de incidentes|
 
 ### Comparison
 
@@ -292,7 +292,7 @@ MEMORY HOOK:
 |Incident Response|Preparation → Recording → Triage → Notification → Containment → Evidence → Eradication → Recovery → Post-Incident|
 
 EXAM TRAP:
-Incident **Management** is broader (identify → improve). Incident **Response** is tactical (contain → recover).
+Incident **Management** es más amplio (identify → improve). Incident **Response** es táctico (contain → recover).
 
 ---
 
@@ -300,13 +300,13 @@ Incident **Management** is broader (identify → improve). Incident **Response**
 
 |Standard / Law|Full Name|Scope|
 |---|---|---|
-|PCI DSS|Payment Card Industry Data Security Standard|Organizations handling payment card data|
-|ISO/IEC 27001|Information Security Management Framework|Framework for establishing, maintaining, and improving ISMS|
-|HIPAA|Health Insurance Portability and Accountability Act|Protects identifiable health information (USA)|
-|SOX|Sarbanes-Oxley Act|Protects investors, mandates corporate disclosures, includes PCAOB (USA)|
-|DMCA|Digital Millennium Copyright Act|USA copyright law protecting digital content (DRM)|
-|FISMA|Federal Information Security Management Act|U.S. federal agencies and contractors; uses NIST standards|
-|DPA 2018|Data Protection Act 2018|UK primary personal data protection law|
+|PCI DSS|Payment Card Industry Data Security Standard|Organizaciones que manejan datos de tarjetas de pago|
+|ISO/IEC 27001|Information Security Management Framework|Marco para establecer, mantener y mejorar ISMS|
+|HIPAA|Health Insurance Portability and Accountability Act|Protege información de salud identificable (EE.UU.)|
+|SOX|Sarbanes-Oxley Act|Protege inversores, exige divulgaciones corporativas, incluye PCAOB (EE.UU.)|
+|DMCA|Digital Millennium Copyright Act|Ley de derechos de autor de EE.UU. que protege contenido digital (DRM)|
+|FISMA|Federal Information Security Management Act|Agencias federales de EE.UU. y contratistas; usa estándares NIST|
+|DPA 2018|Data Protection Act 2018|Ley principal de protección de datos personales del Reino Unido|
 
 MEMORY HOOK:
 **PCI = Cards, ISO = Framework, HIPAA = Health, SOX = Finance, DMCA = Copyright, FISMA = Federal, DPA = UK**
@@ -317,18 +317,18 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|White Hat|Ethical hackers — work with permission|
-|Black Hat|Malicious hackers — break the law|
-|Gray Hat|Neither fully good nor bad — may hack without permission but not maliciously|
-|Script Kiddies|Unskilled individuals who use pre-made tools|
-|Cyber Terrorists|Motivated by religious or political beliefs|
-|State-Sponsored|Employed by a nation-state to attack other nations|
-|Hacktivists|Motivated by political agenda — defacing or disabling websites|
-|Hacker Teams|Skilled hackers operating with their own resources|
-|Industrial Spies|Engage in corporate espionage|
-|Insiders|Trusted users carrying out attacks from within the organization|
-|Criminal Syndicates|Organized crime operating for financial gain|
-|Organized Hackers|Rent out hacked assets, profit from victims|
+|White Hat|Hackers éticos — trabajan con permiso|
+|Black Hat|Hackers maliciosos — violan la ley|
+|Gray Hat|Ni completamente buenos ni malos — pueden hackear sin permiso pero no maliciosamente|
+|Script Kiddies|Individuos sin habilidades que usan herramientas prefabricadas|
+|Cyber Terrorists|Motivados por creencias religiosas o políticas|
+|State-Sponsored|Empleados por un estado-nación para atacar a otras naciones|
+|Hacktivists|Motivados por agenda política — vandalizando o desactivando sitios web|
+|Hacker Teams|Hackers hábiles que operan con sus propios recursos|
+|Industrial Spies|Participan en espionaje corporativo|
+|Insiders|Usuarios de confianza que ejecutan ataques desde dentro de la organización|
+|Criminal Syndicates|Crimen organizado que opera para obtener ganancias financieras|
+|Organized Hackers|Alquilan activos hackeados, obtienen beneficios de víctimas|
 
 ---
 
@@ -336,14 +336,14 @@ MEMORY HOOK:
 
 |Type|Description|Examples|
 |---|---|---|
-|Passive Attack|Monitoring without altering anything|Sniffing, eavesdropping|
-|Active Attack|Attempts to change, alter, or delete data|SQL injection, DDoS, modified packets|
-|Close-In Attack|Physically close to the target|Shoulder surfing, social engineering|
-|Insider Attack|Carried out by someone with authorized access|Disgruntled employee, credential abuse|
-|Distribution Attack|Occurs before the system reaches the customer|Tampered hardware, infected supply chain|
+|Passive Attack|Monitoreo sin alterar nada|Sniffing, eavesdropping|
+|Active Attack|Intentos de cambiar, alterar o eliminar datos|SQL injection, DDoS, paquetes modificados|
+|Close-In Attack|Físicamente cerca del objetivo|Shoulder surfing, social engineering|
+|Insider Attack|Ejecutado por alguien con acceso autorizado|Empleado descontento, abuso de credenciales|
+|Distribution Attack|Ocurre antes de que el sistema llegue al cliente|Hardware manipulado, cadena de suministro infectada|
 
 EXAM TRAP:
-Passive attacks = **no modification**, harder to detect. Active attacks = **data altered**, higher risk of discovery.
+Los ataques passive = **sin modificación**, más difíciles de detectar. Los ataques active = **datos alterados**, mayor riesgo de ser descubiertos.
 
 ---
 
@@ -351,9 +351,9 @@ Passive attacks = **no modification**, harder to detect. Active attacks = **data
 
 |Phase|Description|
 |---|---|
-|1. Preparation|Define time period, scope, allowed attack types, team assignments|
-|2. Assessment|Execute the actual penetration test|
-|3. Conclusion (Post-Assessment)|Report preparation, findings, recommendations|
+|1. Preparation|Definir período de tiempo, alcance, tipos de ataque permitidos, asignaciones de equipo|
+|2. Assessment|Ejecutar la prueba de penetración real|
+|3. Conclusion (Post-Assessment)|Preparación del informe, hallazgos, recomendaciones|
 
 MEMORY HOOK:
 **Prep → Assess → Report**
@@ -366,11 +366,11 @@ MEMORY HOOK:
 
 |Phase|Description|
 |---|---|
-|1. Preparation|Identify and research target|
-|2. Initial Intrusion|Infiltrate target environment, deploy malware|
-|3. Expansion|Expand access, obtain administrative privileges|
-|4. Persistence|Create additional footholds, establish C2|
-|5. Cleanup|Evade detection, remove evidence|
+|1. Preparation|Identificar e investigar el objetivo|
+|2. Initial Intrusion|Infiltrar el entorno del objetivo, desplegar malware|
+|3. Expansion|Expandir acceso, obtener privilegios administrativos|
+|4. Persistence|Crear puntos de apoyo adicionales, establecer C2|
+|5. Cleanup|Evadir detección, eliminar evidencia|
 
 ---
 
@@ -378,10 +378,10 @@ MEMORY HOOK:
 
 |Type|Focus|
 |---|---|
-|Tactical|Tools, techniques, and procedures (TTPs) and vulnerabilities|
-|Strategic|Overview of threat landscape, not very technical|
-|Technical|Indicators of compromise (IOCs), malware samples, phishing samples, URLs|
-|Operational|Gathers information from online discussions, social media, chat rooms|
+|Tactical|Herramientas, técnicas y procedimientos (TTPs) y vulnerabilidades|
+|Strategic|Visión general del panorama de amenazas, no muy técnico|
+|Technical|Indicators of compromise (IOCs), muestras de malware, muestras de phishing, URLs|
+|Operational|Recopila información de discusiones en línea, redes sociales, salas de chat|
 
 ---
 
@@ -389,7 +389,7 @@ MEMORY HOOK:
 
 |Phase|Description|
 |---|---|
-|Actions on Objectives|System destruction phase — carrying out the final mission|
+|Actions on Objectives|Fase de destrucción del sistema — ejecución de la misión final|
 
 ---
 
@@ -397,7 +397,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|SOX|Requires companies to disclose financial information|
+|SOX|Requiere que las empresas divulguen información financiera|
 
 ---
 
@@ -430,7 +430,7 @@ MEMORY HOOK:
 
 ## PRACTICE QUESTIONS
 
-**Q1:** What is the correct formula for Annualized Loss Expectancy (ALE)?
+**Q1:** ¿Cuál es la fórmula correcta para Annualized Loss Expectancy (ALE)?
 
 > A) ALE = SLE + ARO
 > B) ALE = SLE × ARO
@@ -441,7 +441,7 @@ MEMORY HOOK:
 
 ---
 
-**Q2:** Which phase of the Cyber Kill Chain involves creating a malicious payload?
+**Q2:** ¿Qué fase de la Cyber Kill Chain implica crear un payload malicioso?
 
 > A) Reconnaissance
 > B) Weaponization
@@ -452,7 +452,7 @@ MEMORY HOOK:
 
 ---
 
-**Q3:** An attacker monitors network traffic without modifying any data. What type of attack is this?
+**Q3:** Un atacante monitorea el tráfico de red sin modificar ningún dato. ¿Qué tipo de ataque es este?
 
 > A) Active attack
 > B) Close-in attack
@@ -463,7 +463,7 @@ MEMORY HOOK:
 
 ---
 
-**Q4:** Which of the following is NOT one of the five elements of information security?
+**Q4:** ¿Cuál de los siguientes NO es uno de los cinco elementos de la seguridad informática?
 
 > A) Confidentiality
 > B) Authenticity
@@ -474,7 +474,7 @@ MEMORY HOOK:
 
 ---
 
-**Q5:** Which law specifically protects identifiable health information in the United States?
+**Q5:** ¿Qué ley protege específicamente la información de salud identificable en los Estados Unidos?
 
 > A) PCI DSS
 > B) SOX

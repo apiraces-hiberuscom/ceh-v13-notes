@@ -1,10 +1,10 @@
-# OBJECTIVE 03 — WEB APPLICATION HACKING METHODOLOGY
+# OBJECTIVE 03 — METODOLOGÍA DE HACKING DE WEB APPLICATIONS
 
 ## CEH CORE PRINCIPLE (MEMORIZE)
 
 |Item|Memorize|
 |---|---|
-|Web Application Hacking Methodology|A systematic process used by attackers to identify, analyze, exploit, and maintain access to vulnerabilities in web applications|
+|Web Application Hacking Methodology|Un proceso sistemático utilizado por atacantes para identificar, analizar, explotar y mantener acceso a vulnerabilidades en web applications|
 
 ---
 
@@ -32,7 +32,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Collect maximum information about the target web application|
+|Recopilar la máxima información sobre la web application objetivo|
 
 ---
 
@@ -72,7 +72,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Identify technologies, frameworks, and entry points|
+|Identificar tecnologías, frameworks y puntos de entrada|
 
 ---
 
@@ -114,7 +114,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Identify known vulnerabilities|
+|Identificar vulnerabilidades conocidas|
 
 ---
 
@@ -159,7 +159,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Extract detailed application-level data|
+|Extraer datos detallados a nivel de aplicación|
 
 ---
 
@@ -201,7 +201,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Exploit identified vulnerabilities|
+|Explotar vulnerabilidades identificadas|
 
 ---
 
@@ -244,7 +244,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Expand access and collect data|
+|Ampliar el acceso y recopilar datos|
 
 ---
 
@@ -274,7 +274,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Ensure persistent access|
+|Garantizar acceso persistente|
 
 ---
 
@@ -300,7 +300,7 @@ Persistence ≠ initial exploitation
 
 |Goal|
 |---|
-|Hide attacker presence|
+|Ocultar la presencia del atacante|
 
 ---
 
@@ -333,57 +333,56 @@ Persistence ≠ initial exploitation
 
 | Term | Definition |
 |------|------------|
-| Information Gathering | Phase 1 — collecting domain, IP, hosting, and technology data about the target |
-| Web Application Footprinting | Phase 2 — identifying web server type, OS, CMS, frameworks, and entry points (passive recon) |
-| Vulnerability Scanning | Phase 3 — using automated scanners to identify known CVEs and vulnerability severity |
-| Web Application Enumeration | Phase 4 — actively extracting directories, files, parameters, user roles, and APIs |
-| Exploitation | Phase 5 — using tools like SQLmap, Metasploit, and Burp Suite to exploit identified vulnerabilities |
-| Post-Exploitation | Phase 6 — expanding access through credential harvesting, data exfiltration, and lateral movement |
-| Maintaining Access | Phase 7 — ensuring persistence via backdoors, web shells, and scheduled tasks |
-| Covering Tracks | Phase 8 — hiding attacker presence through log deletion and timestamp manipulation |
-| Google Dorks | Search engine queries used to discover sensitive data exposed on the web |
-| Wappalyzer | Tool for detecting a target's technology stack (frameworks, CMS, languages) |
-| Dirb / Gobuster | Tools for directory brute-forcing and content discovery during enumeration |
-| SQLmap | Automated tool for detecting and exploiting SQL injection vulnerabilities |
-| BeEF | Browser Exploitation Framework used for client-side attacks after exploitation |
-| Footprinting vs Scanning | Footprinting is passive recon; scanning is active vulnerability detection |
+| Information Gathering | Fase 1 — recopilación de datos sobre domain, IP, hosting y tecnologías del objetivo |
+| Web Application Footprinting | Fase 2 — identificación del tipo de web server, OS, CMS, frameworks y puntos de entrada (recon pasivo) |
+| Vulnerability Scanning | Fase 3 — uso de scanners automatizados para identificar CVEs conocidos y la severidad de vulnerabilidades |
+| Web Application Enumeration | Fase 4 — extracción activa de directorios, archivos, parámetros, roles de usuario y APIs |
+| Exploitation | Fase 5 — uso de herramientas como SQLmap, Metasploit y Burp Suite para explotar vulnerabilidades identificadas |
+| Post-Exploitation | Fase 6 — ampliación del acceso mediante credential harvesting, data exfiltration y lateral movement |
+| Maintaining Access | Fase 7 — garantización de persistencia mediante backdoors, web shells y scheduled tasks |
+| Covering Tracks | Fase 8 — ocultación de la presencia del atacante mediante log deletion y timestamp manipulation |
+| Google Dorks | Consultas de motor de búsqueda utilizadas para descubrir datos sensibles expuestos en la web |
+| Wappalyzer | Herramienta para detectar el tech stack de un objetivo (frameworks, CMS, lenguajes) |
+| Dirb / Gobuster | Herramientas para directory brute-forcing y content discovery durante la enumeración |
+| SQLmap | Herramienta automatizada para detectar y explotar vulnerabilidades de SQL injection |
+| BeEF | Browser Exploitation Framework utilizado para ataques del lado del cliente después de la explotación |
+| Footprinting vs Scanning | Footprinting es recon pasivo; scanning es detección activa de vulnerabilidades |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the correct order of the 8 phases in the CEH web application hacking methodology?
+**1.** ¿Cuál es el orden correcto de las 8 fases en la metodología de hacking de web applications de CEH?
 - a) Footprint → Recon → Scan → Enumerate → Exploit → Post-exploit → Persist → Cover
 - b) Recon → Footprint → Scan → Enumerate → Exploit → Post-exploit → Persist → Cover
 - c) Recon → Scan → Footprint → Enumerate → Exploit → Post-exploit → Cover → Persist
 - d) Scan → Recon → Footprint → Enumerate → Exploit → Cover → Post-exploit → Persist
-**Answer:** B — The correct sequence is Recon → Footprint → Scan → Enumerate → Exploit → Post-exploit → Persist → Cover.
+**Answer:** B — La secuencia correcta es Recon → Footprint → Scan → Enumerate → Exploit → Post-exploit → Persist → Cover.
 
-**2.** Which tool is primarily used for directory brute-forcing during the enumeration phase?
+**2.** ¿Qué herramienta se utiliza principalmente para directory brute-forcing durante la fase de enumeración?
 - a) Whois
 - b) Wappalyzer
 - c) Gobuster
 - d) SQLmap
-**Answer:** C — Gobuster (and Dirb) are used for directory brute-forcing and content discovery during Phase 4 enumeration.
+**Answer:** C — Gobuster (y Dirb) se utilizan para directory brute-forcing y content discovery durante la fase 4 de enumeración.
 
-**3.** An attacker uses Google search queries like `site:target.com filetype:pdf` to find exposed documents. Which phase does this belong to?
+**3.** Un atacante usa consultas de Google como `site:target.com filetype:pdf` para encontrar documentos expuestos. ¿A qué fase pertenece esto?
 - a) Web Application Footprinting
 - b) Information Gathering
 - c) Vulnerability Scanning
 - d) Exploitation
-**Answer:** B — Google Dorks are part of Information Gathering (Phase 1), used to discover sensitive data through search engine queries.
+**Answer:** B — Los Google Dorks son parte de Information Gathering (Fase 1), utilizados para descubrir datos sensibles a través de consultas de motor de búsqueda.
 
-**4.** What is the key difference between footprinting and scanning in the CEH methodology?
-- a) Footprinting is active; scanning is passive
-- b) Footprinting is passive recon; scanning is active vulnerability detection
-- c) Both are passive activities
-- d) Scanning only occurs after exploitation
-**Answer:** B — Footprinting is passive technology identification while scanning actively probes for known vulnerabilities.
+**4.** ¿Cuál es la diferencia clave entre footprinting y scanning en la metodología CEH?
+- a) Footprinting es activo; scanning es pasivo
+- b) Footprinting es recon pasivo; scanning es detección activa de vulnerabilidades
+- c) Ambos son actividades pasivas
+- d) Scanning solo ocurre después de la explotación
+**Answer:** B — Footprinting es identificación pasiva de tecnologías mientras que scanning sondea activamente vulnerabilidades conocidas.
 
-**5.** Which tool would an attacker use to automate SQL injection exploitation?
+**5.** ¿Qué herramienta usaría un atacante para automatizar la explotación de SQL injection?
 - a) Wappalyzer
 - b) Burp Suite
 - c) SQLmap
 - d) Netcraft
-**Answer:** C — SQLmap is the dedicated automated tool for detecting and exploiting SQL injection vulnerabilities during the exploitation phase.
-
+**Answer:** C — SQLmap es la herramienta automatizada dedicada para detectar y explotar vulnerabilidades de SQL injection durante la fase de explotación.

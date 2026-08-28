@@ -4,7 +4,7 @@
 |---|---|
 |Module Number|08|
 |Module Name|Network Sniffing|
-|Focus|Packet sniffing concepts, sniffing methods, protocols, tools, countermeasures|
+|Focus|Conceptos de packet sniffing, métodos de sniffing, protocolos, herramientas, contramedidas|
 
 ---
 
@@ -12,13 +12,13 @@
 
 |Objective #|Description|
 |---|---|
-|01|Understand packet sniffing concepts and types|
-|02|Explain ARP poisoning and spoofing techniques|
-|03|Describe VLAN hopping and STP attacks|
-|04|Identify protocols vulnerable to sniffing|
-|05|Use Wireshark and other sniffing tools|
-|06|Explain DNS poisoning and DHCP attacks|
-|07|Implement sniffing countermeasures and detection|
+|01|Comprender los conceptos y tipos de packet sniffing|
+|02|Explicar las técnicas de ARP poisoning y spoofing|
+|03|Describir VLAN hopping y ataques STP|
+|04|Identificar protocolos vulnerables al sniffing|
+|05|Usar Wireshark y otras herramientas de sniffing|
+|06|Explicar DNS poisoning y ataques DHCP|
+|07|Implementar contramedidas y detección de sniffing|
 
 ---
 
@@ -30,11 +30,11 @@
 
 |Term|Definition|
 |---|---|
-|Packet Sniffing|Monitoring and capturing data packets passing through a given network using a software application or hardware device|
-|Capability|Allows an attacker to observe and attack an entire network from any given point|
+|Packet Sniffing|Monitoreo y captura de paquetes de datos que pasan por una red determinada utilizando una aplicación de software o un dispositivo de hardware|
+|Capability|Permite a un atacante observar y atacar una red completa desde cualquier punto dado|
 
 MEMORY HOOK:
-**Sniffing = passive capture of all traffic**
+**Sniffing = captura pasiva de todo el tráfico**
 
 ---
 
@@ -42,24 +42,24 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Promiscuous Mode|NIC mode that listens to ALL data on its segment|
-|Purpose|Attacker switches NIC into promiscuous mode to capture all packets|
-|Requirement|Works directly only in shared ethernet environments|
+|Promiscuous Mode|Modo de NIC que escucha TODOS los datos en su segmento|
+|Purpose|El atacante cambia la NIC a modo promiscuo para capturar todos los paquetes|
+|Requirement|Funciona directamente solo en entornos de Ethernet compartido|
 
 EXAM TRAP:
-Promiscuous mode captures all packets **regardless of destination MAC**.
+El modo promiscuo captura todos los paquetes **independientemente de la MAC de destino**.
 
 ---
 
 ## ETHERNET ENVIRONMENTS
 
 |Environment|Behavior|Sniffing Impact|
-|---|---|
-|Shared Ethernet|Single bus connects all hosts to compete for bandwidth (hub-based)|NIC in promiscuous mode captures ALL traffic automatically|
-|Switched Ethernet|Switch maintains ARP table — maps MAC to port; packets sent only to destined computer|Promiscuous mode alone does NOT work; requires additional attack methods|
+|---|---|---|
+|Shared Ethernet|Un solo bus conecta a todos los hosts para competir por el ancho de banda (basado en hub)|La NIC en modo promiscuo captura TODO el tráfico automáticamente|
+|Switched Ethernet|El switch mantiene una tabla ARP — mapea MAC a puerto; los paquetes se envían solo al equipo destino|El modo promiscuo por sí solo NO funciona; requiere métodos de ataque adicionales|
 
 MEMORY HOOK:
-**Hub = everyone sees everything; Switch = selective delivery**
+**Hub = todos ven todo; Switch = entrega selectiva**
 
 ---
 
@@ -71,9 +71,9 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|ARP Protocol|Stateless — machine can send ARP reply even without being asked|
-|Attack|Forged ARP messages that associate attacker's MAC with IP of another host|
-|Result|Enables Man-in-the-Middle (MITM) position|
+|ARP Protocol|Sin estado — la máquina puede enviar una respuesta ARP incluso sin haber sido preguntada|
+|Attack|Mensajes ARP falsificados que asocian la MAC del atacante con la IP de otro host|
+|Result|Permite una posición Man-in-the-Middle (MITM)|
 |Tools|arpspoof, Habu|
 |Defence|Dynamic ARP Inspection (DAI)|
 |Detection|Capsa portable network analyzer, Wireshark, OPUtils, Netspionage|
@@ -85,12 +85,12 @@ MEMORY HOOK:
 |Item|Memorize|
 |---|---|
 |Layer|Layer 2|
-|Technique|Attacker sends fake MAC addresses until CAM table is full|
-|Result|Switch starts acting as a HUB — broadcasts ALL packets everywhere|
+|Technique|El atacante envía direcciones MAC falsas hasta que la tabla CAM se llena|
+|Result|El switch comienza a funcionar como un HUB — transmite TODOS los paquetes a todas partes|
 |Command|macof -i eth0|
 
 EXAM TRAP:
-MAC flooding converts a **switch into a hub**.
+MAC flooding convierte un **switch en un hub**.
 
 ---
 
@@ -98,8 +98,8 @@ MAC flooding converts a **switch into a hub**.
 
 |Item|Memorize|
 |---|---|
-|Technique|Impersonate a MAC address to connect to a switch port|
-|Method (Windows)|Change MAC in adapter settings|
+|Technique|Suplantar una dirección MAC para conectarse a un puerto de switch|
+|Method (Windows)|Cambiar MAC en la configuración del adaptador|
 |Tool|MAC Address Changer|
 |Defence|DHCP snooping binding table, Dynamic ARP Inspection, IP Source Guard|
 
@@ -109,8 +109,8 @@ MAC flooding converts a **switch into a hub**.
 
 |Item|Memorize|
 |---|---|
-|Function|Allows host to discover IP of active routers on its subnet|
-|Attack|Spoofed ICMP router discovery messages redirect traffic|
+|Function|Permite al host descubrir la IP de routers activos en su subred|
+|Attack|Mensajes de descubrimiento de router ICMP falsificados redirigen el tráfico|
 
 ---
 
@@ -118,8 +118,8 @@ MAC flooding converts a **switch into a hub**.
 
 |Technique|Description|Defence|
 |---|---|---|
-|Switch Spoofing|Rogue switch creates trunk between legitimate and rogue switch. Only possible when interface configured with "dynamic auto", "dynamic desirable", or trunk mode|Configure ports as access ports; disable trunk negotiation|
-|Double Tagging|Adds and modifies 802.1Q outer and inner tags in Ethernet frame; traffic flows through any VLAN in network (attacker wants to reach inner tag)|Set default VLAN to unused VLAN ID; explicitly tag all VLAN ports on all trunks|
+|Switch Spoofing|Un switch ilegal crea un trunk entre el switch legítimo y el ilegal. Solo es posible cuando la interfaz está configurada con "dynamic auto", "dynamic desirable" o trunk mode|Configurar los puertos como puertos de acceso; deshabilitar la negociación de trunk|
+|Double Tagging|Agrega y modifica las etiquetas 802.1Q externa e interna en la trama Ethernet; el tráfico fluye a través de cualquier VLAN en la red (el atacante quiere llegar a la etiqueta interna)|Establecer la VLAN por defecto como un VLAN ID no utilizado; etiquetar explícitamente todos los puertos VLAN en todos los trunks|
 
 ---
 
@@ -127,13 +127,13 @@ MAC flooding converts a **switch into a hub**.
 
 |Item|Memorize|
 |---|---|
-|STP Purpose|Removing loops in network|
-|Attack|Rogue switch introduced with lower priority than any other switch|
-|Result|Rogue becomes root bridge — ALL traffic flows through it|
+|STP Purpose|Eliminar bucles en la red|
+|Attack|Se introduce un switch ilegal con una prioridad más baja que cualquier otro switch|
+|Result|El ilegal se convierte en el root bridge — TODO el tráfico fluye a través de él|
 |Defence|BPDU Guard, Root Guard, Loop Guard, UDLD (Unidirectional Link Detection)|
 
 MEMORY HOOK:
-**STP attack = rogue root bridge steals all traffic**
+**STP attack = el root bridge ilegal roba todo el tráfico**
 
 ---
 
@@ -145,8 +145,8 @@ MEMORY HOOK:
 
 |Type|Definition|Characteristics|
 |---|---|---|
-|Passive Sniffing|Observing traffic without sending any packets|Undetectable; works only on shared media (hubs)|
-|Active Sniffing|Injecting traffic into the network to search for traffic|Detectable; works on switched networks|
+|Passive Sniffing|Observar tráfico sin enviar ningún paquete|Indetectable; solo funciona en medios compartidos (hubs)|
+|Active Sniffing|Inyectar tráfico en la red para buscar tráfico|Detectable; funciona en redes con switches|
 
 ---
 
@@ -154,12 +154,12 @@ MEMORY HOOK:
 
 |Sub-Type|Description|
 |---|---|
-|MAC Flooding|Overwhelms CAM table to force broadcast mode|
-|DNS Poisoning|Redirects DNS queries to attacker-controlled servers|
-|ARP Poisoning|Forces traffic through attacker via forged ARP replies|
-|DHCP Attacks|Exhausts address pool or introduces rogue DHCP server|
-|Switch Port Stealing|Sends forged ARP packets using victim's MAC to steal port|
-|Spoofing Attack|General identity spoofing to redirect traffic|
+|MAC Flooding|Sobrecarga la tabla CAM para forzar el modo de transmisión|
+|DNS Poisoning|Redirige las consultas DNS a servidores controlados por el atacante|
+|ARP Poisoning|Fuerza el tráfico a través del atacante mediante respuestas ARP falsificadas|
+|DHCP Attacks|Agota el pool de direcciones o introduce un servidor DHCP ilegal|
+|Switch Port Stealing|Envía paquetes ARP falsificados usando la MAC de la víctima para robar el puerto|
+|Spoofing Attack|Suplantación de identidad general para redirigir el tráfico|
 
 ---
 
@@ -171,19 +171,19 @@ MEMORY HOOK:
 
 |Protocol|Full Name|Vulnerability|
 |---|---|---|
-|Telnet|—|Transmits data in cleartext|
-|Rlogin|—|Transmits data in cleartext|
-|HTTP|HyperText Transfer Protocol|Unencrypted by default|
-|SNMP|Simple Network Management Protocol|Community strings in cleartext|
-|SMTP|Simple Mail Transfer Protocol|Email content in cleartext|
-|NNTP|Network News Transfer Protocol|Newsgroup data in cleartext|
-|POP|Post Office Protocol|Email retrieval in cleartext|
-|FTP|File Transfer Protocol|Credentials and data in cleartext|
-|IMAP|Internet Message Access Protocol|Email access in cleartext|
-|TFTP|Trivial File Transfer Protocol|No authentication; data in cleartext|
+|Telnet|—|Transmite datos en texto claro|
+|Rlogin|—|Transmite datos en texto claro|
+|HTTP|HyperText Transfer Protocol|Sin cifrado por defecto|
+|SNMP|Simple Network Management Protocol|Community strings en texto claro|
+|SMTP|Simple Mail Transfer Protocol|Contenido del correo en texto claro|
+|NNTP|Network News Transfer Protocol|Datos de grupo de noticias en texto claro|
+|POP|Post Office Protocol|Recuperación de correo en texto claro|
+|FTP|File Transfer Protocol|Credenciales y datos en texto claro|
+|IMAP|Internet Message Access Protocol|Acceso a correo en texto claro|
+|TFTP|Trivial File Transfer Protocol|Sin autenticación; datos en texto claro|
 
 MEMORY HOOK:
-**If no encryption = vulnerable to sniffing**
+**Si no hay cifrado = vulnerable al sniffing**
 
 ---
 
@@ -195,8 +195,8 @@ MEMORY HOOK:
 
 |Device|Key Feature|
 |---|---|
-|Xgig 1000 32/128 G|Inline, non-intrusive capture, auto negotiation, link training, forward error correction|
-|SierraNet M1288|Fiber channel fabrics analysis|
+|Xgig 1000 32/128 G|Captura en línea y no intrusiva, auto-negociación, entrenamiento de enlace, corrección de errores hacia adelante|
+|SierraNet M1288|Análisis de fabrics de canal de fibra|
 
 ---
 
@@ -204,13 +204,13 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|SPAN|Switched Port Analyzer — Cisco feature|
+|SPAN|Switched Port Analyzer — característica de Cisco|
 |Also Known As|Port Mirroring|
-|Function|Duplicates traffic from one port/ VLAN to another for monitoring|
-|Risk|If attacker connects to SPAN port, they can compromise the whole network|
+|Function|Duplica el tráfico de un puerto/VLAN a otro para monitoreo|
+|Risk|Si un atacante se conecta al puerto SPAN, puede comprometer toda la red|
 
 EXAM TRAP:
-SPAN = **port mirroring**, not a sniffing tool itself.
+SPAN = **port mirroring**, no es una herramienta de sniffing en sí.
 
 ---
 
@@ -222,8 +222,8 @@ SPAN = **port mirroring**, not a sniffing tool itself.
 
 |Item|Memorize|
 |---|---|
-|Wiretapping|Official or unofficial tapping of phone lines to record conversations|
-|Types|Direct line wiretap, radio wiretap|
+|Wiretapping|Intercepción oficial o no oficial de líneas telefónicas para grabar conversaciones|
+|Types|Intercepción de línea directa, intercepción de radio|
 
 ---
 
@@ -231,8 +231,8 @@ SPAN = **port mirroring**, not a sniffing tool itself.
 
 |Type|Definition|
 |---|---|
-|Active Tapping|MITM position — inject or alter data in transit|
-|Passive Tapping|Snooping or eavesdropping — observe without modification|
+|Active Tapping|Posición MITM — inyectar o alterar datos en tránsito|
+|Passive Tapping|Vigilancia u escucha — observar sin modificación|
 
 ---
 
@@ -244,11 +244,11 @@ SPAN = **port mirroring**, not a sniffing tool itself.
 
 |Attack|Technique|Tools|Defence|
 |---|---|---|---|
-|DHCP Starvation|Sends large number of requests to DHCP server exhausting address pool; server unable to allocate configs to new clients|Yersinia, dhcpStarvation.py, Metasploit, Hyenae|Enable port security, DHCP filtering|
-|Rogue DHCP Server|MITM attack; introduces rogue DHCP server so packets reach it first; may assign IP that serves as client's default gateway. Set connection between interface and rogue as untrusted|mitm6, Ettercap, Gobbler|DHCP snooping, port security|
+|DHCP Starvation|Envía un gran número de solicitudes al servidor DHCP agotando el pool de direcciones; el servidor no puede asignar configuraciones a nuevos clientes|Yersinia, dhcpStarvation.py, Metasploit, Hyenae|Habilitar port security, DHCP filtering|
+|Rogue DHCP Server|Ataque MITM; introduce un servidor DHCP ilegal para que los paquetes lleguen a él primero; puede asignar una IP que sirve como puerta de enlace predeterminada del cliente. Establecer la conexión entre la interfaz y el ilegal como no confiable|mitm6, Ettercap, Gobbler|DHCP snooping, port security|
 
 MEMORY HOOK:
-**Starvation = exhaust pool; Rogue = fake server**
+**Starvation = agota el pool; Rogue = servidor falso**
 
 ---
 
@@ -260,11 +260,11 @@ MEMORY HOOK:
 
 |Technique|Description|
 |---|---|
-|Intranet DNS Spoofing|Uses ARP poisoning to redirect internal DNS queries|
-|Internet DNS Spoofing|Rogue DNS server with static IP; sends Trojan that changes DNS entries on victim's PC|
-|Proxy Server DNS Poisoning|Trojan modifies proxy settings in Internet Explorer or any browser|
-|DNS Cache Poisoning|Altering or adding forged DNS records to DNS resolver|
-|SAD DNS Attack|Injecting harmful DNS entries in cache to divert traffic to attacker's servers; exploits side channels and flaws in dnsmasq, unbound, and BIND|
+|Intranet DNS Spoofing|Usa ARP poisoning para redirigir consultas DNS internas|
+|Internet DNS Spoofing|Servidor DNS ilegal con IP estática; envía un Troyano que cambia las entradas DNS en la PC de la víctima|
+|Proxy Server DNS Poisoning|El Troyano modifica la configuración de proxy en Internet Explorer o cualquier navegador|
+|DNS Cache Poisoning|Alterar o agregar registros DNS falsificados al resolvedor DNS|
+|SAD DNS Attack|Inyectar entradas DNS dañinas en la caché para desviar el tráfico a servidores del atacante; explota canales laterales y fallas en dnsmasq, unbound y BIND|
 
 ---
 
@@ -276,7 +276,7 @@ MEMORY HOOK:
 |Defence|DNSSEC, SSL|
 
 MEMORY HOOK:
-**Intranet = ARP-based; Internet = rogue DNS + Trojan; Cache = forge resolver records**
+**Intranet = basado en ARP; Internet = DNS ilegal + Troyano; Cache = falsificar registros del resolvedor**
 
 ---
 
@@ -286,21 +286,21 @@ MEMORY HOOK:
 
 |Filter / Expression|Description|
 |---|---|
-|tcp.port == 23|Monitoring specific port (Telnet)|
-|ip.addr == 192.168.1.100|Filter traffic to/from specific machine|
-|ip.addr == 192.168.1.100 && tcp.port == 23|Machine + specific port combined|
-|tcp.port == 23 ip.addr == 10.0.0.4 or ip.addr == 10.0.0.5|Filter by multiple addresses|
-|ip.addr == 10.0.0.4|Filter by IP address|
-|ip.dst == 10.0.1.50 && frame_len > 400|Destination filter with frame length|
-|tcp.flags.reset == 1|Display all TCP resets|
-|udp.contains|Set filter for hex values|
-|http.request|Displays all HTTP GET requests|
-|tcp.analysis.retransmission|Displays all retransmissions in the trace|
-|tcp contains traffic|Displays all TCP packets containing the word "traffic"|
-|!(arp or icmp or dns)|Masks out ARP, ICMP, DNS or other protocols|
-|tcp.port == 4000|Sets filter for any TCP packet with 4000 as source or destination port|
-|tcp.port eq 25 or icmp|Displays only SMTP (port 25) and ICMP traffic|
-|ip.src == 192.168.0.0/16 and ip.dst == 192.168.0.0/16|Displays traffic in LAN between workstations and servers|
+|tcp.port == 23|Monitoreo de puerto específico (Telnet)|
+|ip.addr == 192.168.1.100|Filtrar tráfico hacia/desde una máquina específica|
+|ip.addr == 192.168.1.100 && tcp.port == 23|Máquina + puerto específico combinados|
+|tcp.port == 23 ip.addr == 10.0.0.4 or ip.addr == 10.0.0.5|Filtrar por múltiples direcciones|
+|ip.addr == 10.0.0.4|Filtrar por dirección IP|
+|ip.dst == 10.0.1.50 && frame_len > 400|Filtro de destino con longitud de trama|
+|tcp.flags.reset == 1|Mostrar todos los TCP resets|
+|udp.contains|Establecer filtro para valores hexadecimales|
+|http.request|Muestra todas las solicitudes HTTP GET|
+|tcp.analysis.retransmission|Muestra todas las retransmisiones en el rastreo|
+|tcp contains traffic|Muestra todos los paquetes TCP que contienen la palabra "traffic"|
+|!(arp or icmp or dns)|Enmascara ARP, ICMP, DNS u otros protocolos|
+|tcp.port == 4000|Establece filtro para cualquier paquete TCP con 4000 como puerto origen o destino|
+|tcp.port eq 25 or icmp|Muestra solo tráfico SMTP (puerto 25) e ICMP|
+|ip.src == 192.168.0.0/16 and ip.dst == 192.168.0.0/16|Muestra tráfico en la LAN entre estaciones de trabajo y servidores|
 
 ---
 
@@ -310,10 +310,10 @@ MEMORY HOOK:
 
 |Tool|Type|
 |---|---|
-|Capsa Portable Network Analyzer|Portable network analyzer|
-|OmniPeek|Network analyzer|
-|Wireshark|Protocol analyzer (uses WinPcap)|
-|macof|MAC flooding tool (macof -i eth0)|
+|Capsa Portable Network Analyzer|Analizador de red portátil|
+|OmniPeek|Analizador de red|
+|Wireshark|Analizador de protocolos (usa WinPcap)|
+|macof|Herramienta de MAC flooding (macof -i eth0)|
 
 ---
 
@@ -323,15 +323,15 @@ MEMORY HOOK:
 
 |Countermeasure|Purpose|
 |---|---|
-|Restrict physical access to network|Prevent unauthorized sniffing device attachment|
-|End-to-end encryption|Encrypt data so captured packets are unreadable|
-|Add MAC to ARP cache|Prevent ARP spoofing by static entries|
-|Dynamic ARP Inspection|Validate ARP packets against DHCP snooping table|
-|DHCP Snooping|Prevent rogue DHCP servers and DHCP starvation|
-|Port Security|Limit MAC addresses per port|
-|BPDU / Root / Loop Guard|Prevent STP attacks|
-|Use VPN|Encrypt traffic over untrusted networks|
-|Use SSH instead of Telnet|Encrypted remote access|
+|Restringir el acceso físico a la red|Prevenir la conexión de dispositivos de sniffing no autorizados|
+|Cifrado de extremo a extremo|Cifrar datos para que los paquetes capturados sean ilegibles|
+|Agregar MAC a la caché ARP|Prevenir ARP spoofing mediante entradas estáticas|
+|Dynamic ARP Inspection|Validar paquetes ARP contra la tabla de DHCP snooping|
+|DHCP Snooping|Prevenir servidores DHCP ilegales y DHCP starvation|
+|Port Security|Limitar direcciones MAC por puerto|
+|BPDU / Root / Loop Guard|Prevenir ataques STP|
+|Usar VPN|Cifrar tráfico en redes no confiables|
+|Usar SSH en lugar de Telnet|Acceso remoto cifrado|
 
 ---
 
@@ -343,8 +343,8 @@ MEMORY HOOK:
 
 |Method|Description|
 |---|---|
-|IDS (Intrusion Detection System)|Monitors for suspicious sniffing activity on the network|
-|Promiscuous Mode Detection|Tools like nmap --script=sniffer-detect, NetScanToolsPro detect NICs in promiscuous mode|
+|IDS (Intrusion Detection System)|Monitorea actividad sospechosa de sniffing en la red|
+|Promiscuous Mode Detection|Herramientas como nmap --script=sniffer-detect, NetScanToolsPro detectan NICs en modo promiscuo|
 
 ---
 
@@ -352,9 +352,9 @@ MEMORY HOOK:
 
 |Technique|Description|
 |---|---|
-|Ping Method|Send ping with incorrect MAC address; if host responds, it may be sniffing (promiscuous mode processes all frames)|
-|DNS Method|Monitor for increased network traffic, reverse DNS lookups, or send ICMP request to non-existing IP address; sniffers often perform reverse DNS lookups|
-|ARP Method|Send non-broadcast ARP request to all nodes; only a sniffer in promiscuous mode will respond to non-broadcast ARP|
+|Ping Method|Enviar ping con dirección MAC incorrecta; si el host responde, puede estar haciendo sniffing (el modo promiscuo procesa todas las tramas)|
+|DNS Method|Monitorear aumento de tráfico de red, búsquedas DNS inversas, o enviar solicitud ICMP a una dirección IP inexistente; los sniffer suelen realizar búsquedas DNS inversas|
+|ARP Method|Enviar solicitud ARP de difusión a todos los nodos; solo un sniffer en modo promiscuo responderá a un ARP de difusión|
 
 ---
 
@@ -364,7 +364,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|ARP poisoning|Associates attacker's MAC with victim's IP address|
+|ARP poisoning|Asocia la MAC del atacante con la dirección IP de la víctima|
 
 ---
 
@@ -372,7 +372,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|DHCP starvation|Impersonation of DHCP clients to exhaust address pool|
+|DHCP starvation|Suplantación de clientes DHCP para agotar el pool de direcciones|
 
 ---
 
@@ -382,21 +382,21 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|Packet Sniffing|Monitoring and capturing data packets passing through a network|
-|Promiscuous Mode|NIC mode that captures all traffic on the segment regardless of destination|
-|Shared Ethernet|Hub-based network where all hosts compete for bandwidth|
-|Switched Ethernet|Switch-based network that directs traffic only to intended port|
-|ARP Spoofing|Forged ARP messages associating attacker's MAC with another host's IP|
-|MAC Flooding|Overwhelming CAM table so switch broadcasts all traffic like a hub|
-|MAC Spoofing|Impersonating another device's MAC address to gain network access|
-|VLAN Hopping|Technique to jump between VLANs using switch spoofing or double tagging|
-|Double Tagging|Adding dual 802.1Q tags to bypass VLAN segmentation|
-|STP Attack|Introducing a rogue switch with lower priority to become root bridge|
-|DHCP Starvation|Exhausting DHCP address pool with massive fake requests|
-|Rogue DHCP Server|Unauthorized DHCP server that intercepts client requests|
-|DNS Cache Poisoning|Injecting forged DNS records into resolver cache|
-|SAD DNS Attack|Exploiting side-channel flaws in DNS software to inject malicious entries|
-|SPAN Port|Switched Port Analyzer — Cisco port mirroring feature|
+|Packet Sniffing|Monitoreo y captura de paquetes de datos que pasan por una red|
+|Promiscuous Mode|Modo de NIC que captura todo el tráfico en el segmento sin importar el destino|
+|Shared Ethernet|Red basada en hub donde todos los hosts compiten por el ancho de banda|
+|Switched Ethernet|Red basada en switch que dirige el tráfico solo al puerto previsto|
+|ARP Spoofing|Mensajes ARP falsificados que asocian la MAC del atacante con la IP de otro host|
+|MAC Flooding|Sobrecarga la tabla CAM para que el switch transmita todo el tráfico como un hub|
+|MAC Spoofing|Suplantar la dirección MAC de otro dispositivo para obtener acceso a la red|
+|VLAN Hopping|Técnica para saltar entre VLANs usando switch spoofing o double tagging|
+|Double Tagging|Agregar etiquetas 802.1Q duales para eludir la segmentación VLAN|
+|STP Attack|Introducir un switch ilegal con prioridad más baja para convertirse en root bridge|
+|DHCP Starvation|Agotar el pool de direcciones DHCP con solicitudes masivas falsas|
+|Rogue DHCP Server|Servidor DHCP no autorizado que intercepta solicitudes de clientes|
+|DNS Cache Poisoning|Inyectar registros DNS falsificados en la caché del resolvedor|
+|SAD DNS Attack|Explotar fallas de canales laterales en software DNS para inyectar entradas maliciosas|
+|SPAN Port|Switched Port Analyzer — característica de port mirroring de Cisco|
 
 ---
 
@@ -404,32 +404,32 @@ MEMORY HOOK:
 
 ---
 
-**Q1:** What happens when a switch's CAM table is flooded with fake MAC addresses?
+**Q1:** ¿Qué sucede cuando la tabla CAM de un switch se llena con direcciones MAC falsas?
 
-<details><summary>Answer</summary>The switch stops learning new MAC addresses and begins broadcasting all incoming traffic to every port, effectively functioning as a hub. This is the core mechanism of a MAC flooding attack.</details>
-
----
-
-**Q2:** An attacker sends forged ARP replies to associate their MAC with the default gateway's IP. What attack is this, and what is the primary defence?
-
-<details><summary>Answer</summary>This is ARP spoofing/poisoning. The primary defence is Dynamic ARP Inspection (DAI), which validates ARP packets against the DHCP snooping binding table.</details>
+<details><summary>Answer</summary>El switch deja de aprender nuevas direcciones MAC y comienza a transmitir todo el tráfico entrante a cada puerto, funcionando efectivamente como un hub. Este es el mecanismo central de un ataque de MAC flooding.</details>
 
 ---
 
-**Q3:** Which two VLAN hopping techniques must a CEH candidate know, and how do you defend against switch spoofing?
+**Q2:** Un atacante envía respuestas ARP falsificadas para asociar su MAC con la IP de la puerta de enlace predeterminada. ¿Qué ataque es este y cuál es la principal defensa?
 
-<details><summary>Answer</summary>Switch spoofing and double tagging. Defend against switch spoofing by configuring all ports as access ports and disabling trunk negotiation (do not use dynamic auto, dynamic desirable, or trunk mode).</details>
+<details><summary>Answer</summary>Este es ARP spoofing/poisoning. La principal defensa es Dynamic ARP Inspection (DAI), que valida los paquetes ARP contra la tabla de vinculación de DHCP snooping.</details>
 
 ---
 
-**Q4:** In Wireshark, what filter displays all HTTP GET requests?
+**Q3:** ¿Cuáles son las dos técnicas de VLAN hopping que un candidato CEH debe conocer, y cómo se defiende contra switch spoofing?
+
+<details><summary>Answer</summary>Switch spoofing y double tagging. Se defiende contra switch spoofing configurando todos los puertos como puertos de acceso y deshabilitando la negociación de trunk (no usar dynamic auto, dynamic desirable o trunk mode).</details>
+
+---
+
+**Q4:** En Wireshark, ¿qué filtro muestra todas las solicitudes HTTP GET?
 
 <details><summary>Answer</summary>http.request</details>
 
 ---
 
-**Q5:** What is the key difference between passive and active sniffing?
+**Q5:** ¿Cuál es la diferencia clave entre passive sniffing y active sniffing?
 
-<details><summary>Answer</summary>Passive sniffing involves no packet injection and is undetectable (works on shared media/hubs). Active sniffing involves injecting traffic into the network (e.g., ARP poisoning, MAC flooding) and is detectable (works on switched networks).</details>
+<details><summary>Answer</summary>El passive sniffing no implica inyección de paquetes y es indetectable (funciona en medios compartidos/hubs). El active sniffing implica inyectar tráfico en la red (por ejemplo, ARP poisoning, MAC flooding) y es detectable (funciona en redes con switches).</details>
 
 ---

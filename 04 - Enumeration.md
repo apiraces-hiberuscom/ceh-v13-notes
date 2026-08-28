@@ -4,7 +4,7 @@
 |---|---|
 |Module Number|04|
 |Module Name|Enumeration|
-|Focus|Extracting usernames, groups, shares, services from target systems|
+|Focus|Extracción de nombres de usuario, grupos, shares y servicios de sistemas objetivo|
 
 ---
 
@@ -12,13 +12,13 @@
 
 |Objective #|Description|
 |---|---|
-|01|Extract usernames using email ID|
-|02|Perform default password attacks|
-|03|Brute force Active Directory|
-|04|Perform DNS zone transfer using dig|
-|05|Extract user groups from Windows|
-|06|Extract usernames using SNMP|
-|07|Extract network resources and topology using SNMP|
+|01|Extraer nombres de usuario utilizando email ID|
+|02|Realizar ataques de contraseña por defecto|
+|03|Fuerza bruta contra Active Directory|
+|04|Realizar zone transfer DNS utilizando dig|
+|05|Extraer grupos de usuario desde Windows|
+|06|Extraer nombres de usuario utilizando SNMP|
+|07|Extraer recursos de red y topología utilizando SNMP|
 
 ---
 
@@ -26,13 +26,13 @@
 
 |Technique|Detail|
 |---|---|
-|Extracting usernames using Email id|Email harvesting reveals valid accounts|
-|Default password|Try vendor defaults on services|
-|Brute force AD|Password spray / brute force Active Directory|
-|DNS zone transfer — dig|AXFR request to replicate DNS records|
+|Extracting usernames using Email id|Email harvesting revela cuentas válidas|
+|Default password|Probar contraseñas por defecto del fabricante en servicios|
+|Brute force AD|Password spray / fuerza bruta contra Active Directory|
+|DNS zone transfer — dig|Solicitud AXFR para replicar registros DNS|
 |Extract user groups from Windows|Net group /domain|
-|Extract user names using SNMP|Walk the OID tree for user lists|
-|Extract network resources and topology using SNMP|SNMP MIB queries reveal hosts and routes|
+|Extract user names using SNMP|Recorrer el OID tree para obtener listas de usuarios|
+|Extract network resources and topology using SNMP|Consultas SNMP MIB revelan hosts y rutas|
 
 MEMORY HOOK:
 **Username → Default Pass → AD Brute → DNS Zone → Groups → SNMP Users → SNMP Topology**
@@ -47,8 +47,8 @@ MEMORY HOOK:
 |TCP/UDP 134|MS|RPC Endpoint Mapper|
 |UDP 137|NetBIOS|Name Service (NBNS)|
 |TCP 139|NetBIOS|Session Service (SMB over NetBIOS)|
-|TCP/UDP 445|SMB|SMB over TCP (Direct Host) — printers|
-|UDP 161|SNMP|Agent|
+|TCP/UDP 445|SMB|SMB over TCP (Direct Host) — impresoras|
+|UDP 161|SNMP|Agente|
 |TCP/UDP 162|SNMP|Trap|
 |TCP/UDP 389|LDAP|Lightweight Directory Access Protocol|
 |TCP 636|LDAP|Secure LDAP (LDAPS)|
@@ -59,7 +59,7 @@ MEMORY HOOK:
 |TCP/UDP 3268|AD|Global Catalog Service|
 |TCP/UDP 5060, 5061|VoIP|Session Initiation Protocol (SIP)|
 |TCP 20/21|FTP|File Transfer Protocol|
-|TCP 23|Telnet|Remote terminal|
+|TCP 23|Telnet|Terminal remota|
 |UDP 69|TFTP|Trivial File Transfer Protocol|
 |TCP 179|BGP|Border Gateway Protocol|
 |UDP 123|NTP|Network Time Protocol|
@@ -73,31 +73,31 @@ MEMORY HOOK:
 |Port 137|UDP — Name Service|
 |Port 138|UDP — Datagram Service|
 |Port 139|TCP — Session Service|
-|IPv6 Support|Does NOT work on IPv6|
+|IPv6 Support|NO funciona en IPv6|
 
 ### NETBIOS CODE TABLE (EXAM FAVORITE)
 
 |Name|NetBIOS Code|Type|Information Obtained|
 |---|---|---|---|
-|Host name|<00>|UNIQUE|Hostname|
-|Domain|<00>|Group|Domain name|
-|Host name|<03>|UNIQUE|Messenger service|
-|Username|<03>|UNIQUE|Messenger service for logged-in user|
-|Host name|<20>|UNIQUE|Server service running|
-|Domain|1B|UNIQUE|Domain Master Browser name|
-|Domain|1E|Group|Browser service elections|
+|Host name|<00>|UNIQUE|Nombre del host|
+|Domain|<00>|Group|Nombre del dominio|
+|Host name|<03>|UNIQUE|Servicio de mensajería|
+|Username|<03>|UNIQUE|Servicio de mensajería para el usuario conectado|
+|Host name|<20>|UNIQUE|Servicio server ejecutándose|
+|Domain|1B|UNIQUE|Nombre del Domain Master Browser|
+|Domain|1E|Group|Elecciones del servicio de navegador|
 
 ### NETBIOS TOOLS AND COMMANDS
 
 |Tool / Command|Purpose|
 |---|---|
-|nbstat -m|Local NetBIOS table|
-|nbstat -A 10.10.10.10|Remote system NetBIOS table|
-|nbstat -c|Remote NetBIOS cache|
-|PsExec|Enumerate user accounts|
-|PsFile|View remotely opened files|
-|net view \\\\computername|Enumerate shared resources on host|
-|net view \\\\domain|Enumerate shared resources on domain|
+|nbstat -m|Tabla local NetBIOS|
+|nbstat -A 10.10.10.10|Tabla NetBIOS del sistema remoto|
+|nbstat -c|Caché NetBIOS remoto|
+|PsExec|Enumerar cuentas de usuario|
+|PsFile|Ver archivos abiertos remotamente|
+|net view \\\\computername|Enumerar recursos compartidos en el host|
+|net view \\\\domain|Enumerar recursos compartidos en el dominio|
 
 ---
 
@@ -105,16 +105,16 @@ MEMORY HOOK:
 
 |Port|Protocol|Service|
 |---|---|---|
-|UDP 161|SNMP|Agent|
+|UDP 161|SNMP|Agente|
 |UDP 162|SNMP|Trap|
 
 ### SNMP VERSIONS TABLE (EXAM FAVORITE)
 
 |Version|Security|Detail|
 |---|---|---|
-|v1|None|Plaintext community strings|
-|v2c|None|Faster than v1, still plaintext|
-|v3|Auth + Encryption|Secure — recommended|
+|v1|Ninguna|Community strings en texto plano|
+|v2c|Ninguna|Más rápido que v1, aún en texto plano|
+|v3|Autenticación + Cifrado|Seguro — recomendado|
 
 EXAM TRAP:
 **v1 = none, v2c = none (faster), v3 = encrypted**
@@ -123,24 +123,24 @@ EXAM TRAP:
 
 |Tool|Detail|
 |---|---|
-|SNMPCheck|Query target via SNMP|
-|Engineers Toolset|Multi-function SNMP scanner|
-|SNMP Scanner|Discover SNMP-enabled hosts|
-|OpUtils 5|IP and SNMP utilities|
-|SNScan|SNMP network scanner|
-|snmpwalk -v1 -c public|View all OIDs on target|
-|snmp-check|Query and dump SNMP data|
-|SoftPerfect Network Scanner|Network + SNMP scanner|
+|SNMPCheck|Consultar objetivo via SNMP|
+|Engineers Toolset|Escáner SNMP multifunción|
+|SNMP Scanner|Descubrir hosts habilitados para SNMP|
+|OpUtils 5|Utilidades IP y SNMP|
+|SNScan|Escáner de red SNMP|
+|snmpwalk -v1 -c public|Ver todos los OIDs en el objetivo|
+|snmp-check|Consultar y volcar datos SNMP|
+|SoftPerfect Network Scanner|Escáner de red + SNMP|
 
 ### MANAGEMENT INFORMATION BASE (MIB) TABLE (EXAM FAVORITE)
 
 |MIB Module|Color|Purpose|
 |---|---|---|
-|MIB-II|🟢|TCP/IP networking management|
-|HOSTMIB|🟡|Hardware and system stats|
-|LNMIB2|🔵|Windows LAN Manager services|
-|WINS.MIB|🟣|NetBIOS name database|
-|DHCP.MIB|🟠|DHCP service monitoring|
+|MIB-II|🟢|Gestión de red TCP/IP|
+|HOSTMIB|🟡|Estadísticas de hardware y sistema|
+|LNMIB2|🔵|Servicios Windows LAN Manager|
+|WINS.MIB|🟣|Base de datos de nombres NetBIOS|
+|DHCP.MIB|🟠|Monitoreo del servicio DHCP|
 
 MEMORY HOOK:
 **MIB-II = TCP/IP, HOSTMIB = hardware, LNMIB2 = LAN Manager, WINS = NetBIOS, DHCP = DHCP only**
@@ -158,10 +158,10 @@ MEMORY HOOK:
 
 |Tool|Detail|
 |---|---|
-|ldapsearch|Command-line LDAP query tool|
-|AD Explorer|Microsoft Active Directory explorer|
-|Softerra LDAP Administrator|GUI LDAP browser and editor|
-|nmap ldap-brute NSE script|Brute-force LDAP credentials via Nmap|
+|ldapsearch|Herramienta de consulta LDAP desde línea de comandos|
+|AD Explorer|Explorador de Microsoft Active Directory|
+|Softerra LDAP Administrator|Navegador y editor LDAP con interfaz gráfica|
+|nmap ldap-brute NSE script|Fuerza bruta contra credenciales LDAP mediante Nmap|
 
 ---
 
@@ -175,9 +175,9 @@ MEMORY HOOK:
 
 |Tool|Detail|
 |---|---|
-|ntptrace|Trace NTP path to server|
-|ntpdc|Query NTP daemon|
-|ntpq|Query NTP server|
+|ntptrace|Rastrear ruta NTP hasta el servidor|
+|ntpdc|Consultar daemon NTP|
+|ntpq|Consultar servidor NTP|
 
 ### NFS
 
@@ -187,10 +187,10 @@ MEMORY HOOK:
 
 |Tool|Detail|
 |---|---|
-|rpcinfo -p|List open RPC ports|
-|showmount|Show exported NFS shares|
-|rpc-scan|Scan RPC services|
-|SuperEnum|Enumerate NFS shares|
+|rpcinfo -p|Listar puertos RPC abiertos|
+|showmount|Mostrar shares NFS exportados|
+|rpc-scan|Escanear servicios RPC|
+|SuperEnum|Enumerar shares NFS|
 
 ---
 
@@ -204,14 +204,14 @@ MEMORY HOOK:
 
 |Tool / Command|Purpose|
 |---|---|
-|Telnet SMTP VRFY|Check if address exists for user|
-|Telnet SMTP EXPN|Expand mailing list into individual recipients|
-|Telnet SMTP RCPT TO|Specify recipient of message|
-|Telnet <email server>|Manual SMTP interaction|
-|Nmap|Service and user enumeration|
-|Metasploit|SMTP auxiliary modules|
-|NetScanTools Pro|GUI network + SMTP scanner|
-|smtp-user-enum|Brute-force SMTP user enumeration|
+|Telnet SMTP VRFY|Verificar si la dirección existe para el usuario|
+|Telnet SMTP EXPN|Expandir lista de correo en destinatarios individuales|
+|Telnet SMTP RCPT TO|Especificar destinatario del mensaje|
+|Telnet <email server>|Interacción SMTP manual|
+|Nmap|Enumeración de servicios y usuarios|
+|Metasploit|Módulos auxiliares SMTP|
+|NetScanTools Pro|Escáner de red + SMTP con interfaz gráfica|
+|smtp-user-enum|Fuerza bruta para enumeración de usuarios SMTP|
 
 ### DNS ENUMERATION USING ZONE TRANSFER
 
@@ -221,22 +221,22 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|dig ns|Retrieve all DNS name servers|
-|nslookup|Windows hosts, name servers, mail records|
-|DNSRecon -t axfr -d -|Perform DNS zone transfer|
+|dig ns|Obtener todos los name servers DNS|
+|nslookup|Hosts Windows, name servers, registros de correo|
+|DNSRecon -t axfr -d -|Realizar zone transfer DNS|
 
 ### DNS CACHE SNOOPING
 
 |Method|Detail|
 |---|---|
-|Non-recursive|Responds with root hints — dig +norecursive|
-|Recursive|TTL is examined to determine cached entries|
+|Non-recursive|Responde con root hints — dig +norecursive|
+|Recursive|Se examina el TTL para determinar entradas en caché|
 
 ### DNSSEC ZONE WALKING
 
 |Item|Detail|
 |---|---|
-|Concept|Enumerating DNSSEC-signed zones|
+|Concept|Enumerar zonas firmadas con DNSSEC|
 |Tools|LDNS, DNSRecon, Knock, Raccoon, Turbolist3r, OWASP Amass|
 |Amass Command|amass enum -d <domain>|
 
@@ -246,8 +246,8 @@ MEMORY HOOK:
 
 |Tool / Command|Purpose|
 |---|---|
-|nmap -sU -p 500|Scan UDP 500 for IKE|
-|ike-scan -M|Discover and fingerprint IKE endpoints|
+|nmap -sU -p 500|Escanear UDP 500 para IKE|
+|ike-scan -M|Descubrir y hacer fingerprint de endpoints IKE|
 
 ---
 
@@ -255,7 +255,7 @@ MEMORY HOOK:
 
 |Tool|Detail|
 |---|---|
-|Svmap|SIP VoIP scanner and enumerator|
+|Svmap|Escáner y enumerador SIP VoIP|
 
 ---
 
@@ -263,8 +263,8 @@ MEMORY HOOK:
 
 |Tool / Command|Purpose|
 |---|---|
-|nmap -sR|RPC service enumeration|
-|nmap -T4 -A|Aggressive scan with OS/service detection|
+|nmap -sR|Enumeración de servicios RPC|
+|nmap -T4 -A|Escan agresivo con detección de SO/servicios|
 
 ---
 
@@ -272,9 +272,9 @@ MEMORY HOOK:
 
 |Tool / Command|Purpose|
 |---|---|
-|rusers -a, -l, -u, -i|Remote user enumeration with flags|
-|rwho -a|Show who is logged in across network|
-|finger -s|Display user information|
+|rusers -a, -l, -u, -i|Enumeración remota de usuarios con flags|
+|rwho -a|Mostrar quién está conectado en la red|
+|finger -s|Mostrar información de usuario|
 
 ---
 
@@ -282,9 +282,9 @@ MEMORY HOOK:
 
 |Tool / Command|Purpose|
 |---|---|
-|nmap -p 445 -A|Full scan on SMB port|
-|nmap -p 445 --script smb-protocols|Enumerate SMB protocol versions|
-|nmap -p 139 --script smb-protocols|Enumerate SMB over NetBIOS|
+|nmap -p 445 -A|Escan completo en el puerto SMB|
+|nmap -p 445 --script smb-protocols|Enumerar versiones del protocolo SMB|
+|nmap -p 139 --script smb-protocols|Enumerar SMB over NetBIOS|
 |nmap -Pn -p445 --script smb2-security-mode|Comprobar funcion firma mensajes|
 ---
 
@@ -294,10 +294,10 @@ MEMORY HOOK:
 
 |Command|Purpose|
 |---|---|
-|EHLO|Connection initiation (servers that support EHLO; if not supported, falls back to HELO)|
-|RCPT TO|Indicate recipient|
-|VRFY|Verify existence of mailbox|
-|EXPN|Request recipients of mailing list|
+|EHLO|Inicio de conexión (servidores que soportan EHLO; si no se soporta, se usa HELO como alternativa)|
+|RCPT TO|Indicar destinatario|
+|VRFY|Verificar existencia de buzón|
+|EXPN|Solicitar destinatarios de la lista de correo|
 
 ---
 
@@ -317,25 +317,25 @@ MEMORY HOOK:
 
 |Term|Memorize|
 |---|---|
-|Enumeration|Process of extracting usernames, groups, shares, and services|
-|NetBIOS Ports|137 UDP, 138 UDP, 139 TCP — does NOT work on IPv6|
-|SNMP v1|No security, plaintext community strings|
-|SNMP v2c|Faster than v1, still plaintext|
-|SNMP v3|Auth + encryption — recommended|
-|LDAP Port|TCP 389 — LDAPS is TCP 636|
+|Enumeration|Proceso de extraer nombres de usuario, grupos, shares y servicios|
+|NetBIOS Ports|137 UDP, 138 UDP, 139 TCP — NO funciona en IPv6|
+|SNMP v1|Sin seguridad, community strings en texto plano|
+|SNMP v2c|Más rápido que v1, aún en texto plano|
+|SNMP v3|Autenticación + cifrado — recomendado|
+|LDAP Port|TCP 389 — LDAPS es TCP 636|
 |NFS Port|TCP 2049|
 |NTP Port|UDP 123|
 |SMTP Port|TCP 25|
 |DNS Port|UDP/TCP 53 — zone transfer = AXFR|
 |IPSec Port|UDP 500 — IKE/ISAKMP|
 |SIP Ports|TCP/UDP 5060, 5061|
-|MIB-II|Manages TCP/IP networking|
-|HOSTMIB|Monitors hardware and system resources|
-|LNMIB2|Windows LAN Manager services|
-|WINS.MIB|NetBIOS name database|
-|DHCP.MIB|DHCP service monitoring|
-|NetBIOS Code <00>|Hostname (UNIQUE) or Domain (Group)|
-|NetBIOS Code <20>|Server service running|
+|MIB-II|Gestiona la red TCP/IP|
+|HOSTMIB|Monitorea hardware y recursos del sistema|
+|LNMIB2|Servicios Windows LAN Manager|
+|WINS.MIB|Base de datos de nombres NetBIOS|
+|DHCP.MIB|Monitoreo del servicio DHCP|
+|NetBIOS Code <00>|Nombre de host (UNIQUE) o Dominio (Group)|
+|NetBIOS Code <20>|Servicio server ejecutándose|
 |NetBIOS Code 1B|Domain Master Browser|
 
 ---
@@ -344,8 +344,8 @@ MEMORY HOOK:
 
 |Q#|Question|Answer|
 |---|---|---|
-|1|Which SNMP version provides encryption and authentication?|SNMPv3|
-|2|What port does LDAP use for secure connections?|TCP 636 (LDAPS)|
-|3|Which NetBIOS code identifies a Domain Master Browser?|1B|
-|4|What command performs a DNS zone transfer with dig?|dig ns (then dig @server domain AXFR)|
-|5|Which tool is used to scan for IKE endpoints in IPSec enumeration?|ike-scan -M|
+|1|¿Qué versión de SNMP proporciona cifrado y autenticación?|SNMPv3|
+|2|¿Qué puerto utiliza LDAP para conexiones seguras?|TCP 636 (LDAPS)|
+|3|¿Qué código NetBIOS identifica a un Domain Master Browser?|1B|
+|4|¿Qué comando realiza un zone transfer DNS con dig?|dig ns (luego dig @server domain AXFR)|
+|5|¿Qué herramienta se usa para escanear endpoints IKE en la enumeración IPSec?|ike-scan -M|

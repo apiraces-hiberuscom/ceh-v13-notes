@@ -12,15 +12,15 @@
 
 |Objective #|Description|
 |---|---|
-|01|Understand TCP communication flags|
-|02|Explain scanning techniques for host discovery|
-|03|Identify port and service discovery methods|
-|04|Describe port scan types and scan responses|
-|05|Use Nmap for scanning|
-|06|Use Hping3 for scanning|
-|07|Perform service version discovery|
-|08|Perform OS discovery and banner grabbing|
-|09|Explain techniques for scanning beyond firewalls|
+|01|Comprender las flags de comunicación TCP|
+|02|Explicar técnicas de escaneo para descubrimiento de hosts|
+|03|Identificar métodos de descubrimiento de puertos y servicios|
+|04|Describir tipos de escaneo de puertos y respuestas de escaneo|
+|05|Usar Nmap para escaneo|
+|06|Usar Hping3 para escaneo|
+|07|Realizar descubrimiento de versiones de servicios|
+|08|Realizar descubrimiento de SO y banner grabbing|
+|09|Explicar técnicas para escaneo más allá de firewalls|
 
 ---
 
@@ -28,12 +28,12 @@
 
 |Flag|Meaning|
 |---|---|
-|SYN|Starts TCP connection, initial SYN flag|
-|ACK|Acknowledges SYN flag, set on all segments after initial SYN|
-|FIN|Closes communications, gracefully|
-|RST|Forces termination of communications|
-|PSH|Forces delivery of data|
-|URG|Marks data as priority, sent out of band|
+|SYN|Inicia conexión TCP, flag SYN inicial|
+|ACK|Confirma recepción del flag SYN, se establece en todos los segmentos después del SYN inicial|
+|FIN|Cierra comunicaciones de forma elegante|
+|RST|Fuerza la terminación de comunicaciones|
+|PSH|Fuerza la entrega de datos|
+|URG|Marca datos como prioritarios, enviado fuera de banda|
 
 Tools: Metasploit, Nmap, Hping3, Colasoft Packet Builder
 
@@ -62,14 +62,14 @@ Tools: Metasploit, Nmap, Hping3, Colasoft Packet Builder
 
 |Technique|Command|Notes|
 |---|---|---|
-|ARP Ping Scan|`nmap -sn -PR 192.168.1.0/24`|Local only; cannot use hping3|
-|UDP Ping Scan|`nmap -sn -PU`|Sends UDP probes|
-|ICMP Echo Ping Scan|`nmap -sn -PI`|`-L` number of pings, `-T` ping timeout|
-|ICMP Timestamp Ping Scan|`nmap -sn -PP`|Gets current time from machine|
-|ICMP Address Mask Ping Scan|`nmap -sn -PM`|Gets subnet mask|
-|TCP SYN Ping Scan|`nmap -sn -PS`|Detects online machine without creating connection|
-|TCP ACK Ping Scan|`nmap -sn -PA`|Uses default port 80; increases chances of bypassing firewall|
-|IP Protocol Ping Scan|`nmap -sn -PO`|Sends different probe packets; any response = host online|
+|ARP Ping Scan|`nmap -sn -PR 192.168.1.0/24`|Solo local; no se puede usar hping3|
+|UDP Ping Scan|`nmap -sn -PU`|Envía probes UDP|
+|ICMP Echo Ping Scan|`nmap -sn -PI`|`-L` número de pings, `-T` tiempo de espera del ping|
+|ICMP Timestamp Ping Scan|`nmap -sn -PP`|Obtiene la hora actual de la máquina|
+|ICMP Address Mask Ping Scan|`nmap -sn -PM`|Obtiene la máscara de subred|
+|TCP SYN Ping Scan|`nmap -sn -PS`|Detecta máquina en línea sin crear conexión|
+|TCP ACK Ping Scan|`nmap -sn -PA`|Usa puerto predeterminado 80; aumenta las posibilidades de pasar el firewall|
+|IP Protocol Ping Scan|`nmap -sn -PO`|Envía diferentes paquetes de prueba; cualquier respuesta = host en línea|
 
 ---
 
@@ -130,20 +130,20 @@ Tools: Metasploit, Nmap, Hping3, Colasoft Packet Builder
 
 |Scan Type|Description|Nmap Switch|
 |---|---|---|
-|TCP Connect / Full Open|If port open, handshake succeeds; if closed, get RST|`nmap -sT -v`|
-|Stealth (Half-Open)|Resets TCP connection abruptly, does not complete handshake; more stealthy than -sT|`nmap -sS`|
-|Inverse TCP|Sends non-standard TCP flag combinations to avoid IDS; not effective against Windows, used for Unix|Various|
-|Xmas|FIN, URG and PUSH flags set to send TCP frame|`nmap -sX`|
-|FIN Scan|Sends FIN flag only|`nmap -sF`|
-|NULL Scan|No flags set|`nmap -sN`|
-|TCP Maimon|Sends FIN and ACK flags; if port closed, responds with RST|`nmap -sM`|
-|ACK Flag Probe|Sends ACK flag and looks at TTL; if RST < 64 bytes, port is open|`nmap -ttl time target`|
-|IDLE/IPID|Sends spoofed source address to target using third-party zombie host|`nmap -sI zombieIP targetIP`|
-|UDP|Sends datagram to port; if response, closed; no response, probably open|`nmap -sU`|
-|SSDP / UpnP|Scans for UPnP-enabled devices|`nmap -sS -A -f`|
+|TCP Connect / Full Open|Si el puerto está abierto, el handshake tiene éxito; si está cerrado, se obtiene RST|`nmap -sT -v`|
+|Stealth (Half-Open)|Reinicia la conexión TCP abruptamente, no completa el handshake; más sigiloso que -sT|`nmap -sS`|
+|Inverse TCP|Envía combinaciones no estándar de flags TCP para evitar IDS; no es efectivo contra Windows, se usa para Unix|Various|
+|Xmas|Flags FIN, URG y PUSH establecidas para enviar trama TCP|`nmap -sX`|
+|FIN Scan|Envía solo el flag FIN|`nmap -sF`|
+|NULL Scan|No se establecen flags|`nmap -sN`|
+|TCP Maimon|Envía flags FIN y ACK; si el puerto está cerrado, responde con RST|`nmap -sM`|
+|ACK Flag Probe|Envía flag ACK y examina el TTL; si RST < 64 bytes, el puerto está abierto|`nmap -ttl time target`|
+|IDLE/IPID|Envía dirección de origen falsificada al objetivo usando un host zombie de terceros|`nmap -sI zombieIP targetIP`|
+|UDP|Envía datagrama al puerto; si hay respuesta, está cerrado; sin respuesta, probablemente está abierto|`nmap -sU`|
+|SSDP / UpnP|Escanea dispositivos habilitados para UPnP|`nmap -sS -A -f`|
 
 EXAM TRAP:  
-IDLE/IPID scan uses a **zombie host** to hide the scanner's identity.
+El escaneo IDLE/IPID usa un **host zombie** para ocultar la identidad del escáner.
 
 ---
 
@@ -251,7 +251,7 @@ IDLE/IPID scan uses a **zombie host** to hide the scanner's identity.
 |Item|Memorize|
 |---|---|
 |Command|`nmap -sV`|
-|Purpose|Identifies service versions running on open ports|
+|Purpose|Identifica versiones de servicios ejecutándose en puertos abiertos|
 
 ---
 
@@ -273,9 +273,9 @@ IDLE/IPID scan uses a **zombie host** to hide the scanner's identity.
 
 |Command|Description|
 |---|---|
-|`nmap -O`|OS discovery|
+|`nmap -O`|Descubrimiento de SO|
 |`nmap --script` or `-sC`|Nmap Scripting Engine|
-|`nmap -6 -O <target>`|IPv6 OS discovery|
+|`nmap -6 -O <target>`|Descubrimiento de SO IPv6|
 
 Spoofing tools: Hping, Scapy, Komodia, Ettercap, Cain
 G-zapper: removes Google tracking cookie
@@ -306,10 +306,10 @@ G-zapper: removes Google tracking cookie
 
 |Scan|Command|Description|
 |---|---|---|
-|Maimon scan|`nmap -sM`|Sends FIN/ACK probes|
-|FIN scan|`nmap -sF`|If port open, packet discarded; if closed, RST sent|
-|XMAS scan|`nmap -sX`|Sends FIN, PSH and URG flags|
-|ACK scan|`nmap -sA`|Determines if port is filtered or unfiltered|
+|Maimon scan|`nmap -sM`|Envía probes FIN/ACK|
+|FIN scan|`nmap -sF`|Si el puerto está abierto, paquete descartado; si está cerrado, se envía RST|
+|XMAS scan|`nmap -sX`|Envía flags FIN, PSH y URG|
+|ACK scan|`nmap -sA`|Determina si el puerto está filtrado o no filtrado|
 
 ---
 
@@ -318,7 +318,7 @@ G-zapper: removes Google tracking cookie
 |Item|Memorize|
 |---|---|
 |Command|`nmap -sn -PA`|
-|Purpose|Detect active devices behind firewall|
+|Purpose|Detectar dispositivos activos detrás de un firewall|
 
 ---
 
@@ -327,7 +327,7 @@ G-zapper: removes Google tracking cookie
 |Item|Memorize|
 |---|---|
 |Command|`nmap -D`|
-|Purpose|Spoofed source IP address to hide scanner|
+|Purpose|Dirección IP de origen falsificada para ocultar el escáner|
 
 ---
 
@@ -336,7 +336,7 @@ G-zapper: removes Google tracking cookie
 |Item|Memorize|
 |---|---|
 |Command|`hping3 -c 1`|
-|Purpose|Sends single ICMP echo request; will not work on Windows (drops ICMP echo packets not directed to device's IP)|
+|Purpose|Envía una sola solicitud ICMP echo; no funcionará en Windows (descarta paquetes ICMP echo no dirigidos a la IP del dispositivo)|
 
 ---
 
@@ -355,7 +355,7 @@ G-zapper: removes Google tracking cookie
 |Item|Memorize|
 |---|---|
 |Command|`nmap -sI`|
-|Purpose|Uses zombie host IPID to check open/closed ports|
+|Purpose|Usa el IPID del host zombie para verificar puertos abiertos/cerrados|
 
 ---
 
@@ -363,7 +363,7 @@ G-zapper: removes Google tracking cookie
 
 |Command|Description|
 |---|---|
-|`nmap -sI`|Idle scan — IPID returned by zombie host|
+|`nmap -sI`|Idle scan — IPID devuelto por el host zombie|
 |`nmap -sF`|FIN scan|
 |`nmap -g`|Spoof port number (alternate: `--source-port`); only for SYN/UDP scans|
 |`nmap -A`|Aggressive scan|
@@ -376,21 +376,21 @@ G-zapper: removes Google tracking cookie
 
 |Term|Definition|
 |---|---|
-|SYN|Flag that initiates TCP connection|
-|ACK|Flag that acknowledges receipt of data|
-|RST|Flag that forces connection termination|
-|FIN|Flag that gracefully closes a connection|
-|Stealth Scan|Half-open scan (-sS) that does not complete TCP handshake|
-|Xmas Scan|Sends FIN + URG + PSH flags (-sX)|
-|IDLE/IPID Scan|Uses a zombie host to spoof source address (-sI)|
-|UDP Scan|Sends datagrams; no response likely means open (-sU)|
-|ARP Ping Scan|Local-only host discovery using ARP requests (-PR)|
-|TCP SYN Ping|Detects online host without completing connection (-PS)|
-|ICMP Echo Ping|Traditional ping using ICMP echo request (-PI)|
-|-T0|Paranoid timing template, slowest|
-|-T5|Insane timing template, fastest|
-|Banner Grabbing|Technique to identify OS and services via TTL and responses|
-|Packet Fragmentation|Breaks packets into smaller fragments to evade firewalls (-f)|
+|SYN|Flag que inicia la conexión TCP|
+|ACK|Flag que confirma la recepción de datos|
+|RST|Flag que fuerza la terminación de la conexión|
+|FIN|Flag que cierra elegantemente una conexión|
+|Stealth Scan|Escaneo half-open (-sS) que no completa el handshake TCP|
+|Xmas Scan|Envía flags FIN + URG + PSH (-sX)|
+|IDLE/IPID Scan|Usa un host zombie para falsificar la dirección de origen (-sI)|
+|UDP Scan|Envía datagramas; sin respuesta probablemente significa abierto (-sU)|
+|ARP Ping Scan|Descubrimiento de host solo local usando solicitudes ARP (-PR)|
+|TCP SYN Ping|Detecta host en línea sin completar la conexión (-PS)|
+|ICMP Echo Ping|Ping tradicional usando solicitud ICMP echo (-PI)|
+|-T0|Timing template paranoico, el más lento|
+|-T5|Timing template insano, el más rápido|
+|Banner Grabbing|Técnica para identificar SO y servicios a través de TTL y respuestas|
+|Packet Fragmentation|Divide paquetes en fragmentos más pequeños para evadir firewalls (-f)|
 
 ---
 

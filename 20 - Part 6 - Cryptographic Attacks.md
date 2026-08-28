@@ -1,43 +1,43 @@
-# OBJECTIVE 06 — CRYPTOGRAPHY ATTACKS AND CRYPTANALYSIS
+# OBJETIVO 06 — ATAQUES A CRIPTOGRAFÍA Y CRIPTANÁLISIS
 
 ---
 
-## WHAT IS CRYPTANALYSIS (EXAM DEFINITION)
+## QUÉ ES CRIPTANÁLISIS (DEFINICIÓN DE EXAMEN)
 
-|Term|Definition|
+|Término|Definición|
 |---|---|
-|Cryptanalysis|The process of analyzing cryptographic systems to discover weaknesses and recover plaintext or keys without authorization|
+|Cryptanalysis|El proceso de analizar sistemas criptográficos para descubrir debilidades y recuperar texto plano o claves sin autorización|
 
 MEMORY HOOK:  
 **Cryptoanalysis = breaking crypto**
 
 ---
 
-## GOALS OF CRYPTANALYSIS
+## OBJETIVOS DEL CRIPTANÁLISIS
 
-|Goal|
+|Objetivo|
 |---|
-|Recover plaintext|
-|Discover secret keys|
-|Bypass cryptographic protections|
+|Recuperar texto plano|
+|Descubrir claves secretas|
+|Omitir protecciones criptográficas|
 
 ---
 
-# CLASSIFICATION OF CRYPTOGRAPHY ATTACKS (EXAM FAVORITE)
+# CLASIFICACIÓN DE ATAQUES A CRIPTOGRAFÍA (FAVORITO DEL EXAMEN)
 
 ---
 
-## BASED ON ATTACKER KNOWLEDGE
+## SEGÚN EL CONOCIMIENTO DEL ATACANTE
 
 ---
 
 ### CIPHERTEXT-ONLY ATTACK (COA)
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Attacker has|Only ciphertext|
-|Goal|Recover plaintext|
-|Difficulty|Hardest|
+|Attacker has|Solo ciphertext|
+|Goal|Recuperar texto plano|
+|Difficulty|El más difícil|
 
 MEMORY HOOK:  
 **Ciphertext only = blind attack**
@@ -46,11 +46,11 @@ MEMORY HOOK:
 
 ### KNOWN-PLAINTEXT ATTACK (KPA)
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Attacker has|Plaintext + ciphertext pairs|
-|Goal|Recover key|
-|Example|Known file headers|
+|Attacker has|Pares de texto plano + ciphertext|
+|Goal|Recuperar clave|
+|Example|Encabezados de archivos conocidos|
 
 MEMORY HOOK:  
 **Known plaintext leaks structure**
@@ -59,9 +59,9 @@ MEMORY HOOK:
 
 ### CHOSEN-PLAINTEXT ATTACK (CPA)
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Attacker can|Choose plaintext|
+|Attacker can|Elegir texto plano|
 |Observes|Ciphertext|
 |Example|Encryption oracle|
 
@@ -72,10 +72,10 @@ MEMORY HOOK:
 
 ### CHOSEN-CIPHERTEXT ATTACK (CCA)
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Attacker can|Choose ciphertext|
-|Observes|Decrypted output|
+|Attacker can|Elegir ciphertext|
+|Observes|Salida descifrada|
 |Example|Padding oracle|
 
 MEMORY HOOK:  
@@ -85,11 +85,11 @@ MEMORY HOOK:
 
 # BRUTE-FORCE ATTACK
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Method|Try all possible keys|
-|Effective against|Small key sizes|
-|Prevented by|Strong keys|
+|Method|Probar todas las claves posibles|
+|Effective against|Tamaños de clave pequeños|
+|Prevented by|Claves fuertes|
 
 MEMORY HOOK:  
 **Short key = brute-force bait**
@@ -98,20 +98,20 @@ MEMORY HOOK:
 
 # DICTIONARY ATTACK
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Method|Guess keys/passwords|
-|Uses|Wordlists|
-|Target|Weak passwords|
+|Method|Adivinar claves/contraseñas|
+|Uses|Listas de palabras|
+|Target|Contraseñas débiles|
 
 ---
 
 # RAINBOW TABLE ATTACK
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Target|Password hashes|
-|Method|Precomputed hash tables|
+|Target|Hashes de contraseñas|
+|Method|Tablas de hashes precalculadas|
 |Defense|Salting|
 
 MEMORY HOOK:  
@@ -119,26 +119,26 @@ MEMORY HOOK:
 
 ---
 
-# BIRTHDAY ATTACK (VERY HIGH YIELD)
+# BIRTHDAY ATTACK (MUY ALTO RENDIMIENTO)
 
 ---
 
-## WHAT IS A BIRTHDAY ATTACK
+## QUÉ ES UN BIRTHDAY ATTACK
 
-|Concept|Explanation|
+|Concepto|Explicación|
 |---|---|
-|Based on|Birthday paradox|
-|Targets|Hash functions|
-|Goal|Find collisions|
+|Based on|Paradoja del cumpleaños|
+|Targets|Funciones de hash|
+|Goal|Encontrar colisiones|
 
-LOGIC:
+LÓGICA:
 
-- Easier to find collisions than reverse hashes
+- Es más fácil encontrar colisiones que invertir hashes
     
 
-EXAM RULE:
+REGLA DEL EXAMEN:
 
-- For n-bit hash, collision resistance ≈ 2^(n/2)
+- Para hash de n bits, resistencia a colisiones ≈ 2^(n/2)
     
 
 MEMORY HOOK:  
@@ -148,76 +148,76 @@ MEMORY HOOK:
 
 # COLLISION ATTACK
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Goal|Two inputs → same hash|
+|Goal|Dos entradas → mismo hash|
 |Affects|MD5, SHA-1|
-|Impact|Digital signature forgery|
+|Impact|Falsificación de firmas digitales|
 
 ---
 
-# MAN-IN-THE-MIDDLE (MITM) IN CRYPTO
+# MAN-IN-THE-MIDDLE (MITM) EN CRIPTOGRAFÍA
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Target|Key exchange|
+|Target|Intercambio de claves|
 |Affects|Diffie-Hellman|
-|Defense|Authentication|
+|Defense|Autenticación|
 
 MEMORY HOOK:  
 **DH without auth = MITM risk**
 
 ---
 
-# SIDE-CHANNEL ATTACKS (IMPORTANT)
+# SIDE-CHANNEL ATTACKS (IMPORTANTE)
 
 ---
 
-## WHAT IS A SIDE-CHANNEL ATTACK
+## QUÉ ES UN SIDE-CHANNEL ATTACK
 
-|Explanation|
+|Explicación|
 |---|
-|Exploits physical information leakage|
+|Explota la fuga de información física|
 
 ---
 
-## TYPES OF SIDE-CHANNEL ATTACKS
+## TIPOS DE SIDE-CHANNEL ATTACKS
 
-|Type|Leakage|
+|Tipo|Fuga|
 |---|---|
-|Timing attack|Execution time|
-|Power analysis|Power consumption|
-|EM analysis|Electromagnetic signals|
-|Acoustic|Sound|
+|Timing attack|Tiempo de ejecución|
+|Power analysis|Consumo de energía|
+|EM analysis|Señales electromagnéticas|
+|Acoustic|Sonido|
 
 MEMORY HOOK:  
 **Not math, physics**
 
 ---
 
-# PADDING ORACLE ATTACK (VERY IMPORTANT)
+# PADDING ORACLE ATTACK (MUY IMPORTANTE)
 
 ---
 
-## WHAT IT TARGETS
+## QUÉ OBJETIVO
 
 |Target|
 |---|
-|Block cipher modes|
-|CBC mode|
+|Modos de cifrado por bloques|
+|Modo CBC|
 
 ---
 
-## HOW IT WORKS (HIGH-LEVEL)
+## CÓMO FUNCIONA (NIVEL ALTO)
 
-|Step|
+|Paso|
 |---|
-|Observe padding error messages|
-|Modify ciphertext|
-|Infer plaintext|
+|Observar mensajes de error de relleno|
+|Modificar ciphertext|
+|Inferir texto plano|
 
 EXAM TRAP:  
-Error messages leak information.
+Los mensajes de error filtran información.
 
 MEMORY HOOK:  
 **Errors leak secrets**
@@ -226,11 +226,11 @@ MEMORY HOOK:
 
 # DOWNGRADE ATTACK
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Goal|Force weak crypto|
-|Example|SSL → TLS downgrade|
-|Defense|Disable legacy protocols|
+|Goal|Forzar criptografía débil|
+|Example|Degradación de SSL → TLS|
+|Defense|Deshabilitar protocolos heredados|
 
 MEMORY HOOK:  
 **Backward compatibility = weakness**
@@ -239,184 +239,184 @@ MEMORY HOOK:
 
 # REPLAY ATTACK
 
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Method|Reuse captured data|
-|Target|Authentication protocols|
-|Defense|Nonces, timestamps|
+|Method|Reutilizar datos capturados|
+|Target|Protocolos de autenticación|
+|Defense|Nonces, marcas de tiempo|
 
 MEMORY HOOK:  
 **Replay stops with freshness**
 
 ---
 
-# CRYPTOGRAPHY MISCONFIGURATION ATTACKS
+# ATAQUES POR CONFIGURACIÓN INCORRECTA DE CRIPTOGRAFÍA
 
-|Misconfiguration|
+|Configuración incorrecta|
 |---|
-|Weak algorithms|
-|Short keys|
-|Poor randomness|
-|Reused IVs|
-|ECB mode|
+|Algoritmos débiles|
+|Claves cortas|
+|Aleatoriedad deficiente|
+|IVs reutilizados|
+|Modo ECB|
 
 MEMORY HOOK:  
 **Crypto fails in implementation**
 
 ---
 
-# COMMON CRYPTOGRAPHY TOOLS (CEH RECOGNITION)
+# HERRAMIENTAS COMUNES DE CRIPTOGRAFÍA (RECONOCIMIENTO CEH)
 
 ---
 
-## CRYPTANALYSIS TOOLS
+## HERRAMIENTAS DE CRIPTANÁLISIS
 
-|Tool|Purpose|
+|Herramienta|Propósito|
 |---|---|
-|Hashcat|Password cracking|
-|John the Ripper|Password cracking|
-|Cain & Abel|Credential recovery|
-|OpenSSL|Crypto operations|
-|CrypTool|Learning cryptography|
+|Hashcat|Ruptura de contraseñas|
+|John the Ripper|Ruptura de contraseñas|
+|Cain & Abel|Recuperación de credenciales|
+|OpenSSL|Operaciones criptográficas|
+|CrypTool|Aprendizaje de criptografía|
 
 ---
 
-## OPENSSL COMMANDS (RECOGNITION ONLY)
+## COMANDOS OPENSSL (SOLO RECONOCIMIENTO)
 
-|Command|Purpose|
+|Comando|Propósito|
 |---|---|
-|openssl enc|Encrypt/decrypt|
-|openssl dgst|Hash generation|
-|openssl genrsa|Generate RSA key|
-|openssl req|Create CSR|
+|openssl enc|Cifrar/descifrar|
+|openssl dgst|Generación de hashes|
+|openssl genrsa|Generar clave RSA|
+|openssl req|Crear CSR|
 
 MEMORY HOOK:  
 **OpenSSL = crypto Swiss army knife**
 
 ---
 
-# OBJECTIVE 06 — EXAM MEMORY BLOCK
+# OBJETIVO 06 — BLOQUE DE MEMORIA DEL EXAMEN
 
-**Cryptanalysis exploits weaknesses in algorithms, keys, and implementations.  
-Birthday attacks target hash collisions.  
-MITM attacks exploit unauthenticated key exchange.  
-Side-channel attacks exploit physical leakage.  
-Padding oracle attacks exploit error messages.  
-Salting, authentication, and strong algorithms mitigate attacks.**
+**El criptanálisis explota debilidades en algoritmos, claves e implementaciones.  
+Los ataques de cumpleaños objetivan colisiones de hashes.  
+Los ataques MITM explotan el intercambio de claves sin autenticar.  
+Los side-channel attacks explotan fugas físicas.  
+Los padding oracle attacks explotan mensajes de error.  
+El salting, la autenticación y algoritmos fuertes mitigan ataques.**
 
 ---
 
-# MODULE 20 — FINAL CHECKLIST (VERY IMPORTANT)
+# MÓDULO 20 — LISTA DE VERIFICACIÓN FINAL (MUY IMPORTANTE)
 
-You must remember:
+Debes recordar:
 
-- Hash collision = birthday attack
+- Colisión de hash = birthday attack
     
-- Diffie-Hellman vulnerable to MITM
+- Diffie-Hellman vulnerable a MITM
     
-- MD5 and SHA-1 broken
+- MD5 y SHA-1 están rotos
     
-- AES is secure
+- AES es seguro
     
-- ECC uses smaller keys
+- ECC usa claves más pequeñas
     
-- PKI solves trust problem
+- PKI resuelve el problema de confianza
     
 - CRL vs OCSP
     
-- Padding oracle targets CBC
+- Padding oracle objetiva CBC
     
-- Salt defeats rainbow tables
+- Salting derrota rainbow tables
     
 
 ---
 
-## MODULE 20 STATUS
+## ESTADO DEL MÓDULO 20
 
-|Section|Status|
+|Sección|Estado|
 |---|---|
-|Objective 01|COMPLETE|
-|Objective 02|COMPLETE|
-|Objective 03|COMPLETE|
-|Objective 04|COMPLETE|
-|Objective 05|COMPLETE|
-|Objective 06|COMPLETE|
+|Objective 01|COMPLETO|
+|Objective 02|COMPLETO|
+|Objective 03|COMPLETO|
+|Objective 04|COMPLETO|
+|Objective 05|COMPLETO|
+|Objective 06|COMPLETO|
 
 ---
 
-You have now **fully completed Module 20 – Cryptography**.
+Ahora has **completado completamente el Módulo 20 – Criptografía**.
 
-Next options:
+Opciones siguientes:
 
-- **Module 20 ultra-condensed exam cheat sheet**
+- **Hoja de trucos ultracondensada para el examen del Módulo 20**
     
-- **Full CEH mock exam questions (crypto-heavy)**
+- **Preguntas completas de examen simulado CEH (énfasis en criptografía)**
     
-- **Continue to next CEH module**
+- **Continuar al siguiente módulo CEH**
     
-- **PKI-only drill with scenarios**
+- **Ejercicio exclusivo de PKI con escenarios**
+    
 
 ---
 
-# EXAM FLASHCARDS
+# TARJETAS DE MEMORIA DEL EXAMEN
 
-| Term | Definition |
+| Término | Definición |
 |------|------------|
-| Cryptanalysis | Analyzing cryptographic systems to discover weaknesses and recover plaintext/keys |
-| Ciphertext-Only Attack (COA) | Attacker has only ciphertext — hardest attack type |
-| Known-Plaintext Attack (KPA) | Attacker has plaintext-ciphertext pairs to recover key |
-| Chosen-Plaintext Attack (CPA) | Attacker chooses plaintext and observes ciphertext |
-| Chosen-Ciphertext Attack (CCA) | Attacker chooses ciphertext and observes decrypted output |
-| Brute-Force Attack | Trying all possible keys — effective against small key sizes |
-| Dictionary Attack | Guessing passwords using wordlists |
-| Rainbow Table Attack | Precomputed hash tables for password cracking |
-| Birthday Attack | Finds hash collisions using birthday paradox — effort ≈ 2^(n/2) for n-bit hash |
-| Collision Attack | Finding two inputs producing same hash — affects MD5, SHA-1 |
-| MITM in Crypto | Man-in-the-Middle exploiting unauthenticated key exchange (Diffie-Hellman) |
-| Side-Channel Attack | Exploits physical leakage — timing, power, EM, acoustic |
-| Padding Oracle Attack | Exploits error messages in CBC mode to infer plaintext |
-| Downgrade Attack | Forcing weak cryptography by exploiting backward compatibility |
-| Replay Attack | Reusing captured authentication data |
-| Timing Attack | Measuring execution time to deduce secret keys |
-| Power Analysis | Analyzing power consumption to extract keys |
-| Salting | Defeats rainbow table attacks by adding random data before hashing |
+| Cryptanalysis | Analizar sistemas criptográficos para descubrir debilidades y recuperar texto plano/claves |
+| Ciphertext-Only Attack (COA) | El atacante tiene solo ciphertext — tipo de ataque más difícil |
+| Known-Plaintext Attack (KPA) | El atacante tiene pares de texto plano-ciphertext para recuperar la clave |
+| Chosen-Plaintext Attack (CPA) | El atacante elige texto plano y observa ciphertext |
+| Chosen-Ciphertext Attack (CCA) | El atacante elige ciphertext y observa la salida descifrada |
+| Brute-Force Attack | Probar todas las claves posibles — efectivo contra tamaños de clave pequeños |
+| Dictionary Attack | Adivinar contraseñas usando listas de palabras |
+| Rainbow Table Attack | Tablas de hashes precalculadas para ruptura de contraseñas |
+| Birthday Attack | Encuentra colisiones de hashes usando la paradoja del cumpleaños — esfuerzo ≈ 2^(n/2) para hash de n bits |
+| Collision Attack | Encontrar dos entradas que producen el mismo hash — afecta MD5, SHA-1 |
+| MITM in Crypto | Man-in-the-Middle explotando intercambio de claves sin autenticar (Diffie-Hellman) |
+| Side-Channel Attack | Explota fugas físicas — timing, energía, EM, acústico |
+| Padding Oracle Attack | Explota mensajes de error en modo CBC para inferir texto plano |
+| Downgrade Attack | Forzar criptografía débil explotando compatibilidad hacia atrás |
+| Replay Attack | Reutilizar datos de autenticación capturados |
+| Timing Attack | Medir tiempo de ejecución para deducir claves secretas |
+| Power Analysis | Analizar consumo de energía para extraer claves |
+| Salting | Derrota ataques de rainbow table agregando datos aleatorios antes del hashing |
 
 ---
 
-# PRACTICE QUESTIONS
+# PREGUNTAS DE PRÁCTICA
 
-**1.** What is the collision resistance of an n-bit hash function according to the birthday attack?
-- a) 2^n operations
-- b) 2^(n/2) operations
-- c) 2^(2n) operations
-- d) n^2 operations
-**Answer:** b) — Birthday attack finds collisions in approximately 2^(n/2) operations due to birthday paradox.
+**1.** ¿Cuál es la resistencia a colisiones de una función hash de n bits según el birthday attack?
+- a) 2^n operaciones
+- b) 2^(n/2) operaciones
+- c) 2^(2n) operaciones
+- d) n^2 operaciones
+**Respuesta:** b) — El birthday attack encuentra colisiones en aproximadamente 2^(n/2) operaciones debido a la paradoja del cumpleaños.
 
-**2.** Which attack exploits error messages in CBC mode to infer plaintext?
+**2.** ¿Qué ataque explota mensajes de error en modo CBC para inferir texto plano?
 - a) Brute-force attack
 - b) Rainbow table attack
 - c) Padding oracle attack
 - d) Dictionary attack
-**Answer:** c) — Padding oracle attacks exploit padding error messages to decrypt CBC ciphertext.
+**Respuesta:** c) — Los padding oracle attacks explotan mensajes de error de relleno para descifrar ciphertext CBC.
 
-**3.** Why is Diffie-Hellman vulnerable to Man-in-the-Middle attacks?
-- a) It uses weak encryption
-- b) It does not authenticate the parties
-- c) It is too slow
-- d) It requires too much memory
-**Answer:** b) — Diffie-Hellman provides key exchange but no authentication, allowing MITM interception.
+**3.** ¿Por qué Diffie-Hellman es vulnerable a ataques Man-in-the-Middle?
+- a) Usa cifrado débil
+- b) No autentica las partes
+- c) Es demasiado lento
+- d) Requiere demasiada memoria
+**Respuesta:** b) — Diffie-Hellman proporciona intercambio de claves pero no autenticación, permitiendo la interceptación MITM.
 
-**4.** What is the primary defense against rainbow table attacks?
-- a) Using longer passwords
+**4.** ¿Cuál es la defensa principal contra los rainbow table attacks?
+- a) Usar contraseñas más largas
 - b) Salting hashes
-- c) Using faster hardware
-- d) Encrypting the database
-**Answer:** b) — Salting adds random data before hashing, making precomputed rainbow tables ineffective.
+- c) Usar hardware más rápido
+- d) Cifrar la base de datos
+**Respuesta:** b) — Salting agrega datos aleatorios antes del hashing, haciendo ineficaces las rainbow tables precalculadas.
 
-**5.** Which side-channel attack type measures execution time to deduce secret keys?
+**5.** ¿Qué tipo de side-channel attack mide el tiempo de ejecución para deducir claves secretas?
 - a) Power analysis
 - b) EM analysis
 - c) Timing attack
 - d) Acoustic attack
-**Answer:** c) — Timing attacks measure execution time differences to infer secret key values.
-
+**Respuesta:** c) — Los timing attacks miden diferencias en el tiempo de ejecución para inferir valores de claves secretas.

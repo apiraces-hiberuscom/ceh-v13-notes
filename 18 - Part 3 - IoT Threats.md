@@ -6,7 +6,7 @@
 
 |Term|Definition|
 |---|---|
-|IoT Hacking|The process of identifying and exploiting vulnerabilities in IoT devices, firmware, protocols, and backend systems|
+|IoT Hacking|El proceso de identificar y explotar vulnerabilidades en dispositivos IoT, firmware, protocolos y sistemas backend|
 
 MEMORY HOOK:  
 **Device + Firmware + Network + Cloud**
@@ -42,34 +42,34 @@ MEMORY HOOK:
 
 |Item|Explanation|
 |---|---|
-|JTAG|A hardware debugging interface used to test, debug, and program embedded devices|
+|JTAG|Una interfaz de depuración de hardware utilizada para probar, depurar y programar dispositivos empotrados|
 
 ### WHY JTAG EXISTS
 
-- Designed for **manufacturing and debugging**
+- Diseñado para **fabricación y depuración**
     
-- Allows low-level access to CPU and memory
+- Permite acceso de bajo nivel a la CPU y la memoria
     
 
 ### WHY JTAG IS DANGEROUS
 
 |Capability|Result|
 |---|---|
-|Read memory|Extract firmware|
-|Write memory|Modify firmware|
-|Control execution|Bypass authentication|
+|Read memory|Extraer firmware|
+|Write memory|Modificar firmware|
+|Control execution|Evadir autenticación|
 
 ### HOW ATTACKERS USE JTAG
 
-1. Open IoT device casing
+1. Abrir la carcasa del dispositivo IoT
     
-2. Locate JTAG pins on PCB
+2. Localizar los pines JTAG en la placa de circuito impreso
     
-3. Connect JTAG debugger
+3. Conectar el depurador JTAG
     
-4. Dump firmware or memory
+4. Volcar firmware o memoria
     
-5. Extract credentials or keys
+5. Extraer credenciales o claves
     
 
 MEMORY HOOK:  
@@ -83,7 +83,7 @@ MEMORY HOOK:
 
 |Item|Explanation|
 |---|---|
-|UART|Universal Asynchronous Receiver/Transmitter, used for serial communication|
+|UART|Universal Asynchronous Receiver/Transmitter, utilizado para comunicación en serie|
 
 ### WHY UART IS DANGEROUS
 
@@ -95,13 +95,13 @@ MEMORY HOOK:
 
 ### ATTACK FLOW
 
-1. Identify UART pins
+1. Identificar los pines UART
     
-2. Connect USB-to-TTL adapter
+2. Conectar un adaptador USB a TTL
     
-3. Access serial console
+3. Acceder a la consola serie
     
-4. Obtain root shell
+4. Obtener root shell
     
 
 MEMORY HOOK:  
@@ -113,13 +113,13 @@ MEMORY HOOK:
 
 |Term|Explanation|
 |---|---|
-|Chip-off attack|Physically removing memory chip to extract data|
+|Chip-off attack|Eliminación física del chip de memoria para extraer datos|
 
 ### USED WHEN
 
-- JTAG/UART disabled
+- JTAG/UART deshabilitados
     
-- Firmware encrypted poorly
+- Firmware cifrado débilmente
     
 
 MEMORY HOOK:  
@@ -135,7 +135,7 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|Firmware|Software programmed into non-volatile memory that controls device behavior|
+|Firmware|Software programado en memoria no volátil que controla el comportamiento del dispositivo|
 
 ---
 
@@ -143,10 +143,10 @@ MEMORY HOOK:
 
 |Technique|Explanation|
 |---|---|
-|Firmware extraction|Obtain firmware image|
-|Static analysis|Analyze code without execution|
-|Dynamic analysis|Run firmware in emulator|
-|Reverse engineering|Understand logic|
+|Firmware extraction|Obtener imagen del firmware|
+|Static analysis|Analizar código sin ejecutarlo|
+|Dynamic analysis|Ejecutar firmware en un emulador|
+|Reverse engineering|Comprender la lógica|
 
 MEMORY HOOK:  
 **Firmware = device brain**
@@ -192,9 +192,9 @@ MEMORY HOOK:
 
 |Aspect|Explanation|
 |---|---|
-|MQTT|Lightweight publish/subscribe protocol|
-|Broker|Central message hub|
-|Topic|Channel for messages|
+|MQTT|Protocolo ligero de publicación/suscripción|
+|Broker|Hub central de mensajes|
+|Topic|Canal para mensajes|
 
 ### ATTACKS ON MQTT
 
@@ -213,7 +213,7 @@ MEMORY HOOK:
 
 |Aspect|Explanation|
 |---|---|
-|CoAP|Lightweight HTTP-like protocol|
+|CoAP|Protocolo ligero similar a HTTP|
 |Runs over|UDP|
 
 ### ATTACKS
@@ -237,7 +237,7 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Shodan|Search engine for Internet-connected devices|
+|Shodan|Motor de búsqueda para dispositivos conectados a Internet|
 
 ### WHAT SHODAN FINDS
 
@@ -257,7 +257,7 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Censys|Internet-wide asset discovery|
+|Censys|Descubimiento de activos a escala de Internet|
 
 ---
 
@@ -277,9 +277,9 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Metasploit|Exploit IoT vulnerabilities|
-|RouterSploit|Router exploitation|
-|ExploitDB|Vulnerability database|
+|Metasploit|Explotar vulnerabilidades IoT|
+|RouterSploit|Explotación de routers|
+|ExploitDB|Base de datos de vulnerabilidades|
 
 ---
 
@@ -324,11 +324,11 @@ MEMORY HOOK:
 
 # OBJECTIVE 03 — EXAM MEMORY BLOCK
 
-**IoT hacking targets hardware, firmware, protocols, and cloud services.  
-JTAG and UART expose low-level access.  
-Firmware contains credentials and backdoors.  
-Protocols like MQTT and CoAP are often unauthenticated.  
-Shodan reveals exposed devices.**
+**El hacking IoT se dirige a hardware, firmware, protocolos y servicios en la nube.  
+JTAG y UART exponen acceso de bajo nivel.  
+El firmware contiene credenciales y puertas traseras.  
+Protocolos como MQTT y CoAP a menudo carecen de autenticación.  
+Shodan revela dispositivos expuestos.**
 
 ---
 
@@ -349,58 +349,57 @@ Shodan reveals exposed devices.**
 
 | Term | Definition |
 |------|------------|
-| IoT Hacking | Identifying and exploiting vulnerabilities in IoT devices, firmware, protocols, and backend systems |
-| JTAG | Hardware debugging interface providing root-level CPU and memory access for firmware extraction |
-| UART | Serial communication interface exposing debug consoles with no authentication |
-| Firmware | Software in non-volatile memory controlling device behavior |
-| Firmware Extraction | Obtaining firmware via JTAG, UART, flash dump, OTA interception, or vendor websites |
-| Static Analysis | Analyzing firmware code without execution |
-| Dynamic Analysis | Running firmware in an emulator to observe behavior |
-| Shodan | Search engine for Internet-connected devices — finds open ports, IoT devices, default credentials |
-| Censys | Internet-wide asset discovery tool |
-| RouterSploit | Exploitation framework specifically designed for router and IoT exploitation |
-| Metasploit | General exploitation framework used for IoT vulnerabilities |
-| MQTT | Lightweight publish/subscribe protocol — attacks include unauthorized subscription and broker takeover |
-| CoAP | Lightweight UDP-based protocol — vulnerable to amplification, spoofing, and replay attacks |
-| Hardcoded Credentials | Credentials embedded in firmware that cannot be changed by users |
-| OTA Update Interception | Capturing over-the-air firmware updates to extract or modify firmware |
+| IoT Hacking | Identificación y explotación de vulnerabilidades en dispositivos IoT, firmware, protocolos y sistemas backend |
+| JTAG | Interfaz de depuración de hardware que proporciona acceso de nivel raíz a CPU y memoria para extracción de firmware |
+| UART | Interfaz de comunicación en serie que expone consolas de depuración sin autenticación |
+| Firmware | Software en memoria no volátil que controla el comportamiento del dispositivo |
+| Firmware Extraction | Obtención de firmware mediante JTAG, UART, volcado de flash, intercepción OTA o sitios web del proveedor |
+| Static Analysis | Análisis del código del firmware sin ejecutarlo |
+| Dynamic Analysis | Ejecución de firmware en un emulador para observar su comportamiento |
+| Shodan | Motor de búsqueda para dispositivos conectados a Internet — encuentra puertos abiertos, dispositivos IoT, credenciales predeterminadas |
+| Censys | Herramienta de descubrimiento de activos a escala de Internet |
+| RouterSploit | Marco de explotación diseñado específicamente para la explotación de routers e IoT |
+| Metasploit | Marco de explotación general utilizado para vulnerabilidades IoT |
+| MQTT | Protocolo ligero de publicación/suscripción — los ataques incluyen suscripción no autorizada y secuestro de broker |
+| CoAP | Protocolo ligero basado en UDP — vulnerable a amplificación, spoofing y ataques de repetición |
+| Hardcoded Credentials | Credenciales incrustadas en el firmware que no pueden ser cambiadas por los usuarios |
+| OTA Update Interception | Captura de actualizaciones OTA de firmware para extraer o modificar el firmware |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** A security tester connects a JTAG debugger to an IoT device's PCB to dump the firmware. What can they extract?
-- a) Only network configuration
-- b) Firmware image, credentials, and encryption keys
-- c) Only the device MAC address
-- d) Nothing — JTAG is read-only
-**Answer:** b) — JTAG allows reading memory to extract firmware, credentials, and keys, plus writing memory to modify firmware.
+**1.** Un probador de seguridad conecta un depurador JTAG a la placa de circuito de un dispositivo IoT para volcar el firmware. ¿Qué puede extraer?
+- a) Solo configuración de red
+- b) Imagen del firmware, credenciales y claves de cifrado
+- c) Solo la dirección MAC del dispositivo
+- d) Nada — JTAG es de solo lectura
+**Respuesta:** b) — JTAG permite leer la memoria para extraer firmware, credenciales y claves, además de escribir en la memoria para modificar el firmware.
 
-**2.** Which tool is described as the "Google for IoT devices"?
+**2.** ¿Qué herramienta se describe como el "Google para dispositivos IoT"?
 - a) Metasploit
 - b) Nmap
 - c) Shodan
 - d) Censys
-**Answer:** c) — Shodan is a search engine for Internet-connected devices that finds open ports, default credentials, and firmware versions.
+**Respuesta:** c) — Shodan es un motor de búsqueda para dispositivos conectados a Internet que encuentra puertos abiertos, credenciales predeterminadas y versiones de firmware.
 
-**3.** An attacker intercepts an OTA firmware update and modifies it before installation. Which extraction method does this represent?
-- a) Flash memory dump
-- b) UART access
-- c) OTA update interception
-- d) Chip-off attack
-**Answer:** c) — OTA update interception involves capturing and modifying firmware updates in transit.
+**3.** Un atacante intercepta una actualización OTA de firmware y la modifica antes de la instalación. ¿Qué método de extracción representa esto?
+- a) Volcado de memoria flash
+- b) Acceso UART
+- c) Intercepción de actualización OTA
+- d) Ataque chip-off
+**Respuesta:** c) — La intercepción de actualización OTA implica capturar y modificar actualizaciones de firmware en tránsito.
 
-**4.** What is the primary vulnerability of the MQTT protocol that attackers exploit?
-- a) It uses encrypted channels by default
-- b) It requires hardware tokens
-- c) It allows unauthorized topic subscription without authentication
-- d) It only works with wired connections
-**Answer:** c) — MQTT without authentication allows attackers to subscribe to topics and inject fake messages.
+**4.** ¿Cuál es la vulnerabilidad principal del protocolo MQTT que explotan los atacantes?
+- a) Utiliza canales cifrados por defecto
+- b) Requiere tokens de hardware
+- c) Permite la suscripción no autorizada a topics sin autenticación
+- d) Solo funciona con conexiones cableadas
+**Respuesta:** c) — MQTT sin autenticación permite a los atacantes suscribirse a topics e inyectar mensajes falsos.
 
-**5.** Which technique involves running firmware in an emulator to observe its behavior without executing it on actual hardware?
-- a) Static analysis
-- b) Dynamic analysis
-- c) Reverse engineering
-- d) Firmware signing
-**Answer:** b) — Dynamic analysis runs firmware in an emulator to observe runtime behavior and interactions.
-
+**5.** ¿Qué técnica implica ejecutar firmware en un emulador para observar su comportamiento sin ejecutarlo en hardware real?
+- a) Análisis estático
+- b) Análisis dinámico
+- c) Ingeniería inversa
+- d) Firma de firmware
+**Respuesta:** b) — El análisis dinámico ejecuta firmware en un emulador para observar el comportamiento en tiempo de ejecución e interacciones.

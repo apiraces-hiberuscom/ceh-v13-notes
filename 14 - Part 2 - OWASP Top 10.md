@@ -4,7 +4,7 @@
 
 |Item|Memorize|
 |---|---|
-|Web Application Threat|Any weakness in application logic, input handling, authentication, or configuration that can be exploited to compromise confidentiality, integrity, or availability|
+|Web Application Threat|Cualquier debilidad en la lógica de la aplicación, manejo de entrada, autenticación o configuración que pueda ser explotada para comprometer la confidencialidad, integridad o disponibilidad|
 
 ---
 
@@ -34,8 +34,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Failure to enforce restrictions on authenticated users|
-|Result|Unauthorized actions|
+|Meaning|Falta de aplicación de restricciones a usuarios autenticados|
+|Result|Acciones no autorizadas|
 
 ---
 
@@ -55,10 +55,10 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|User authenticates|
-|2|Modifies request|
-|3|Server fails to verify authorization|
-|4|Unauthorized resource accessed|
+|1|El usuario se autentica|
+|2|Modifica la solicitud|
+|3|El servidor falla al verificar la autorización|
+|4|Se accede a un recurso no autorizado|
 
 ---
 
@@ -78,8 +78,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Improper use or absence of cryptography|
-|Affects|Data in transit and at rest|
+|Meaning|Uso inadecuado o ausencia de criptografía|
+|Affects|Datos en tránsito y en reposo|
 
 ---
 
@@ -99,14 +99,14 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Data leakage|
-|MITM attacks|
-|Credential theft|
+|Filtración de datos|
+|Ataques MITM|
+|Robo de credenciales|
 
 ---
 
 MEMORY HOOK:  
-**No crypto → stolen data**
+**No crypto → datos robados**
 
 ---
 
@@ -116,8 +116,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Untrusted input interpreted as commands|
-|Root Cause|Lack of input validation|
+|Meaning|Entrada no confiable interpretada como comandos|
+|Root Cause|Falta de validación de entrada|
 
 ---
 
@@ -159,8 +159,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Missing or ineffective security controls|
-|Phase|Design stage|
+|Meaning|Controles de seguridad faltantes o ineficaces|
+|Phase|Fase de diseño|
 
 ---
 
@@ -189,8 +189,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Incorrect security configuration|
-|Layer|Application, server, platform|
+|Meaning|Configuración de seguridad incorrecta|
+|Layer|Aplicación, servidor, plataforma|
 
 ---
 
@@ -210,8 +210,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Information disclosure|
-|Full compromise|
+|Divulgación de información|
+|Compromiso total|
 
 ---
 
@@ -221,8 +221,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Using components with known vulnerabilities|
-|Includes|Libraries, frameworks, OS|
+|Meaning|Uso de componentes con vulnerabilidades conocidas|
+|Includes|Bibliotecas, frameworks, SO|
 
 ---
 
@@ -246,7 +246,7 @@ MEMORY HOOK:
 ---
 
 MEMORY HOOK:  
-**Old = exploitable**
+**Viejo = explotable**
 
 ---
 
@@ -256,7 +256,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Weak or broken auth mechanisms|
+|Meaning|Mecanismos de autenticación débiles o rotos|
 |Replaces|Broken Authentication|
 
 ---
@@ -265,8 +265,8 @@ MEMORY HOOK:
 
 |Example|
 |---|
-|Weak passwords|
-|No MFA|
+|Contraseñas débiles|
+|Sin MFA|
 |Session fixation|
 |Credential stuffing|
 
@@ -287,8 +287,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Lack of integrity verification|
-|Target|Updates, CI/CD, serialized data|
+|Meaning|Falta de verificación de integridad|
+|Target|Actualizaciones, CI/CD, datos serializados|
 
 ---
 
@@ -306,8 +306,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Remote code execution|
-|Supply-chain compromise|
+|Ejecución remota de código|
+|Compromiso de cadena de suministro|
 
 ---
 
@@ -317,8 +317,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Inability to detect attacks|
-|Root Cause|Missing or weak logging|
+|Meaning|Incapacidad para detectar ataques|
+|Root Cause|Logging faltante o débil|
 
 ---
 
@@ -326,9 +326,9 @@ MEMORY HOOK:
 
 |Example|
 |---|
-|No logs|
-|Logs not monitored|
-|No alerts|
+|Sin registros|
+|Registros no monitoreados|
+|Sin alertas|
 
 ---
 
@@ -336,8 +336,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Delayed breach detection|
-|Extended attacker persistence|
+|Detección retrasada de brechas|
+|Persistencia extendida del atacante|
 
 ---
 
@@ -347,8 +347,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Meaning|Server makes unauthorized requests|
-|Controlled By|Attacker input|
+|Meaning|El servidor realiza solicitudes no autorizadas|
+|Controlled By|Entrada del atacante|
 
 ---
 
@@ -356,9 +356,9 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Attacker supplies URL|
-|2|Server fetches resource|
-|3|Internal systems accessed|
+|1|El atacante proporciona una URL|
+|2|El servidor obtiene el recurso|
+|3|Se accede a sistemas internos|
 
 ---
 
@@ -373,10 +373,9 @@ MEMORY HOOK:
 ---
 
 MEMORY HOOK:  
-**Server becomes attacker’s proxy**
+**El servidor se convierte en proxy del atacante**
 
 ---
-
 
 ## EXAM EXTRAS (Boson Practice Test)
 
@@ -384,7 +383,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|XXE|XML injection that targets XML libraries using `<!DOCTYPE>`|
+|XXE|XML injection que se dirige a bibliotecas XML usando `<!DOCTYPE>`|
 
 ---
 
@@ -392,7 +391,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|IDOR|Vulnerability allowing access to unauthorized resources by manipulating object references|
+|IDOR|Vulnerabilidad que permite acceder a recursos no autorizados manipulando referencias de objetos|
 
 ---
 
@@ -400,7 +399,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|WS-Security|Provides integrity and confidentiality for SOAP messages|
+|WS-Security|Proporciona integridad y confidencialidad para mensajes SOAP|
 
 ---
 
@@ -408,55 +407,55 @@ MEMORY HOOK:
 
 | Term | Definition |
 |------|------------|
-| Broken Access Control (A01) | Failure to enforce restrictions on authenticated users, allowing unauthorized actions |
-| Cryptographic Failures (A02) | Improper use or absence of cryptography affecting data in transit and at rest |
-| Injection (A03) | Untrusted input interpreted as commands due to lack of input validation |
-| Insecure Design (A04) | Missing or ineffective security controls at the design stage, not a coding bug |
-| Security Misconfiguration (A05) | Incorrect security configuration across application, server, or platform layers |
-| Vulnerable and Outdated Components (A06) | Using libraries, frameworks, or OS with known CVEs and no patching |
-| Identification and Authentication Failures (A07) | Weak or broken auth mechanisms such as weak passwords, no MFA, session fixation |
-| Software and Data Integrity Failures (A08) | Lack of integrity verification in updates, CI/CD pipelines, and serialized data |
-| Security Logging and Monitoring Failures (A09) | Inability to detect attacks due to missing or weak logging and no alerts |
-| SSRF — Server-Side Request Forgery (A10) | Server makes unauthorized requests to internal systems controlled by attacker input |
-| XXE — XML External Entity | XML injection targeting XML libraries using `<!DOCTYPE>` declarations |
-| IDOR — Insecure Direct Object Reference | Manipulating object references to access unauthorized resources |
-| WS-Security | Protocol providing integrity and confidentiality for SOAP messages |
+| Broken Access Control (A01) | Falta de aplicación de restricciones a usuarios autenticados, permitiendo acciones no autorizadas |
+| Cryptographic Failures (A02) | Uso inadecuado o ausencia de criptografía que afecta datos en tránsito y en reposo |
+| Injection (A03) | Entrada no confiable interpretada como comandos debido a falta de validación de entrada |
+| Insecure Design (A04) | Controles de seguridad faltantes o ineficaces en la fase de diseño, no es un error de codificación |
+| Security Misconfiguration (A05) | Configuración de seguridad incorrecta en capas de aplicación, servidor o plataforma |
+| Vulnerable and Outdated Components (A06) | Uso de bibliotecas, frameworks o SO con CVEs conocidos y sin parches |
+| Identification and Authentication Failures (A07) | Mecanismos de autenticación débiles o rotos como contraseñas débiles, sin MFA, session fixation |
+| Software and Data Integrity Failures (A08) | Falta de verificación de integridad en actualizaciones, pipelines CI/CD y datos serializados |
+| Security Logging and Monitoring Failures (A09) | Incapacidad para detectar ataques debido a logging faltante o débil y sin alertas |
+| SSRF — Server-Side Request Forgery (A10) | El servidor realiza solicitudes no autorizadas a sistemas internos controladas por la entrada del atacante |
+| XXE — XML External Entity | XML injection que se dirige a bibliotecas XML usando declaraciones `<!DOCTYPE>` |
+| IDOR — Insecure Direct Object Reference | Manipulación de referencias de objetos para acceder a recursos no autorizados |
+| WS-Security | Protocolo que proporciona integridad y confidencialidad para mensajes SOAP |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** Which OWASP Top 10 (2021) category replaces the previous "Broken Authentication" category?
+**1.** ¿Qué categoría del OWASP Top 10 (2021) reemplaza la categoría anterior "Broken Authentication"?
 - a) A01 — Broken Access Control
 - b) A07 — Identification and Authentication Failures
 - c) A08 — Software and Data Integrity Failures
 - d) A05 — Security Misconfiguration
-**Answer:** B — A07:2021 Identification and Authentication Failures replaces the old Broken Authentication category.
+**Answer:** B — A07:2021 Identification and Authentication Failures reemplaza la categoría anterior Broken Authentication.
 
-**2.** An attacker supplies a URL via a form field and the server fetches the resource, exposing internal cloud metadata. Which vulnerability is this?
+**2.** Un atacante proporciona una URL a través de un campo de formulario y el servidor obtiene el recurso, exponiendo metadatos internos de la nube. ¿Qué vulnerabilidad es esta?
 - a) SQL Injection
 - b) Insecure Design
 - c) Server-Side Request Forgery (SSRF)
 - d) IDOR
-**Answer:** C — SSRF occurs when the server makes requests on behalf of the attacker, accessing internal systems like cloud metadata endpoints.
+**Answer:** C — SSRF ocurre cuando el servidor realiza solicitudes en nombre del atacante, accediendo a sistemas internos como endpoints de metadatos de la nube.
 
-**3.** A developer skips threat modeling during the design phase, resulting in missing security controls. This is classified under which OWASP category?
+**3.** Un desarrollador omite el threat modeling durante la fase de diseño, resultando en controles de seguridad faltantes. ¿Bajo qué categoría OWASP se clasifica esto?
 - a) A03 — Injection
 - b) A04 — Insecure Design
 - c) A05 — Security Misconfiguration
 - d) A06 — Vulnerable and Outdated Components
-**Answer:** B — Insecure Design (A04) is a design-stage flaw, not a coding bug — it reflects missing threat modeling and business logic validation.
+**Answer:** B — Insecure Design (A04) es una falla de diseño, no un error de codificación — refleja la falta de threat modeling y validación de lógica de negocio.
 
-**4.** Which of the following is a characteristic of Broken Access Control (A01)?
-- a) Using weak encryption algorithms
-- b) IDOR and metadata manipulation allowing unauthorized resource access
-- c) Server fetching internal resources via attacker-controlled URLs
-- d) Missing logging and monitoring of security events
-**Answer:** B — Broken Access Control includes IDOR, metadata manipulation, and force browsing that bypass authorization checks.
+**4.** ¿Cuál de las siguientes es una característica de Broken Access Control (A01)?
+- a) Uso de algoritmos de cifrado débiles
+- b) IDOR y manipulación de metadatos que permiten acceso no autorizado a recursos
+- c) El servidor obtiene recursos internos a través de URLs controladas por el atacante
+- d) Falta de logging y monitoreo de eventos de seguridad
+**Answer:** B — Broken Access Control incluye IDOR, manipulación de metadatos y forzar navegación que evitan las verificaciones de autorización.
 
-**5.** An application uses default admin credentials and displays verbose stack traces on errors. Which OWASP category do these issues fall under?
+**5.** Una aplicación usa credenciales admin por defecto y muestra stack traces detallados en errores. ¿Bajo qué categoría OWASP caen estos problemas?
 - a) A02 — Cryptographic Failures
 - b) A07 — Identification and Authentication Failures
 - c) A05 — Security Misconfiguration
 - d) A09 — Security Logging and Monitoring Failures
-**Answer:** C — Default credentials and verbose error messages are classic examples of Security Misconfiguration (A05).
+**Answer:** C — Las credenciales por defecto y los mensajes de error detallados son ejemplos clásicos de Security Misconfiguration (A05).

@@ -21,7 +21,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|In-band SQL Injection|Attacker uses the same communication channel to inject SQL and retrieve results|
+|In-band SQL Injection|El atacante utiliza el mismo canal de comunicación para inyectar SQL y recuperar resultados|
 
 ---
 
@@ -29,9 +29,9 @@ MEMORY HOOK:
 
 |Characteristic|
 |---|
-|Most common|
-|Fast exploitation|
-|Same request/response channel|
+|La más común|
+|Explotación rápida|
+|Mismo canal de solicitud/respuesta|
 
 ---
 
@@ -41,7 +41,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Error-based SQL Injection|Exploits database error messages to extract information|
+|Error-based SQL Injection|Explota los mensajes de error de la base de datos para extraer información|
 
 ---
 
@@ -49,8 +49,8 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Verbose database errors|
-|Poor error handling|
+|Errores de base de datos verbosos|
+|Manejo deficiente de errores|
 
 ---
 
@@ -58,9 +58,9 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Attacker submits malformed SQL|
-|2|Database throws error|
-|3|Error reveals DB info|
+|1|El atacante envía SQL malformado|
+|2|La base de datos lanza un error|
+|3|El error revela información de la BD|
 
 ---
 
@@ -68,10 +68,10 @@ MEMORY HOOK:
 
 |Data|
 |---|
-|Database type|
-|Table names|
-|Column names|
-|Query structure|
+|Tipo de base de datos|
+|Nombres de tablas|
+|Nombres de columnas|
+|Estructura de la consulta|
 
 ---
 
@@ -97,7 +97,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|UNION-based SQL Injection|Uses UNION operator to combine attacker query with legitimate query|
+|UNION-based SQL Injection|Utiliza el operador UNION para combinar la consulta del atacante con una consulta legítima|
 
 ---
 
@@ -105,8 +105,8 @@ MEMORY HOOK:
 
 |Requirement|
 |---|
-|Same number of columns|
-|Compatible data types|
+|Número igual de columnas|
+|Tipos de datos compatibles|
 
 ---
 
@@ -114,10 +114,10 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Find column count|
-|2|Identify injectable columns|
-|3|Use UNION SELECT|
-|4|Extract data|
+|1|Encontrar el número de columnas|
+|2|Identificar columnas inyectables|
+|3|Usar UNION SELECT|
+|4|Extraer datos|
 
 ---
 
@@ -142,7 +142,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Blind SQL Injection|No direct database error or output is visible|
+|Blind SQL Injection|No se muestra ningún error de base de datos ni salida directa|
 
 ---
 
@@ -150,9 +150,9 @@ MEMORY HOOK:
 
 |Characteristic|
 |---|
-|Slow|
-|No visible errors|
-|Inference-based|
+|Lenta|
+|Sin errores visibles|
+|Basada en inferencia|
 
 ---
 
@@ -162,7 +162,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Boolean-based SQL Injection|Attacker infers results by observing TRUE/FALSE responses|
+|Boolean-based SQL Injection|El atacante infiere los resultados observando las respuestas TRUE/FALSE|
 
 ---
 
@@ -170,9 +170,9 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Inject condition|
-|2|Observe page response|
-|3|Infer result|
+|1|Inyectar condición|
+|2|Observar respuesta de la página|
+|3|Inferir resultado|
 
 ---
 
@@ -197,7 +197,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Time-based SQL Injection|Uses time delays to infer query execution|
+|Time-based SQL Injection|Utiliza retardos temporales para inferir la ejecución de la consulta|
 
 ---
 
@@ -205,9 +205,9 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Inject delay condition|
-|2|Measure response time|
-|3|Infer result|
+|1|Inyectar condición de retardo|
+|2|Medir tiempo de respuesta|
+|3|Inferir resultado|
 
 ---
 
@@ -234,7 +234,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Out-of-band SQL Injection|Data exfiltration using a different channel|
+|Out-of-band SQL Injection|Exfiltración de datos utilizando un canal diferente|
 
 ---
 
@@ -242,8 +242,8 @@ MEMORY HOOK:
 
 |Condition|
 |---|
-|In-band unavailable|
-|Blind too slow|
+|In-band no disponible|
+|Blind demasiado lenta|
 
 ---
 
@@ -260,9 +260,9 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Inject SQL|
-|2|DB triggers external request|
-|3|Attacker receives data|
+|1|Inyectar SQL|
+|2|La BD dispara una solicitud externa|
+|3|El atacante recibe los datos|
 
 ---
 
@@ -276,11 +276,11 @@ MEMORY HOOK:
 
 |Type|Speed|Output|
 |---|---|---|
-|Error-based|Fast|Errors|
-|UNION-based|Fast|Query results|
-|Boolean-based|Slow|Page behavior|
-|Time-based|Very slow|Response delay|
-|Out-of-band|Medium|External response|
+|Error-based|Fast|Errores|
+|UNION-based|Fast|Resultados de la consulta|
+|Boolean-based|Slow|Comportamiento de la página|
+|Time-based|Very slow|Retardo en la respuesta|
+|Out-of-band|Medium|Respuesta externa|
 
 ---
 
@@ -288,56 +288,55 @@ MEMORY HOOK:
 
 | Term | Definition |
 |------|------------|
-| In-band SQL Injection | Uses the same communication channel to inject SQL and retrieve results |
-| Error-based SQLi | Exploits verbose database error messages to extract information |
-| UNION-based SQLi | Uses UNION operator to combine attacker query with legitimate query results |
-| Blind SQL Injection | No direct error or output visible; attacker infers results indirectly |
-| Boolean-based Blind SQLi | Infers results by observing TRUE/FALSE page response differences |
-| Time-based Blind SQLi | Uses time delays (e.g., SLEEP()) to infer query execution results |
-| Out-of-band SQLi | Data exfiltration using a different channel such as DNS or HTTP |
-| UNION Prerequisites | Same number of columns and compatible data types between queries |
-| SLEEP() | MySQL function used for time-based blind SQL injection |
-| WAITFOR DELAY | MSSQL function used for time-based blind SQL injection |
-| pg_sleep() | PostgreSQL function used for time-based blind SQL injection |
-| Error = Information | Verbose errors leak database type, table names, column names, and query structure |
-| Speed Ranking | Error-based/UNION-based (fast) > Out-of-band (medium) > Boolean (slow) > Time-based (very slow) |
+| In-band SQL Injection | Utiliza el mismo canal de comunicación para inyectar SQL y recuperar resultados |
+| Error-based SQLi | Explota los mensajes de error verbosos de la base de datos para extraer información |
+| UNION-based SQLi | Utiliza el operador UNION para combinar la consulta del atacante con los resultados de una consulta legítima |
+| Blind SQL Injection | No se muestra error ni salida directa; el atacante infiere los resultados indirectamente |
+| Boolean-based Blind SQLi | Infere los resultados observando las diferencias en la respuesta de la página TRUE/FALSE |
+| Time-based Blind SQLi | Utiliza retardos temporales (por ejemplo, SLEEP()) para inferir los resultados de la ejecución de la consulta |
+| Out-of-band SQLi | Exfiltración de datos utilizando un canal diferente como DNS o HTTP |
+| UNION Prerequisites | Mismo número de columnas y tipos de datos compatibles entre las consultas |
+| SLEEP() | Función de MySQL utilizada para SQL injection blind basada en tiempo |
+| WAITFOR DELAY | Función de MSSQL utilizada para SQL injection blind basada en tiempo |
+| pg_sleep() | Función de PostgreSQL utilizada para SQL injection blind basada en tiempo |
+| Error = Information | Los errores verbosos filtran el tipo de base de datos, nombres de tablas, nombres de columnas y la estructura de la consulta |
+| Speed Ranking | Error-based/UNION-based (rápido) > Out-of-band (medio) > Boolean (lento) > Time-based (muy lento) |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** An attacker injects `' UNION SELECT 1,2,3--` and the page displays the numbers 1, 2, and 3. What type of SQL injection is this?
+**1.** Un atacante inyecta `' UNION SELECT 1,2,3--` y la página muestra los números 1, 2 y 3. ¿Qué tipo de SQL injection es este?
 - a) Boolean-based blind SQLi
 - b) Time-based blind SQLi
 - c) UNION-based SQLi
 - d) Out-of-band SQLi
-**Answer:** c — UNION-based SQL injection combines the attacker's query with the legitimate query using UNION SELECT.
+**Answer:** c — UNION-based SQL injection combina la consulta del atacante con la consulta legítima usando UNION SELECT.
 
-**2.** What are the two prerequisites for a successful UNION-based SQL injection attack?
-- a) Same table name and same database user
-- b) Same number of columns and compatible data types
-- c) Same HTTP method and same session cookie
-- d) Same encoding and same character set
-**Answer:** b — The injected UNION query must match the original query's column count and have compatible data types.
+**2.** ¿Cuáles son los dos prerrequisitos para un ataque exitoso de UNION-based SQL injection?
+- a) Mismo nombre de tabla y mismo usuario de base de datos
+- b) Mismo número de columnas y tipos de datos compatibles
+- c) Mismo método HTTP y misma cookie de sesión
+- d) Misma codificación y mismo conjunto de caracteres
+**Answer:** b — La consulta UNION inyectada debe coincidir con el número de columnas de la consulta original y tener tipos de datos compatibles.
 
-**3.** An attacker notices that a web page returns different content when `' AND 1=1--` is injected versus `' AND 1=2--`. What type of SQLi is this?
+**3.** Un atacante observa que una página web devuelve contenido diferente cuando se inyecta `' AND 1=1--` versus `' AND 1=2--`. ¿Qué tipo de SQLi es este?
 - a) Error-based
 - b) UNION-based
 - c) Boolean-based blind
 - d) Time-based blind
-**Answer:** c — Boolean-based blind SQLi infers data by observing page content changes between true and false conditions.
+**Answer:** c — Boolean-based blind SQLi infiere los datos observando los cambios en el contenido de la página entre condiciones verdaderas y falsas.
 
-**4.** Which MySQL function is used in time-based blind SQL injection?
+**4.** ¿Qué función de MySQL se utiliza en time-based blind SQL injection?
 - a) WAITFOR DELAY
 - b) pg_sleep()
 - c) SLEEP()
 - d) DBMS_LOCK.SLEEP
-**Answer:** c — SLEEP() is MySQL-specific; WAITFOR DELAY is MSSQL, pg_sleep() is PostgreSQL, DBMS_LOCK.SLEEP is Oracle.
+**Answer:** c — SLEEP() es específico de MySQL; WAITFOR DELAY es de MSSQL, pg_sleep() es de PostgreSQL, DBMS_LOCK.SLEEP es de Oracle.
 
-**5.** When would an attacker use out-of-band SQL injection instead of in-band?
-- a) When the database has no error messages
-- b) When in-band channels are unavailable or blind SQLi is too slow
-- c) When UNION-based injection fails due to column mismatch
-- d) When the target uses parameterized queries
-**Answer:** b — Out-of-band is used when in-band channels are blocked and blind methods are too slow for data exfiltration.
-
+**5.** ¿Cuándo usaría un atacante out-of-band SQL injection en lugar de in-band?
+- a) Cuando la base de datos no tiene mensajes de error
+- b) Cuando los canales in-band no están disponibles o el blind SQLi es demasiado lento
+- c) Cuando la inyección UNION-based falla por incompatibilidad de columnas
+- d) Cuando el objetivo utiliza consultas parametrizadas
+**Answer:** b — Out-of-band se utiliza cuando los canales in-band están bloqueados y los métodos blind son demasiado lentos para la exfiltración de datos.

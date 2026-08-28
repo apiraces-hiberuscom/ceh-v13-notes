@@ -6,10 +6,10 @@
 
 |Item|Memorize|
 |---|---|
-|Wireless Security|Measures implemented to protect wireless networks from unauthorized access and attacks|
+|Wireless Security|Medidas implementadas para proteger redes inalámbricas contra accesos no autorizados y ataques|
 
 MEMORY HOOK:  
-**Wireless security = prevention + detection**
+**Wireless security = prevención + detección**
 
 ---
 
@@ -17,10 +17,10 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Open broadcast medium|
-|Easy eavesdropping|
-|Rogue device risk|
-|Weak default configurations|
+|Medio de transmisión abierto|
+|Interceptación fácil|
+|Riesgo de dispositivos no autorizados|
+|Configuraciones débiles predeterminadas|
 
 ---
 
@@ -32,9 +32,9 @@ MEMORY HOOK:
 
 |Control|Description|
 |---|---|
-|WPA3|Recommended security standard|
-|WPA2-AES|Acceptable minimum|
-|Disable WEP/WPA|Mandatory|
+|WPA3|Estándar de seguridad recomendado|
+|WPA2-AES|Mínimo aceptable|
+|Disable WEP/WPA|Obligatorio|
 
 MEMORY HOOK:  
 **No WEP. No WPA.**
@@ -45,9 +45,9 @@ MEMORY HOOK:
 
 |Control|Description|
 |---|---|
-|Strong passphrases|Prevent dictionary attacks|
-|WPA2/WPA3-Enterprise|Uses RADIUS|
-|Certificates|Stronger authentication|
+|Strong passphrases|Previenen ataques de diccionario|
+|WPA2/WPA3-Enterprise|Utiliza RADIUS|
+|Certificates|Autenticación más robusta|
 
 MEMORY HOOK:  
 **Enterprise > Personal**
@@ -58,8 +58,8 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Vulnerable to brute-force|
-|PIN-based weakness|
+|Vulnerable a fuerza bruta|
+|Debilidad basada en PIN|
 
 MEMORY HOOK:  
 **WPS = weak point**
@@ -70,14 +70,14 @@ MEMORY HOOK:
 
 |Hardening Step|
 |---|
-|Change default credentials|
-|Disable SSID broadcasting|
-|Reduce signal strength|
-|Change default SSID|
+|Cambiar credenciales predeterminadas|
+|Desactivar broadcast de SSID|
+|Reducir potencia de señal|
+|Cambiar SSID predeterminado|
 
 EXAM TRAP:  
-Hidden SSID ≠ security  
-Still useful as a **deterrent**, not protection.
+Hidden SSID ≠ seguridad  
+Sigue siendo útil como **disuasión**, no como protección.
 
 ---
 
@@ -85,9 +85,9 @@ Still useful as a **deterrent**, not protection.
 
 |Feature|Reality|
 |---|---|
-|Allows known devices|YES|
-|Prevents attacks|NO|
-|Easily spoofed|YES|
+|Permite dispositivos conocidos|SÍ|
+|Previene ataques|NO|
+|Fácilmente falsificable|SÍ|
 
 MEMORY HOOK:  
 **MAC filtering = speed bump**
@@ -102,7 +102,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|WIDS|Monitors wireless traffic for attacks|
+|WIDS|Monitorea tráfico inalámbrico en busca de ataques|
 
 ---
 
@@ -110,7 +110,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|WIPS|Detects and actively prevents attacks|
+|WIPS|Detecta y previene activamente ataques|
 
 ---
 
@@ -132,9 +132,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Separate WLAN from LAN|
-|Use VLANs|
-|Guest network isolation|
+|Separar WLAN de LAN|
+|Usar VLANs|
+|Aislamiento de red de invitados|
 
 MEMORY HOOK:  
 **Compartmentalize damage**
@@ -145,8 +145,8 @@ MEMORY HOOK:
 
 |Benefit|
 |---|
-|Encrypts traffic end-to-end|
-|Protects open Wi-Fi|
+|Cifra el tráfico de extremo a extremo|
+|Protege Wi-Fi abierto|
 
 MEMORY HOOK:  
 **VPN shields wireless**
@@ -170,9 +170,9 @@ MEMORY HOOK:
 
 |Measure|
 |---|
-|Secure AP placement|
-|Prevent rogue device installation|
-|Control access to network hardware|
+|Ubicación segura del AP|
+|Prevenir instalación de dispositivos no autorizados|
+|Controlar acceso al hardware de red|
 
 MEMORY HOOK:  
 **Physical access = total access**
@@ -196,8 +196,8 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|802.11w|Protects management frames|
-|Prevents|Deauth/Disassoc attacks|
+|802.11w|Protege tramas de gestión|
+|Prevents|Ataques de Deauth/Disassoc|
 
 MEMORY HOOK:  
 **11w stops deauth**
@@ -208,26 +208,26 @@ MEMORY HOOK:
 
 |#|Practice|
 |---|---|
-|1|Use WPA3|
-|2|Disable WPS|
-|3|Enable WIPS|
-|4|Use strong passwords|
-|5|Segment networks|
-|6|Patch firmware|
-|7|Monitor continuously|
+|1|Usar WPA3|
+|2|Desactivar WPS|
+|3|Activar WIPS|
+|4|Usar contraseñas fuertes|
+|5|Segmentar redes|
+|6|Actualizar firmware|
+|7|Monitorear continuamente|
 
 ---
 
 # MODULE 16 — COMPLETE MEMORY BLOCK
 
-**Wireless is broadcast.  
-Encryption is mandatory.  
-WEP is broken.  
-WPA3 is best.  
-Recon listens.  
-Deauth forces reconnect.  
-Aircrack cracks keys.  
-WIPS stops attacks.**
+**Wireless es transmisión por broadcast.  
+El cifrado es obligatorio.  
+WEP está roto.  
+WPA3 es el mejor.  
+Recon escucha.  
+Deauth fuerza reconexión.  
+Aircrack rompe claves.  
+WIPS detiene ataques.**
 
 ---
 
@@ -263,57 +263,56 @@ You are now ready for:
 
 | Term | Definition |
 |------|------------|
-| WPA3 | Recommended wireless security standard using SAE authentication |
-| WPA2-AES | Acceptable minimum encryption standard for wireless networks |
-| WIDS | Wireless Intrusion Detection System; monitors traffic for attacks |
-| WIPS | Wireless Intrusion Prevention System; detects and actively prevents attacks |
-| 802.11w | Management Frame Protection standard that prevents deauth/disassoc attacks |
-| WPS | Wi-Fi Protected Setup; convenience feature vulnerable to brute-force attacks |
-| MAC Filtering | Allows only known devices but easily bypassed via MAC spoofing |
-| Containerization | Isolating corporate data and apps from personal data on a device |
-| Network Segmentation | Separating WLAN from LAN using VLANs to limit attack impact |
-| VPN over Wireless | Encrypts all traffic end-to-end, protecting data on open Wi-Fi |
-| Firmware Patching | Regularly updating AP, router, and controller firmware to fix vulnerabilities |
-| RADIUS Server | Enterprise authentication server used in WPA2/WPA3-Enterprise mode |
-| Spectrum Analysis | Technique used to detect jamming and wireless interference |
-| SSID Hiding | Disabling SSID broadcast; provides deterrence but NOT true security |
+| WPA3 | Estándar de seguridad inalámbrica recomendado que utiliza autenticación SAE |
+| WPA2-AES | Estándar de cifrado mínimo aceptable para redes inalámbricas |
+| WIDS | Sistema de detección de intrusiones inalámbricas; monitorea tráfico en busca de ataques |
+| WIPS | Sistema de prevención de intrusiones inalámbricas; detecta y previene activamente ataques |
+| 802.11w | Estándar de protección de tramas de gestión que previene ataques de deauth/disassoc |
+| WPS | Wi-Fi Protected Setup; función de conveniencia vulnerable a ataques de fuerza bruta |
+| MAC Filtering | Permite solo dispositivos conocidos pero fácilmente eludible mediante MAC spoofing |
+| Containerization | Aislamiento de datos y aplicaciones corporativas de datos personales en un dispositivo |
+| Network Segmentation | Separación de WLAN de LAN usando VLANs para limitar el impacto de ataques |
+| VPN over Wireless | Cifra todo el tráfico de extremo a extremo, protegiendo datos en Wi-Fi abierto |
+| Firmware Patching | Actualización regular de firmware de AP, router y controladores para corregir vulnerabilidades |
+| RADIUS Server | Servidor de autenticación empresarial utilizado en modo WPA2/WPA3-Enterprise |
+| Spectrum Analysis | Técnica utilizada para detectar jamming e interferencias inalámbricas |
+| SSID Hiding | Desactivación del broadcast de SSID; proporciona disuasión pero NO seguridad real |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** Which countermeasure directly prevents deauthentication attacks?
+**1.** ¿Qué contramedida previene directamente los ataques de deauthentication?
 - a) MAC filtering
 - b) IEEE 802.11w (Management Frame Protection)
 - c) Disabling SSID broadcast
 - d) WPA3-SAE
-**Answer:** B — 802.11w protects management frames, preventing forged deauth/disassoc frames.
+**Respuesta:** B — 802.11w protege las tramas de gestión, previniendo tramas de deauth/disassoc falsificadas.
 
-**2.** A WIDS detects a Rogue AP on the network. What does a WIPS do differently?
-- a) It only logs the event
-- b) It actively blocks or contains the Rogue AP
-- c) It disables all wireless traffic
-- d) It changes the AP channel
-**Answer:** B — WIDS monitors and alerts; WIPS goes further by actively preventing the threat.
+**2.** Un WIDS detecta un Rogue AP en la red. ¿Qué hace un WIPS diferente?
+- a) Solo registra el evento
+- b) Bloquea o contiene activamente el Rogue AP
+- c) Desactiva todo el tráfico inalámbrico
+- d) Cambia el canal del AP
+**Respuesta:** B — WIDS monitorea y alerta; WIPS va más allá previniendo activamente la amenaza.
 
-**3.** Why is MAC address filtering considered insufficient security?
-- a) It slows down network performance
-- b) MAC addresses can be easily spoofed with tools like macchanger
-- c) It only works with WEP
-- d) It prevents legitimate users from connecting
-**Answer:** B — MAC addresses are transmitted in cleartext and can be trivially spoofed.
+**3.** ¿Por qué se considera que MAC address filtering no es suficiente?
+- a) Ralentiza el rendimiento de la red
+- b) Las MAC addresses pueden ser fácilmente falsificadas con herramientas como macchanger
+- c) Solo funciona con WEP
+- d) Impide que usuarios legítimos se conecten
+**Respuesta:** B — Las MAC addresses se transmiten en texto claro y pueden ser falsificadas trivialmente.
 
-**4.** Which is the MOST important wireless security control according to CEH?
+**4.** ¿Cuál es el control de seguridad inalámbrica MÁS importante según CEH?
 - a) Disabling SSID broadcast
-- b) Using MAC filtering
-- c) Strong encryption (WPA3/WPA2-AES)
-- d) Reducing signal strength
-**Answer:** C — Strong encryption is the primary defense; all other controls are supplementary.
+- b) Usando MAC filtering
+- c) Cifrado fuerte (WPA3/WPA2-AES)
+- d) Reduciendo la potencia de señal
+**Respuesta:** C — El cifrado fuerte es la defensa principal; todos los demás controles son complementarios.
 
-**5.** What is the benefit of segmenting the wireless network from the wired LAN?
-- a) Increases throughput
-- b) Limits damage if a wireless device is compromised
-- c) Eliminates the need for encryption
-- d) Prevents all MITM attacks
-**Answer:** B — Network segmentation using VLANs contains breaches and limits lateral movement.
-
+**5.** ¿Cuál es el beneficio de segmentar la red inalámbrica de la LAN cableada?
+- a) Aumenta el rendimiento
+- b) Limita el daño si un dispositivo inalámbrico es comprometido
+- c) Elimina la necesidad de cifrado
+- d) Previene todos los ataques MITM
+**Respuesta:** B — La segmentación de red usando VLANs contiene brechas y limita el movimiento lateral.

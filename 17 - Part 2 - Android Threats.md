@@ -6,7 +6,7 @@
 
 |Item|Memorize|
 |---|---|
-|Android OS|An open-source, Linux-based mobile operating system developed by Google|
+|Android OS|Un sistema operativo móvil de código abierto basado en Linux desarrollado por Google|
 
 MEMORY HOOK:  
 **Open-source = flexible + attackable**
@@ -17,12 +17,12 @@ MEMORY HOOK:
 
 |Layer|Description|
 |---|---|
-|Linux Kernel|Hardware abstraction, drivers|
+|Linux Kernel|Abstracción de hardware, drivers|
 |HAL|Hardware Abstraction Layer|
-|Native Libraries|C/C++ libraries|
-|Android Runtime (ART)|Executes apps|
+|Native Libraries|Bibliotecas C/C++|
+|Android Runtime (ART)|Ejecuta aplicaciones|
 |Application Framework|APIs|
-|Applications|User-installed apps|
+|Applications|Aplicaciones instaladas por el usuario|
 
 MEMORY HOOK:  
 **Kernel → HAL → Runtime → Framework → Apps**
@@ -33,11 +33,11 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Open ecosystem|
-|Third-party app installation|
-|Fragmentation|
-|Rooting possible|
-|Weak app vetting|
+|Ecosistema abierto|
+|Instalación de apps de terceros|
+|Fragmentación|
+|Rooting posible|
+|Débil revisión de apps|
 
 ---
 
@@ -62,7 +62,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Android Malware|Malicious software designed to compromise Android devices|
+|Android Malware|Software malicioso diseñado para comprometer dispositivos Android|
 
 ---
 
@@ -70,12 +70,12 @@ MEMORY HOOK:
 
 |Behavior|
 |---|
-|Steals credentials|
-|Sends premium SMS|
-|Records calls|
-|Activates mic/camera|
-|Joins botnets|
-|Downloads payloads|
+|Roba credenciales|
+|Envía SMS premium|
+|Graba llamadas|
+|Activa micrófono/cámara|
+|Se une a botnets|
+|Descarga payloads|
 
 ---
 
@@ -83,10 +83,10 @@ MEMORY HOOK:
 
 |Method|Description|
 |---|---|
-|Malicious apps|Third-party stores|
-|Repackaged apps|Legit apps modified|
-|Drive-by downloads|Malicious websites|
-|Phishing|Fake updates|
+|Malicious apps|Tiendas de terceros|
+|Repackaged apps|Apps legítimas modificadas|
+|Drive-by downloads|Sitios web maliciosos|
+|Phishing|Actualizaciones falsas|
 |SMS links|Smishing|
 
 MEMORY HOOK:  
@@ -100,12 +100,12 @@ MEMORY HOOK:
 
 |Permission|Abuse|
 |---|---|
-|READ_SMS|OTP theft|
-|SEND_SMS|Premium fraud|
-|READ_CONTACTS|Data theft|
-|RECORD_AUDIO|Eavesdropping|
-|CAMERA|Surveillance|
-|ACCESS_FINE_LOCATION|Tracking|
+|READ_SMS|Robo de OTP|
+|SEND_SMS|Fraude premium|
+|READ_CONTACTS|Robo de datos|
+|RECORD_AUDIO|Escucha|
+|CAMERA|Vigilancia|
+|ACCESS_FINE_LOCATION|Rastreo|
 
 MEMORY HOOK:  
 **SMS = money, mic = spy**
@@ -118,7 +118,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Rooting|Gaining superuser (root) access on Android|
+|Rooting|Obtener acceso de superusuario (root) en Android|
 
 ---
 
@@ -126,10 +126,10 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Disables sandboxing|
-|Bypasses permission model|
-|Enables malware persistence|
-|Breaks MDM controls|
+|Deshabilita el sandboxing|
+|Bypasea el modelo de permisos|
+|Habilita la persistencia de malware|
+|Rompe los controles MDM|
 
 MEMORY HOOK:  
 **Root = no rules**
@@ -140,10 +140,10 @@ MEMORY HOOK:
 
 |Method|
 |---|
-|Exploiting OS vulnerabilities|
-|Unlocking bootloader|
-|Flashing custom ROM|
-|Malicious rooting apps|
+|Explotar vulnerabilidades del OS|
+|Desbloquear bootloader|
+|Flashear ROM personalizada|
+|Apps de rooting maliciosas|
 
 ---
 
@@ -155,9 +155,9 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|What|Malicious code added to legit app|
-|How|Decompiled, modified, resigned|
-|Result|User installs malware|
+|What|Código malicioso añadido a una app legítima|
+|How|Descompilada, modificada, re-firmada|
+|Result|El usuario instala malware|
 
 MEMORY HOOK:  
 **Same app, evil inside**
@@ -168,9 +168,9 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|Trigger|Visiting malicious website|
-|Payload|Auto-download malware|
-|Victim action|Minimal or none|
+|Trigger|Visitar un sitio web malicioso|
+|Payload|Descarga automática de malware|
+|Victim action|Mínima o ninguna|
 
 ---
 
@@ -188,9 +188,9 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|What|Malware intercepts mobile traffic|
-|Target|Banking apps|
-|Method|Overlay + SMS interception|
+|What|Malware intercepta el tráfico móvil|
+|Target|Aplicaciones bancarias|
+|Method|Overlay + interceptación de SMS|
 
 MEMORY HOOK:  
 **MITM on mobile = MITMO**
@@ -201,8 +201,8 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|Method|UI overlay deception|
-|Result|Unauthorized actions|
+|Method|Engaño mediante overlay de UI|
+|Result|Acciones no autorizadas|
 
 ---
 
@@ -210,10 +210,10 @@ MEMORY HOOK:
 
 |Feature|
 |---|
-|C2 communication|
+|Comunicación C2|
 |DDoS|
 |Spam|
-|Data theft|
+|Robo de datos|
 
 ---
 
@@ -221,12 +221,12 @@ MEMORY HOOK:
 
 |Vulnerability|
 |---|
-|Insecure data storage|
-|Weak encryption|
-|Improper session handling|
-|Hardcoded credentials|
-|Insecure IPC|
-|Debug mode enabled|
+|Almacenamiento inseguro de datos|
+|Cifrado débil|
+|Manejo inadecuado de sesiones|
+|Credenciales hardcodeadas|
+|IPC inseguro|
+|Modo debug habilitado|
 
 ---
 
@@ -237,7 +237,7 @@ MEMORY HOOK:
 |Wi-Fi sniffing|
 |Rogue AP|
 |SSL stripping|
-|Fake certificates|
+|Certificados falsos|
 
 ---
 
@@ -247,7 +247,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|ADB|Command-line tool to communicate with Android devices|
+|ADB|Herramienta de línea de comandos para comunicarse con dispositivos Android|
 
 ---
 
@@ -255,11 +255,11 @@ MEMORY HOOK:
 
 |Command|Purpose|
 |---|---|
-|adb devices|List devices|
-|adb shell|Access device shell|
-|adb pull|Copy files from device|
-|adb push|Copy files to device|
-|adb install|Install APK|
+|adb devices|Listar dispositivos|
+|adb shell|Acceder al shell del dispositivo|
+|adb pull|Copiar archivos desde el dispositivo|
+|adb push|Copiar archivos al dispositivo|
+|adb install|Instalar APK|
 
 MEMORY HOOK:  
 **ADB = control channel**
@@ -268,10 +268,10 @@ MEMORY HOOK:
 
 # ANDROID SECURITY RISKS SUMMARY (EXAM BLOCK)
 
-**Android attacks exploit openness, permissions, rooting, weak apps, and insecure networks.  
-Malware enters via apps, SMS, and web.  
-Rooting breaks security.  
-ADB enables control.**
+**Los ataques Android explotan la apertura, permisos, rooting, apps débiles y redes inseguras.  
+El malware entra a través de apps, SMS y web.  
+Rooting rompe la seguridad.  
+ADB permite el control.**
 
 ---
 
@@ -292,57 +292,56 @@ ADB enables control.**
 
 | Term | Definition |
 |------|------------|
-| Rooting | Gaining superuser (root) access on Android, bypassing sandbox and permissions |
-| Repackaging Attack | Adding malicious code to a legitimate app, recompiling and redistributing |
-| Drive-by Download | Auto-downloading malware when visiting a malicious website |
-| Man-in-the-Mobile (MITMO) | Malware intercepting mobile traffic via overlay and SMS interception |
-| ADB | Android Debug Bridge; command-line tool for communicating with Android devices |
-| Smishing | Phishing attack delivered via SMS messages |
-| Premium SMS Fraud | Sending SMS to premium-rate numbers for profit |
-| OTP Interception | Stealing one-time passwords via SMS or malware |
-| Android Botnet | Network of compromised Android devices used for DDoS, spam, data theft |
-| Clickjacking | UI overlay deception tricking users into unintended actions |
-| Third-party App Store | Unofficial app source that may host repackaged or malicious APKs |
-| Android Architecture | Layers: Linux Kernel → HAL → Native Libraries → ART → Framework → Apps |
+| Rooting | Obtener acceso de superusuario (root) en Android, bypaseando sandbox y permisos |
+| Repackaging Attack | Añadir código malicioso a una app legítima, recompilando y redistribuyendo |
+| Drive-by Download | Descarga automática de malware al visitar un sitio web malicioso |
+| Man-in-the-Mobile (MITMO) | Malware que intercepta el tráfico móvil mediante overlay e interceptación de SMS |
+| ADB | Android Debug Bridge; herramienta de línea de comandos para comunicarse con dispositivos Android |
+| Smishing | Ataque de phishing entregado vía mensajes SMS |
+| Premium SMS Fraud | Envío de SMS a números tarifarios premium para obtener beneficios |
+| OTP Interception | Robo de contraseñas de un solo uso vía SMS o malware |
+| Android Botnet | Red de dispositivos Android comprometidos usados para DDoS, spam, robo de datos |
+| Clickjacking | Engaño mediante overlay de UI que induce a los usuarios a realizar acciones no deseadas |
+| Third-party App Store | Fuente no oficial de apps que puede alojar APKs reempaquetados o maliciosos |
+| Android Architecture | Capas: Linux Kernel → HAL → Native Libraries → ART → Framework → Apps |
 | Dangerous Permissions | READ_SMS, SEND_SMS, CAMERA, RECORD_AUDIO, ACCESS_FINE_LOCATION |
-| APK Decompilation | Reverse engineering an APK to extract and modify source code |
+| APK Decompilation | Ingeniería inversa de un APK para extraer y modificar el código fuente |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the security impact of rooting an Android device?
-- a) It strengthens the sandbox
-- b) It disables sandboxing, bypasses permissions, and breaks MDM controls
-- c) It enables automatic encryption
-- d) It improves app vetting
-**Answer:** B — Rooting removes all security boundaries, giving malware full system access.
+**1.** ¿Cuál es el impacto de seguridad de hacer rooting a un dispositivo Android?
+- a) Fortalece el sandbox
+- b) Deshabilita el sandboxing, bypasea permisos y rompe los controles MDM
+- c) Habilita el cifrado automático
+- d) Mejora la revisión de apps
+**Answer:** B — Rooting elimina todos los límites de seguridad, dando al malware acceso completo al sistema.
 
-**2.** Which Android malware delivery method involves modifying a legitimate app?
+**2.** ¿Qué método de entrega de malware Android implica modificar una app legítima?
 - a) Drive-by download
 - b) Smishing
 - c) Repackaging attack
 - d) SMS fraud
-**Answer:** C — Repackaging involves decompiling, modifying, and resigning a legitimate app with malware.
+**Answer:** C — Repackaging implica descompilar, modificar y re-firmar una app legítima con malware.
 
-**3.** What does the ADB command `adb devices` do?
-- a) Installs an APK
-- b) Lists connected Android devices
-- c) Enables root access
-- d) Pulls files from the device
-**Answer:** B — `adb devices` lists all Android devices currently connected via USB or network.
+**3.** ¿Qué hace el comando ADB `adb devices`?
+- a) Instala un APK
+- b) Lista los dispositivos Android conectados
+- c) Habilita el acceso root
+- d) Descarga archivos desde el dispositivo
+**Answer:** B — `adb devices` lista todos los dispositivos Android conectados actualmente vía USB o red.
 
-**4.** Which dangerous Android permission is used for OTP theft?
+**4.** ¿Qué permiso peligroso de Android se usa para el robo de OTP?
 - a) CAMERA
 - b) RECORD_AUDIO
 - c) READ_SMS
 - d) ACCESS_FINE_LOCATION
-**Answer:** C — READ_SMS allows apps to read incoming messages, including OTP codes.
+**Answer:** C — READ_SMS permite a las apps leer mensajes entrantes, incluyendo códigos OTP.
 
-**5.** What is the primary difference between repackaging and drive-by download attacks?
-- a) Repackaging modifies existing apps; drive-by auto-downloads from malicious websites
-- b) Repackaging targets iOS; drive-by targets Android
-- c) There is no difference
-- d) Drive-by requires user consent; repackaging does not
-**Answer:** A — Repackaging corrupts a legitimate app before installation; drive-by downloads happen silently via browser.
-
+**5.** ¿Cuál es la diferencia principal entre los ataques de repackaging y drive-by download?
+- a) Repackaging modifica apps existentes; drive-by descarga automáticamente de sitios maliciosos
+- b) Repackaging apunta a iOS; drive-by apunta a Android
+- c) No hay diferencia
+- d) Drive-by requiere consentimiento del usuario; repackaging no
+**Answer:** A — Repackaging corrompe una app legítima antes de la instalación; drive-by downloads ocurren silenciosamente a través del navegador.

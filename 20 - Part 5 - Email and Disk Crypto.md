@@ -8,15 +8,15 @@
 
 |Problem|
 |---|
-|How do you trust that a public key actually belongs to the real entity?|
+|¿Cómo confías en que una clave pública realmente pertenece a la entidad real?|
 
-Example problem (EXAM SCENARIO):
+Ejemplo de problema (EXAM SCENARIO):
 
-- Attacker gives you **their** public key
+- El atacante te da **su** clave pública
     
-- Claims it belongs to a bank
+- Afirma que pertenece a un banco
     
-- You encrypt data → attacker decrypts
+- Cifras datos → el atacante descifra
     
 
 MEMORY HOOK:  
@@ -28,17 +28,17 @@ MEMORY HOOK:
 
 |Term|CEH Definition|
 |---|---|
-|Public Key Infrastructure (PKI)|A framework that manages digital certificates, public keys, and trust relationships|
+|Public Key Infrastructure (PKI)|Un marco que gestiona certificados digitales, claves públicas y relaciones de confianza|
 
-PKI PROVIDES:
+PKI PROPORCIONA:
 
-- Authentication
+- Autenticación
     
-- Integrity
+- Integridad
     
-- Confidentiality
+- Confidencialidad
     
-- Non-repudiation
+- No repudio
     
 
 MEMORY HOOK:  
@@ -54,17 +54,17 @@ MEMORY HOOK:
 
 |Property|Explanation|
 |---|---|
-|Role|Trusted third party|
-|Function|Issues and signs certificates|
-|Trust|Implicitly trusted by systems|
+|Role|Tercera parte de confianza|
+|Function|Emite y firma certificados|
+|Trust|Confianza implícita por parte de los sistemas|
 
-Examples:
+Ejemplos:
 
 - DigiCert
     
 - GlobalSign
     
-- Let’s Encrypt
+- Let's Encrypt
     
 
 MEMORY HOOK:  
@@ -79,9 +79,9 @@ CA ≠ encryption provider.
 
 |Property|Explanation|
 |---|---|
-|Contains|Public key + identity|
+|Contains|Clave pública + identidad|
 |Issued by|CA|
-|Purpose|Bind identity to key|
+|Purpose|Vincular la identidad con la clave|
 
 ---
 
@@ -89,12 +89,12 @@ CA ≠ encryption provider.
 
 |Field|
 |---|
-|Subject name|
-|Subject public key|
-|Issuer (CA)|
-|Validity period|
-|Serial number|
-|Digital signature of CA|
+|Nombre del sujeto|
+|Clave pública del sujeto|
+|Emisor (CA)|
+|Período de validez|
+|Número de serie|
+|Firma digital de la CA|
 
 MEMORY HOOK:  
 **Certificate = ID card for public key**
@@ -105,9 +105,9 @@ MEMORY HOOK:
 
 |Property|Explanation|
 |---|---|
-|Role|Verifies identity|
-|Function|Approves certificate requests|
-|Relation|Works on behalf of CA|
+|Role|Verifica la identidad|
+|Function|Aprueba solicitudes de certificados|
+|Relation|Trabaja en nombre de la CA|
 
 MEMORY HOOK:  
 **RA = identity checker**
@@ -118,8 +118,8 @@ MEMORY HOOK:
 
 |Property|Explanation|
 |---|---|
-|Purpose|List of revoked certificates|
-|Reason|Compromised or expired certs|
+|Purpose|Lista de certificados revocados|
+|Reason|Certificados comprometidos o expirados|
 |Maintained by|CA|
 
 MEMORY HOOK:  
@@ -131,9 +131,9 @@ MEMORY HOOK:
 
 |Property|Explanation|
 |---|---|
-|Purpose|Real-time certificate status|
+|Purpose|Estado del certificado en tiempo real|
 |Faster than|CRL|
-|Query-based|Yes|
+|Query-based|Sí|
 
 MEMORY HOOK:  
 **OCSP = live cert check**
@@ -151,11 +151,11 @@ OCSP does NOT replace certificates.
 
 |Step|Description|
 |---|---|
-|1|User generates key pair|
-|2|Sends public key to RA|
-|3|RA verifies identity|
-|4|CA signs public key|
-|5|Certificate is issued|
+|1|El usuario genera un par de claves|
+|2|Envía la clave pública a la RA|
+|3|La RA verifica la identidad|
+|4|La CA firma la clave pública|
+|5|Se emite el certificado|
 
 MEMORY HOOK:  
 **Generate → Verify → Sign → Trust**
@@ -166,11 +166,11 @@ MEMORY HOOK:
 
 |Step|Description|
 |---|---|
-|1|Client receives certificate|
-|2|Checks CA signature|
-|3|Verifies trust chain|
-|4|Checks expiration|
-|5|Checks revocation status|
+|1|El cliente recibe el certificado|
+|2|Verifica la firma de la CA|
+|3|Verifica la cadena de confianza|
+|4|Verifica la expiración|
+|5|Verifica el estado de revocación|
 
 MEMORY HOOK:  
 **Signature → Chain → Time → Revocation**
@@ -187,15 +187,15 @@ MEMORY HOOK:
 |---|
 |Root CA|
 |Intermediate CA|
-|End-entity certificate|
+|Certificado de entidad final|
 
-LOGIC:
+LÓGICA:
 
-- Root CA is pre-trusted
+- La Root CA es pre-confiada
     
-- Root signs Intermediate
+- La Root firma la Intermediate
     
-- Intermediate signs website
+- La Intermediate firma el sitio web
     
 
 MEMORY HOOK:  
@@ -210,9 +210,9 @@ Browsers do NOT trust websites directly — they trust CAs.
 
 |Property|Explanation|
 |---|---|
-|Issuer|Same as subject|
-|Trust|NOT trusted by default|
-|Usage|Testing|
+|Issuer|Igual que el sujeto|
+|Trust|NO es confiable por defecto|
+|Usage|Pruebas|
 
 MEMORY HOOK:  
 **Self-signed = no external trust**
@@ -240,10 +240,10 @@ MEMORY HOOK:
 
 |Certificate|
 |---|
-|SSL/TLS certificate|
-|Code signing certificate|
-|Email (S/MIME) certificate|
-|Client authentication certificate|
+|Certificado SSL/TLS|
+|Certificado de firma de código|
+|Certificado de email (S/MIME)|
+|Certificado de autenticación de cliente|
 
 ---
 
@@ -252,10 +252,10 @@ MEMORY HOOK:
 |Application|
 |---|
 |SSL/TLS|
-|Secure email|
-|Digital signatures|
-|Smart cards|
-|VPN authentication|
+|Email seguro|
+|Firmas digitales|
+|Tarjetas inteligentes|
+|Autenticación VPN|
 
 MEMORY HOOK:  
 **PKI everywhere trust matters**
@@ -266,9 +266,9 @@ MEMORY HOOK:
 
 |Feature|Digital Signature|Certificate|
 |---|---|---|
-|Purpose|Verify message|Verify identity|
-|Uses key|Private key|Public key|
-|Issued by|User|CA|
+|Purpose|Verificar mensaje|Verificar identidad|
+|Uses key|Clave privada|Clave pública|
+|Issued by|Usuario|CA|
 
 MEMORY HOOK:  
 **Cert proves WHO, signature proves WHAT**
@@ -279,9 +279,9 @@ MEMORY HOOK:
 
 |Attack|
 |---|
-|Fake CA|
-|Certificate spoofing|
-|CA compromise|
+|CA falsa|
+|Suplantación de certificados|
+|Compromiso de CA|
 |Man-in-the-middle|
 
 EXAM TRAP:  
@@ -291,23 +291,23 @@ If CA is compromised, PKI collapses.
 
 ## OBJECTIVE 05 — MEMORY CHECKLIST (CRITICAL)
 
-You must remember:
+Debes recordar:
 
-- PKI = trust framework
+- PKI = marco de confianza
     
-- CA signs certificates
+- La CA firma certificados
     
-- Certificates bind identity to public key
+- Los certificados vinculan la identidad con la clave pública
     
-- Trust chain = Root → Intermediate → End entity
+- Cadena de confianza = Root → Intermediate → Entidad final
     
-- CRL = revoked cert list
+- CRL = lista de certificados revocados
     
-- OCSP = real-time cert status
+- OCSP = estado del certificado en tiempo real
     
-- Self-signed certs are untrusted
+- Los certificados autofirmados no son confiables
     
-- PKI solves public key trust problem
+- PKI resuelve el problema de confianza de claves públicas
     
 
 ---
@@ -328,59 +328,59 @@ Reply **next** to continue with:
 
 | Term | Definition |
 |------|------------|
-| PKI | Public Key Infrastructure — framework managing digital certificates, public keys, and trust |
-| Certificate Authority (CA) | Trusted third party that issues and signs digital certificates |
-| Digital Certificate | Binds identity to public key; contains subject, issuer, validity, serial number |
-| Registration Authority (RA) | Verifies identity and approves certificate requests on behalf of CA |
-| CRL | Certificate Revocation List — blacklist of revoked certificates maintained by CA |
-| OCSP | Online Certificate Status Protocol — real-time certificate status check, faster than CRL |
-| Trust Chain | Root CA → Intermediate CA → End-entity certificate hierarchy |
-| Root CA | Top-level CA pre-trusted by browsers and operating systems |
-| Intermediate CA | Signs certificates on behalf of Root CA |
-| Self-Signed Certificate | Issuer same as subject; not trusted by default; used for testing |
-| DV Certificate | Domain Validation — basic certificate验证 domain ownership |
-| OV Certificate | Organization Validation —验证 organization identity |
-| EV Certificate | Extended Validation — highest validation level |
-| SSL/TLS Certificate | Encrypts web traffic between client and server |
-| Code Signing Certificate | Signs software to verify publisher identity |
-| S/MIME Certificate | Secure email certificate for encryption and signing |
-| Digital Signature | Verifies message integrity and sender identity using private key |
+| PKI | Public Key Infrastructure — marco que gestiona certificados digitales, claves públicas y confianza |
+| Certificate Authority (CA) | Tercera parte de confianza que emite y firma certificados digitales |
+| Digital Certificate | Vincula la identidad con la clave pública; contiene sujeto, emisor, validez, número de serie |
+| Registration Authority (RA) | Verifica la identidad y aprueba solicitudes de certificados en nombre de la CA |
+| CRL | Certificate Revocation List — lista negra de certificados revocados mantenida por la CA |
+| OCSP | Online Certificate Status Protocol — verificación de estado de certificado en tiempo real, más rápido que CRL |
+| Trust Chain | Jerarquía Root CA → Intermediate CA → Certificado de entidad final |
+| Root CA | CA de nivel superior pre-confiada por navegadores y sistemas operativos |
+| Intermediate CA | Firma certificados en nombre de la Root CA |
+| Self-Signed Certificate | Emisor igual que el sujeto; no confiable por defecto; usado para pruebas |
+| DV Certificate | Domain Validation — certificado básico que verifica propiedad del dominio |
+| OV Certificate | Organization Validation — verifica la identidad de la organización |
+| EV Certificate | Extended Validation — nivel de validación más alto |
+| SSL/TLS Certificate | Cifra el tráfico web entre cliente y servidor |
+| Code Signing Certificate | Firma software para verificar la identidad del editor |
+| S/MIME Certificate | Certificado de email seguro para cifrado y firma |
+| Digital Signature | Verifica la integridad del mensaje y la identidad del remitente usando clave privada |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What problem does PKI solve?
-- a) Password storage
-- b) Trust of public keys — verifying they belong to the real entity
-- c) Network speed
-- d) Data compression
-**Answer:** b) — PKI solves the problem of trusting that a public key actually belongs to the claimed entity.
+**1.** ¿Qué problema resuelve PKI?
+- a) Almacenamiento de contraseñas
+- b) Confianza de claves públicas — verificar que pertenecen a la entidad real
+- c) Velocidad de red
+- d) Compresión de datos
+**Answer:** b) — PKI resuelve el problema de confiar en que una clave pública realmente pertenece a la entidad reclamada.
 
-**2.** In the trust chain, which CA is pre-trusted by browsers?
+**2.** En la cadena de confianza, ¿qué CA es pre-confiada por los navegadores?
 - a) Intermediate CA
 - b) Root CA
-- c) End-entity CA
+- c) CA de entidad final
 - d) Registration Authority
-**Answer:** b) — Root CAs are pre-trusted by browsers and operating systems.
+**Answer:** b) — Las Root CAs son pre-confiadas por navegadores y sistemas operativos.
 
-**3.** What is the difference between CRL and OCSP?
-- a) CRL is faster than OCSP
-- b) CRL is a list, OCSP provides real-time status
-- c) They are identical
-- d) OCSP is offline
-**Answer:** b) — CRL is a downloadable list of revoked certificates, while OCSP provides real-time query-based status.
+**3.** ¿Cuál es la diferencia entre CRL y OCSP?
+- a) CRL es más rápido que OCSP
+- b) CRL es una lista, OCSP proporciona estado en tiempo real
+- c) Son idénticos
+- d) OCSP está sin conexión
+**Answer:** b) — CRL es una lista descargable de certificados revocados, mientras que OCSP proporciona estado en tiempo real basado en consultas.
 
-**4.** Which certificate validation level provides the highest trust?
+**4.** ¿Qué nivel de validación de certificado proporciona la mayor confianza?
 - a) DV (Domain Validation)
 - b) OV (Organization Validation)
 - c) EV (Extended Validation)
-- d) Self-signed
-**Answer:** c) — EV certificates have the highest validation level, verifying organization identity most thoroughly.
+- d) Autofirmado
+**Answer:** c) — Los certificados EV tienen el nivel de validación más alto, verificando la identidad de la organización de manera más completa.
 
-**5.** What is the primary purpose of a digital signature?
-- a) Encrypt data
-- b) Verify message integrity and sender identity
-- c) Exchange keys
-- d) Store passwords
-**Answer:** b) — Digital signatures use private key to sign and public key to verify, providing integrity and authentication.
+**5.** ¿Cuál es el propósito principal de una firma digital?
+- a) Cifrar datos
+- b) Verificar la integridad del mensaje y la identidad del remitente
+- c) Intercambiar claves
+- d) Almacenar contraseñas
+**Answer:** b) — Las firmas digitales usan la clave privada para firmar y la clave pública para verificar, proporcionando integridad y autenticación.

@@ -6,7 +6,7 @@
 
 |Item|Memorize|
 |---|---|
-|Web API|An application programming interface that enables interaction between different software applications over HTTP/HTTPS|
+|Web API|Una interfaz de programación de aplicaciones que permite la interacción entre diferentes aplicaciones de software a través de HTTP/HTTPS|
 
 ---
 
@@ -14,10 +14,10 @@
 
 |Purpose|
 |---|
-|Enable system-to-system communication|
-|Exchange data|
-|Integrate third-party services|
-|Support mobile and web clients|
+|Permitir la comunicación entre sistemas|
+|Intercambiar datos|
+|Integrar servicios de terceros|
+|Soportar clientes móviles y web|
 
 ---
 
@@ -25,9 +25,9 @@
 
 |API Type|Description|
 |---|---|
-|REST API|Uses HTTP methods and stateless communication|
-|SOAP API|Uses XML and strict messaging standards|
-|GraphQL API|Client-defined data queries|
+|REST API|Utiliza métodos HTTP y comunicación sin estado|
+|SOAP API|Utiliza XML y estándares estrictos de mensajería|
+|GraphQL API|Consultas de datos definidas por el cliente|
 
 ---
 
@@ -37,10 +37,10 @@
 
 |Principle|
 |---|
-|Stateless communication|
-|Client-server separation|
-|Cacheable responses|
-|Uniform interface|
+|Comunicación sin estado|
+|Separación cliente-servidor|
+|Respuestas con caché|
+|Interfaz uniforme|
 
 ---
 
@@ -48,11 +48,11 @@
 
 |Method|Purpose|
 |---|---|
-|GET|Retrieve data|
-|POST|Submit data|
-|PUT|Update data|
-|PATCH|Partial update|
-|DELETE|Remove data|
+|GET|Obtener datos|
+|POST|Enviar datos|
+|PUT|Actualizar datos|
+|PATCH|Actualización parcial|
+|DELETE|Eliminar datos|
 
 MEMORY HOOK:  
 **G P P P D**
@@ -63,10 +63,10 @@ MEMORY HOOK:
 
 |Component|Description|
 |---|---|
-|Endpoint|API URL|
-|Headers|Metadata|
+|Endpoint|URL de la API|
+|Headers|Metadatos|
 |Body|Payload|
-|Parameters|Input values|
+|Parameters|Valores de entrada|
 
 ---
 
@@ -75,7 +75,7 @@ MEMORY HOOK:
 |Item|Memorize|
 |---|---|
 |SOAP|Simple Object Access Protocol|
-|Data Format|XML only|
+|Data Format|Solo XML|
 |Security|WS-Security|
 
 ---
@@ -84,10 +84,10 @@ MEMORY HOOK:
 
 |Component|Description|
 |---|---|
-|WSDL|Service description|
-|Envelope|Message wrapper|
-|Header|Security and metadata|
-|Body|Request/response|
+|WSDL|Descripción del servicio|
+|Envelope|Envoltorio del mensaje|
+|Header|Seguridad y metadatos|
+|Body|Solicitud/respuesta|
 
 ---
 
@@ -95,10 +95,10 @@ MEMORY HOOK:
 
 |Method|Description|
 |---|---|
-|API Keys|Static token|
-|Basic Auth|Username/password|
-|OAuth 2.0|Token-based delegated access|
-|JWT|Signed JSON tokens|
+|API Keys|Token estático|
+|Basic Auth|Nombre de usuario/contraseña|
+|OAuth 2.0|Acceso delegado basado en tokens|
+|JWT|Tokens JSON firmados|
 
 MEMORY HOOK:  
 **Key → Basic → Token → JWT**
@@ -135,11 +135,11 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Discover API endpoints|
-|2|Analyze authentication|
-|3|Test authorization|
-|4|Manipulate parameters|
-|5|Exploit vulnerability|
+|1|Descubrir los endpoints de la API|
+|2|Analizar la autenticación|
+|3|Probar la autorización|
+|4|Manipular parámetros|
+|5|Explotar la vulnerabilidad|
 
 ---
 
@@ -147,11 +147,11 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Postman|API testing|
-|Burp Suite|Interception|
-|SoapUI|SOAP API testing|
-|OWASP ZAP|API scanning|
-|Insomnia|REST API testing|
+|Postman|Testing de API|
+|Burp Suite|Intercepción|
+|SoapUI|Testing de SOAP API|
+|OWASP ZAP|Escaneo de API|
+|Insomnia|Testing de REST API|
 
 ---
 
@@ -159,7 +159,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Webhook|A mechanism that sends real-time data from one application to another when an event occurs|
+|Webhook|Un mecanismo que envía datos en tiempo real de una aplicación a otra cuando ocurre un evento|
 
 ---
 
@@ -167,10 +167,10 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Event occurs|
-|2|Webhook triggered|
-|3|HTTP POST sent|
-|4|Receiver processes payload|
+|1|Ocurre un evento|
+|2|Se activa el webhook|
+|3|Se envía un HTTP POST|
+|4|El receptor procesa el payload|
 
 MEMORY HOOK:  
 **Event → Trigger → POST → Process**
@@ -181,10 +181,10 @@ MEMORY HOOK:
 
 |Risk|
 |---|
-|No authentication|
-|Payload tampering|
-|Replay attacks|
-|Data leakage|
+|Sin autenticación|
+|Manipulación del payload|
+|Ataques de repetición (replay attacks)|
+|Filtración de datos|
 
 ---
 
@@ -192,10 +192,10 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Attacker discovers webhook URL|
-|2|Crafts fake payload|
-|3|Sends POST request|
-|4|Receiver processes malicious data|
+|1|El atacante descubre la URL del webhook|
+|2|Crea un payload falso|
+|3|Envía una solicitud POST|
+|4|El receptor procesa los datos maliciosos|
 
 ---
 
@@ -203,9 +203,9 @@ MEMORY HOOK:
 
 |Feature|API|Webhook|
 |---|---|---|
-|Communication|Client pulls data|Server pushes data|
-|Trigger|Request-based|Event-based|
-|Direction|Bidirectional|One-way|
+|Communication|El cliente obtiene datos (pull)|El servidor envía datos (push)|
+|Trigger|Basado en solicitudes|Basado en eventos|
+|Direction|Bidireccional|Unidireccional|
 
 ---
 
@@ -213,11 +213,11 @@ MEMORY HOOK:
 
 |Control|
 |---|
-|Strong authentication|
-|Authorization checks|
-|Input validation|
+|Autenticación robusta|
+|Verificaciones de autorización|
+|Validación de entradas|
 |Rate limiting|
-|Logging and monitoring|
+|Registro y monitoreo|
 
 ---
 
@@ -225,56 +225,55 @@ MEMORY HOOK:
 
 | Term | Definition |
 |------|------------|
-| Web API | An interface enabling interaction between different software applications over HTTP/HTTPS |
-| REST API | Stateless API using HTTP methods (GET, POST, PUT, PATCH, DELETE) with JSON or XML |
-| SOAP API | XML-based protocol using strict messaging standards and WS-Security |
-| GraphQL API | API allowing clients to define exact data queries they need |
-| API Key | Static token used to authenticate API requests |
-| OAuth 2.0 | Token-based delegated access authorization framework |
-| JWT — JSON Web Token | Signed JSON tokens used for secure API authentication and data exchange |
-| BOLA — Broken Object Level Authorization | Vulnerability allowing access to unauthorized objects by manipulating IDs |
-| Mass Assignment | Vulnerability where an attacker modifies unintended object properties through API parameters |
-| Webhook | A mechanism that sends real-time data from one application to another via HTTP POST when an event occurs |
-| API Endpoint | The specific URL where an API resource can be accessed |
-| Rate Limiting | Control mechanism restricting the number of API requests per time period |
-| API vs Webhook | APIs are request-based bidirectional; webhooks are event-based one-way push notifications |
+| Web API | Una interfaz que permite la interacción entre diferentes aplicaciones de software a través de HTTP/HTTPS |
+| REST API | API sin estado que utiliza métodos HTTP (GET, POST, PUT, PATCH, DELETE) con JSON o XML |
+| SOAP API | Protocolo basado en XML que utiliza estándares estrictos de mensajería y WS-Security |
+| GraphQL API | API que permite a los clientes definir las consultas exactas de datos que necesitan |
+| API Key | Token estático utilizado para autenticar solicitudes de API |
+| OAuth 2.0 | Marco de autorización de acceso delegado basado en tokens |
+| JWT — JSON Web Token | Tokens JSON firmados utilizados para la autenticación segura de API e intercambio de datos |
+| BOLA — Broken Object Level Authorization | Vulnerabilidad que permite acceder a objetos no autorizados manipulando IDs |
+| Mass Assignment | Vulnerabilidad donde un atacante modifica propiedades no deseadas de objetos a través de parámetros de API |
+| Webhook | Un mecanismo que envía datos en tiempo real de una aplicación a otra mediante HTTP POST cuando ocurre un evento |
+| API Endpoint | La URL específica donde se puede acceder a un recurso de API |
+| Rate Limiting | Mecanismo de control que restringe el número de solicitudes de API por período de tiempo |
+| API vs Webhook | Las APIs son bidireccionales basadas en solicitudes; los webhooks son notificaciones push unidireccionales basadas en eventos |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** Which HTTP method is used to submit data to a REST API endpoint?
+**1.** ¿Qué método HTTP se utiliza para enviar datos a un endpoint de REST API?
 - a) GET
 - b) DELETE
 - c) POST
 - d) PATCH
-**Answer:** C — POST is used to submit/send data to a server; GET retrieves data, PATCH partially updates, DELETE removes.
+**Answer:** C — POST se utiliza para enviar datos a un servidor; GET obtiene datos, PATCH actualiza parcialmente, DELETE elimina.
 
-**2.** What is the key difference between an API and a webhook?
-- a) APIs use XML only; webhooks use JSON only
-- b) APIs are request-based bidirectional; webhooks are event-based one-way push
-- c) APIs are more secure than webhooks
-- d) Webhooks require polling; APIs push data automatically
-**Answer:** B — APIs follow a client-pull model (bidirectional, request-based); webhooks follow a server-push model (one-way, event-based).
+**2.** ¿Cuál es la diferencia clave entre una API y un webhook?
+- a) Las APIs usan solo XML; los webhooks usan solo JSON
+- b) Las APIs son bidireccionales basadas en solicitudes; los webhooks son push unidireccionales basados en eventos
+- c) Las APIs son más seguras que los webhooks
+- d) Los webhooks requieren polling; las APIs envían datos automáticamente
+**Answer:** B — Las APIs siguen un modelo de pull del cliente (bidireccional, basado en solicitudes); los webhooks siguen un modelo de push del servidor (unidireccional, basado en eventos).
 
-**3.** An attacker modifies object IDs in API parameters to access another user's records. Which vulnerability is this?
+**3.** Un atacante modifica los IDs de objetos en los parámetros de una API para acceder a los registros de otro usuario. ¿Qué vulnerabilidad es esta?
 - a) Mass Assignment
 - b) Broken Object Level Authorization (BOLA)
 - c) Excessive Data Exposure
 - d) Lack of Rate Limiting
-**Answer:** B — BOLA occurs when an API fails to verify whether the authenticated user is authorized to access the requested object.
+**Answer:** B — BOLA ocurre cuando una API no verifica si el usuario autenticado está autorizado para acceder al objeto solicitado.
 
-**4.** Which SOAP component describes the operations and interface of a web service?
+**4.** ¿Qué componente de SOAP describe las operaciones e interfaz de un servicio web?
 - a) Envelope
 - b) Header
 - c) WSDL
 - d) Body
-**Answer:** C — WSDL (Web Services Description Language) describes the service operations, endpoints, and data types.
+**Answer:** C — WSDL (Web Services Description Language) describe las operaciones del servicio, los endpoints y los tipos de datos.
 
-**5.** Which security control prevents an attacker from flooding an API with excessive requests?
+**5.** ¿Qué control de seguridad impide que un atacante inunde una API con solicitudes excesivas?
 - a) OAuth 2.0
 - b) Input validation
 - c) Rate limiting
 - d) JWT signing
-**Answer:** C — Rate limiting restricts the number of requests a client can make within a given time period, preventing abuse.
-
+**Answer:** C — Rate limiting restringe el número de solicitudes que un cliente puede realizar dentro de un período de tiempo dado, previniendo el abuso.

@@ -27,10 +27,10 @@ MEMORY HOOK:
 
 |Technique|Explanation|
 |---|---|
-|DNS enumeration|Identify cloud-hosted domains|
-|IP range identification|Map provider IPs|
-|Service fingerprinting|Detect cloud services|
-|OSINT|Public cloud metadata|
+|DNS enumeration|Identificar dominios alojados en la nube|
+|IP range identification|Mapear IPs del proveedor|
+|Service fingerprinting|Detectar servicios en la nube|
+|OSINT|Metadata pública de la nube|
 
 ---
 
@@ -38,10 +38,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Shodan|Find cloud services|
-|Censys|Discover exposed cloud assets|
+|Shodan|Encontrar servicios en la nube|
+|Censys|Descubrir activos expuestos en la nube|
 |Amass|DNS enumeration|
-|theHarvester|Email & domain info|
+|theHarvester|Información de correo electrónico y dominio|
 
 MEMORY HOOK:  
 **Recon starts outside cloud**
@@ -56,9 +56,9 @@ MEMORY HOOK:
 
 |Target|Method|
 |---|---|
-|S3 buckets|Name guessing|
-|Azure blobs|Public access checks|
-|Google buckets|Enumeration|
+|S3 buckets|Adivinanza de nombres|
+|Azure blobs|Verificaciones de acceso público|
+|Google buckets|Enumeración|
 
 MEMORY HOOK:  
 **Public storage = data leak**
@@ -69,11 +69,11 @@ MEMORY HOOK:
 
 |Misconfiguration|
 |---|
-|Public buckets|
-|Over-permissive IAM|
-|Open management ports|
-|No logging enabled|
-|Default credentials|
+|Buckets públicos|
+|IAM excesivamente permisivo|
+|Puertos de gestión abiertos|
+|Sin logging habilitado|
+|Credenciales por defecto|
 
 ---
 
@@ -92,7 +92,7 @@ MEMORY HOOK:
 |Phishing|
 |Malware|
 |GitHub secrets leakage|
-|Metadata service abuse|
+|Abuso del metadata service|
 
 MEMORY HOOK:  
 **Credentials = cloud access**
@@ -104,11 +104,11 @@ MEMORY HOOK:
 |Technique|
 |---|
 |Role chaining|
-|Policy abuse|
-|Misconfigured trust relationships|
+|Abuso de políticas|
+|Relaciones de confianza mal configuradas|
 
 EXAM TRAP:  
-Cloud privilege escalation is POLICY-based, not kernel-based.
+La escalada de privilegios en la nube se basa en POLÍTICAS, no en el kernel.
 
 MEMORY HOOK:  
 **Policies = power**
@@ -123,8 +123,8 @@ MEMORY HOOK:
 
 |Item|Explanation|
 |---|---|
-|Metadata service|Internal endpoint providing instance info|
-|Access|No authentication from VM|
+|Metadata service|Endpoint interno que proporciona información de la instancia|
+|Access|Sin autenticación desde la VM|
 
 ---
 
@@ -132,9 +132,9 @@ MEMORY HOOK:
 
 |Step|
 |---|
-|Exploit SSRF|
-|Query metadata endpoint|
-|Extract credentials|
+|Explotar SSRF|
+|Consultar el endpoint de metadata|
+|Extraer credenciales|
 
 MEMORY HOOK:  
 **SSRF → metadata → creds**
@@ -145,9 +145,9 @@ MEMORY HOOK:
 
 |Step|
 |---|
-|Inject malicious service|
-|Register as valid instance|
-|Execute payload|
+|Inyectar servicio malicioso|
+|Registrar como instancia válida|
+|Ejecutar payload|
 
 ---
 
@@ -155,9 +155,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Snapshot abuse|
-|Disk image extraction|
-|VM cloning|
+|Abuso de snapshots|
+|Extracción de imágenes de disco|
+|Clonación de VMs|
 
 ---
 
@@ -169,9 +169,9 @@ MEMORY HOOK:
 
 |Cause|
 |---|
-|Privileged containers|
-|Kernel vulnerabilities|
-|Misconfigured namespaces|
+|Contenedores privilegiados|
+|Vulnerabilidades del kernel|
+|Namespaces mal configurados|
 
 MEMORY HOOK:  
 **Container ≠ VM**
@@ -182,8 +182,8 @@ MEMORY HOOK:
 
 |Method|
 |---|
-|Backdoored images|
-|Public registries|
+|Imágenes con backdoors|
+|Registros públicos|
 
 ---
 
@@ -195,10 +195,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Pacu|AWS exploitation framework|
-|Prowler|AWS security auditing|
-|ScoutSuite|Multi-cloud auditing|
-|CloudMapper|AWS visualization|
+|Pacu|Framework de explotación de AWS|
+|Prowler|Auditoría de seguridad de AWS|
+|ScoutSuite|Auditoría multi-nube|
+|CloudMapper|Visualización de AWS|
 
 ---
 
@@ -206,8 +206,8 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|MicroBurst|Azure penetration testing|
-|Stormspotter|Azure attack path mapping|
+|MicroBurst|Pruebas de penetración de Azure|
+|Stormspotter|Mapeo de rutas de ataque de Azure|
 
 ---
 
@@ -215,8 +215,8 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|GCPBucketBrute|Bucket enumeration|
-|GCPEnum|Resource discovery|
+|GCPBucketBrute|Enumeración de buckets|
+|GCPEnum|Descubrimiento de recursos|
 
 ---
 
@@ -224,9 +224,9 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Metasploit|Cloud exploitation|
-|Nuclei|Misconfiguration scanning|
-|Burp Suite|API testing|
+|Metasploit|Explotación en la nube|
+|Nuclei|Escaneo de malas configuraciones|
+|Burp Suite|Pruebas de APIs|
 
 ---
 
@@ -238,10 +238,10 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Broken authentication|
-|Broken authorization|
-|Excessive data exposure|
-|Injection attacks|
+|Autenticación rota|
+|Autorización rota|
+|Exposición excesiva de datos|
+|Ataques de inyección|
 
 MEMORY HOOK:  
 **APIs are the cloud**
@@ -250,15 +250,15 @@ MEMORY HOOK:
 
 # CLOUD ATTACK FLOW (EXAM LOGIC)
 
-1. OSINT and recon
+1. OSINT y recon
     
-2. Identify misconfiguration
+2. Identificar mala configuración
     
-3. Exploit IAM/API
+3. Explotar IAM/API
     
-4. Escalate privileges
+4. Escalar privilegios
     
-5. Persist via keys or roles
+5. Persistir mediante keys o roles
     
 
 MEMORY HOOK:  
@@ -270,12 +270,12 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Disable logging|
-|Delete trails|
-|Rotate keys|
+|Deshabilitar logging|
+|Eliminar trails|
+|Rotar keys|
 
 EXAM TRAP:  
-Logging deletion is a red flag in exams.
+La eliminación de logs es una señal de alerta en los exámenes.
 
 ---
 
@@ -283,19 +283,19 @@ Logging deletion is a red flag in exams.
 
 |Trap|Correct Understanding|
 |---|---|
-|VM escape is common|False|
-|IAM attacks need exploits|False|
-|Cloud attacks are network-based|False|
-|Encryption stops attackers|False|
+|VM escape es común|Falso|
+|Los ataques IAM necesitan exploits|Falso|
+|Los ataques en la nube son basados en red|Falso|
+|El cifrado detiene a los atacantes|Falso|
 
 ---
 
 # OBJECTIVE 03 — EXAM MEMORY BLOCK
 
-**Cloud attacks focus on IAM misuse, API abuse, and misconfiguration.  
-Metadata services expose credentials.  
-Most privilege escalation is policy-based.  
-Attackers persist using keys and roles.**
+**Los ataques en la nube se centran en el uso indebido de IAM, el abuso de APIs y las malas configuraciones.  
+Los servicios de metadata exponen credenciales.  
+La mayoría de las escaladas de privilegios se basan en políticas.  
+Los atacantes persisten usando keys y roles.**
 
 ---
 
@@ -314,60 +314,59 @@ Attackers persist using keys and roles.**
 
 | Term | Definition |
 |------|------------|
-| Cloud Attack Surface | Management console, APIs, IAM, storage, VMs, containers, metadata services |
-| Cloud Asset Discovery | DNS enumeration, IP range mapping, service fingerprinting, OSINT |
-| Storage Enumeration | Discovering and exploiting public S3 buckets, Azure blobs, Google buckets |
-| Credential Harvesting | Collecting cloud credentials via phishing, malware, GitHub leakage, metadata abuse |
-| Privilege Escalation in Cloud | Policy-based escalation through role chaining, policy abuse, trust relationship exploitation |
-| Metadata Service | Internal endpoint providing instance info; accessible from VM without authentication |
-| Container Escape | Breaking out of container due to privileged containers, kernel vulnerabilities, or misconfigured namespaces |
-| Image Poisoning | Injecting backdoors into container images in public registries |
-| Pacu | AWS exploitation framework for privilege escalation and persistence |
-| Prowler | AWS security auditing tool |
-| ScoutSuite | Multi-cloud auditing tool |
-| MicroBurst | Azure penetration testing tool |
-| Stormspotter | Azure attack path mapping tool |
-| CloudMapper | AWS visualization tool |
-| GCPBucketBrute | GCP bucket enumeration tool |
-| API Attack | Broken authentication, broken authorization, excessive data exposure, injection attacks |
-| Cloud Log Evasion | Disabling logging, deleting trails, rotating keys to cover tracks |
+| Cloud Attack Surface | Consola de gestión, APIs, IAM, almacenamiento, VMs, contenedores, servicios de metadata |
+| Cloud Asset Discovery | Enumeración DNS, mapeo de rangos de IPs, fingerprinting de servicios, OSINT |
+| Storage Enumeration | Descubrimiento y explotación de buckets S3, Azure blobs y Google buckets públicos |
+| Credential Harvesting | Recolección de credenciales en la nube mediante phishing, malware, filtraciones en GitHub y abuso del metadata service |
+| Privilege Escalation in Cloud | Escalada basada en políticas a través de role chaining, abuso de políticas y explotación de relaciones de confianza |
+| Metadata Service | Endpoint interno que proporciona información de la instancia; accesible desde la VM sin autenticación |
+| Container Escape | Escapar de un contenedor debido a contenedores privilegiados, vulnerabilidades del kernel o namespaces mal configurados |
+| Image Poisoning | Inyección de backdoors en imágenes de contenedores en registros públicos |
+| Pacu | Framework de explotación de AWS para escalada de privilegios y persistencia |
+| Prowler | Herramienta de auditoría de seguridad de AWS |
+| ScoutSuite | Herramienta de auditoría multi-nube |
+| MicroBurst | Herramienta de pruebas de penetración de Azure |
+| Stormspotter | Herramienta de mapeo de rutas de ataque de Azure |
+| CloudMapper | Herramienta de visualización de AWS |
+| GCPBucketBrute | Herramienta de enumeración de buckets de GCP |
+| API Attack | Autenticación rota, autorización rota, exposición excesiva de datos, ataques de inyección |
+| Cloud Log Evasion | Deshabilitar logging, eliminar trails, rotar keys para cubrir los rastros |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** An attacker discovers a publicly accessible S3 bucket containing sensitive data. Which technique did they use?
+**1.** Un atacante descubre un bucket S3 accesible públicamente que contiene datos sensibles. ¿Qué técnica utilizó?
 - a) Privilege escalation
 - b) Storage enumeration
 - c) Container escape
 - d) Metadata service attack
-**Answer:** b) — Storage enumeration involves discovering and exploiting public cloud storage like S3 buckets.
+**Answer:** b) — Storage enumeration implica descubrir y explotar almacenamiento público en la nube como buckets S3.
 
-**2.** How does privilege escalation differ in cloud environments compared to traditional systems?
-- a) It uses kernel exploits
-- b) It is policy-based, exploiting IAM roles and trust relationships
-- c) It requires physical access
-- d) It is impossible in cloud
-**Answer:** b) — Cloud privilege escalation is policy-based, exploiting misconfigured IAM roles and trust relationships rather than kernel vulnerabilities.
+**2.** ¿Cómo difiere la escalada de privilegios en entornos en la nube comparado con sistemas tradicionales?
+- a) Utiliza exploits del kernel
+- b) Se basa en políticas, explotando roles IAM y relaciones de confianza
+- c) Requiere acceso físico
+- d) Es imposible en la nube
+**Answer:** b) — La escalada de privilegios en la nube se basa en políticas, explotando roles IAM mal configurados y relaciones de confianza en lugar de vulnerabilidades del kernel.
 
-**3.** What is the primary risk of the cloud metadata service?
-- a) It stores user passwords
-- b) It provides instance credentials without authentication from within the VM
-- c) It encrypts all data by default
-- d) It cannot be accessed remotely
-**Answer:** b) — The metadata service provides credentials and tokens that can be extracted via SSRF attacks.
+**3.** ¿Cuál es el riesgo principal del metadata service en la nube?
+- a) Almacena contraseñas de usuarios
+- b) Proporciona credenciales de la instancia sin autenticación desde dentro de la VM
+- c) Cifra todos los datos por defecto
+- d) No se puede acceder remotamente
+**Answer:** b) — El metadata service proporciona credenciales y tokens que pueden extraerse mediante ataques SSRF.
 
-**4.** Which tool is used for Azure penetration testing?
+**4.** ¿Qué herramienta se utiliza para pruebas de penetración en Azure?
 - a) Pacu
 - b) Prowler
 - c) MicroBurst
 - d) CloudMapper
-**Answer:** c) — MicroBurst is specifically designed for Azure penetration testing.
+**Answer:** c) — MicroBurst está diseñado específicamente para pruebas de penetración en Azure.
 
-**5.** An attacker modifies cloud audit logs to hide their activity. What technique is this?
+**5.** Un atacante modifica los logs de auditoría en la nube para ocultar su actividad. ¿Qué técnica es esta?
 - a) Credential harvesting
 - b) Cloud log evasion
 - c) Storage enumeration
 - d) Container escape
-**Answer:** b) — Cloud log evasion involves disabling logging, deleting trails, or rotating keys to cover tracks.
-
+**Answer:** b) — Cloud log evasion implica deshabilitar logging, eliminar trails o rotar keys para cubrir los rastros.

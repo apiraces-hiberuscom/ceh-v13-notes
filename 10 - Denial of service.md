@@ -4,7 +4,7 @@
 |---|---|
 |Module Number|10|
 |Module Name|Denial of Service (DoS/DDoS)|
-|Focus|DoS/DDoS concepts, botnets, attack types, tools, countermeasures|
+|Focus|Conceptos de DoS/DDoS, botnets, tipos de ataques, herramientas, contramedidas|
 
 ---
 
@@ -12,10 +12,10 @@
 
 |Objective #|Description|
 |---|---|
-|01|Summarize DoS/DDoS concepts and botnet architecture|
-|02|Explain various DDoS attack techniques|
-|03|Identify DDoS attack tools|
-|04|Explain DoS/DDoS countermeasures|
+|01|Resumir conceptos de DoS/DDoS y arquitectura de botnets|
+|02|Explicar diversas técnicas de ataques DDoS|
+|03|Identificar herramientas de ataques DDoS|
+|04|Explicar contramedidas de DoS/DDoS|
 
 ---
 
@@ -27,11 +27,11 @@
 
 |Item|Definition|
 |---|---|
-|DoS|Single source floods a single target to exhaust resources|
-|DDoS|Multiple distributed sources (botnet) flood a single target simultaneously|
+|DoS|Una sola fuente inunda un solo objetivo para agotar recursos|
+|DDoS|Múltiples fuentes distribuidas (botnet) inundan un solo objetivo simultáneamente|
 
 MEMORY HOOK:
-**DoS = one attacker, DDoS = army of zombies**
+**DoS = un atacante, DDoS = ejército de zombies**
 
 ---
 
@@ -39,15 +39,15 @@ MEMORY HOOK:
 
 |Component|Role|
 |---|---|
-|Botmaster|Attacker who controls the entire botnet|
-|C2 Server (Command and Control)|Central server that relays commands from botmaster to bots|
-|Bots / Zombies|Compromised machines that carry out attacks on command|
+|Botmaster|Atacante que controla toda la botnet|
+|C2 Server (Command and Control)|Servidor central que retransmite comandos del botmaster a los bots|
+|Bots / Zombies|Máquinas comprometidas que ejecutan ataques bajo demanda|
 
 MEMORY HOOK:
-**Botmaster → C2 → Bots (one commands, one relays, many execute)**
+**Botmaster → C2 → Bots (uno comanda, uno retransmite, muchos ejecutan)**
 
 EXAM TRAP:
-The C2 server is **not** the attacker — it is the **relay**. The botmaster issues commands **through** the C2 server.
+El servidor C2 **no** es el atacante — es el **retransmisor**. El botmaster emite comandos **a través** del servidor C2.
 
 ---
 
@@ -55,14 +55,14 @@ The C2 server is **not** the attacker — it is the **relay**. The botmaster iss
 
 |Technique|Description|
 |---|---|
-|Random Scanning|Bots scan random IP addresses looking for vulnerable machines|
-|Hit-List Scanning|Attacker pre-compiles a list of vulnerable targets, then bots scan from that list to build zombie army quickly|
-|Topological Scanning|Infected machine uses information from its own connections (e.g., peer lists, chat logs) to discover new targets|
-|Local Subnet Scanning|Bots scan their own local subnet to find other vulnerable machines on the same network|
-|Permutation Scanning|Uses a pseudorandom permutation list of all IP addresses; a 32-bit block cipher with a preselected key generates the order — bots share the same permutation list to avoid redundant scanning|
+|Random Scanning|Los bots escanean direcciones IP aleatorias buscando máquinas vulnerables|
+|Hit-List Scanning|El atacante precompila una lista de objetivos vulnerables, luego los bots escanean desde esa lista para construir rápidamente un ejército de zombies|
+|Topological Scanning|La máquina infectada usa información de sus propias conexiones (por ejemplo, listas de pares, registros de chat) para descubrir nuevos objetivos|
+|Local Subnet Scanning|Los bots escanean su propia subred local para encontrar otras máquinas vulnerables en la misma red|
+|Permutation Scanning|Usa una lista de permutación pseudoaleatoria de todas las direcciones IP; un cifrado de bloque de 32 bits con una clave preseleccionada genera el orden — los bots comparten la misma lista de permutación para evitar escaneo redundante|
 
 EXAM TRAP:
-Permutation scanning is the most **efficient** because all bots share the same permutation list, preventing overlap.
+El escaneo por permutación es el más **eficiente** porque todos los bots comparten la misma lista de permutación, evitando superposiciones.
 
 ---
 
@@ -70,12 +70,12 @@ Permutation scanning is the most **efficient** because all bots share the same p
 
 |Technique|Description|
 |---|---|
-|Central Source Propagation|Attacker places attack toolkit on a central source; victims copy the code from that source, then repeat the process|
-|Back-Chaining Propagation|Attacker distributes toolkit from their own machine using protocols like TFTP|
-|Autonomous Propagation|Attacking host transfers the attack toolkit to victims at the same time it compromises them — victim becomes attacker, chain continues|
+|Central Source Propagation|El atacante coloca el kit de herramientas de ataque en una fuente central; las víctimas copian el código de esa fuente y luego repiten el proceso|
+|Back-Chaining Propagation|El atacante distribuye el kit de herramientas desde su propia máquina usando protocolos como TFTP|
+|Autonomous Propagation|El host atacante transfiere el kit de herramientas de ataque a las víctimas al mismo tiempo que las compromete — la víctima se convierte en atacante, la cadena continúa|
 
 MEMORY HOOK:
-**Central = one source, Back-chain = attacker pushes, Autonomous = victim becomes attacker**
+**Central = una fuente, Back-chain = el atacante impulsa, Autonomous = la víctima se convierte en atacante**
 
 ---
 
@@ -87,15 +87,15 @@ MEMORY HOOK:
 
 |Category|Target|
 |---|---|
-|Volumetric|Exhaust bandwidth — usually target stateless services like NTP and SSDP|
-|Protocol|Exploit network protocol weaknesses — target connection state tables, packet reassembly|
-|Application|Flood legitimate-looking web traffic — target HTTP, SQL, application logic|
+|Volumetric|Agotar ancho de banda — generalmente dirigen a servicios stateless como NTP y SSDP|
+|Protocol|Explotar debilidades de protocolos de red — dirigen tablas de estado de conexión, reensamblado de paquetes|
+|Application|Inundar tráfico web que parece legítimo — dirigen HTTP, SQL, lógica de aplicación|
 
 MEMORY HOOK:
-**Volumetric = bandwidth, Protocol = state, Application = logic**
+**Volumetric = ancho de banda, Protocol = estado, Application = lógica**
 
 EXAM TRAP:
-Volumetric attacks usually target **stateless** services (NTP, SSDP) because a small request generates a much larger response (amplification).
+Los ataques volumétricos generalmente dirigen servicios **stateless** (NTP, SSDP) porque una solicitud pequeña genera una respuesta mucho mayor (amplificación).
 
 ---
 
@@ -103,21 +103,21 @@ Volumetric attacks usually target **stateless** services (NTP, SSDP) because a s
 
 |Attack|Description|Key Detail|
 |---|---|---|
-|UDP Flood|Spoofed UDP packets sent at very high rate on random ports|Exhausts bandwidth and server resources|
-|ICMP Flood|Large amount of ICMP echo requests (ping) sent to target|Also called Ping Flood|
-|Ping of Death|Malformed or oversized ICMP packets (larger than 65,535 bytes)|Crashes or freezes vulnerable systems|
-|Smurf Attack|Spoofed ICMP ECHO request sent to a broadcast address with victim's IP as source|All hosts on the broadcast network reply to victim simultaneously|
-|Fraggle Attack|Similar to Smurf but uses UDP ECHO instead of ICMP|Targets UDP port 7 (Echo) or 19 (CHARGEN)|
-|NTP Amplification|Botnet sends small UDP packets to NTP servers with monlist enabled, spoofed victim IP|Very high amplification ratio — small request, huge response|
-|DNS Amplification|Small DNS query spoofed with victim IP sent to open resolvers|Amplification factor up to 50x|
-|SSDP Amplification|Spoofed SSDP M-SEARCH requests to UPnP devices|Reflects large responses to victim|
-|CHARGEN|Targets UDP port 19 — character generation protocol|Used in Fraggle-style amplification attacks|
+|UDP Flood|Paquetes UDP falsificados enviados a una tasa muy alta en puertos aleatorios|Agota ancho de banda y recursos del servidor|
+|ICMP Flood|Gran cantidad de solicitudes ICMP echo (ping) enviadas al objetivo|También llamado Ping Flood|
+|Ping of Death|Paquetes ICMP malformados o de tamaño excesivo (mayores de 65,535 bytes)|Bloquea o congela sistemas vulnerables|
+|Smurf Attack|Solicitud ICMP ECHO falsificada enviada a una dirección de broadcast con la IP de la víctima como origen|Todos los hosts en la red de broadcast responden a la víctima simultáneamente|
+|Fraggle Attack|Similar a Smurf pero usa UDP ECHO en lugar de ICMP|Dirige al puerto UDP 7 (Echo) o 19 (CHARGEN)|
+|NTP Amplification|La botnet envía paquetes UDP pequeños a servidores NTP con monlist habilitado, IP de la víctima falsificada|Relación de amplificación muy alta — solicitud pequeña, respuesta enorme|
+|DNS Amplification|Consulta DNS pequeña falsificada con la IP de la víctima enviada a resolutores abiertos|Factor de amplificación hasta 50x|
+|SSDP Amplification|Solicitudes SSDP M-SEARCH falsificadas a dispositivos UPnP|Refleja respuestas grandes hacia la víctima|
+|CHARGEN|Dirige al puerto UDP 19 — protocolo de generación de caracteres|Usado en ataques de amplificación estilo Fraggle|
 
 MEMORY HOOK (AMPLIFICATION):
-**NTP, DNS, SSDP, CHARGEN — all are "small ask, big reply"**
+**NTP, DNS, SSDP, CHARGEN — todos son "pedir poco, recibir mucho"**
 
 EXAM TRAP:
-Smurf uses **ICMP**, Fraggle uses **UDP**. Both use broadcast amplification.
+Smurf usa **ICMP**, Fraggle usa **UDP**. Ambos usan amplificación por broadcast.
 
 ---
 
@@ -125,16 +125,16 @@ Smurf uses **ICMP**, Fraggle uses **UDP**. Both use broadcast amplification.
 
 |Attack|Description|Key Detail|
 |---|---|---|
-|SYN Flood|TCP SYN sent with fake source IP; server waits for ACK that never arrives|Exhausts connection state tables; exploits TCP three-way handshake|
-|Fragmentation Attack|Large number of 1500-byte fragmented packets sent to target|Victim cannot reassemble; can bypass firewalls, IDS/IPS|
-|Spoofed Session Flood|Fake TCP session established using SYN, ACK, and RST or FIN packets|Exhausts session tables without legitimate traffic|
-|TCP SACK Panic|Linux-only attack using malformed SACK packets with bad MSS|Causes integer overflow in Linux socket buffer; kernel panic with packets as low as 48 bytes|
+|SYN Flood|TCP SYN enviado con IP de origen falsa; el servidor espera un ACK que nunca llega|Agota tablas de estado de conexión; explota el three-way handshake de TCP|
+|Fragmentation Attack|Gran cantidad de paquetes fragmentados de 1500 bytes enviados al objetivo|La víctima no puede reensamblar; puede evadir firewalls, IDS/IPS|
+|Spoofed Session Flood|Sesión TCP falsa establecida usando paquetes SYN, ACK y RST o FIN|Agota tablas de sesión sin tráfico legítimo|
+|TCP SACK Panic|Ataque exclusivo de Linux que usa paquetes SACK malformados con MSS incorrecto|Causa desbordamiento de entero en el buffer de sockets de Linux; panic del kernel con paquetes de tan solo 48 bytes|
 
 MEMORY HOOK (SYN FLOOD):
-**SYN = "half-open" — server opens but never closes because ACK never comes**
+**SYN = "half-open" — el servidor abre pero nunca cierra porque el ACK nunca llega**
 
 EXAM TRAP:
-TCP SACK Panic targets **Linux only** and works with packets as small as **48 bytes**.
+TCP SACK Panic dirige **solo Linux** y funciona con paquetes de tan solo **48 bytes**.
 
 ---
 
@@ -142,19 +142,19 @@ TCP SACK Panic targets **Linux only** and works with packets as small as **48 by
 
 |Attack|Description|Key Detail|
 |---|---|---|
-|HTTP GET Flood|Flood target with HTTP GET requests using time-delayed headers to hold connections open|Exhausts web server threads and memory|
-|HTTP POST Flood|Flood target with HTTP POST requests with large payloads|Exhausts server-side processing resources|
-|Slowloris|Opens many partial HTTP connections to target, sends partial headers to keep them alive|One machine can take down a server; keeps connections open indefinitely|
-|R.U.D.Y. (R-U-Dead-Yet)|Uses slow POST attacks with time-delayed header fields|Holds HTTP sessions open by sending form data byte-by-byte|
-|HULK (HTTP Unbearable Load Generation)|Generates unique, randomized HTTP requests to bypass caching|Targets application layer directly; avoids detection|
-|Multi-Vector DDoS|Combines volumetric + protocol + application layer attacks simultaneously|Most difficult to mitigate because multiple layers are targeted|
-|Peer-to-Peer|Abuses P2P networks (e.g., DC++) to redirect traffic to victim|No botnet needed — legitimate P2P users unknowingly flood target|
+|HTTP GET Flood|Inunda el objetivo con solicitudes HTTP GET usando cabeceras con retardo de tiempo para mantener las conexiones abiertas|Agota hilos y memoria del servidor web|
+|HTTP POST Flood|Inunda el objetivo con solicitudes HTTP POST con payloads grandes|Agota recursos de procesamiento del lado del servidor|
+|Slowloris|Abre muchas conexiones HTTP parciales al objetivo, envía cabeceras parciales para mantenerlas vivas|Una sola máquina puede derribar un servidor; mantiene conexiones abiertas indefinidamente|
+|R.U.D.Y. (R-U-Dead-Yet)|Usa ataques slow POST con campos de cabecera con retardo de tiempo|Mantiene sesiones HTTP abiertas enviando datos de formulario byte por byte|
+|HULK (HTTP Unbearable Load Generation)|Genera solicitudes HTTP únicas y aleatorias para evadir el cache|Dirige directamente a la capa de aplicación; evita la detección|
+|Multi-Vector DDoS|Combina ataques volumétricos + de protocolo + de capa de aplicación simultáneamente|El más difícil de mitigar porque se dirigen múltiples capas|
+|Peer-to-Peer|Abusa de redes P2P (por ejemplo, DC++) para redirigir tráfico hacia la víctima|No se necesita botnet — usuarios legítimos de P2P inundan el objetivo sin saberlo|
 
 MEMORY HOOK (SLOW ATTACKS):
-**Slowloris = partial headers, R.U.D.Y. = slow POST — both hold connections open forever**
+**Slowloris = cabeceras parciales, R.U.D.Y. = slow POST — ambos mantienen conexiones abiertas para siempre**
 
 EXAM TRAP:
-Slowloris is devastating because it works with **minimal bandwidth** — one machine can take down large servers.
+Slowloris es devastador porque funciona con **ancho de banda mínimo** — una sola máquina puede derribar servidores grandes.
 
 ---
 
@@ -162,14 +162,14 @@ Slowloris is devastating because it works with **minimal bandwidth** — one mac
 
 |Attack|Description|Key Detail|
 |---|---|---|
-|Pulse Wave DDoS|Repetitive bursts of packets as pulses at regular intervals (e.g., every 10 minutes)|Recovery between pulses is nearly impossible; sustained disruption|
-|Zero-Day DDoS|Exploits unpatched vulnerabilities with no known protection|No signatures or patches available at time of attack|
-|Permanent DoS (Phlashing)|Sends fraudulent firmware/hardware updates causing irreversible physical damage|Unlike other DoS, damage persists after attack ends|
-|Ransom DDoS|Attacker threatens or launches DDoS unless ransom is paid|Extortion tactic combined with DDoS capability|
-|DRDoS (Distributed Reflection DoS)|Spoofed attack using multiple intermediary and secondary machines to reflect traffic|Multiple intermediary services amplify the attack toward the victim|
+|Pulse Wave DDoS|Ráfagas repetitivas de paquetes como pulsos a intervalos regulares (por ejemplo, cada 10 minutos)|La recuperación entre pulsos es casi imposible; interrupción sostenida|
+|Zero-Day DDoS|Explota vulnerabilities sin parches sin protección conocida|No hay firmas ni parches disponibles al momento del ataque|
+|Permanent DoS (Phlashing)|Envía actualizaciones falsas de firmware/hardware que causan daño físico irreversible|A diferencia de otros DoS, el daño persiste después de que el ataque termina|
+|Ransom DDoS|El atacante amenaza o lanza DDoS a menos que se pague un rescate|Táctica de extorsión combinada con capacidad de DDoS|
+|DRDoS (Distributed Reflection DoS)|Ataque falsificado que usa múltiples máquinas intermediarias y secundarias para reflejar tráfico|Múltiples servicios intermediarios amplifican el ataque hacia la víctima|
 
 EXAM TRAP:
-Phlashing causes **permanent hardware damage** — it is not a traffic flood, it is a **firmware attack**.
+Phlashing causa **daño permanente al hardware** — no es una inundación de tráfico, es un **ataque de firmware**.
 
 ---
 
@@ -181,16 +181,16 @@ Phlashing causes **permanent hardware damage** — it is not a traffic flood, it
 
 |Tool|Description|
 |---|---|
-|LOIC (Low Orbit Ion Cannon)|Open-source tool for DoS/DDoS; supports HTTP, UDP, TCP floods; originally used by Anonymous|
-|HOIC (High Orbit Ion Cannon)|Successor to LOIC; uses JavaScript-based "booster scripts" for higher attack volume|
-|HULK (HTTP Unbearable Load Generation)|Generates randomized HTTP GET requests to bypass caching; targets application layer|
-|Slowloris|Keeps many connections open with partial HTTP requests; low bandwidth, high impact|
-|UFO Net|DDoS botnet tool; uses HTTP-based C2 for command distribution|
-|ISB (I'm So Bored)|Supports HTTP, UDP, TCP, and ICMP flood attacks|
-|UltraDDOS-v2|DDoS tool with support for multiple attack vectors|
+|LOIC (Low Orbit Ion Cannon)|Herramienta de código abierto para DoS/DDoS; soporta floods de HTTP, UDP, TCP; usada originalmente por Anonymous|
+|HOIC (High Orbit Ion Cannon)|Sucesor de LOIC; usa "scripts de potenciación" basados en JavaScript para mayor volumen de ataque|
+|HULK (HTTP Unbearable Load Generation)|Genera solicitudes HTTP GET aleatorias para evadir el cache; dirige a la capa de aplicación|
+|Slowloris|Mantiene muchas conexiones abiertas con solicitudes HTTP parciales; bajo ancho de banda, alto impacto|
+|UFO Net|Herramienta de botnet DDoS; usa C2 basado en HTTP para distribución de comandos|
+|ISB (I'm So Bored)|Soporta ataques flood de HTTP, UDP, TCP e ICMP|
+|UltraDDOS-v2|Herramienta DDoS con soporte para múltiples vectores de ataque|
 
 EXAM TRAP:
-HULK is both an **attack type** and a **tool name** — know the difference. The tool generates randomized requests to evade detection.
+HULK es tanto un **tipo de ataque** como un **nombre de herramienta** — conoce la diferencia. La herramienta genera solicitudes aleatorias para evadir la detección.
 
 ---
 
@@ -202,12 +202,12 @@ HULK is both an **attack type** and a **tool name** — know the difference. The
 
 |Technique|Description|
 |---|---|
-|Activity Profiling|Baseline normal network flow patterns; detect anomalies that deviate from average|
-|Sequential Change-Point Detection|Monitor traffic filtered by IP addresses and flow over time; identify sudden shifts|
-|Wavelet-Based Signal Analysis|Analyze spectral components of network traffic to detect attack signatures|
+|Activity Profiling|Establecer una línea base de patrones normales de flujo de red; detectar anomalías que se desvían del promedio|
+|Sequential Change-Point Detection|Monitorear tráfico filtrado por direcciones IP y flujo a lo largo del tiempo; identificar cambios bruscos|
+|Wavelet-Based Signal Analysis|Analizar componentes espectrales del tráfico de red para detectar firmas de ataque|
 
 MEMORY HOOK:
-**Profiling = baseline, Change-point = shift, Wavelet = spectrum**
+**Profiling = línea base, Change-point = cambio, Wavelet = espectro**
 
 ---
 
@@ -215,10 +215,10 @@ MEMORY HOOK:
 
 |Countermeasure|Purpose|
 |---|---|
-|Activity Profiling|Establish normal traffic baseline to detect anomalies|
-|Sequential Change-Point Detection|Identify sudden traffic changes by IP and flow over time|
-|Wavelet-Based Signal Analysis|Detect attacks by analyzing spectral components of traffic|
-|Blumira (Honeypot)|Decoy system that detects and analyzes attack traffic for signature extraction|
+|Activity Profiling|Establecer una línea base de tráfico normal para detectar anomalías|
+|Sequential Change-Point Detection|Identificar cambios bruscos de tráfico por IP y flujo a lo largo del tiempo|
+|Wavelet-Based Signal Analysis|Detectar ataques analizando componentes espectrales del tráfico|
+|Blumira (Honeypot)|Sistema señuelo que detecta y analiza tráfico de ataque para extracción de firmas|
 
 ---
 
@@ -226,12 +226,12 @@ MEMORY HOOK:
 
 |Strategy|Description|
 |---|---|
-|Rate Limiting|Limit number of requests per IP address|
-|Traffic Filtering|Drop traffic from known malicious IPs or patterns|
-|Anycast Network|Distribute attack traffic across multiple data centers|
-|ISP-Level Scrubbing|Offload traffic to cleaning centers before reaching target|
-|Redundancy|Deploy multiple servers and network paths for failover|
-|Patch Management|Keep systems updated to prevent Zero-Day and Phlashing attacks|
+|Rate Limiting|Limitar el número de solicitudes por dirección IP|
+|Traffic Filtering|Descartar tráfico de IPs o patrones conocidos como maliciosos|
+|Anycast Network|Distribuir tráfico de ataque a través de múltiples centros de datos|
+|ISP-Level Scrubbing|Redirigir tráfico a centros de limpieza antes de que llegue al objetivo|
+|Redundancy|Desplegar múltiples servidores y rutas de red para conmutación por fallo|
+|Patch Management|Mantener los sistemas actualizados para prevenir ataques Zero-Day y Phlashing|
 
 MEMORY HOOK (DEFENSE LAYERS):
 **Rate → Filter → Anycast → Scrub → Redundancy → Patch**
@@ -246,15 +246,15 @@ MEMORY HOOK (DEFENSE LAYERS):
 |---|---|
 |Attack Name|HTTP/2 "Rapid Reset"|
 |Target|Google Cloud (2023)|
-|Technique|Abused HTTP/2 stream multiplexing — up to 100 live streams through one TCP connection|
-|Impact|Record-breaking DDoS attack at the time|
-|Why It Worked|Attackers rapidly created and reset streams, overwhelming server resources per connection|
+|Technique|Abusó del stream multiplexing de HTTP/2 — hasta 100 streams activos a través de una conexión TCP|
+|Impact|Ataque DDoS récord en ese momento|
+|Why It Worked|Los atacantes crearon y reiniciaron streams rápidamente, abrumando los recursos del servidor por conexión|
 
 MEMORY HOOK:
-**HTTP/2 Rapid Reset = 100 streams per TCP, create fast, reset fast, server dies**
+**HTTP/2 Rapid Reset = 100 streams por TCP, crear rápido, reiniciar rápido, el servidor muere**
 
 EXAM TRAP:
-The Rapid Reset attack targets **HTTP/2 specifically** — it exploits the protocol's multiplexing feature, not bandwidth.
+El ataque Rapid Reset dirige **HTTP/2 específicamente** — explota la función de multiplexing del protocolo, no el ancho de banda.
 
 ---
 
@@ -264,7 +264,7 @@ The Rapid Reset attack targets **HTTP/2 specifically** — it exploits the proto
 
 |Item|Memorize|
 |---|---|
-|Slowloris|DDoS attack that opens many HTTPS connections with partial headers to keep them alive|
+|Slowloris|Ataque DDoS que abre muchas conexiones HTTPS con cabeceras parciales para mantenerlas vivas|
 
 ---
 
@@ -272,7 +272,7 @@ The Rapid Reset attack targets **HTTP/2 specifically** — it exploits the proto
 
 |Item|Memorize|
 |---|---|
-|HULK|HTTP Unbearable Load Generation — DDoS with caching and IDS detection avoidance|
+|HULK|HTTP Unbearable Load Generation — DDoS con evasión de cache y detección IDS|
 
 ---
 
@@ -282,21 +282,21 @@ The Rapid Reset attack targets **HTTP/2 specifically** — it exploits the proto
 
 |Term|Quick Memory|
 |---|---|
-|DoS|Single source, single target|
-|DDoS|Multiple sources (botnet), single target|
-|Botmaster|Controls the botnet|
-|C2 Server|Relays commands from botmaster to bots|
-|Bot / Zombie|Compromised machine in the botnet|
-|Smurf|ICMP to broadcast, victim receives all replies|
-|Fraggle|UDP ECHO to broadcast, victim receives all replies|
-|SYN Flood|Half-open TCP connections exhaust state tables|
-|Slowloris|Partial HTTP requests hold connections open forever|
-|TCP SACK Panic|Linux kernel panic via malformed SACK packets (48 bytes)|
-|Phlashing|Permanent hardware damage via fraudulent firmware updates|
-|HTTP/2 Rapid Reset|Abuses stream multiplexing to overwhelm servers (Google 2023)|
-|Pulse Wave|Regular burst intervals, recovery impossible between pulses|
-|Ransom DDoS|Extortion — pay or get attacked|
-|DRDoS|Reflects spoofed traffic through intermediary services|
+|DoS|Una sola fuente, un solo objetivo|
+|DDoS|Múltiples fuentes (botnet), un solo objetivo|
+|Botmaster|Controla la botnet|
+|C2 Server|Retransmite comandos del botmaster a los bots|
+|Bot / Zombie|Máquina comprometida en la botnet|
+|Smurf|ICMP a broadcast, la víctima recibe todas las respuestas|
+|Fraggle|UDP ECHO a broadcast, la víctima recibe todas las respuestas|
+|SYN Flood|Conexiones TCP half-open agotan tablas de estado|
+|Slowloris|Solicitudes HTTP parciales mantienen conexiones abiertas para siempre|
+|TCP SACK Panic|Panic del kernel de Linux por paquetes SACK malformados (48 bytes)|
+|Phlashing|Daño permanente al hardware por actualizaciones de firmware fraudulentas|
+|HTTP/2 Rapid Reset|Abusa de stream multiplexing para abrumar servidores (Google 2023)|
+|Pulse Wave|Intervalos de ráfagas regulares, imposible recuperarse entre pulsos|
+|Ransom DDoS|Extorsión — paga o serás atacado|
+|DRDoS|Refleja tráfico falsificado a través de servicios intermediarios|
 
 ---
 
@@ -306,8 +306,8 @@ The Rapid Reset attack targets **HTTP/2 specifically** — it exploits the proto
 
 |Q#|Question|Answer|
 |---|---|---|
-|1|What is the key difference between DoS and DDoS?|DoS uses a single source; DDoS uses multiple distributed sources (botnet)|
-|2|Which propagation technique uses a pre-compiled list of vulnerable targets?|Hit-list scanning|
-|3|Which DDoS attack targets Linux kernel by sending malformed SACK packets?|TCP SACK Panic|
-|4|What protocol does a Smurf attack use for amplification?|ICMP (ECHO request to broadcast address)|
-|5|What technique analyzes spectral components of network traffic to detect attacks?|Wavelet-based signal analysis|
+|1|¿Cuál es la diferencia clave entre DoS y DDoS?|DoS usa una sola fuente; DDoS usa múltiples fuentes distribuidas (botnet)|
+|2|¿Qué técnica de propagación usa una lista precompilada de objetivos vulnerables?|Hit-list scanning|
+|3|¿Qué ataque DDoS dirige al kernel de Linux enviando paquetes SACK malformados?|TCP SACK Panic|
+|4|¿Qué protocolo usa un ataque Smurf para la amplificación?|ICMP (solicitud ECHO a dirección de broadcast)|
+|5|¿Qué técnica analiza componentes espectrales del tráfico de red para detectar ataques?|Wavelet-based signal analysis|

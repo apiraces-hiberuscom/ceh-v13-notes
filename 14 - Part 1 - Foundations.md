@@ -8,11 +8,11 @@
 
 |Objective ID|Objective|
 |---|---|
-|O1|Summarize web application concepts|
-|O2|Demonstrate web application threats|
-|O3|Explain web application hacking methodology|
-|O4|Explain web API and webhooks|
-|O5|Summarize techniques used in web application security|
+|O1|Resumir los conceptos de web application|
+|O2|Demostrar las amenazas de web application|
+|O3|Explicar la metodología de hacking de web application|
+|O4|Explicar web API y webhooks|
+|O5|Resumir las técnicas utilizadas en la seguridad de web applications|
 
 **Memory Hook:**  
 **C-T-M-A-S** → _Concepts, Threats, Methodology, APIs, Security_
@@ -23,19 +23,19 @@
 
 |Term|Definition|
 |---|---|
-|Web Application|A software program that runs on a web browser and acts as an interface between users and web servers through HTTP/HTTPS.|
+|Web Application|Un programa de software que se ejecuta en un web browser y actúa como una interfaz entre los usuarios y los web servers a través de HTTP/HTTPS.|
 
 **Key CEH Properties**
 
-- Runs inside a **browser**
+- Se ejecuta dentro de un **browser**
     
-- Uses **client–server architecture**
+- Utiliza **arquitectura cliente–servidor**
     
-- Handles **dynamic content**
+- Maneja **contenido dinámico**
     
-- Communicates via **HTTP/HTTPS**
+- Se comunica a través de **HTTP/HTTPS**
     
-- Interfaces with **databases and services**
+- Se interconecta con **bases de datos y servicios**
     
 
 ---
@@ -44,14 +44,14 @@
 
 |Step|Description|
 |---|---|
-|1|User enters a URL in the browser|
-|2|Browser sends an HTTP request to the web server|
-|3|Web server checks requested resource|
-|4|Static content → returned directly|
-|5|Dynamic content → forwarded to application server|
-|6|Application server processes logic|
-|7|Database queried if required|
-|8|Response returned to browser|
+|1|El usuario ingresa una URL en el browser|
+|2|El browser envía una solicitud HTTP al web server|
+|3|El web server verifica el recurso solicitado|
+|4|Contenido estático → devuelto directamente|
+|5|Contenido dinámico → reenviado al application server|
+|6|El application server procesa la lógica|
+|7|Se consulta la base de datos si es necesario|
+|8|La respuesta se devuelve al browser|
 
 **Memory Hook:**  
 **URL → HTTP → Server → App → DB → Response**
@@ -62,12 +62,12 @@
 
 |Advantage|
 |---|
-|OS-independent|
-|Accessible anytime and anywhere|
-|Device-independent|
-|Centrally managed servers|
-|Scalable and cost-effective|
-|Uses standard technologies (HTML, JS, JSP, ASP, PHP, .NET)|
+|Independiente del OS|
+|Accesible en cualquier momento y lugar|
+|Independiente del dispositivo|
+|Servidores gestionados centralmente|
+|Escalable y rentable|
+|Utiliza tecnologías estándar (HTML, JS, JSP, ASP, PHP, .NET)|
 
 ---
 
@@ -75,16 +75,16 @@
 
 |Reason|
 |---|
-|Complex architecture|
-|Multiple integration points|
-|User-controlled input|
-|Third-party components|
-|Rapid development cycles|
-|Poor input validation|
+|Arquitectura compleja|
+|Múltiples puntos de integración|
+|Entrada controlada por el usuario|
+|Componentes de terceros|
+|Ciclos de desarrollo rápidos|
+|Mala validación de entradas|
 
 **Exam Trap:**
 
-> CEH always links **user input + poor validation** to **most web attacks**
+> CEH siempre vincula **entrada del usuario + mala validación** con **la mayoría de los ataques web**
 
 ---
 
@@ -94,9 +94,9 @@
 
 |Layer|Purpose|
 |---|---|
-|Presentation Layer|User interface and input handling|
-|Business Logic Layer|Application processing and decision logic|
-|Database Layer|Data storage and retrieval|
+|Presentation Layer|Interfaz de usuario y manejo de entradas|
+|Business Logic Layer|Procesamiento de la aplicación y lógica de decisiones|
+|Database Layer|Almacenamiento y recuperación de datos|
 
 ---
 
@@ -104,12 +104,12 @@
 
 |Component|Description|
 |---|---|
-|Browser|Sends HTTP requests|
-|HTML/CSS|UI rendering|
-|JavaScript|Client-side logic|
+|Browser|Envía solicitudes HTTP|
+|HTML/CSS|Renderizado de UI|
+|JavaScript|Lógica del lado del cliente|
 
 **Exam Note:**  
-Client-side validation is **NOT security**
+La validación del lado del cliente **NO ES SEGURIDAD**
 
 ---
 
@@ -117,9 +117,9 @@ Client-side validation is **NOT security**
 
 |Component|Description|
 |---|---|
-|Web Server|Handles HTTP requests|
-|Application Server|Executes business logic|
-|Firewall|Filters traffic|
+|Web Server|Maneja las solicitudes HTTP|
+|Application Server|Ejecuta la lógica de negocio|
+|Firewall|Filtra el tráfico|
 
 **Technologies**
 
@@ -140,11 +140,11 @@ Client-side validation is **NOT security**
 
 |Component|Description|
 |---|---|
-|DBMS|Stores application data|
+|DBMS|Almacena los datos de la aplicación|
 |Examples|MySQL, MSSQL, Oracle|
 
 **Exam Trap:**  
-Database attacks ≠ web server attacks, but **web apps expose DBs**
+Los ataques a bases de datos ≠ ataques al web server, pero **las web apps exponen las bases de datos**
 
 ---
 
@@ -152,7 +152,7 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 |Term|Definition|
 |---|---|
-|Web Service|An application or software deployed over the Internet that enables communication between applications using standard protocols.|
+|Web Service|Una aplicación o software desplegado a través de Internet que permite la comunicación entre aplicaciones utilizando protocolos estándar.|
 
 ---
 
@@ -160,9 +160,9 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 |Role|Description|
 |---|---|
-|Service Provider|Hosts and publishes the service|
-|Service Requester|Requests and consumes the service|
-|Service Registry|Stores service descriptions|
+|Service Provider|Aloja y publica el servicio|
+|Service Requester|Solicita y consume el servicio|
+|Service Registry|Almacena las descripciones de los servicios|
 
 ---
 
@@ -170,9 +170,9 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 |Operation|Meaning|
 |---|---|
-|Publish|Provider publishes service|
-|Find|Requester discovers service|
-|Bind|Requester connects and uses service|
+|Publish|El provider publica el servicio|
+|Find|El requester descubre el servicio|
+|Bind|El requester se conecta y utiliza el servicio|
 
 **Memory Hook:**  
 **PFB = Publish → Find → Bind**
@@ -183,8 +183,8 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 |Type|Description|
 |---|---|
-|SOAP|XML-based, protocol-driven|
-|REST|Lightweight, HTTP-based|
+|SOAP|Basado en XML, orientado a protocolo|
+|REST|Ligero, basado en HTTP|
 
 ---
 
@@ -192,10 +192,10 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 |Feature|SOAP|REST|
 |---|---|---|
-|Data Format|XML only|JSON, XML|
-|Protocol|Strict|HTTP|
-|Complexity|High|Low|
-|Performance|Slower|Faster|
+|Data Format|Solo XML|JSON, XML|
+|Protocol|Estricto|HTTP|
+|Complexity|Alta|Baja|
+|Performance|Más lento|Más rápido|
 
 ---
 
@@ -204,8 +204,8 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 |Component|Description|
 |---|---|
 |UDDI|Service registry|
-|WSDL|Service description|
-|WS-Security|Secures SOAP messages|
+|WSDL|Descripción del servicio|
+|WS-Security|Asegura los mensajes SOAP|
 
 ---
 
@@ -213,12 +213,12 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 |Layer|Target|
 |---|---|
-|Layer 7|Web application logic|
-|Layer 6|Third-party components|
+|Layer 7|Lógica de la web application|
+|Layer 6|Componentes de terceros|
 |Layer 5|Web server|
-|Layer 4|Database|
-|Layer 3|Operating system|
-|Layer 2|Network|
+|Layer 4|Base de datos|
+|Layer 3|Sistema operativo|
+|Layer 2|Red|
 |Layer 1|IPS/IDS|
 
 **Memory Hook:**  
@@ -230,13 +230,13 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 |Layer|Typical Attacks|
 |---|---|
-|7|XSS, input validation|
-|6|Payment gateway abuse|
-|5|Server misconfig|
+|7|XSS, validación de entradas|
+|6|Abuso de pasarela de pago (payment gateway)|
+|5|Mala configuración del servidor|
 |4|SQL injection|
-|3|Privilege escalation|
+|3|Elevación de privilegios (privilege escalation)|
 |2|DoS|
-|1|IDS evasion|
+|1|Evasión de IDS|
 
 ---
 
@@ -244,56 +244,55 @@ Database attacks ≠ web server attacks, but **web apps expose DBs**
 
 | Term | Definition |
 |------|------------|
-| Web Application | A software program running on a web browser acting as an interface between users and web servers via HTTP/HTTPS |
-| Client-Server Architecture | Model where the browser (client) requests resources and the web server responds |
-| Presentation Layer | The UI layer handling user input and rendering HTML/CSS/JavaScript |
-| Business Logic Layer | The layer that executes application processing and decision logic |
-| Database Layer | The layer responsible for data storage and retrieval (e.g., MySQL, Oracle) |
-| Web Service | Software deployed over the Internet enabling communication between applications using standard protocols |
-| SOAP | XML-based, protocol-driven web service with strict messaging standards |
-| REST | Lightweight, HTTP-based web service using JSON or XML |
-| UDDI | Universal Description, Discovery, and Integration — a service registry for web services |
-| WSDL | Web Services Description Language — describes web service operations and interfaces |
-| Vulnerability Stack | 7-layer model mapping targets from web application logic (L7) down to IPS/IDS (L1) |
-| Static Content | Web resources returned directly by the server without processing (HTML, images) |
-| Dynamic Content | Web content generated on-the-fly by the application server based on user input or logic |
+| Web Application | Un programa de software que se ejecuta en un web browser y actúa como interfaz entre usuarios y web servers a través de HTTP/HTTPS |
+| Client-Server Architecture | Modelo donde el browser (cliente) solicita recursos y el web server responde |
+| Presentation Layer | La capa de UI que maneja las entradas del usuario y renderiza HTML/CSS/JavaScript |
+| Business Logic Layer | La capa que ejecuta el procesamiento de la aplicación y la lógica de decisiones |
+| Database Layer | La capa responsable del almacenamiento y recuperación de datos (ej. MySQL, Oracle) |
+| Web Service | Software desplegado a través de Internet que permite la comunicación entre aplicaciones utilizando protocolos estándar |
+| SOAP | Web service basado en XML, orientado a protocolo con estándares de mensajería estrictos |
+| REST | Web service ligero, basado en HTTP que utiliza JSON o XML |
+| UDDI | Universal Description, Discovery, and Integration — un service registry para web services |
+| WSDL | Web Services Description Language — describe las operaciones e interfaces de web services |
+| Vulnerability Stack | Modelo de 7 capas que mapea objetivos desde la lógica de la web application (L7) hasta IPS/IDS (L1) |
+| Static Content | Recursos web devueltos directamente por el servidor sin procesamiento (HTML, imágenes) |
+| Dynamic Content | Contenido web generado dinámicamente por el application server según la entrada del usuario o la lógica |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** In the CEH 3-layer web application architecture, which layer is responsible for executing business logic and processing decisions?
+**1.** En la arquitectura de 3 capas de web application del CEH, ¿qué capa es responsable de ejecutar la lógica de negocio y el procesamiento de decisiones?
 - a) Presentation Layer
 - b) Business Logic Layer
 - c) Database Layer
 - d) Network Layer
-**Answer:** B — The Business Logic Layer executes application processing and decision logic, sitting between the Presentation and Database layers.
+**Answer:** B — La Business Logic Layer ejecuta el procesamiento de la aplicación y la lógica de decisiones, situándose entre las capas Presentation y Database.
 
-**2.** What is the correct order of web service operations according to the Publish-Find-Bind model?
+**2.** ¿Cuál es el orden correcto de las operaciones de web service según el modelo Publish-Find-Bind?
 - a) Find → Publish → Bind
 - b) Bind → Find → Publish
 - c) Publish → Find → Bind
 - d) Publish → Bind → Find
-**Answer:** C — The provider Publishes the service, the requester Finds it, then Binds to consume it.
+**Answer:** C — El provider publica (Publishes) el servicio, el requester lo encuentra (Finds), y luego se enlaza (Binds) para consumirlo.
 
-**3.** Which of the following is an advantage of web applications over desktop applications?
-- a) Requires specific OS installation
-- b) OS-independent and accessible from any browser
-- c) Cannot handle dynamic content
-- d) Must be installed on each client device
-**Answer:** B — Web applications run in a browser, making them OS-independent and accessible anytime from any device.
+**3.** ¿Cuál de las siguientes es una ventaja de las web applications sobre las aplicaciones de escritorio?
+- a) Requiere una instalación específica de OS
+- b) Independiente del OS y accesible desde cualquier browser
+- c) No puede manejar contenido dinámico
+- d) Debe instalarse en cada dispositivo cliente
+**Answer:** B — Las web applications se ejecutan en un browser, lo que las hace independientes del OS y accesibles en cualquier momento desde cualquier dispositivo.
 
-**4.** Which layer of the vulnerability stack is targeted by SQL injection attacks?
-- a) Layer 7 — Web application logic
+**4.** ¿Qué capa del vulnerability stack es atacada por los ataques de SQL injection?
+- a) Layer 7 — Lógica de la web application
 - b) Layer 5 — Web server
-- c) Layer 4 — Database
-- d) Layer 3 — Operating system
-**Answer:** C — SQL injection targets the Database layer (Layer 4) by manipulating queries sent from the application.
+- c) Layer 4 — Base de datos
+- d) Layer 3 — Sistema operativo
+**Answer:** C — El SQL injection ataca la capa de base de datos (Layer 4) manipulando las consultas enviadas desde la aplicación.
 
-**5.** Which statement about client-side validation is correct according to CEH?
-- a) It provides sufficient security for web applications
-- b) It is the only validation needed
-- c) It is NOT security — server-side validation is required
-- d) It prevents all injection attacks
-**Answer:** C — Client-side validation can be bypassed and is never a substitute for proper server-side input validation.
-
+**5.** ¿Qué afirmación sobre la validación del lado del cliente es correcta según CEH?
+- a) Proporciona seguridad suficiente para las web applications
+- b) Es la única validación necesaria
+- c) NO ES SEGURIDAD — se requiere validación del lado del servidor
+- d) Previene todos los ataques de inyección
+**Answer:** C — La validación del lado del cliente puede ser eludida y nunca es un sustituto de la validación de entradas del lado del servidor.

@@ -6,13 +6,13 @@
 
 |Term|Definition|
 |---|---|
-|Hash function|A mathematical function that converts data of arbitrary size into a fixed-length value|
+|Hash function|Una función matemática que convierte datos de tamaño arbitrario en un valor de longitud fija|
 
 MEMORY HOOK:  
-**Hash = fingerprint of data**
+**Hash = huella digital de los datos**
 
 EXAM TRAP:  
-Hashing is **NOT encryption**.
+Hashing **NO** es cifrado.
 
 ---
 
@@ -20,10 +20,10 @@ Hashing is **NOT encryption**.
 
 |Purpose|
 |---|
-|Data integrity|
-|Password storage|
-|Digital signatures|
-|Message authentication|
+|Integridad de datos|
+|Almacenamiento de contraseñas|
+|Firmas digitales|
+|Autenticación de mensajes|
 
 ---
 
@@ -31,24 +31,24 @@ Hashing is **NOT encryption**.
 
 |Property|Meaning|
 |---|---|
-|Deterministic|Same input → same output|
-|Fixed output size|Always same length|
-|Pre-image resistance|Cannot reverse hash|
-|Second pre-image resistance|Cannot find same hash|
-|Collision resistance|No two inputs share hash|
+|Deterministic|Entrada相同的 → salida相同的|
+|Fixed output size|Siempre la misma longitud|
+|Pre-image resistance|No se puede revertir el hash|
+|Second pre-image resistance|No se puede encontrar el mismo hash|
+|Collision resistance|No dos entradas comparten el mismo hash|
 
 MEMORY HOOK:  
-**No reverse, no collisions**
+**No hay reversión, no hay colisiones**
 
 ---
 
 ## HASHING PROCESS (LOGIC FLOW)
 
-1. Input message
+1. Mensaje de entrada
     
-2. Hash algorithm
+2. Algoritmo de hash
     
-3. Fixed-length hash value
+3. Valor hash de longitud fija
     
 
 ---
@@ -62,19 +62,19 @@ MEMORY HOOK:
 |Property|Value|
 |---|---|
 |Output size|128-bit|
-|Status|Broken|
-|Weakness|Collisions|
+|Status|Roto|
+|Weakness|Colisiones|
 
 LOGIC:
 
-- Produces same hash for different inputs
+- Produce el mismo hash para diferentes entradas
     
 
 EXAM TRAP:  
-MD5 should **not** be used for security.
+MD5 **no** debe usarse para seguridad.
 
 MEMORY HOOK:  
-**MD5 = Mostly Dead**
+**MD5 = Mayormente Muerto (Mostly Dead)**
 
 ---
 
@@ -83,11 +83,11 @@ MEMORY HOOK:
 |Property|Value|
 |---|---|
 |Output size|160-bit|
-|Status|Broken|
-|Weakness|Collision attacks|
+|Status|Roto|
+|Weakness|Ataques de colisión|
 
 MEMORY HOOK:  
-**SHA-1 is no longer secure**
+**SHA-1 ya no es seguro**
 
 ---
 
@@ -104,13 +104,13 @@ Includes:
 
 STATUS:
 
-- Secure
+- Seguro
     
-- Widely used
+- Ampliamente utilizado
     
 
 MEMORY HOOK:  
-**SHA-2 = current standard**
+**SHA-2 = estándar actual**
 
 ---
 
@@ -118,15 +118,15 @@ MEMORY HOOK:
 
 |Property|Value|
 |---|---|
-|Structure|Sponge construction|
-|Purpose|Backup to SHA-2|
-|Status|Secure|
+|Structure|Construcción sponge|
+|Purpose|Respaldo de SHA-2|
+|Status|Seguro|
 
 MEMORY HOOK:  
-**SHA-3 ≠ SHA-2 variant**
+**SHA-3 ≠ variante de SHA-2**
 
 EXAM TRAP:  
-SHA-3 does not replace SHA-2 automatically.
+SHA-3 no reemplaza SHA-2 automáticamente.
 
 ---
 
@@ -135,8 +135,8 @@ SHA-3 does not replace SHA-2 automatically.
 |Property|Value|
 |---|---|
 |Output size|160-bit|
-|Status|Less common|
-|Usage|Alternative to SHA|
+|Status|Menos común|
+|Usage|Alternativa a SHA|
 
 ---
 
@@ -148,25 +148,25 @@ SHA-3 does not replace SHA-2 automatically.
 
 |Property|Description|
 |---|---|
-|Uses|Hash function + secret key|
-|Provides|Integrity + authentication|
-|Does NOT provide|Confidentiality|
+|Uses|Función hash + clave secreta|
+|Provides|Integridad + autenticación|
+|Does NOT provide|Confidencialidad|
 
 MEMORY HOOK:  
-**HMAC = hash + key**
+**HMAC = hash + clave**
 
 EXAM TRAP:  
-HMAC ≠ encryption.
+HMAC ≠ cifrado.
 
 ---
 
 ## HMAC PROCESS (LOGIC)
 
-1. Message + secret key
+1. Mensaje + clave secreta
     
-2. Hash function
+2. Función hash
     
-3. HMAC value
+3. Valor HMAC
     
 
 ---
@@ -175,9 +175,9 @@ HMAC ≠ encryption.
 
 |Feature|Hash|HMAC|
 |---|---|---|
-|Key used|No|Yes|
-|Integrity|Yes|Yes|
-|Authentication|No|Yes|
+|Key used|No|Sí|
+|Integrity|Sí|Sí|
+|Authentication|No|Sí|
 
 ---
 
@@ -189,8 +189,8 @@ HMAC ≠ encryption.
 
 |Reason|
 |---|
-|Prevent plaintext storage|
-|Reduce breach impact|
+|Prevenir almacenamiento en texto plano|
+|Reducir el impacto de una filtración|
 
 ---
 
@@ -200,7 +200,7 @@ HMAC ≠ encryption.
 |---|
 |MD5|
 |SHA-1|
-|Unsalted hashes|
+|Hashes sin salt|
 
 ---
 
@@ -208,12 +208,12 @@ HMAC ≠ encryption.
 
 |Method|Feature|
 |---|---|
-|bcrypt|Slow, salted|
-|scrypt|Memory-hard|
-|PBKDF2|Iterative|
+|bcrypt|Lento, con salt|
+|scrypt|Memoria-hard|
+|PBKDF2|Iterativo|
 
 MEMORY HOOK:  
-**Slow hashing = strong security**
+**Hashing lento = seguridad fuerte**
 
 ---
 
@@ -221,15 +221,15 @@ MEMORY HOOK:
 
 |Term|Meaning|
 |---|---|
-|Salt|Random value added before hashing|
+|Salt|Valor aleatorio añadido antes del hashing|
 
 PURPOSE:
 
-- Prevent rainbow table attacks
+- Prevenir ataques de rainbow tables
     
 
 MEMORY HOOK:  
-**Salt defeats precomputed attacks**
+**Salt derrota ataques precalculados**
 
 ---
 
@@ -237,27 +237,27 @@ MEMORY HOOK:
 
 |Attack|
 |---|
-|Collision attack|
-|Pre-image attack|
-|Rainbow table attack|
+|Ataque de colisión|
+|Ataque de pre-imagen|
+|Ataque de rainbow tables|
 
 ---
 
 # OBJECTIVE 04 — MEMORY CHECKLIST
 
-You must remember:
+Debes recordar:
 
-- Hashing ≠ encryption
+- Hashing ≠ cifrado
     
-- MD5 and SHA-1 are broken
+- MD5 y SHA-1 están rotos
     
-- SHA-2 and SHA-3 are secure
+- SHA-2 y SHA-3 son seguros
     
-- HMAC = hash + key
+- HMAC = hash + clave
     
-- Salt prevents rainbow tables
+- Salt previene rainbow tables
     
-- Hash provides integrity, not confidentiality
+- Hash proporciona integridad, no confidencialidad
     
 
 ---
@@ -268,7 +268,7 @@ Objective 04: COMPLETE
 
 ---
 
-Reply **next** to continue with:
+Reply **next** para continuar con:
 
 **OBJECTIVE 05 — DIGITAL CERTIFICATES, PKI, AND APPLICATIONS OF CRYPTOGRAPHY**
 
@@ -278,59 +278,59 @@ Reply **next** to continue with:
 
 | Term | Definition |
 |------|------------|
-| Hash Function | Mathematical function converting arbitrary data into fixed-length value; provides fingerprint |
-| Pre-image Resistance | Cannot reverse hash to recover original input |
-| Second Pre-image Resistance | Cannot find different input producing same hash |
-| Collision Resistance | No two different inputs produce same hash |
-| MD5 | Message Digest 5 — 128-bit output, broken, should not be used |
-| SHA-1 | Secure Hash Algorithm 1 — 160-bit output, broken due to collision attacks |
-| SHA-2 | Secure Hash Algorithm 2 family — 224/256/384/512-bit outputs, secure |
-| SHA-3 | Keccak — sponge construction, backup to SHA-2, secure |
-| RIPEMD | 160-bit hash, less common alternative to SHA |
-| HMAC | Hash-based Message Authentication Code — hash + secret key provides integrity + authentication |
-| Salt | Random value added before hashing to prevent rainbow table attacks |
-| bcrypt | Slow, salted password hashing function |
-| scrypt | Memory-hard password hashing function |
-| PBKDF2 | Iterative password hashing function |
-| Rainbow Table | Precomputed hash tables for password cracking |
-| Collision Attack | Finding two inputs that produce same hash |
-| Pre-image Attack | Recovering original input from hash value |
+| Hash Function | Función matemática que convierte datos arbitrarios en un valor de longitud fija; proporciona huella digital |
+| Pre-image Resistance | No se puede revertir el hash para recuperar la entrada original |
+| Second Pre-image Resistance | No se puede encontrar una entrada diferente que produzca el mismo hash |
+| Collision Resistance | No dos entradas diferentes producen el mismo hash |
+| MD5 | Message Digest 5 — salida de 128-bit, roto, no debe usarse |
+| SHA-1 | Secure Hash Algorithm 1 — salida de 160-bit, roto debido a ataques de colisión |
+| SHA-2 | Familia Secure Hash Algorithm 2 — salidas de 224/256/384/512-bit, seguro |
+| SHA-3 | Keccak — construcción sponge, respaldo de SHA-2, seguro |
+| RIPEMD | Hash de 160-bit, alternativa menos común a SHA |
+| HMAC | Hash-based Message Authentication Code — hash + clave secreta proporciona integridad + autenticación |
+| Salt | Valor aleatorio añadido antes del hashing para prevenir ataques de rainbow tables |
+| bcrypt | Función de hashing de contraseñas lenta, con salt |
+| scrypt | Función de hashing de contraseñas memoria-hard |
+| PBKDF2 | Función de hashing de contraseñas iterativa |
+| Rainbow Table | Tablas de hash precalculadas para crackeo de contraseñas |
+| Collision Attack | Encontrar dos entradas que produzcan el mismo hash |
+| Pre-image Attack | Recuperar la entrada original a partir de un valor hash |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the primary difference between hashing and encryption?
-- a) Hashing is reversible, encryption is not
-- b) Hashing is one-way, encryption is reversible with a key
-- c) They are identical
-- d) Hashing uses keys, encryption does not
-**Answer:** b) — Hashing is a one-way function that cannot be reversed, while encryption is reversible with the correct key.
+**1.** ¿Cuál es la diferencia principal entre hashing y cifrado?
+- a) El hashing es reversible, el cifrado no
+- b) El hashing es unidireccional, el cifrado es reversible con una clave
+- c) Son idénticos
+- d) El hashing usa claves, el cifrado no
+**Answer:** b) — El hashing es una función unidireccional que no se puede revertir, mientras que el cifrado es reversible con la clave correcta.
 
-**2.** Why is MD5 considered insecure for security purposes?
-- a) It is too slow
-- b) It produces collisions — same hash for different inputs
-- c) It requires too much memory
-- d) It only works on text
-**Answer:** b) — MD5 is broken because it produces collisions, making it unsuitable for security.
+**2.** ¿Por qué MD5 se considera inseguro para fines de seguridad?
+- a) Es demasiado lento
+- b) Produce colisiones — mismo hash para diferentes entradas
+- c) Requiere demasiada memoria
+- d) Solo funciona con texto
+**Answer:** b) — MD5 está roto porque produce colisiones, haciéndolo inadecuado para seguridad.
 
-**3.** What is the purpose of adding salt to password hashes?
-- a) Make hashes longer
-- b) Prevent rainbow table attacks
-- c) Speed up hashing
-- d) Make passwords weaker
-**Answer:** b) — Salt adds random data before hashing, making precomputed rainbow table attacks ineffective.
+**3.** ¿Cuál es el propósito de agregar salt a los hashes de contraseñas?
+- a) Hacer los hashes más largos
+- b) Prevenir ataques de rainbow tables
+- c) Acelerar el hashing
+- d) Hacer las contraseñas más débiles
+**Answer:** b) — Salt agrega datos aleatorios antes del hashing, haciendo ineficaces los ataques de rainbow tables precalculados.
 
-**4.** Which hash function is considered the current standard for security?
+**4.** ¿Qué función de hash se considera el estándar actual para la seguridad?
 - a) MD5
 - b) SHA-1
 - c) SHA-2
 - d) RIPEMD
-**Answer:** c) — SHA-2 family (especially SHA-256) is the current secure standard.
+**Answer:** c) — La familia SHA-2 (especialmente SHA-256) es el estándar seguro actual.
 
-**5.** What does HMAC provide that regular hashing does not?
-- a) Confidentiality
-- b) Authentication
-- c) Encryption
-- d) Non-repudiation
-**Answer:** b) — HMAC uses a secret key to provide both integrity and authentication, while regular hashing only provides integrity.
+**5.** ¿Qué proporciona HMAC que el hashing regular no?
+- a) Confidencialidad
+- b) Autenticación
+- c) Cifrado
+- d) No repudio
+**Answer:** b) — HMAC usa una clave secreta para proporcionar tanto integridad como autenticación, mientras que el hashing regular solo proporciona integridad.

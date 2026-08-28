@@ -12,10 +12,10 @@
 
 |Objective #|Description|
 |---|---|
-|01|Identify web server architecture, components, and platforms (Apache, IIS, Nginx)|
-|02|Describe web server attacks such as DNS hijacking, DNS amplification, directory traversal, misconfiguration, response-splitting, cache poisoning, brute force, HTTP/2 flood, and frontjacking|
-|03|Explain countermeasures against web server attacks|
-|04|Perform web server penetration testing|
+|01|Identificar la arquitectura, componentes y plataformas de web servers (Apache, IIS, Nginx)|
+|02|Describir ataques a web servers como DNS hijacking, DNS amplification, directory traversal, misconfiguration, response-splitting, cache poisoning, brute force, HTTP/2 flood y frontjacking|
+|03|Explicar las contramedidas contra ataques a web servers|
+|04|Realizar penetration testing de web servers|
 
 ---
 
@@ -25,10 +25,10 @@
 
 |Concept|Memorize Exactly|
 |---|---|
-|Web Server|A computer system that stores, processes, and delivers web pages to clients using HTTP/HTTPS|
-|Client|Browser that generates HTTP requests|
-|Server Role|Receives request, processes it, returns HTTP response|
-|Failure Case|If requested resource is unavailable, server returns an error message|
+|Web Server|Un sistema informático que almacena, procesa y entrega páginas web a clientes usando HTTP/HTTPS|
+|Client|Navegador que genera solicitudes HTTP|
+|Server Role|Recibe la solicitud, la procesa y devuelve una respuesta HTTP|
+|Failure Case|Si el recurso solicitado no está disponible, el servidor devuelve un mensaje de error|
 
 MEMORY HOOK:
 **Browser asks → Server fetches → Server responds**
@@ -39,11 +39,11 @@ MEMORY HOOK:
 
 |Component|Purpose|Exam Hook|
 |---|---|---|
-|Document Root|Stores HTML files related to domain name|Public web files live here|
-|Server Root|Stores configuration, logs, executables|Admin-level directory|
-|conf|Configuration files|Server behavior|
-|logs|Server logs|Recon goldmine|
-|cgi-bin|CGI scripts|Command execution risk|
+|Document Root|Almacena los archivos HTML relacionados con el nombre de dominio|Los archivos web públicos se encuentran aquí|
+|Server Root|Almacena configuración, logs y ejecutables|Directorio a nivel de administrador|
+|conf|Archivos de configuración|Comportamiento del servidor|
+|logs|Logs del servidor|Mina de oro para reconocimiento|
+|cgi-bin|Scripts CGI|Riesgo de ejecución de comandos|
 
 MEMORY HOOK:
 **Document root = content | Server root = control**
@@ -54,9 +54,9 @@ MEMORY HOOK:
 
 |Feature|Memorize|
 |---|---|
-|Purpose|Provides storage on a different machine or disk|
-|Trigger|Used when original disk is full|
-|Security Impact|Can provide object-level security|
+|Purpose|Proporciona almacenamiento en una máquina o disco diferente|
+|Trigger|Se utiliza cuando el disco original está lleno|
+|Security Impact|Puede proporcionar seguridad a nivel de objetos|
 
 ---
 
@@ -64,9 +64,9 @@ MEMORY HOOK:
 
 |Type|Description|
 |---|---|
-|Name-based|Multiple domains on same IP|
-|IP-based|Each domain has unique IP|
-|Port-based|Multiple sites using different ports|
+|Name-based|Múltiples dominios en la misma IP|
+|IP-based|Cada dominio tiene una IP única|
+|Port-based|Múltiples sitios usando diferentes puertos|
 
 MEMORY HOOK:
 **Name, IP, Port = Virtual Hosting Trinity**
@@ -77,9 +77,9 @@ MEMORY HOOK:
 
 |Feature|Memorize|
 |---|---|
-|Location|Between client and web server|
-|Purpose|Prevent IP blocking, maintain anonymity|
-|Function|Forwards client requests|
+|Location|Entre el cliente y el web server|
+|Purpose|Prevenir bloqueo de IP, mantener anonimato|
+|Function|Reenvía las solicitudes del cliente|
 
 ---
 
@@ -87,11 +87,11 @@ MEMORY HOOK:
 
 |Cause|Memorize|
 |---|---|
-|Improper configuration|Most common|
-|Weak/default credentials|Easy exploitation|
-|Unpatched software|Known exploits|
-|Misconfigured SSL/TLS|MITM risk|
-|Third-party plugins|Supply-chain risk|
+|Improper configuration|El más común|
+|Weak/default credentials|Fácil explotación|
+|Unpatched software|Exploits conocidos|
+|Misconfigured SSL/TLS|Riesgo de MITM|
+|Third-party plugins|Riesgo de cadena de suministro|
 
 MEMORY HOOK:
 **Config > Passwords > Patching > Crypto > Plugins**
@@ -102,12 +102,12 @@ MEMORY HOOK:
 
 |Impact Category|Memorize|
 |---|---|
-|Compromise of user accounts|Credential theft|
-|Website defacement|Visual manipulation|
-|Secondary attacks|Attacks launched from server|
-|Root access|Full control|
-|Data tampering|Alter/delete data|
-|Reputation damage|Business impact|
+|Compromise of user accounts|Robo de credenciales|
+|Website defacement|Manipulación visual|
+|Secondary attacks|Ataques lanzados desde el servidor|
+|Root access|Control total|
+|Data tampering|Alteración/eliminación de datos|
+|Reputation damage|Impacto en el negocio|
 
 ---
 
@@ -117,10 +117,10 @@ MEMORY HOOK:
 |---|---|
 |Steal credentials|Phishing, sniffing|
 |Botnet integration|DoS/DDoS|
-|Database compromise|Data theft|
-|Obtain source code|Intellectual property|
-|Redirect traffic|Monetization|
-|Privilege escalation|Persistence|
+|Database compromise|Robo de datos|
+|Obtain source code|Propiedad intelectual|
+|Redirect traffic|Monetización|
+|Privilege escalation|Persistencia|
 
 MEMORY HOOK:
 **Steal, Bot, Break DB, Copy Code, Redirect, Escalate**
@@ -131,10 +131,10 @@ MEMORY HOOK:
 
 |Flaw|Result|
 |---|---|
-|Same admin credentials reused|Lateral movement|
-|Unrestricted inbound/outbound traffic|Easy exploitation|
-|Unhardened servers|Wide attack surface|
-|Verbose errors|Recon advantage|
+|Same admin credentials reused|Movimiento lateral|
+|Unrestricted inbound/outbound traffic|Fácil explotación|
+|Unhardened servers|Amplia superficie de ataque|
+|Verbose errors|Ventaja para reconocimiento|
 |Weak SSL/TLS algorithms|MITM|
 |Third-party plugins|Backdoors|
 
@@ -169,25 +169,25 @@ MEMORY HOOK:
 
 |Risk|Memorize|
 |---|---|
-|LAN exposure|Corporate network compromise|
+|LAN exposure|Compromiso de la red corporativa|
 |Arbitrary script execution|RCE|
-|Insecure scripts|Code execution|
+|Insecure scripts|Ejecución de código|
 
 ### Network Administrator Perspective
 
 |Risk|Memorize|
 |---|---|
-|Improper access control|Admin bypass|
-|Poor segmentation|Full LAN exposure|
-|Weak privilege assignment|Escalation|
+|Improper access control|Bypass de administrador|
+|Poor segmentation|Exposición completa de la LAN|
+|Weak privilege assignment|Escalación|
 
 ### End User Perspective
 
 |Risk|Memorize|
 |---|---|
-|Malicious scripts|Browser compromise|
-|Session hijacking|Account takeover|
-|LAN access|Internal attack|
+|Malicious scripts|Compromiso del navegador|
+|Session hijacking|Takeover de cuenta|
+|LAN access|Ataque interno|
 
 ---
 
@@ -199,16 +199,16 @@ MEMORY HOOK:
 
 |Component|Memorize Exactly|
 |---|---|
-|Apache HTTP Server|Open-source web server developed by Apache Software Foundation|
-|Role|Middleman — accepts requests, applies rules and security logic, serves content or forwards to app server|
-|Process Model|Multi-process or multi-threaded|
+|Apache HTTP Server|Web server de código abierto desarrollado por Apache Software Foundation|
+|Role|Intermediario — acepta solicitudes, aplica reglas y lógica de seguridad, sirve contenido o reenvía al application server|
+|Process Model|Multi-proceso o multi-hilo|
 |Configuration Files|httpd.conf, apache2.conf|
-|Modules|Extend server functionality|
+|Modules|Extienden la funcionalidad del servidor|
 
 MEMORY HOOK:
 **Apache = process-based + modular**
 
-Apache serves static content itself; dynamic requests are forwarded to the application server.
+Apache sirve el contenido estático por sí mismo; las solicitudes dinámicas se reenvían al application server.
 
 ---
 
@@ -216,9 +216,9 @@ Apache serves static content itself; dynamic requests are forwarded to the appli
 
 |Model|Description|
 |---|---|
-|Prefork MPM|Multiple child processes, one request per process|
-|Worker MPM|Multiple threads per process|
-|Event MPM|Optimized worker model handling keep-alive connections|
+|Prefork MPM|Múltiples procesos hijos, una solicitud por proceso|
+|Worker MPM|Múltiples hilos por proceso|
+|Event MPM|Modelo worker optimizado que maneja conexiones keep-alive|
 
 MEMORY HOOK:
 **Prefork = process | Worker = threads | Event = optimized worker**
@@ -229,17 +229,17 @@ MEMORY HOOK:
 
 |Module|Purpose|
 |---|---|
-|mod_ssl|Enables SSL/TLS encryption|
-|mod_rewrite|Rewrites URLs dynamically|
-|mod_proxy|Allows Apache to act as proxy or gateway|
-|mod_auth|Controls authentication and authorization|
-|mod_cgi|Executes CGI scripts|
-|mod_headers|Manipulates HTTP headers|
+|mod_ssl|Habilita el cifrado SSL/TLS|
+|mod_rewrite|Reescribe URLs dinámicamente|
+|mod_proxy|Permite a Apache actuar como proxy o gateway|
+|mod_auth|Controla autenticación y autorización|
+|mod_cgi|Ejecuta scripts CGI|
+|mod_headers|Manipula headers HTTP|
 
 MEMORY HOOK:
 **SSL, Rewrite, Proxy, Auth, CGI, Headers**
 
-Apache is dangerous if modules are misconfigured.
+Apache es peligroso si los módulos están mal configurados.
 
 ---
 
@@ -247,17 +247,17 @@ Apache is dangerous if modules are misconfigured.
 
 |Vulnerability|Memorize|
 |---|---|
-|Misconfigured permissions|Unauthorized file access|
-|Directory listing enabled|Sensitive file exposure|
-|Default/sample files|Information disclosure|
-|mod_cgi misconfiguration|Command execution|
+|Misconfigured permissions|Acceso no autorizado a archivos|
+|Directory listing enabled|Exposición de archivos sensibles|
+|Default/sample files|Divulgación de información|
+|mod_cgi misconfiguration|Ejecución de comandos|
 |mod_proxy abuse|SSRF|
 |Weak SSL configuration|MITM|
-|Verbose error messages|Recon advantage|
-|HTTP response splitting|Improperly validates input|
-|SQL injection in components|Improperly neutralizes SQL elements|
-|Code injection / env variable injection|Manipulate code or variables|
-|Memory exhaustion (HTTP/2)|DoS via endless continuation frames|
+|Verbose error messages|Ventaja para reconocimiento|
+|HTTP response splitting|Valida incorrectamente la entrada|
+|SQL injection in components|Neutraliza incorrectamente elementos SQL|
+|Code injection / env variable injection|Manipula código o variables|
+|Memory exhaustion (HTTP/2)|DoS mediante continuation frames infinitos|
 
 ---
 
@@ -265,10 +265,10 @@ Apache is dangerous if modules are misconfigured.
 
 |Attack Vector|Result|
 |---|---|
-|Directory traversal|Access outside web root|
-|File inclusion|Code execution|
+|Directory traversal|Acceso fuera del web root|
+|File inclusion|Ejecución de código|
 |Buffer overflow|DoS / RCE|
-|Misconfigured modules|Privilege escalation|
+|Misconfigured modules|Escalación de privilegios|
 
 MEMORY HOOK:
 **Apache breaks via modules + misconfig**
@@ -281,12 +281,12 @@ MEMORY HOOK:
 
 |Component|Purpose|
 |---|---|
-|IIS (Internet Information Services)|Microsoft web server platform|
+|IIS (Internet Information Services)|Plataforma web server de Microsoft|
 |Supported Protocols|HTTP/HTTPS, FTP/FTPS, SNMP, NNTP|
-|Application Pool|Isolates web applications|
-|Worker Process (w3wp.exe)|Handles requests in user mode|
-|web.config|IIS configuration file|
-|inetmgr|IIS management console|
+|Application Pool|Aísla las aplicaciones web|
+|Worker Process (w3wp.exe)|Maneja solicitudes en modo usuario|
+|web.config|Archivo de configuración de IIS|
+|inetmgr|Consola de administración de IIS|
 
 MEMORY HOOK:
 **IIS = App Pool isolation**
@@ -297,12 +297,12 @@ MEMORY HOOK:
 
 |Step|Memorize|
 |---|---|
-|1. Client sends request|Entry point|
-|2. HTTP.sys receives request|Kernel-mode driver listens for requests|
-|3. WAS (Windows Activation Service)|Reads ApplicationHost.config, decides which app pool handles request, starts worker process if needed|
-|4. WWW Service|Uses config info; web publishing service|
-|5. Worker process (w3wp.exe)|Runs in user mode — processes request, performs authentication, executes app code, writes logs, generates response|
-|6. Response goes back|Return to client|
+|1. Client sends request|Punto de entrada|
+|2. HTTP.sys receives request|Driver en modo kernel escucha solicitudes|
+|3. WAS (Windows Activation Service)|Lee ApplicationHost.config, decide qué app pool maneja la solicitud, inicia worker process si es necesario|
+|4. WWW Service|Usa información de configuración; servicio de publicación web|
+|5. Worker process (w3wp.exe)|Se ejecuta en modo usuario — procesa solicitud, realiza autenticación, ejecuta código de la app, escribe logs, genera respuesta|
+|6. Response goes back|Regresa al cliente|
 
 Key: HTTP.sys handles traffic in kernel mode. w3wp.exe handles execution in user mode. WAS coordinates everything using config files.
 
@@ -312,21 +312,21 @@ Key: HTTP.sys handles traffic in kernel mode. w3wp.exe handles execution in user
 
 |Vulnerability|Result|
 |---|---|
-|Authentication & authorization failures|Unauthorized access|
-|Trust boundary violation|Fails to properly separate privilege levels|
-|File and directory access problems|Sensitive file exposure|
-|Privilege escalation|Total compromise|
-|Input handling and injection issues (XSS, CRLF)|Script injection|
-|Directory browsing enabled|Sensitive file exposure|
+|Authentication & authorization failures|Acceso no autorizado|
+|Trust boundary violation|No separa correctamente los niveles de privilegios|
+|File and directory access problems|Exposición de archivos sensibles|
+|Privilege escalation|Compromiso total|
+|Input handling and injection issues (XSS, CRLF)|Inyección de scripts|
+|Directory browsing enabled|Exposición de archivos sensibles|
 |Unrestricted file upload|Web shell|
-|Weak NTFS permissions|Privilege escalation|
-|web.config exposure|Credential leakage|
+|Weak NTFS permissions|Escalación de privilegios|
+|web.config exposure|Fuga de credenciales|
 |Default ISAPI filters|RCE|
-|Verbose errors|Recon|
-|TYPO3 XSS — PATH_INFO|Unfiltered env variables|
-|XSS in password manager|User-controllable input improperly neutralized|
-|Credential exposure|IIS logs sensitive credentials improperly|
-|Mail-related vulnerability|File upload in public directories → RCE|
+|Verbose errors|Reconocimiento|
+|TYPO3 XSS — PATH_INFO|Variables de entorno no filtradas|
+|XSS in password manager|Entrada controlada por el usuario neutralizada incorrectamente|
+|Credential exposure|IIS registra credenciales sensibles incorrectamente|
+|Mail-related vulnerability|Subida de archivos en directorios públicos → RCE|
 
 ---
 
@@ -334,10 +334,10 @@ Key: HTTP.sys handles traffic in kernel mode. w3wp.exe handles execution in user
 
 |Vector|Impact|
 |---|---|
-|File upload|Shell execution|
-|Config exposure|Full compromise|
-|Permission flaws|SYSTEM access|
-|Legacy components|Exploitable services|
+|File upload|Ejecución de shell|
+|Config exposure|Compromiso total|
+|Permission flaws|Acceso SYSTEM|
+|Legacy components|Servicios explotables|
 
 MEMORY HOOK:
 **IIS fails via config + permissions**
@@ -351,10 +351,10 @@ MEMORY HOOK:
 |Feature|Memorize|
 |---|---|
 |Architecture|Master–worker|
-|Worker Model|Single-threaded|
+|Worker Model|Un solo hilo|
 |I/O Model|Event-driven, non-blocking|
 |Role|Web server, reverse proxy, load balancer|
-|Strength|Extremely fast, memory efficient|
+|Strength|Extremadamente rápido, eficiente en memoria|
 
 ---
 
@@ -362,16 +362,16 @@ MEMORY HOOK:
 
 |Component|Function|
 |---|---|
-|Master Process|Controls workers|
-|Worker Processes|Handle client requests (single-threaded, non-blocking I/O — can handle thousands of connections)|
-|Proxy Cache|Stores cached content|
-|Cache Loader|Loads cache at startup|
-|Cache Manager|Removes expired cache|
+|Master Process|Controla los workers|
+|Worker Processes|Manejan solicitudes de clientes (un solo hilo, I/O no bloqueante — pueden manejar miles de conexiones)|
+|Proxy Cache|Almacena contenido en caché|
+|Cache Loader|Carga la caché al iniciar|
+|Cache Manager|Elimina la caché expirada|
 
 Other components:
-- **Web server** — handles HTTP requests, serves static content, routes dynamic requests
-- **Application server** — processes server-side scripts, generates dynamic content
-- **Memcache** — key-value store
+- **Web server** — maneja solicitudes HTTP, sirve contenido estático, enruta solicitudes dinámicas
+- **Application server** — procesa scripts del lado del servidor, genera contenido dinámico
+- **Memcache** — almacenamiento clave-valor
 
 ---
 
@@ -379,10 +379,10 @@ Other components:
 
 |Step|Action|
 |---|---|
-|1|Client connects — single thread keeps connections open using event loop|
-|2|Worker process accepts request|
-|3|Backend interaction — HTTP, FastCGI, PHP-FPM, Memcache|
-|4|Response + caching — sends response, stores in proxy cache|
+|1|El cliente se conecta — un solo hilo mantiene conexiones abiertas usando event loop|
+|2|Worker process acepta la solicitud|
+|3|Interacción con backend — HTTP, FastCGI, PHP-FPM, Memcache|
+|4|Respuesta + caché — envía respuesta, almacena en proxy cache|
 
 MEMORY HOOK:
 **Master controls, workers serve**
@@ -394,24 +394,24 @@ MEMORY HOOK:
 |Vulnerability|Impact|
 |---|---|
 |NULL pointer dereference (HTTP/3)|DoS / RCE|
-|SSRF|Internal network access|
-|RCE via Nginx-UI|Full compromise|
-|Improper certificate validation|File write|
-|SQL injection|Data breach|
-|Unauthenticated private key access|TLS compromise|
+|SSRF|Acceso a red interna|
+|RCE via Nginx-UI|Compromiso total|
+|Improper certificate validation|Escritura de archivos|
+|SQL injection|Fuga de datos|
+|Unauthenticated private key access|Compromiso de TLS|
 |HTTP/2 memory exhaustion|DoS|
-|OS command injection|Remote execution|
-|Default file permissions|Sensitive modification|
-|Access control failures|Nginx does not support .htaccess|
+|OS command injection|Ejecución remota|
+|Default file permissions|Modificación sensible|
+|Access control failures|Nginx no soporta .htaccess|
 
 ### Nginx Dangers
 
 |Danger|
 |---|
-|Config errors affect all workers|
-|Exposed admin interfaces are dangerous|
-|Caching can leak sensitive data|
-|Event-driven model amplifies DoS impact|
+|Los errores de configuración afectan a todos los workers|
+|Las interfaces de administración expuestas son peligrosas|
+|La caché puede filtrar datos sensibles|
+|El modelo event-driven amplifica el impacto de DoS|
 
 ---
 
@@ -421,26 +421,26 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Attack Type|DNS infrastructure attack|
-|Target|DNS server configuration|
-|Result|Silent redirection to malicious site|
+|Attack Type|Ataque a infraestructura DNS|
+|Target|Configuración del servidor DNS|
+|Result|Redirección silenciosa a sitio malicioso|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker compromises target DNS server and modifies DNS config|
-|2|User attempts to access legitimate website by entering correct URL|
-|3|Request sent to compromised DNS server|
-|4|Compromised server redirects user to malicious website|
+|1|El atacante compromete el servidor DNS objetivo y modifica la configuración DNS|
+|2|El usuario intenta acceder a un sitio web legítimo ingresando la URL correcta|
+|3|La solicitud se envía al servidor DNS comprometido|
+|4|El servidor comprometido redirige al usuario a un sitio web malicioso|
 
 ### Key Characteristics
 
 |Characteristic|
 |---|
-|Attack is done to DNS server config, not user side|
-|Redirect happens before HTTP communication begins|
-|Users are unaware because URL appears to be legit|
+|El ataque se realiza a la configuración del servidor DNS, no al lado del usuario|
+|La redirección ocurre antes de que comience la comunicación HTTP|
+|Los usuarios no son conscientes porque la URL parece legítima|
 
 ---
 
@@ -449,12 +449,12 @@ MEMORY HOOK:
 |Item|Memorize|
 |---|---|
 |Attack Type|DDoS|
-|Exploits|Recursive DNS queries|
-|Mechanism|Small spoofed requests → large DNS responses|
-|Protocol|Usually UDP (stateless)|
-|Result|DNS service unavailability|
+|Exploits|Consultas DNS recursivas|
+|Mechanism|Solicitudes pequeñas falsificadas → respuestas DNS grandes|
+|Protocol|Generalmente UDP (sin estado)|
+|Result|Indisponibilidad del servicio DNS|
 
-Uses IP spoofing and exploits recursive behaviour.
+Usa IP spoofing y explota el comportamiento recursivo.
 
 ---
 
@@ -462,11 +462,11 @@ Uses IP spoofing and exploits recursive behaviour.
 
 |Item|Memorize|
 |---|---|
-|Attack Type|File system attack|
-|Exploits|Improper input validation|
-|Mechanism|Uses ../ to navigate outside web root|
-|Targets|File system structure|
-|Result|Access to files outside web root directory|
+|Attack Type|Ataque al sistema de archivos|
+|Exploits|Validación de entrada incorrecta|
+|Mechanism|Usa ../ para navegar fuera del web root|
+|Targets|Estructura del sistema de archivos|
+|Result|Acceso a archivos fuera del directorio web root|
 
 ---
 
@@ -474,19 +474,19 @@ Uses IP spoofing and exploits recursive behaviour.
 
 |Item|Memorize|
 |---|---|
-|Attack Type|Infrastructure weakness|
-|Scope|Configuration weakness in web infrastructure|
+|Attack Type|Debilidad de infraestructura|
+|Scope|Debilidad de configuración en la infraestructura web|
 
 ### Common Issues
 
 |Issue|
 |---|
-|Verbose debug or error messages|
-|Default credentials|
-|Sample configs and scripts|
-|Remote admin functions|
-|Unnecessary services enabled|
-|SSL problems|
+|Mensajes de depuración o error detallados|
+|Credenciales por defecto|
+|Configuraciones y scripts de ejemplo|
+|Funciones de administración remota|
+|Servicios innecesarios habilitados|
+|Problemas de SSL|
 
 ### Apache Misconfiguration Example
 
@@ -516,21 +516,21 @@ Directory browsing enabled in IIS allows file exposure.
 
 |Item|Memorize|
 |---|---|
-|Attack Type|Web-based attack|
-|Exploits|Improper input validation|
-|Mechanism|Injecting new line characters (CRLF) into HTTP response headers|
-|Result|Server splits one response into two|
+|Attack Type|Ataque basado en web|
+|Exploits|Validación de entrada incorrecta|
+|Mechanism|Inyección de caracteres de nueva línea (CRLF) en headers de respuesta HTTP|
+|Result|El servidor divide una respuesta en dos|
 |Injection Type|CRLF (Carriage Return + Line Feed)|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker injects CRLF into input|
-|2|Server includes injected data in header|
-|3|Server generates two HTTP responses|
-|4|Attacker controls first response|
-|5|Browser discards second response|
+|1|El atacante inyecta CRLF en la entrada|
+|2|El servidor incluye los datos inyectados en el header|
+|3|El servidor genera dos respuestas HTTP|
+|4|El atacante controla la primera respuesta|
+|5|El navegador descarta la segunda respuesta|
 
 MEMORY HOOK:
 **CRLF → Header break → Double response**
@@ -545,7 +545,7 @@ MEMORY HOOK:
 |Web Cache Poisoning|
 |User redirection|
 
-Happens at HTTP header level. Enables cache poisoning and XSS.
+Ocurre a nivel de header HTTP. Habilita cache poisoning y XSS.
 
 ### Exam Traps
 
@@ -561,21 +561,21 @@ Happens at HTTP header level. Enables cache poisoning and XSS.
 
 |Item|Memorize|
 |---|---|
-|Attack Type|Cache integrity attack|
-|Target|Intermediate web cache|
-|Result|Users unknowingly receive poisoned content|
-|Persistence|Until cache is flushed|
-|Depends On|HTTP response-splitting flaws|
+|Attack Type|Ataque de integridad de caché|
+|Target|Caché web intermedia|
+|Result|Los usuarios reciben contenido envenenado sin saberlo|
+|Persistence|Hasta que la caché se vacíe|
+|Depends On|Fallos de HTTP response-splitting|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker forces cache flush|
-|2|Attacker sends crafted request|
-|3|Malicious response stored in cache|
-|4|Users request cached resource|
-|5|Users receive malicious content|
+|1|El atacante fuerza la limpieza de la caché|
+|2|El atacante envía una solicitud elaborada|
+|3|La respuesta maliciosa se almacena en la caché|
+|4|Los usuarios solicitan el recurso en caché|
+|5|Los usuarios reciben contenido malicioso|
 
 MEMORY HOOK:
 **Poison once → infect many**
@@ -588,7 +588,7 @@ MEMORY HOOK:
 |Improper cache key handling|
 |Inadequate validation|
 
-Affects multiple users. Persistent until cache expiration.
+Afecta a múltiples usuarios. Persistente hasta la expiración de la caché.
 
 ### Exam Traps
 
@@ -606,22 +606,22 @@ Affects multiple users. Persistent until cache expiration.
 |---|---|
 |Protocol|SSH|
 |Port|TCP 22|
-|Attack Type|Credential brute force|
-|Goal|Unauthorized SSH access|
+|Attack Type|Brute force de credenciales|
+|Goal|Acceso SSH no autorizado|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker scans port 22|
-|2|SSH service identified|
-|3|Automated brute-force login attempts|
-|4|Valid credentials found|
-|5|SSH tunnel compromised|
+|1|El atacante escanea el puerto 22|
+|2|Se identifica el servicio SSH|
+|3|Intentos de login automatizados por brute force|
+|4|Se encuentran credenciales válidas|
+|5|Se compromete el túnel SSH|
 
 Tools: Nmap (discovery), Ncrack (SSH brute force), THC Hydra (credential attacks)
 
-Precedes lateral movement.
+Precede al movimiento lateral.
 
 MEMORY HOOK:
 **Encrypted tunnel ≠ safe login**
@@ -641,18 +641,18 @@ MEMORY HOOK:
 |Item|Memorize|
 |---|---|
 |Protocol|FTP|
-|Attack Type|Brute-force authentication|
-|Enhancement|AI-generated attack commands|
-|Credential Exposure|Plaintext|
+|Attack Type|Autenticación por brute force|
+|Enhancement|Comandos de ataque generados por AI|
+|Credential Exposure|Texto plano|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker uses AI to generate command|
-|2|Hydra performs brute-force attack|
-|3|Wordlists used for credentials|
-|4|FTP access gained|
+|1|El atacante usa AI para generar comandos|
+|2|Hydra realiza el ataque brute force|
+|3|Se usan wordlists para credenciales|
+|4|Se obtiene acceso FTP|
 
 ### Hydra Command Structure
 
@@ -680,19 +680,19 @@ MEMORY HOOK:
 |Attack Type|Denial-of-Service|
 |Protocol|HTTP/2|
 |Exploited Element|CONTINUATION frames|
-|Target|Server memory and CPU|
+|Target|Memoria y CPU del servidor|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker establishes TCP connection|
-|2|Sends HEADERS frame|
-|3|END_HEADERS flag omitted|
-|4|Sends multiple CONTINUATION frames|
-|5|Server allocates memory repeatedly|
-|6|Resources exhausted|
-|7|Server crashes or hangs|
+|1|El atacante establece una conexión TCP|
+|2|Envía un HEADERS frame|
+|3|Se omite la bandera END_HEADERS|
+|4|Envía múltiples CONTINUATION frames|
+|5|El servidor asigna memoria repetidamente|
+|6|Los recursos se agotan|
+|7|El servidor entra en crash o se bloquea|
 
 HTTP/2 large headers are split into one headers frame and multiple continuation frames. Server expects END_HEADERS flag but in this attack it is never set.
 
@@ -715,31 +715,31 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Attack Type|Web server attack|
-|Target|Front-end components of web application|
-|Exploits|Reverse proxy misconfiguration|
+|Attack Type|Ataque a web server|
+|Target|Componentes front-end de la aplicación web|
+|Exploits|Mala configuración de reverse proxy|
 |Common Platform|Nginx reverse proxy|
-|Environment|Shared hosting|
+|Environment|Alojamiento compartido (shared hosting)|
 
 ### Attack Components
 
 |Component|Role|
 |---|---|
-|Attacker|Injects malicious headers|
-|Vulnerable Reverse Proxy|Accepts injected headers|
-|Attacker-controlled Server|Serves malicious content|
-|User Browser|Displays malicious response|
+|Attacker|Inyecta headers maliciosos|
+|Vulnerable Reverse Proxy|Acepta headers inyectados|
+|Attacker-controlled Server|Sirve contenido malicioso|
+|User Browser|Muestra la respuesta maliciosa|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker sends HTTP request with CRLF characters|
-|2|Malicious Host header injected|
-|3|Vulnerable Nginx reverse proxy processes header|
-|4|Proxy routes request to attacker-controlled server|
-|5|Attacker server responds with malicious content|
-|6|User browser displays malicious content|
+|1|El atacante envía una solicitud HTTP con caracteres CRLF|
+|2|Se inyecta un Host header malicioso|
+|3|El Nginx reverse proxy vulnerable procesa el header|
+|4|El proxy enruta la solicitud al servidor controlado por el atacante|
+|5|El servidor del atacante responde con contenido malicioso|
+|6|El navegador del usuario muestra el contenido malicioso|
 
 MEMORY HOOK:
 **CRLF → Host header → Proxy reroute → Fake content**
@@ -799,35 +799,35 @@ MEMORY HOOK:
 
 |Feature|Memorize|
 |---|---|
-|Method|Manual or automated guessing|
-|Common Inputs|Names, pets, dates|
+|Method|Adivinanza manual o automatizada|
+|Common Inputs|Nombres, mascotas, fechas|
 |Weak Password Examples|password, admin, qwerty|
-|Exploited Factor|Human behavior|
+|Exploited Factor|Comportamiento humano|
 
 ### Dictionary Attack
 
 |Feature|Memorize|
 |---|---|
-|Method|Uses predefined wordlist|
-|Speed|Faster than brute force|
-|Weakness|Ineffective against complex passwords|
+|Method|Usa una wordlist predefinida|
+|Speed|Más rápido que brute force|
+|Weakness|Ineficaz contra contraseñas complejas|
 
 ### Brute-Force Attack
 
 |Feature|Memorize|
 |---|---|
-|Method|Tests all combinations|
-|Character Sets|A–Z, a–z, 0–9, symbols|
-|Time|Very long|
-|Effectiveness|Guaranteed eventually|
+|Method|Prueba todas las combinaciones|
+|Character Sets|A–Z, a–z, 0–9, símbolos|
+|Time|Muy largo|
+|Effectiveness|Garantizado eventualmente|
 
 ### Hybrid Attack
 
 |Feature|Memorize|
 |---|---|
-|Method|Dictionary + brute force|
-|Modification|Adds numbers/symbols|
-|Strength|More powerful than others|
+|Method|Diccionario + brute force|
+|Modification|Agrega números/símbolos|
+|Strength|Más poderoso que los demás|
 
 MEMORY HOOK:
 **Guess → Dictionary → Brute → Hybrid**
@@ -838,9 +838,9 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Attack Type|Availability attack|
-|Method|Flood with fake requests|
-|Result|Service unavailable|
+|Attack Type|Ataque de disponibilidad|
+|Method|Inundar con solicitudes falsas|
+|Result|Servicio no disponible|
 
 ### Targeted Resources
 
@@ -867,18 +867,18 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Attack Type|Interception attack|
-|Position|Between user and server|
-|Goal|Steal or modify data|
+|Attack Type|Ataque de interceptación|
+|Position|Entre el usuario y el servidor|
+|Goal|Robar o modificar datos|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker positions between user and server|
-|2|Intercepts traffic|
-|3|Steals credentials|
-|4|Relays traffic to avoid detection|
+|1|El atacante se posiciona entre el usuario y el servidor|
+|2|Intercepta el tráfico|
+|3|Roba credenciales|
+|4|Reenvía el tráfico para evitar detección|
 
 ### Stolen Data
 
@@ -895,20 +895,20 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Attack Type|Social engineering|
-|Delivery|Malicious email|
-|Deception|Fake legitimate website|
+|Attack Type|Ingeniería social|
+|Delivery|Email malicioso|
+|Deception|Sitio web legítimo falso|
 
 ### Attack Flow
 
 |Step|Action|
 |---|---|
-|1|Attacker sends phishing email|
-|2|Victim clicks malicious link|
-|3|Redirected to fake website|
-|4|Victim enters credentials|
-|5|Attacker captures credentials|
-|6|Attacker impersonates victim|
+|1|El atacante envía un email de phishing|
+|2|La víctima hace clic en el enlace malicioso|
+|3|Se redirige a un sitio web falso|
+|4|La víctima ingresa sus credenciales|
+|5|El atacante captura las credenciales|
+|6|El atacante se hace pasar por la víctima|
 
 ### Exam Traps
 
@@ -926,20 +926,20 @@ MEMORY HOOK:
 
 |Attack|Root Cause|Result|
 |---|---|---|
-|Misconfiguration|Poor admin practices|Full compromise|
-|Directory Traversal|Input validation failure|File access|
-|DNS Hijacking|DNS compromise|Silent redirection|
-|DNS Amplification|Recursive DNS abuse|DDoS|
-|Response Splitting|CRLF injection|Cache poisoning|
-|Cache Poisoning|Bad caching logic|Mass infection|
-|SSH Brute Force|Weak credentials|Server access|
-|FTP Brute Force|Plaintext auth|Credential theft|
-|HTTP/2 Flood|Protocol abuse|DoS|
-|Frontjacking|Proxy misconfig|Phishing/XSS|
-|Password Cracking|Weak auth|Lateral movement|
-|MITM|Insecure comms|Credential theft|
-|Phishing|User deception|Account takeover|
-|Defacement|Post-compromise|Reputation damage|
+|Misconfiguration|Malas prácticas de administración|Compromiso total|
+|Directory Traversal|Fallo en validación de entrada|Acceso a archivos|
+|DNS Hijacking|Compromiso de DNS|Redirección silenciosa|
+|DNS Amplification|Abuso de DNS recursivo|DDoS|
+|Response Splitting|Inyección CRLF|Cache poisoning|
+|Cache Poisoning|Lógica de caché defectuosa|Infección masiva|
+|SSH Brute Force|Credenciales débiles|Acceso al servidor|
+|FTP Brute Force|Autenticación en texto plano|Robo de credenciales|
+|HTTP/2 Flood|Abuso de protocolo|DoS|
+|Frontjacking|Mala configuración de proxy|Phishing/XSS|
+|Password Cracking|Autenticación débil|Movimiento lateral|
+|MITM|Comunicaciones inseguras|Robo de credenciales|
+|Phishing|Engaño al usuario|Takeover de cuenta|
+|Defacement|Post-compromiso|Daño a la reputación|
 
 ---
 
@@ -949,7 +949,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|robots.txt|File that lists locations of restricted files and directories|
+|robots.txt|Archivo que lista ubicaciones de archivos y directorios restringidos|
 
 ---
 
@@ -957,37 +957,37 @@ MEMORY HOOK:
 
 |Term|Definition|
 |---|---|
-|HTTP Response-Splitting|Web attack where CRLF injection into headers causes the server to send two HTTP responses instead of one|
-|Web Cache Poisoning|Attack that targets the integrity of intermediate web caches, causing users to receive poisoned content|
-|DNS Server Hijacking|Compromising DNS server config to silently redirect users to malicious websites|
-|DNS Amplification|DDoS attack exploiting recursive DNS queries with small spoofed requests to generate large responses|
-|Directory Traversal|Attack using ../ sequences to access files outside the web root|
-|Frontjacking|Attack injecting malicious headers into a vulnerable reverse proxy to hijack user interactions|
-|HTTP/2 Continuation Flood|DoS attack where END_HEADERS flag is never set, causing infinite memory allocation via CONTINUATION frames|
-|Web Server Misconfiguration|Weaknesses in web infrastructure config such as default creds, verbose errors, unnecessary services|
-|Virtual Hosting|Technique allowing multiple domains on a single server via name-based, IP-based, or port-based methods|
-|SSH Brute Force|Automated credential attacks against SSH service on TCP port 22|
-|FTP Brute Force with AI|Using AI-generated commands to enhance brute-force attacks against FTP plaintext authentication|
-|Application Pool (IIS)|Component that isolates web applications in IIS for process-level separation|
-|Prefork MPM (Apache)|Apache process model using multiple child processes, one request per process|
-|Master-Worker (Nginx)|Nginx architecture where master process controls worker processes that handle requests|
-|CRLF|Carriage Return Line Feed — character sequence used to inject line breaks into HTTP headers|
+|HTTP Response-Splitting|Ataque web donde la inyección CRLF en headers causa que el servidor envíe dos respuestas HTTP en lugar de una|
+|Web Cache Poisoning|Ataque que afecta la integridad de las cachés web intermedias, causando que los usuarios reciban contenido envenenado|
+|DNS Server Hijacking|Compromiso de la configuración del servidor DNS para redirigir silenciosamente a los usuarios a sitios web maliciosos|
+|DNS Amplification|Ataque DDoS que explota consultas DNS recursivas con solicitudes pequeñas falsificadas para generar respuestas grandes|
+|Directory Traversal|Ataque que usa secuencias ../ para acceder a archivos fuera del web root|
+|Frontjacking|Ataque que inyecta headers maliciosos en un reverse proxy vulnerable para secuestrar interacciones del usuario|
+|HTTP/2 Continuation Flood|Ataque DoS donde la bandera END_HEADERS nunca se establece, causando asignación infinita de memoria mediante CONTINUATION frames|
+|Web Server Misconfiguration|Debilidades en la configuración de la infraestructura web como credenciales por defecto, errores detallados, servicios innecesarios|
+|Virtual Hosting|Técnica que permite múltiples dominios en un solo servidor mediante métodos basados en nombre, IP o puerto|
+|SSH Brute Force|Ataques automatizados de credenciales contra el servicio SSH en el puerto TCP 22|
+|FTP Brute Force with AI|Uso de comandos generados por AI para mejorar ataques brute force contra la autenticación en texto plano de FTP|
+|Application Pool (IIS)|Componente que aísla aplicaciones web en IIS para separación a nivel de proceso|
+|Prefork MPM (Apache)|Modelo de proceso de Apache que usa múltiples procesos hijos, una solicitud por proceso|
+|Master-Worker (Nginx)|Arquitectura de Nginx donde el master process controla los worker processes que manejan solicitudes|
+|CRLF|Carriage Return Line Feed — secuencia de caracteres usada para inyectar saltos de línea en headers HTTP|
 
 ---
 
 # PRACTICE QUESTIONS
 
-**Q1.** Which Apache module enables SSL/TLS encryption?
+**Q1.** ¿Qué módulo de Apache habilita el cifrado SSL/TLS?
 **A:** mod_ssl
 
-**Q2.** In IIS, what component listens for requests in kernel mode and passes them to the appropriate worker process?
+**Q2.** En IIS, ¿qué componente escucha solicitudes en modo kernel y las pasa al worker process apropiado?
 **A:** HTTP.sys
 
-**Q3.** What is the key difference between DNS hijacking and DNS amplification?
-**A:** DNS hijacking compromises the DNS server to redirect users; DNS amplification uses spoofed small requests to generate large DNS responses for DDoS.
+**Q3.** ¿Cuál es la diferencia clave entre DNS hijacking y DNS amplification?
+**A:** DNS hijacking compromete el servidor DNS para redirigir usuarios; DNS amplification usa solicitudes pequeñas falsificadas para generar respuestas DNS grandes para DDoS.
 
-**Q4.** An attacker sends an HTTP/2 HEADERS frame without setting the END_HEADERS flag and then sends multiple CONTINUATION frames. What is this attack?
-**A:** HTTP/2 Continuation Flood — a DoS attack that exhausts server memory and CPU.
+**Q4.** Un atacante envía un HEADERS frame HTTP/2 sin establecer la bandera END_HEADERS y luego envía múltiples CONTINUATION frames. ¿Qué ataque es este?
+**A:** HTTP/2 Continuation Flood — un ataque DoS que agota la memoria y CPU del servidor.
 
-**Q5.** Which Nginx variables, when improperly sanitized, enable Frontjacking attacks?
-**A:** $uri and $document_uri
+**Q5.** ¿Qué variables de Nginx, cuando se sanitizan incorrectamente, habilitan ataques Frontjacking?
+**A:** $uri y $document_uri

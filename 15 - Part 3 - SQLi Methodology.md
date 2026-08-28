@@ -6,7 +6,7 @@
 
 |Item|Memorize|
 |---|---|
-|SQL Injection Methodology|A step-by-step process used by attackers to detect, exploit, and extract data from vulnerable SQL queries|
+|SQL Injection Methodology|Un proceso paso a paso utilizado por atacantes para detectar, explotar y extraer datos de consultas SQL vulnerables|
 
 ---
 
@@ -33,7 +33,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Determine whether the application is vulnerable|
+|Determinar si la aplicación es vulnerable|
 
 ---
 
@@ -78,7 +78,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Determine backend DBMS|
+|Determinar el DBMS backend|
 
 ---
 
@@ -114,7 +114,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Discover tables, columns, and schemas|
+|Descubrir tablas, columnas y esquemas|
 
 ---
 
@@ -158,7 +158,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Retrieve sensitive data|
+|Recuperar datos sensibles|
 
 ---
 
@@ -194,7 +194,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Gain unauthorized login|
+|Obtener acceso no autorizado|
 
 ---
 
@@ -228,7 +228,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Execute system-level commands|
+|Ejecutar comandos a nivel de sistema|
 
 ---
 
@@ -262,7 +262,7 @@ MEMORY HOOK:
 
 |Goal|
 |---|
-|Persist attacker access|
+|Mantener acceso del atacante|
 
 ---
 
@@ -294,57 +294,56 @@ MEMORY HOOK:
 
 | Term | Definition |
 |------|------------|
-| SQL Injection Methodology | Step-by-step process to detect, exploit, and extract data from vulnerable SQL queries |
-| Phase 1 — Detect | Determine whether the application is vulnerable to SQL injection |
-| Phase 2 — Identify DB | Determine the backend DBMS type using error messages and DB-specific functions |
-| Phase 3 — Enumerate | Discover tables, columns, schemas, and user privileges in the database |
-| Phase 4 — Extract | Retrieve sensitive data such as usernames, passwords, emails, and credit cards |
-| Phase 5 — Bypass Auth | Gain unauthorized login using always-true conditions or comment-based query manipulation |
-| Phase 6 — Execute OS | Run system-level commands from the database (e.g., xp_cmdshell, INTO OUTFILE) |
-| Phase 7 — Persist | Maintain attacker access via admin users, backdoors, or web shells |
-| `@@version` | MySQL/MSSQL function to retrieve database version information |
-| `information_schema` | Metadata database containing table, column, and schema information across databases |
-| `information_schema.tables` | Query this table to list all tables in the database |
-| `information_schema.columns` | Query this table to list all columns across tables |
-| `xp_cmdshell` | MSSQL stored procedure that allows executing operating system commands |
-| `INTO OUTFILE` | MySQL technique to write files to the server's filesystem |
+| SQL Injection Methodology | Proceso paso a paso para detectar, explotar y extraer datos de consultas SQL vulnerables |
+| Phase 1 — Detect | Determinar si la aplicación es vulnerable a SQL injection |
+| Phase 2 — Identify DB | Determinar el tipo de DBMS backend usando mensajes de error y funciones específicas de la base de datos |
+| Phase 3 — Enumerate | Descubrir tablas, columnas, esquemas y privilegios de usuario en la base de datos |
+| Phase 4 — Extract | Recuperar datos sensibles como nombres de usuario, contraseñas, correos electrónicos y tarjetas de crédito |
+| Phase 5 — Bypass Auth | Obtener acceso no autorizado usando condiciones always-true o manipulación de consultas basada en comentarios |
+| Phase 6 — Execute OS | Ejecutar comandos a nivel de sistema desde la base de datos (por ejemplo, xp_cmdshell, INTO OUTFILE) |
+| Phase 7 — Persist | Mantener acceso del atacante a través de usuarios administrador, backdoors o web shells |
+| `@@version` | Función de MySQL/MSSQL para recuperar información de versión de la base de datos |
+| `information_schema` | Base de datos de metadata que contiene información de tablas, columnas y esquemas en todas las bases de datos |
+| `information_schema.tables` | Consulta esta tabla para listar todas las tablas en la base de datos |
+| `information_schema.columns` | Consulta esta tabla para listar todas las columnas en las tablas |
+| `xp_cmdshell` | Stored procedure de MSSQL que permite ejecutar comandos del sistema operativo |
+| `INTO OUTFILE` | Técnica de MySQL para escribir archivos en el sistema de archivos del servidor |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the correct order of the SQL injection methodology phases?
+**1.** ¿Cuál es el orden correcto de las fases de la metodología de SQL injection?
 - a) Extract → Detect → Enumerate → Identify → Bypass → Execute → Persist
 - b) Detect → Identify → Enumerate → Extract → Bypass → Execute → Persist
 - c) Identify → Detect → Extract → Enumerate → Execute → Bypass → Persist
 - d) Detect → Enumerate → Identify → Extract → Execute → Bypass → Persist
-**Answer:** b — The correct sequence is: Detect → Identify DB → Enumerate → Extract → Bypass Auth → Execute OS → Persist.
+**Answer:** b — La secuencia correcta es: Detect → Identify DB → Enumerate → Extract → Bypass Auth → Execute OS → Persist.
 
-**2.** Which SQL query would you use to enumerate table names in a MySQL database?
+**2.** ¿Qué consulta SQL usarías para enumerar nombres de tablas en una base de datos MySQL?
 - a) `SELECT * FROM v$version`
 - b) `SELECT table_name FROM information_schema.tables`
 - c) `SELECT * FROM pg_tables`
 - d) `SHOW DATABASES`
-**Answer:** b — `information_schema.tables` is the standard metadata table containing table names across all databases.
+**Answer:** b — `information_schema.tables` es la tabla de metadata estándar que contiene los nombres de tablas en todas las bases de datos.
 
-**3.** An attacker wants to execute OS commands from a compromised MSSQL database. Which function should they use?
+**3.** Un atacante quiere ejecutar comandos del OS desde una base de datos MSSQL comprometida. ¿Qué función debería usar?
 - a) `INTO OUTFILE`
 - b) `pg_sleep()`
 - c) `xp_cmdshell`
 - d) `CHAR()`
-**Answer:** c — `xp_cmdshell` is the MSSQL stored procedure that bridges the database to the operating system.
+**Answer:** c — `xp_cmdshell` es el stored procedure de MSSQL que conecta la base de datos con el sistema operativo.
 
-**4.** During Phase 1 (Detection), which of the following would NOT indicate a SQL injection vulnerability?
-- a) Database error messages returned to the user
-- b) Page content changes when injecting AND 1=2--
-- c) The application enforces HTTPS on all pages
-- d) Response delay when injecting time-based payloads
-**Answer:** c — HTTPS enforcement is a transport security measure and does not indicate SQL injection vulnerability.
+**4.** Durante la Fase 1 (Detection), ¿cuál de las siguientes opciones NO indicaría una vulnerabilidad de SQL injection?
+- a) Mensajes de error de la base de datos devueltos al usuario
+- b) Cambios en el contenido de la página al inyectar AND 1=2--
+- c) La aplicación enforce HTTPS en todas las páginas
+- d) Retraso en la respuesta al inyectar payloads basados en tiempo
+**Answer:** c — El enforce de HTTPS es una medida de seguridad de transporte y no indica vulnerabilidad de SQL injection.
 
-**5.** What is the first piece of information an attacker typically extracts after confirming SQLi exists?
+**5.** ¿Cuál es la primera pieza de información que un atacante típicamente extrae después de confirmar que existe SQLi?
 - a) Password hashes
-- b) Database type and version
-- c) User privileges
-- d) Operating system details
-**Answer:** b — After detection, the attacker identifies the DBMS type and version to craft database-specific exploitation payloads.
-
+- b) Tipo y versión de la base de datos
+- c) Privilegios de usuario
+- d) Detalles del sistema operativo
+**Answer:** b — Después de la detección, el atacante identifica el tipo y versión del DBMS para diseñar payloads de explotación específicos de la base de datos.

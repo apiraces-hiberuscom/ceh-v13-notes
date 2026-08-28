@@ -6,13 +6,13 @@
 
 |Reason|
 |---|
-|IoT and OT devices control critical infrastructure|
-|Exploitation can cause physical damage|
-|Devices are difficult to patch|
-|Long operational lifecycles|
+|Los dispositivos IoT y OT controlan infraestructuras críticas|
+|La explotación puede causar daños físicos|
+|Los dispositivos son difíciles de actualizar|
+|Ciclos de vida operativos largos|
 
 MEMORY HOOK:  
-**Weak security = real-world harm**
+**Seguridad débil = daño del mundo real**
 
 ---
 
@@ -24,13 +24,13 @@ MEMORY HOOK:
 
 |Countermeasure|Explanation|
 |---|---|
-|Disable unused interfaces|Turn off JTAG, UART, debug ports|
-|Secure boot|Ensure only trusted firmware loads|
-|Hardware root of trust|Cryptographic verification at boot|
-|Tamper detection|Detect physical access attempts|
+|Deshabilitar interfaces no utilizadas|Apagar JTAG, UART, puertos de depuración|
+|Secure boot|Asegurar que solo se cargue firmware confiable|
+|Hardware root of trust|Verificación criptográfica en el arranque|
+|Detección de manipulación|Detectar intentos de acceso físico|
 
 MEMORY HOOK:  
-**No debug ports in production**
+**No hay puertos de depuración en producción**
 
 ---
 
@@ -38,16 +38,16 @@ MEMORY HOOK:
 
 |Countermeasure|Explanation|
 |---|---|
-|Firmware signing|Prevent unauthorized firmware|
-|Encrypted firmware|Protect sensitive code|
-|Secure OTA updates|Authenticate update source|
-|Remove hardcoded credentials|Prevent reuse attacks|
+|Firmware signing|Prevenir firmware no autorizado|
+|Encrypted firmware|Proteger código sensible|
+|Secure OTA updates|Autenticar la fuente de la actualización|
+|Eliminar credenciales hardcodeadas|Prevenir ataques de reutilización|
 
 EXAM TRAP:  
-Firmware encryption alone is NOT sufficient without signing.
+La encriptación de firmware por sí sola NO es suficiente sin firma.
 
 MEMORY HOOK:  
-**Signed + encrypted firmware**
+**Firmware firmado + encriptado**
 
 ---
 
@@ -55,13 +55,13 @@ MEMORY HOOK:
 
 |Measure|
 |---|
-|Strong passwords|
+|Contraseñas fuertes|
 |Certificate-based authentication|
 |Role-based access control (RBAC)|
-|Least privilege|
+|Principio de mínimo privilegio|
 
 MEMORY HOOK:  
-**Every device must authenticate**
+**Todo dispositivo debe autenticarse**
 
 ---
 
@@ -73,12 +73,12 @@ MEMORY HOOK:
 
 |Measure|Purpose|
 |---|---|
-|Network segmentation|Isolate IoT devices|
-|VLANs|Logical separation|
-|Firewalls|Restrict access|
+|Segmentación de red|Aislar dispositivos IoT|
+|VLANs|Separación lógica|
+|Firewalls|Restringir acceso|
 
 MEMORY HOOK:  
-**IoT never flat network**
+**IoT nunca en red plana**
 
 ---
 
@@ -86,12 +86,12 @@ MEMORY HOOK:
 
 |Protocol|Countermeasure|
 |---|---|
-|MQTT|Enable authentication & TLS|
+|MQTT|Habilitar autenticación y TLS|
 |CoAP|DTLS|
 |HTTP|HTTPS|
 
 MEMORY HOOK:  
-**Plaintext protocols are unsafe**
+**Los protocolos en texto plano no son seguros**
 
 ---
 
@@ -99,9 +99,9 @@ MEMORY HOOK:
 
 |Measure|
 |---|
-|Intrusion detection|
-|Anomaly detection|
-|Centralized logging|
+|Detección de intrusiones|
+|Detección de anomalías|
+|Registro centralizado|
 
 ---
 
@@ -117,11 +117,11 @@ MEMORY HOOK:
 
 |Component|Purpose|
 |---|---|
-|Zones|Group assets with same risk|
-|Conduits|Controlled communication paths|
+|Zonas|Agrupar activos con el mismo riesgo|
+|Conductos|Rutas de comunicación controladas|
 
 MEMORY HOOK:  
-**Zones isolate, conduits control**
+**Las zonas aíslan, los conductos controlan**
 
 ---
 
@@ -129,12 +129,12 @@ MEMORY HOOK:
 
 |Layer|Rule|
 |---|---|
-|IT|Internet-facing|
-|DMZ|Buffer zone|
-|OT|Isolated|
+|IT|Expuesto a internet|
+|DMZ|Zona de amortiguamiento|
+|OT|Aislado|
 
 EXAM TRAP:  
-Direct IT-to-OT communication is insecure.
+La comunicación directa de IT a OT no es segura.
 
 ---
 
@@ -142,13 +142,13 @@ Direct IT-to-OT communication is insecure.
 
 |Control|
 |---|
-|Strong authentication|
+|Autenticación fuerte|
 |Multi-factor authentication|
-|Role separation|
-|Logging of access|
+|Separación de roles|
+|Registro de accesos|
 
 MEMORY HOOK:  
-**Operators ≠ administrators**
+**Operadores ≠ administradores**
 
 ---
 
@@ -156,12 +156,12 @@ MEMORY HOOK:
 
 |Protocol|Countermeasure|
 |---|---|
-|Modbus|Secure gateways|
-|DNP3|Secure authentication|
-|BACnet|Network isolation|
+|Modbus|Gateways seguros|
+|DNP3|Autenticación segura|
+|BACnet|Aislamiento de red|
 
 EXAM TRAP:  
-Most OT protocols lack native security.
+La mayoría de los protocolos OT carecen de seguridad nativa.
 
 ---
 
@@ -169,12 +169,12 @@ Most OT protocols lack native security.
 
 |Practice|
 |---|
-|Test patches offline|
-|Schedule maintenance windows|
-|Vendor-approved updates|
+|Probar parches sin conexión|
+|Programar ventanas de mantenimiento|
+|Actualizaciones aprobadas por el fabricante|
 
 MEMORY HOOK:  
-**Patch carefully, not frequently**
+**Aplicar parches con cuidado, no con frecuencia**
 
 ---
 
@@ -182,9 +182,9 @@ MEMORY HOOK:
 
 |Measure|
 |---|
-|Passive monitoring|
-|Anomaly detection|
-|Incident response plans|
+|Monitoreo pasivo|
+|Detección de anomalías|
+|Planes de respuesta a incidentes|
 
 ---
 
@@ -192,13 +192,13 @@ MEMORY HOOK:
 
 | Measure              |     |
 | -------------------- | --- |
-| Locked cabinets      |     |
-| Surveillance         |     |
-| Access logs          |     |
-| Tamper-evident seals |     |
+| Gabinetes cerrados con llave      |     |
+| Vigilancia         |     |
+| Registros de acceso          |     |
+| Sellos antimanipulación |     |
 
 MEMORY HOOK:  
-**Physical access = full compromise**
+**Acceso físico = compromiso total**
 
 ---
 
@@ -206,10 +206,10 @@ MEMORY HOOK:
 
 |Measure|
 |---|
-|API authentication|
-|Token expiration|
-|Secure cloud configuration|
-|Regular audits|
+|Autenticación de API|
+|Expiración de tokens|
+|Configuración segura en la nube|
+|Auditorías regulares|
 
 ---
 
@@ -217,12 +217,12 @@ MEMORY HOOK:
 
 |Standard|Purpose|
 |---|---|
-|IEC 62443|OT security|
-|NIST SP 800-82|ICS security|
-|OWASP IoT Top 10|IoT risks|
+|IEC 62443|Seguridad OT|
+|NIST SP 800-82|Seguridad ICS|
+|OWASP IoT Top 10|Riesgos IoT|
 
 MEMORY HOOK:  
-**62443 = OT bible**
+**62443 = la biblia del OT**
 
 ---
 
@@ -233,7 +233,7 @@ MEMORY HOOK:
 |IDS/IPS|
 |SIEM|
 |Firewalls|
-|Network monitoring tools|
+|Herramientas de monitoreo de red|
 
 ---
 
@@ -241,20 +241,20 @@ MEMORY HOOK:
 
 |Trap|Correct Understanding|
 |---|---|
-|Encryption alone is enough|False|
-|OT can be patched like IT|False|
-|Flat networks are acceptable|False|
-|Safety > security means ignore security|False|
+|La encriptación por sí sola es suficiente|Falso|
+|Se puede parchear OT como se hace con IT|Falso|
+|Las redes planas son aceptables|Falso|
+|Seguridad > seguridad significa ignorar la seguridad|Falso|
 
 ---
 
 # OBJECTIVE 05 — EXAM MEMORY BLOCK
 
-**IoT and OT security requires layered defenses.  
-Disable debug interfaces, secure firmware, and enforce authentication.  
-Segment networks using zones and conduits.  
-Most OT protocols are insecure by default.  
-Security controls must not disrupt operations.**
+**La seguridad de IoT y OT requiere defensas en capas.  
+Deshabilitar interfaces de depuración, asegurar firmware y reforzar la autenticación.  
+Segmentar redes usando zonas y conductos.  
+La mayoría de los protocolos OT son inseguros por defecto.  
+Los controles de seguridad no deben interrumpir las operaciones.**
 
 ---
 
@@ -262,15 +262,15 @@ Security controls must not disrupt operations.**
 
 |Item|
 |---|
-|IoT device vulnerabilities|
-|JTAG/UART risks|
-|Firmware analysis|
-|MQTT/CoAP attacks|
-|PLC/RTU/HMI roles|
-|OT protocols|
+|Vulnerabilidades de dispositivos IoT|
+|Riesgos JTAG/UART|
+|Análisis de firmware|
+|Ataques MQTT/CoAP|
+|Roles de PLC/RTU/HMI|
+|Protocolos OT|
 |Stuxnet|
-|Zone & conduit model|
-|Countermeasures|
+|Modelo de zona y conducto|
+|Contramedidas|
 
 ---
 
@@ -291,57 +291,57 @@ Security controls must not disrupt operations.**
 
 | Term | Definition |
 |------|------------|
-| Secure Boot | Ensures only trusted firmware loads during device startup |
-| Hardware Root of Trust | Cryptographic verification at boot using dedicated hardware |
-| Firmware Signing | Digital signature preventing unauthorized firmware modification |
-| Tamper Detection | Mechanisms detecting physical access attempts to devices |
-| RBAC | Role-Based Access Control — restricts access based on user roles |
-| Network Segmentation | Isolating IoT devices on separate network segments |
-| VLAN | Virtual Local Area Network — logical network separation |
-| Zone and Conduit Model | IEC 62443 model grouping assets by risk (zones) with controlled communication paths (conduits) |
-| IEC 62443 | International standard for OT/ICS security |
-| NIST SP 800-82 | Guide to ICS security for industrial control systems |
-| OWASP IoT Top 10 | List of top 10 IoT security risks |
-| Secure OTA Updates | Authenticated over-the-air firmware update mechanisms |
-| DMZ | Demilitarized zone — buffer between IT and OT networks |
-| Least Privilege | Granting minimum necessary permissions to users and devices |
-| Passive Monitoring | Observing network traffic without active interaction for anomaly detection |
+| Secure Boot | Asegura que solo se cargue firmware confiable durante el arranque del dispositivo |
+| Hardware Root of Trust | Verificación criptográfica en el arranque usando hardware dedicado |
+| Firmware Signing | Firma digital que previene la modificación no autorizada del firmware |
+| Tamper Detection | Mecanismos que detectan intentos de acceso físico a los dispositivos |
+| RBAC | Role-Based Access Control — restringe el acceso basado en roles de usuario |
+| Network Segmentation | Aislar dispositivos IoT en segmentos de red separados |
+| VLAN | Virtual Local Area Network — separación lógica de red |
+| Zone and Conduit Model | Modelo IEC 62443 que agrupa activos por riesgo (zonas) con rutas de comunicación controladas (conductos) |
+| IEC 62443 | Estándar internacional para seguridad OT/ICS |
+| NIST SP 800-82 | Guía de seguridad ICS para sistemas de control industrial |
+| OWASP IoT Top 10 | Lista de los 10 principales riesgos de seguridad IoT |
+| Secure OTA Updates | Mecanismos de actualización de firmware autenticados por aire |
+| DMZ | Demilitarized zone — zona de amortiguamiento entre redes IT y OT |
+| Least Privilege | Otorgar los permisos mínimos necesarios a usuarios y dispositivos |
+| Passive Monitoring | Observar el tráfico de red sin interacción activa para la detección de anomalías |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** Which countermeasure prevents unauthorized firmware from loading on an IoT device?
-- a) Network segmentation
+**1.** ¿Qué contramedida previene que se cargue firmware no autorizado en un dispositivo IoT?
+- a) Segmentación de red
 - b) Secure boot
-- c) Strong passwords
-- d) Centralized logging
-**Answer:** b) — Secure boot ensures only trusted, signed firmware loads during device startup.
+- c) Contraseñas fuertes
+- d) Registro centralizado
+**Answer:** b) — El secure boot asegura que solo se cargue firmware confiable y firmado durante el arranque del dispositivo.
 
-**2.** In the IEC 62443 zone and conduit model, what are conduits?
-- a) Physical cables connecting devices
-- b) Controlled communication paths between zones
-- c) Types of IoT sensors
-- d) Encryption protocols
-**Answer:** b) — Conduits are controlled communication paths that manage data flow between security zones.
+**2.** En el modelo de zona y conducto de IEC 62443, ¿qué son los conductos?
+- a) Cables físicos que conectan dispositivos
+- b) Rutas de comunicación controladas entre zonas
+- c) Tipos de sensores IoT
+- d) Protocolos de encriptación
+**Answer:** b) — Los conductos son rutas de comunicación controladas que gestionan el flujo de datos entre zonas de seguridad.
 
-**3.** Why is direct IT-to-OT communication considered insecure?
-- a) OT networks are always faster
-- b) IT networks have better encryption
-- c) OT networks should be isolated with a DMZ buffer zone
-- d) IT networks cannot connect to OT
-**Answer:** c) — OT networks should be isolated from IT with a DMZ buffer zone to prevent direct exposure.
+**3.** ¿Por qué se considera insegura la comunicación directa de IT a OT?
+- a) Las redes OT siempre son más rápidas
+- b) Las redes IT tienen mejor encriptación
+- c) Las redes OT deben estar aisladas con una zona de amortiguamiento DMZ
+- d) Las redes IT no pueden conectarse a OT
+**Answer:** c) — Las redes OT deben estar aisladas de IT con una zona de amortiguamiento DMZ para prevenir la exposición directa.
 
-**4.** Which countermeasure is most effective against MQTT protocol attacks?
-- a) Disable MQTT entirely
-- b) Enable authentication and TLS encryption
-- c) Use only wired connections
-- d) Increase bandwidth
-**Answer:** b) — MQTT should have authentication enabled and use TLS to prevent unauthorized access and eavesdropping.
+**4.** ¿Qué contramedida es más efectiva contra ataques al protocolo MQTT?
+- a) Deshabilitar MQTT completamente
+- b) Habilitar autenticación y encriptación TLS
+- c) Usar solo conexiones cableadas
+- d) Aumentar el ancho de banda
+**Answer:** b) — MQTT debe tener la autenticación habilitada y usar TLS para prevenir el acceso no autorizado y la interceptación.
 
-**5.** What is the primary security challenge when patching OT systems?
-- a) Patches are too expensive
-- b) OT systems cannot be taken offline easily and downtime is dangerous
-- c) OT systems use different operating systems
-- d) Patches are always incompatible
-**Answer:** b) — OT systems prioritize availability and safety, making offline patching difficult and downtime unacceptable.  
+**5.** ¿Cuál es el principal desafío de seguridad al parchear sistemas OT?
+- a) Los parches son demasiado costosos
+- b) Los sistemas OT no pueden ser desconectados fácilmente y el tiempo de inactividad es peligroso
+- c) Los sistemas OT usan diferentes sistemas operativos
+- d) Los parches siempre son incompatibles
+**Answer:** b) — Los sistemas OT priorizan la disponibilidad y la seguridad, haciendo que el parcheo sin conexión sea difícil y el tiempo de inactividad inaceptable.  

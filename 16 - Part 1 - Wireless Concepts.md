@@ -4,7 +4,7 @@
 |---|---|
 |Module Number|16|
 |Module Name|Hacking Wireless Networks|
-|Focus|Wireless concepts, threats, attacks, tools, countermeasures|
+|Focus|Conceptos inalámbricos, amenazas, ataques, herramientas, contramedidas|
 
 ---
 
@@ -12,11 +12,11 @@
 
 |Objective #|Description|
 |---|---|
-|01|Summarize wireless concepts|
-|02|Explain different wireless encryption algorithms|
-|03|Explain different wireless threats|
-|04|Demonstrate wireless hacking methodology|
-|05|Explain wireless attack countermeasures|
+|01|Resumir conceptos inalámbricos|
+|02|Explicar diferentes algoritmos de cifrado inalámbrico|
+|03|Explicar diferentes amenazas inalámbricas|
+|04|Demostrar metodología de hacking inalámbrico|
+|05|Explicar contramedidas de ataques inalámbricos|
 
 ---
 
@@ -28,7 +28,7 @@
 
 |Term|Definition|
 |---|---|
-|Wireless Network|A network that uses radio-wave transmission to communicate at the physical layer instead of cables|
+|Wireless Network|Una red que usa transmisión por ondas de radio para comunicarse en la capa física en lugar de cables|
 
 MEMORY HOOK:  
 **No wires = radio waves**
@@ -39,9 +39,9 @@ MEMORY HOOK:
 
 |Component|Explanation|
 |---|---|
-|Transmission|Uses electromagnetic (EM) waves|
-|Carrier|Air|
-|Nature|Broadcast-based|
+|Transmission|Usa ondas electromagnéticas (EM)|
+|Carrier|Aire|
+|Nature|Basado en difusión|
 
 EXAM TRAP:  
 Wireless = **broadcast**, not point-to-point.
@@ -56,7 +56,7 @@ Wireless = **broadcast**, not point-to-point.
 
 |Item|Memorize|
 |---|---|
-|GSM|Universal system for mobile data transmission worldwide|
+|GSM|Sistema universal para la transmisión de datos móviles en todo el mundo|
 
 ---
 
@@ -64,8 +64,8 @@ Wireless = **broadcast**, not point-to-point.
 
 |Item|Memorize|
 |---|---|
-|Bandwidth|Amount of data transferred per second|
-|Unit|bits per second (bps)|
+|Bandwidth|Cantidad de datos transferidos por segundo|
+|Unit|bits por segundo (bps)|
 
 ---
 
@@ -73,8 +73,8 @@ Wireless = **broadcast**, not point-to-point.
 
 |Item|Memorize|
 |---|---|
-|Access Point|Device that connects wireless devices to a wired network|
-|Function|Acts as a switch or hub|
+|Access Point|Dispositivo que conecta dispositivos inalámbricos a una red cableada|
+|Function|Actúa como un switch o hub|
 
 ---
 
@@ -82,8 +82,8 @@ Wireless = **broadcast**, not point-to-point.
 
 |Item|Memorize|
 |---|---|
-|BSSID|MAC address of the access point|
-|Role|Identifies a wireless access point|
+|BSSID|Dirección MAC del access point|
+|Role|Identifica un access point inalámbrico|
 
 EXAM TRAP:  
 SSID ≠ BSSID
@@ -94,8 +94,8 @@ SSID ≠ BSSID
 
 |Item|Memorize|
 |---|---|
-|Hotspot|Public wireless access location|
-|Examples|Airports, cafes, libraries|
+|Hotspot|Ubicación de acceso inalámbrico público|
+|Examples|Aeropuertos, cafeterías, bibliotecas|
 
 ---
 
@@ -103,7 +103,7 @@ SSID ≠ BSSID
 
 |Item|Memorize|
 |---|---|
-|Association|Process of connecting a wireless device to an AP|
+|Association|Proceso de conectar un dispositivo inalámbrico a un AP|
 
 ---
 
@@ -115,8 +115,8 @@ SSID ≠ BSSID
 
 |Item|Memorize|
 |---|---|
-|OFDM|Digital modulation using multiple orthogonal subcarriers|
-|Benefit|Higher data rates, reduced interference|
+|OFDM|Modulación digital usando múltiples subportadoras ortogonales|
+|Benefit|Mayores velocidades de datos, reducción de interferencia|
 
 ---
 
@@ -124,8 +124,8 @@ SSID ≠ BSSID
 
 |Item|Memorize|
 |---|---|
-|MIMO|Uses multiple antennas|
-|Benefit|Increased throughput and reliability|
+|MIMO|Usa múltiples antenas|
+|Benefit|Mayor rendimiento y fiabilidad|
 
 ---
 
@@ -133,8 +133,8 @@ SSID ≠ BSSID
 
 |Item|Memorize|
 |---|---|
-|DSSS|Spreads signal over wide frequency band|
-|Purpose|Prevent jamming|
+|DSSS|Propaga la señal en una banda de frecuencia amplia|
+|Purpose|Prevenir interferencias|
 
 ---
 
@@ -142,8 +142,8 @@ SSID ≠ BSSID
 
 |Item|Memorize|
 |---|---|
-|FHSS|Rapid frequency changes|
-|Purpose|Reduce interception|
+|FHSS|Cambios rápidos de frecuencia|
+|Purpose|Reducir la interceptación|
 
 ---
 
@@ -156,7 +156,7 @@ MEMORY BLOCK (SIGNALS):
 
 |Item|Memorize|
 |---|---|
-|Wireless Network|Uses radio-wave transmission to communicate at the physical layer|
+|Wireless Network|Usa transmisión por ondas de radio para comunicarse en la capa física|
 
 ---
 
@@ -164,10 +164,10 @@ MEMORY BLOCK (SIGNALS):
 
 |Advantage|
 |---|
-|Easy installation|
-|No cables|
-|Mobility|
-|Public access availability|
+|Instalación fácil|
+|Sin cables|
+|Movilidad|
+|Disponibilidad de acceso público|
 
 ---
 
@@ -175,10 +175,10 @@ MEMORY BLOCK (SIGNALS):
 
 |Disadvantage|
 |---|
-|Security risks|
-|Bandwidth degradation|
-|Interference|
-|Hardware compatibility issues|
+|Riesgos de seguridad|
+|Degradación del ancho de banda|
+|Interferencias|
+|Problemas de compatibilidad de hardware|
 
 EXAM TRAP:  
 Wireless = **less secure by default**
@@ -193,9 +193,9 @@ Wireless = **less secure by default**
 
 |Feature|Description|
 |---|---|
-|Purpose|Extend wired LAN|
+|Purpose|Extender la LAN cableada|
 |Device|Access Point|
-|Function|Bridges wired and wireless|
+|Function|Conecta redes cableadas e inalámbricas|
 
 ---
 
@@ -203,9 +203,9 @@ Wireless = **less secure by default**
 
 |Feature|Description|
 |---|---|
-|Purpose|Expand coverage|
-|Requirement|Overlapping channels|
-|Benefit|Seamless roaming|
+|Purpose|Expandir la cobertura|
+|Requirement|Canales superpuestos|
+|Benefit|Roaming sin interrupciones|
 
 ---
 
@@ -213,9 +213,9 @@ Wireless = **less secure by default**
 
 |Feature|Description|
 |---|---|
-|Purpose|Connect two LANs|
-|Medium|Wireless bridge|
-|Complexity|High|
+|Purpose|Conectar dos LANs|
+|Medium|Puente inalámbrico|
+|Complexity|Alta|
 
 ---
 
@@ -223,9 +223,9 @@ Wireless = **less secure by default**
 
 |Feature|Description|
 |---|---|
-|Source|Cellular network|
-|Devices|Phones, tablets, laptops|
-|Role|Provides Wi-Fi via mobile data|
+|Source|Red celular|
+|Devices|Teléfonos, tabletas, portátiles|
+|Role|Proporciona Wi-Fi a través de datos móviles|
 
 ---
 
@@ -242,7 +242,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|IEEE 802.11|Wireless LAN standard|
+|IEEE 802.11|Estándar de red inalámbrica LAN|
 |Operates|2.4 GHz / 5 GHz|
 
 ---
@@ -263,10 +263,10 @@ MEMORY HOOK:
 
 |Standard|Purpose|
 |---|---|
-|802.11i|Security (WPA2)|
+|802.11i|Seguridad (WPA2)|
 |802.11e|QoS|
-|802.11h|Power control|
-|802.11ac|High throughput|
+|802.11h|Control de energía|
+|802.11ac|Alto rendimiento|
 |802.11ax|Wi-Fi 6|
 
 ---
@@ -284,8 +284,8 @@ MEMORY HOOK (ORDER):
 
 |Item|Memorize|
 |---|---|
-|SSID|Human-readable WLAN name|
-|Nature|Logical identifier|
+|SSID|Nombre de la red inalámbrica legible por humanos|
+|Nature|Identificador lógico|
 
 ---
 
@@ -293,9 +293,9 @@ MEMORY HOOK (ORDER):
 
 |Property|Detail|
 |---|---|
-|Broadcast|Enabled by default|
-|Security|Provides NO security|
-|Visibility|Can be hidden|
+|Broadcast|Habilitado por defecto|
+|Security|No proporciona seguridad|
+|Visibility|Puede ocultarse|
 
 EXAM TRAP:  
 Hidden SSID ≠ secure network
@@ -306,58 +306,57 @@ Hidden SSID ≠ secure network
 
 | Term | Definition |
 |------|------------|
-| Wireless Network | Network using radio-wave transmission at the physical layer instead of cables |
-| SSID | Human-readable logical identifier for a wireless network |
-| BSSID | MAC address of the wireless access point |
-| Access Point (AP) | Device that connects wireless devices to a wired network |
-| OFDM | Digital modulation using multiple orthogonal subcarriers for higher data rates |
-| MIMO | Uses multiple antennas to increase throughput and reliability |
-| DSSS | Spreads signal over a wide frequency band to prevent jamming |
-| FHSS | Rapidly changes frequencies to reduce interception |
-| Association | Process of connecting a wireless device to an access point |
-| Hotspot | Public wireless access location (airports, cafes, libraries) |
-| IEEE 802.11 | Wireless LAN standard operating at 2.4 GHz / 5 GHz |
-| 802.11n | MIMO-OFDM standard supporting 54–600 Mbps at 2.4/5 GHz |
-| 802.11i | Security standard that defines WPA2 |
-| Bandwidth | Amount of data transferred per second, measured in bps |
-| GSM | Universal system for mobile data transmission worldwide |
+| Wireless Network | Red que usa transmisión por ondas de radio en la capa física en lugar de cables |
+| SSID | Identificador lógico legible por humanos para una red inalámbrica |
+| BSSID | Dirección MAC del access point inalámbrico |
+| Access Point (AP) | Dispositivo que conecta dispositivos inalámbricos a una red cableada |
+| OFDM | Modulación digital usando múltiples subportadoras ortogonales para mayor velocidad de datos |
+| MIMO | Usa múltiples antenas para aumentar el rendimiento y la fiabilidad |
+| DSSS | Propaga la señal en una banda de frecuencia amplia para prevenir interferencias |
+| FHSS | Cambia rápidamente las frecuencias para reducir la interceptación |
+| Association | Proceso de conectar un dispositivo inalámbrico a un access point |
+| Hotspot | Ubicación de acceso inalámbrico público (aeropuertos, cafeterías, bibliotecas) |
+| IEEE 802.11 | Estándar de red inalámbrica LAN que opera a 2.4 GHz / 5 GHz |
+| 802.11n | Estándar MIMO-OFDM que soporta 54–600 Mbps a 2.4/5 GHz |
+| 802.11i | Estándar de seguridad que define WPA2 |
+| Bandwidth | Cantidad de datos transferidos por segundo, medidos en bps |
+| GSM | Sistema universal para la transmisión de datos móviles en todo el mundo |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the MAC address of a wireless access point called?
+**1.** ¿Cómo se llama la dirección MAC de un access point inalámbrico?
 - a) SSID
 - b) BSSID
 - c) ESSID
 - d) MAC ID
-**Answer:** B — BSSID is the MAC address uniquely identifying each access point.
+**Answer:** B — BSSID es la dirección MAC que identifica de forma única cada access point.
 
-**2.** Which modulation technique uses multiple orthogonal subcarriers for higher data rates?
+**2.** ¿Qué técnica de modulación usa múltiples subportadoras ortogonales para obtener mayores velocidades de datos?
 - a) DSSS
 - b) FHSS
 - c) OFDM
 - d) MIMO
-**Answer:** C — OFDM splits the signal across multiple subcarriers, boosting throughput and reducing interference.
+**Answer:** C — OFDM divide la señal entre múltiples subportadoras, aumentando el rendimiento y reduciendo la interferencia.
 
-**3.** What does the SSID of a wireless network represent?
-- a) The MAC address of the AP
-- b) The encryption protocol used
-- c) The human-readable name of the WLAN
-- d) The channel frequency
-**Answer:** C — SSID is a logical, human-readable identifier, not a security feature.
+**3.** ¿Qué representa el SSID de una red inalámbrica?
+- a) La dirección MAC del AP
+- b) El protocolo de cifrado utilizado
+- c) El nombre legible por humanos de la red inalámbrica
+- d) La frecuencia del canal
+**Answer:** C — SSID es un identificador lógico legible por humanos, no una función de seguridad.
 
-**4.** Which IEEE 802.11 standard introduced MIMO-OFDM technology?
+**4.** ¿Qué estándar IEEE 802.11 introdujo la tecnología MIMO-OFDM?
 - a) 802.11a
 - b) 802.11b
 - c) 802.11g
 - d) 802.11n
-**Answer:** D — 802.11n was the first to use MIMO-OFDM, reaching up to 600 Mbps.
+**Answer:** D — 802.11n fue el primero en usar MIMO-OFDM, alcanzando hasta 600 Mbps.
 
-**5.** Why is a hidden SSID NOT considered a security measure?
-- a) It encrypts data with WEP
-- b) It can be discovered through passive scanning
-- c) It disables the access point
-- d) It changes the MAC address
-**Answer:** B — Hidden SSIDs are still transmitted in probe requests and can be easily discovered.
-
+**5.** ¿Por qué un SSID oculto NO se considera una medida de seguridad?
+- a) Cifra datos con WEP
+- b) Puede descubrirse mediante escaneo pasivo
+- c) Desactiva el access point
+- d) Cambia la dirección MAC
+**Answer:** B — Los SSID ocultos todavía se transmiten en las solicitudes de probe y pueden descubrirse fácilmente.

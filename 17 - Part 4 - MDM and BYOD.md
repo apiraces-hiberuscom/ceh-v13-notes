@@ -6,7 +6,7 @@
 
 |Term|Definition|
 |---|---|
-|Mobile Device Management (MDM)|A security solution used to monitor, manage, and secure mobile devices deployed across organizations|
+|Mobile Device Management (MDM)|Solución de seguridad utilizada para monitorear, gestionar y asegurar dispositivos móviles desplegados en las organizaciones|
 
 MEMORY HOOK:  
 **MDM = control + policy + enforcement**
@@ -17,11 +17,11 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|BYOD environments|
-|Data leakage prevention|
-|Centralized control|
-|Compliance enforcement|
-|Device loss or theft|
+|Entornos BYOD|
+|Prevención de filtración de datos|
+|Control centralizado|
+|Aplicación de cumplimiento normativo|
+|Pérdida o robo de dispositivos|
 
 ---
 
@@ -29,11 +29,11 @@ MEMORY HOOK:
 
 |Objective|
 |---|
-|Secure corporate data|
-|Enforce security policies|
-|Control device access|
-|Monitor device activity|
-|Enable remote actions|
+|Asegurar datos corporativos|
+|Aplicar políticas de seguridad|
+|Controlar acceso a dispositivos|
+|Monitorear actividad del dispositivo|
+|Habilitar acciones remotas|
 
 MEMORY HOOK:  
 **Secure, Enforce, Control, Monitor, Respond**
@@ -44,10 +44,10 @@ MEMORY HOOK:
 
 |Component|Description|
 |---|---|
-|MDM Server|Central management console|
-|MDM Agent|Installed on device|
-|Policy Engine|Enforces rules|
-|Communication Channel|Secure device-server link|
+|MDM Server|Consola de gestión centralizada|
+|MDM Agent|Instalado en el dispositivo|
+|Policy Engine|Aplica las reglas|
+|Communication Channel|Enlace seguro dispositivo-servidor|
 
 MEMORY HOOK:  
 **Server → Agent → Policy**
@@ -58,9 +58,9 @@ MEMORY HOOK:
 
 |Model|Description|
 |---|---|
-|On-Premises|Hosted internally|
-|Cloud-Based|Hosted by vendor|
-|Hybrid|Combination|
+|On-Premises|Alojado internamente|
+|Cloud-Based|Alojado por el proveedor|
+|Hybrid|Combinación|
 
 ---
 
@@ -68,14 +68,14 @@ MEMORY HOOK:
 
 |Function|Description|
 |---|---|
-|Device enrollment|Registers device|
-|Policy enforcement|Passwords, encryption|
+|Device enrollment|Registra el dispositivo|
+|Policy enforcement|Contraseñas, cifrado|
 |App management|Whitelisting/blacklisting|
-|Content control|Data access rules|
-|Remote wipe|Erases data|
-|Remote lock|Locks device|
-|Location tracking|GPS-based|
-|Compliance monitoring|Policy violations|
+|Content control|Reglas de acceso a datos|
+|Remote wipe|Borra datos|
+|Remote lock|Bloquea el dispositivo|
+|Location tracking|Basado en GPS|
+|Compliance monitoring|Violaciones de políticas|
 
 MEMORY HOOK:  
 **Enroll → Control → Enforce → Wipe**
@@ -86,12 +86,12 @@ MEMORY HOOK:
 
 |Policy|
 |---|
-|Password complexity|
-|Screen lock timeout|
-|Encryption enforcement|
-|Jailbreak/root detection|
-|App restrictions|
-|Network usage control|
+|Complejidad de contraseñas|
+|Tiempo de bloqueo de pantalla|
+|Aplicación de cifrado|
+|Detección de jailbreak/root|
+|Restricciones de aplicaciones|
+|Control de uso de red|
 
 MEMORY HOOK:  
 **Password, Encrypt, Detect, Restrict**
@@ -102,10 +102,10 @@ MEMORY HOOK:
 
 |Feature|Description|
 |---|---|
-|App whitelisting|Allow approved apps|
-|App blacklisting|Block risky apps|
-|App containerization|Isolate corporate apps|
-|App updates|Forced updates|
+|App whitelisting|Permitir aplicaciones aprobadas|
+|App blacklisting|Bloquear aplicaciones de riesgo|
+|App containerization|Aislar aplicaciones corporativas|
+|App updates|Actualizaciones forzadas|
 
 MEMORY HOOK:  
 **Whitelist beats blacklist**
@@ -118,7 +118,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Containerization|Isolating corporate data and apps from personal data on a device|
+|Containerization|Aislar datos y aplicaciones corporativos de los datos personales en un dispositivo|
 
 MEMORY HOOK:  
 **Work separated from personal**
@@ -129,10 +129,10 @@ MEMORY HOOK:
 
 |Benefit|
 |---|
-|Data isolation|
-|Selective wipe|
-|Privacy preservation|
-|BYOD-friendly|
+|Aislamiento de datos|
+|Borrado selectivo|
+|Preservación de privacidad|
+|Compatible con BYOD|
 
 ---
 
@@ -155,10 +155,10 @@ MEMORY HOOK:
 
 |Limitation|
 |---|
-|Cannot stop zero-day exploits|
-|Rooted/jailbroken devices bypass controls|
-|Depends on user compliance|
-|Limited against social engineering|
+|No puede detener exploits de día cero|
+|Dispositivos rooted/jailbroken evaden los controles|
+|Depende del cumplimiento del usuario|
+|Limitado contra ingeniería social|
 
 MEMORY HOOK:  
 **MDM ≠ invincible**
@@ -169,11 +169,11 @@ MEMORY HOOK:
 
 |Attack|
 |---|
-|Agent tampering|
-|Policy bypass|
-|Jailbreak evasion|
-|Malicious profiles|
-|Certificate abuse|
+|Manipulación del agente|
+|Bypass de políticas|
+|Evasión de jailbreak|
+|Perfiles maliciosos|
+|Abuso de certificados|
 
 ---
 
@@ -196,9 +196,9 @@ MEMORY HOOK:
 
 |Term|Scope|
 |---|---|
-|MDM|Device management|
-|EMM|Device + apps + content|
-|UEM|Unified endpoint management|
+|MDM|Gestión de dispositivos|
+|EMM|Dispositivos + aplicaciones + contenido|
+|UEM|Gestión unificada de endpoints|
 
 MEMORY HOOK:  
 **MDM ⊂ EMM ⊂ UEM**
@@ -207,10 +207,10 @@ MEMORY HOOK:
 
 # OBJECTIVE 04 — EXAM MEMORY BLOCK
 
-**MDM provides centralized control over mobile devices.  
-It enforces security policies, manages apps, and enables remote actions.  
-Containerization separates corporate and personal data.  
-MDM improves security but does not eliminate all risks.**
+**MDM proporciona control centralizado sobre dispositivos móviles.  
+Aplica políticas de seguridad, gestiona aplicaciones y habilita acciones remotas.  
+Containerization separa datos corporativos y personales.  
+MDM mejora la seguridad pero no elimina todos los riesgos.**
 
 ---
 
@@ -218,11 +218,11 @@ MDM improves security but does not eliminate all risks.**
 
 |Item|Status|
 |---|---|
-|MDM concepts|COMPLETE|
-|Architecture|COMPLETE|
-|Policies|COMPLETE|
-|Limitations|COMPLETE|
-|Exam alignment|EXACT|
+|Conceptos de MDM|COMPLETADO|
+|Arquitectura|COMPLETADO|
+|Políticas|COMPLETADO|
+|Limitaciones|COMPLETADO|
+|Alineación con el examen|EXACTO|
 
 ---
 
@@ -230,57 +230,56 @@ MDM improves security but does not eliminate all risks.**
 
 | Term | Definition |
 |------|------------|
-| MDM | Mobile Device Management; centralized solution to monitor, manage, and secure mobile devices |
-| BYOD | Bring Your Own Device; employee-owned devices used for corporate work |
-| Containerization | Isolating corporate data/apps from personal data on a shared device |
-| Remote Wipe | Erasing all data from a lost or stolen device remotely |
-| Selective Wipe | Erasing only corporate data while preserving personal data |
-| App Whitelisting | Allowing only pre-approved applications on managed devices |
-| App Blacklisting | Blocking known risky or unauthorized applications |
-| EMM | Enterprise Mobility Management; extends MDM to include apps and content |
-| UEM | Unified Endpoint Management; manages all endpoint types (mobile, desktop, IoT) |
-| Jailbreak/Root Detection | MDM feature that identifies and flags compromised devices |
-| Compliance Monitoring | Tracking devices to ensure they adhere to security policies |
-| MDM Agent | Software installed on mobile devices that communicates with the MDM server |
-| Policy Engine | MDM component that enforces security rules on enrolled devices |
-| Intune | Microsoft's cloud-based MDM solution |
+| MDM | Mobile Device Management; solución centralizada para monitorear, gestionar y asegurar dispositivos móviles |
+| BYOD | Bring Your Own Device; dispositivos propiedad del empleado utilizados para trabajo corporativo |
+| Containerization | Aislar datos/aplicaciones corporativos de datos personales en un dispositivo compartido |
+| Remote Wipe | Borrar todos los datos de un dispositivo perdido o robado remotamente |
+| Selective Wipe | Borrar solo los datos corporativos preservando los datos personales |
+| App Whitelisting | Permitir solo aplicaciones pre-aprobadas en dispositivos gestionados |
+| App Blacklisting | Bloquear aplicaciones conocidas como riesgo o no autorizadas |
+| EMM | Enterprise Mobility Management; extiende MDM para incluir aplicaciones y contenido |
+| UEM | Unified Endpoint Management; gestiona todos los tipos de endpoints (móviles, de escritorio, IoT) |
+| Jailbreak/Root Detection | Función de MDM que identifica y marca dispositivos comprometidos |
+| Compliance Monitoring | Rastreo de dispositivos para asegurar que cumplan con las políticas de seguridad |
+| MDM Agent | Software instalado en dispositivos móviles que se comunica con el servidor MDM |
+| Policy Engine | Componente de MDM que aplica reglas de seguridad en dispositivos inscritos |
+| Intune | Solución MDM basada en la nube de Microsoft |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the primary purpose of containerization in MDM?
-- a) To increase device storage
-- b) To isolate corporate data from personal data on a BYOD device
-- c) To speed up network connections
-- d) To enable remote desktop access
-**Answer:** B — Containerization separates work and personal data, allowing selective wipe without affecting personal files.
+**1.** ¿Cuál es el propósito principal de containerization en MDM?
+- a) Aumentar el almacenamiento del dispositivo
+- b) Aislar datos corporativos de datos personales en un dispositivo BYOD
+- c) Acelerar las conexiones de red
+- d) Habilitar el acceso de escritorio remoto
+**Answer:** B — Containerization separa los datos de trabajo y personales, permitiendo el borrado selectivo sin afectar archivos personales.
 
-**2.** Which MDM feature allows erasing only corporate data from a device?
+**2.** ¿Qué función de MDM permite borrar solo los datos corporativos de un dispositivo?
 - a) Remote wipe
 - b) Selective wipe
 - c) Factory reset
 - d) Device lock
-**Answer:** B — Selective wipe targets only corporate data, preserving the user's personal content.
+**Answer:** B — Selective wipe solo apunta a los datos corporativos, preservando el contenido personal del usuario.
 
-**3.** What happens when a rooted or jailbroken device connects to an MDM-enrolled network?
-- a) The device is automatically repaired
-- b) MDM detects the compromise and may block access or flag the device
-- c) The device gains elevated privileges
-- d) MDM is automatically disabled
-**Answer:** B — MDM solutions include jailbreak/root detection to enforce compliance and restrict access.
+**3.** ¿Qué sucede cuando un dispositivo rooted o jailbroken se conecta a una red inscrita en MDM?
+- a) El dispositivo se repara automáticamente
+- b) MDM detecta el compromiso y puede bloquear el acceso o marcar el dispositivo
+- c) El dispositivo obtiene privilegios elevados
+- d) MDM se deshabilita automáticamente
+**Answer:** B — Las soluciones MDM incluyen detección de jailbreak/root para aplicar el cumplimiento y restringir el acceso.
 
-**4.** How do MDM, EMM, and UEM relate to each other?
-- a) They are identical solutions
-- b) MDM ⊂ EMM ⊂ UEM (each is a superset of the previous)
+**4.** ¿Cómo se relacionan MDM, EMM y UEM entre sí?
+- a) Son soluciones idénticas
+- b) MDM ⊂ EMM ⊂ UEM (cada una es un superconjunto de la anterior)
 - c) UEM ⊂ EMM ⊂ MDM
-- d) They address completely different areas
-**Answer:** B — MDM manages devices; EMM adds apps and content; UEM unifies all endpoint management.
+- d) Abordan áreas completamente diferentes
+**Answer:** B — MDM gestiona dispositivos; EMM añade aplicaciones y contenido; UEM unifica toda la gestión de endpoints.
 
-**5.** Why can MDM alone NOT eliminate all mobile security risks?
-- a) MDM is too expensive
-- b) It cannot stop zero-day exploits, social engineering, or fully compromised devices
-- c) MDM only works on iOS
-- d) MDM does not support encryption
-**Answer:** B — MDM has limitations against zero-days, social engineering, and devices with root/jailbreak bypass.
-
+**5.** ¿Por qué MDM por sí solo NO puede eliminar todos los riesgos de seguridad móvil?
+- a) MDM es demasiado costoso
+- b) No puede detener exploits de día cero, ingeniería social o dispositivos completamente comprometidos
+- c) MDM solo funciona en iOS
+- d) MDM no soporta cifrado
+**Answer:** B — MDM tiene limitaciones contra exploits de día cero, ingeniería social y dispositivos con bypass de root/jailbreak.

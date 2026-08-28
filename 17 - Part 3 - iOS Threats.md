@@ -6,7 +6,7 @@
 
 |Item|Memorize|
 |---|---|
-|iOS|A closed-source mobile operating system developed by Apple for iPhone and iPad devices|
+|iOS|Un sistema operativo móvil de código cerrado desarrollado por Apple para dispositivos iPhone y iPad|
 
 MEMORY HOOK:  
 **Closed-source ≠ immune**
@@ -17,11 +17,11 @@ MEMORY HOOK:
 
 | Security Feature    | Description                |
 | ------------------- | -------------------------- |
-| Code signing        | Only signed apps can run   |
-| Sandboxing          | App isolation              |
-| Secure Boot Chain   | Verifies integrity at boot |
-| App Store vetting   | Apple review process       |
-| Data Protection API | File-level encryption      |
+| Code signing        | Solo las aplicaciones firmadas pueden ejecutarse |
+| Sandboxing          | Aislamiento de aplicaciones |
+| Secure Boot Chain   | Verifica la integridad al iniciar |
+| App Store vetting   | Proceso de revisión de Apple |
+| Data Protection API | Cifrado a nivel de archivo |
 
 MEMORY HOOK:  
 **Sign → Sandbox → Secure Boot**
@@ -32,10 +32,10 @@ MEMORY HOOK:
 
 |Reason|
 |---|
-|Jailbreaking bypasses controls|
-|User trust in App Store|
-|Zero-day exploits|
-|Phishing and configuration abuse|
+|El jailbyring bypasea los controles|
+|Confianza del usuario en App Store|
+|Explotaciones de día cero|
+|Phishing y abuso de configuración|
 
 ---
 
@@ -45,10 +45,10 @@ MEMORY HOOK:
 |---|
 |Spyware|
 |Malware|
-|Trojans|
-|Configuration profile abuse|
-|Jailbreak-based attacks|
-|Network-based attacks|
+|Troyanos|
+|Abuso de perfiles de configuración|
+|Ataques basados en jailbreak|
+|Ataques basados en red|
 
 ---
 
@@ -58,7 +58,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Jailbreaking|The process of removing iOS restrictions to gain root access|
+|Jailbreaking|El proceso de eliminar las restricciones de iOS para obtener acceso root|
 
 MEMORY HOOK:  
 **Jailbreak = root access**
@@ -69,10 +69,10 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Disables code signing enforcement|
-|Bypasses sandbox|
-|Enables unauthorized apps|
-|Breaks MDM enforcement|
+|Deshabilita la ejecución de firmado de código|
+|Bypasea el sandbox|
+|Habilita aplicaciones no autorizadas|
+|Rompe la ejecución de MDM|
 
 MEMORY HOOK:  
 **No sandbox, no trust**
@@ -83,9 +83,9 @@ MEMORY HOOK:
 
 |Type|Description|
 |---|---|
-|Tethered|Requires computer at boot|
-|Semi-tethered|Partial functionality|
-|Untethered|Persistent jailbreak|
+|Tethered|Requiere computadora al iniciar|
+|Semi-tethered|Funcionalidad parcial|
+|Untethered|Jailbreak persistente|
 
 MEMORY HOOK:  
 **Un-tethered = persistent**
@@ -100,9 +100,9 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|Source|Third-party stores|
-|Delivery|Jailbroken devices|
-|Impact|Data theft, spyware|
+|Source|Tiendas de terceros|
+|Delivery|Dispositivos con jailbreak|
+|Impact|Robo de datos, spyware|
 
 ---
 
@@ -110,9 +110,9 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|What|Misuse of Apple enterprise certificates|
-|Result|Unsigned apps installed|
-|Impact|Malware distribution|
+|What|Uso indebido de certificados empresariales de Apple|
+|Result|Aplicaciones sin firmar instaladas|
+|Impact|Distribución de malware|
 
 MEMORY HOOK:  
 **Enterprise cert = bypass gatekeeper**
@@ -123,9 +123,9 @@ MEMORY HOOK:
 
 |Aspect|Description|
 |---|---|
-|Method|Malicious profiles|
-|Abuse|VPN, proxy, cert install|
-|Result|Traffic interception|
+|Method|Perfiles maliciosos|
+|Abuse|VPN, proxy, instalación de certificados|
+|Result|Intercepción de tráfico|
 
 MEMORY HOOK:  
 **Profile = silent control**
@@ -136,10 +136,10 @@ MEMORY HOOK:
 
 |Capability|
 |---|
-|Call recording|
-|SMS monitoring|
-|GPS tracking|
-|App data theft|
+|Grabación de llamadas|
+|Monitoreo de SMS|
+|Rastreo GPS|
+|Robo de datos de aplicaciones|
 
 ---
 
@@ -150,7 +150,7 @@ MEMORY HOOK:
 |Rogue Wi-Fi|
 |MITM|
 |SSL stripping|
-|Fake certificates|
+|Certificados falsos|
 
 ---
 
@@ -158,11 +158,11 @@ MEMORY HOOK:
 
 |Vulnerability|
 |---|
-|Insecure local storage|
-|Weak cryptography|
-|Improper session handling|
-|Hardcoded credentials|
-|Insufficient certificate validation|
+|Almacenamiento local inseguro|
+|Criptografía débil|
+|Manejo inadecuado de sesiones|
+|Credenciales hardcodeadas|
+|Validación insuficiente de certificados|
 
 ---
 
@@ -170,10 +170,10 @@ MEMORY HOOK:
 
 |Location|Risk|
 |---|---|
-|Keychain|Credential exposure|
-|SQLite DB|Plaintext data|
-|Plist files|Config leaks|
-|Cache files|Sensitive remnants|
+|Keychain|Exposición de credenciales|
+|SQLite DB|Datos en texto plano|
+|Plist files|Fugas de configuración|
+|Cache files|Residuos sensibles|
 
 MEMORY HOOK:  
 **Keychain ≠ invincible**
@@ -184,9 +184,9 @@ MEMORY HOOK:
 
 |Threat|
 |---|
-|Insecure TLS|
-|Invalid cert acceptance|
-|Proxy interception|
+|TLS inseguro|
+|Aceptación de certificados inválidos|
+|Intercepción por proxy|
 
 ---
 
@@ -194,11 +194,11 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Cydia|Package manager (jailbroken)|
-|Frida|Runtime instrumentation|
-|Objection|iOS runtime analysis|
-|iFunBox|File system access|
-|Burp Suite|Traffic interception|
+|Cydia|Gestor de paquetes (con jailbreak)|
+|Frida|Instrumentación en tiempo de ejecución|
+|Objection|Análisis en tiempo de ejecución de iOS|
+|iFunBox|Acceso al sistema de archivos|
+|Burp Suite|Intercepción de tráfico|
 
 MEMORY HOOK:  
 **Frida = runtime control**
@@ -209,10 +209,10 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Data leakage|
-|Privacy violations|
-|Credential theft|
-|Corporate compromise|
+|Fuga de datos|
+|Violaciones de privacidad|
+|Robo de credenciales|
+|Compromiso corporativo|
 
 ---
 
@@ -220,11 +220,11 @@ MEMORY HOOK:
 
 |Feature|Android|iOS|
 |---|---|---|
-|Source model|Open|Closed|
+|Source model|Abierto|Cerrado|
 |Root access|Rooting|Jailbreaking|
-|App vetting|Weak|Strong|
-|Custom ROMs|Yes|No|
-|Enterprise abuse|Less|More|
+|App vetting|Débil|Fuerte|
+|Custom ROMs|Sí|No|
+|Enterprise abuse|Menos|Más|
 
 MEMORY HOOK:  
 **Android = open risk, iOS = controlled risk**
@@ -233,10 +233,10 @@ MEMORY HOOK:
 
 # OBJECTIVE 03 — EXAM MEMORY BLOCK
 
-**iOS relies on code signing, sandboxing, and secure boot.  
-Jailbreaking removes all protections.  
-Attacks use malicious apps, enterprise certificates, and configuration profiles.  
-Network interception and spyware remain key threats.**
+**iOS se basa en code signing, sandboxing y secure boot.  
+El jailbreak elimina todas las protecciones.  
+Los ataques utilizan aplicaciones maliciosas, certificados empresariales y perfiles de configuración.  
+La interceptación de red y el spyware siguen siendo amenazas clave.**
 
 ---
 
@@ -256,57 +256,56 @@ Network interception and spyware remain key threats.**
 
 | Term | Definition |
 |------|------------|
-| Jailbreaking | Removing iOS restrictions to gain root access, bypassing code signing and sandbox |
-| Tethered Jailbreak | Requires computer connection at every boot to function |
-| Semi-tethered Jailbreak | Partially functional after reboot without computer; needs re-jailbreak |
-| Untethered Jailbreak | Persistent jailbreak that survives device reboots without assistance |
-| Enterprise Certificate Abuse | Misusing Apple enterprise certs to install unsigned malicious apps |
-| Configuration Profile Attack | Malicious profiles that install VPN, proxy, or certs to intercept traffic |
-| Cydia | Package manager for jailbroken iOS devices to install unauthorized software |
-| Frida | Dynamic instrumentation toolkit for runtime analysis on iOS and Android |
-| Objection | iOS runtime analysis and manipulation framework built on Frida |
-| Data Protection API | iOS file-level encryption tied to device passcode |
-| Secure Boot Chain | Verifies integrity of each boot stage before loading |
-| Code Signing | iOS requirement that only Apple-signed code can execute |
-| Sandboxing | App isolation mechanism preventing apps from accessing each other's data |
-| Keychain | iOS secure credential storage; not immune to attacks on jailbroken devices |
+| Jailbreaking | Eliminar las restricciones de iOS para obtener acceso root, bypaseando el code signing y sandbox |
+| Tethered Jailbreak | Requiere conexión a computadora en cada inicio para funcionar |
+| Semi-tethered Jailbreak | Parcialmente funcional después de reiniciar sin computadora; necesita re-jailbreak |
+| Untethered Jailbreak | Jailbreak persistente que sobrevive a los reinicios del dispositivo sin asistencia |
+| Enterprise Certificate Abuse | Uso indebido de certificados empresariales de Apple para instalar aplicaciones maliciosas sin firmar |
+| Configuration Profile Attack | Perfiles maliciosos que instalan VPN, proxy o certificados para interceptar tráfico |
+| Cydia | Gestor de paquetes para dispositivos iOS con jailbreak para instalar software no autorizado |
+| Frida | Kit de instrumentación dinámica para análisis en tiempo de ejecución en iOS y Android |
+| Objection | Framework de análisis y manipulación en tiempo de ejecución de iOS construido sobre Frida |
+| Data Protection API | Cifrado a nivel de archivo de iOS vinculado al código de acceso del dispositivo |
+| Secure Boot Chain | Verifica la integridad de cada etapa de inicio antes de cargar |
+| Code Signing | Requisito de iOS de que solo el código firmado por Apple pueda ejecutarse |
+| Sandboxing | Mecanismo de aislamiento de aplicaciones que impide que las aplicaciones accedan a datos entre sí |
+| Keychain | Almacenamiento seguro de credenciales de iOS; no es inmune a ataques en dispositivos con jailbreak |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What does jailbreaking an iOS device disable?
-- a) Bluetooth functionality
-- b) Code signing enforcement and sandboxing
-- c) Cellular network access
-- d) GPS tracking
-**Answer:** B — Jailbreaking removes code signing and sandbox protections, granting root access.
+**1.** ¿Qué deshabilita el jailbreaking de un dispositivo iOS?
+- a) Funcionalidad Bluetooth
+- b) Ejecución de firmado de código y sandboxing
+- c) Acceso a red celular
+- d) Rastreo GPS
+**Answer:** B — El jailbreak elimina las protecciones de code signing y sandbox, otorgando acceso root.
 
-**2.** Which type of jailbreak persists through device reboots without a computer?
+**2.** ¿Qué tipo de jailbreak persiste a través de reinicios del dispositivo sin una computadora?
 - a) Tethered
 - b) Semi-tethered
 - c) Untethered
 - d) Semi-untethered
-**Answer:** C — Untethered jailbreaks are fully persistent across reboots without any external assistance.
+**Answer:** C — Los jailbreaks untethered son completamente persistentes a través de reinicios sin asistencia externa.
 
-**3.** What is the risk of enterprise certificate abuse on iOS?
-- a) It improves app performance
-- b) It allows installation of unsigned malicious apps bypassing the App Store
-- c) It encrypts all device data
-- d) It disables Wi-Fi connections
-**Answer:** B — Enterprise certs can be misused to distribute malware without Apple App Store review.
+**3.** ¿Cuál es el riesgo del abuso de certificados empresariales en iOS?
+- a) Mejora el rendimiento de las aplicaciones
+- b) Permite la instalación de aplicaciones maliciosas sin firmar bypaseando App Store
+- c) Cifra todos los datos del dispositivo
+- d) Deshabilita las conexiones Wi-Fi
+**Answer:** B — Los certificados empresariales pueden ser mal utilizados para distribuir malware sin la revisión de Apple App Store.
 
-**4.** How do configuration profile attacks compromise iOS traffic?
-- a) By brute-forcing the passcode
-- b) By installing malicious VPN, proxy, or certificate profiles to intercept traffic
-- c) By jailbreaking the device remotely
-- d) By disabling the firewall
-**Answer:** B — Malicious profiles silently configure VPNs, proxies, or install rogue certificates for MITM.
+**4.** ¿Cómo comprometen los ataques de perfiles de configuración el tráfico de iOS?
+- a) Mediante fuerza bruta del código de acceso
+- b) Instalando perfiles maliciosos de VPN, proxy o certificados para interceptar tráfico
+- c) Mediante jailbreak remoto del dispositivo
+- d) Deshabilitando el firewall
+**Answer:** B — Los perfiles maliciosos configuran silenciosamente VPNs, proxies o instalan certificados rogue para MITM.
 
-**5.** Which tool allows runtime instrumentation of iOS applications?
+**5.** ¿Qué herramienta permite la instrumentación en tiempo de ejecución de aplicaciones iOS?
 - a) iFunBox
 - b) Cydia
 - c) Frida
 - d) MobSF
-**Answer:** C — Frida provides dynamic instrumentation to hook and analyze app behavior at runtime.
-
+**Answer:** C — Frida proporciona instrumentación dinámica para hook y analizar el comportamiento de las aplicaciones en tiempo de ejecución.

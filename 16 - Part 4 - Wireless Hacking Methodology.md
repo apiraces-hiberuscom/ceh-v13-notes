@@ -6,7 +6,7 @@
 
 |Item|Memorize|
 |---|---|
-|Wireless Hacking|Identifying and exploiting vulnerabilities in wireless networks to gain unauthorized access|
+|Wireless Hacking|Identificar y explotar vulnerabilidades en redes inalámbricas para obtener acceso no autorizado|
 
 ---
 
@@ -33,10 +33,10 @@ MEMORY HOOK:
 
 |Purpose|
 |---|
-|Identify wireless networks|
-|Identify SSID, BSSID|
-|Identify channels|
-|Identify encryption|
+|Identificar redes inalámbricas|
+|Identificar SSID, BSSID|
+|Identificar canales|
+|Identificar cifrado|
 
 ---
 
@@ -47,8 +47,8 @@ MEMORY HOOK:
 |SSID|
 |BSSID|
 |Channel|
-|Signal strength|
-|Encryption type|
+|Fuerza de señal|
+|Tipo de cifrado|
 
 ---
 
@@ -56,10 +56,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|airodump-ng|Capture wireless packets|
-|Kismet|Passive wireless sniffer|
-|NetStumbler|Detect WLANs|
-|inSSIDer|WLAN discovery|
+|airodump-ng|Capturar paquetes inalámbricos|
+|Kismet|Sniffer inalámbrico pasivo|
+|NetStumbler|Detectar WLANs|
+|inSSIDer|Descubrimiento de WLAN|
 
 ---
 
@@ -76,9 +76,9 @@ MEMORY HOOK:
 
 |Purpose|
 |---|
-|Identify active targets|
-|Identify connected clients|
-|Identify security mechanisms|
+|Identificar objetivos activos|
+|Identificar clientes conectados|
+|Identificar mecanismos de seguridad|
 
 ---
 
@@ -86,9 +86,9 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|airmon-ng|Enable monitor mode|
-|iwconfig|Configure wireless interface|
-|wash|Detect WPS-enabled APs|
+|airmon-ng|Habilitar modo monitor|
+|iwconfig|Configurar interfaz inalámbrica|
+|wash|Detectar APs con WPS habilitado|
 
 ---
 
@@ -96,8 +96,8 @@ MEMORY HOOK:
 
 |Command|Purpose|
 |---|---|
-|airmon-ng start wlan0|Enable monitor mode|
-|iwconfig|Display wireless interface info|
+|airmon-ng start wlan0|Habilitar modo monitor|
+|iwconfig|Mostrar información de la interfaz inalámbrica|
 
 ---
 
@@ -114,10 +114,10 @@ MEMORY HOOK:
 
 |Method|
 |---|
-|WEP cracking|
-|WPA/WPA2 handshake cracking|
+|Cifrado WEP|
+|Cifrado de handshake WPA/WPA2|
 |Evil Twin|
-|WPS PIN attack|
+|Ataque WPS PIN|
 
 ---
 
@@ -125,9 +125,9 @@ MEMORY HOOK:
 
 |Step|
 |---|
-|Capture packets|
-|Collect IVs|
-|Crack key|
+|Capturar paquetes|
+|Recopilar IVs|
+|Descifrar clave|
 
 ---
 
@@ -135,9 +135,9 @@ MEMORY HOOK:
 
 |Step|
 |---|
-|Capture handshake|
-|Deauth client|
-|Crack PSK offline|
+|Capturar handshake|
+|Deauth al cliente|
+|Descifrar PSK sin conexión|
 
 ---
 
@@ -145,10 +145,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|aireplay-ng|Deauth and packet injection|
-|aircrack-ng|Crack WEP/WPA keys|
-|reaver|WPS brute force|
-|bully|WPS attack|
+|aireplay-ng|Ataque de deauthentication e inyección de paquetes|
+|aircrack-ng|Descifrar claves WEP/WPA|
+|reaver|Fuerza bruta WPS|
+|bully|Ataque WPS|
 
 ---
 
@@ -156,8 +156,8 @@ MEMORY HOOK:
 
 |Command|Purpose|
 |---|---|
-|aireplay-ng --deauth|Deauthentication attack|
-|aircrack-ng capture.cap|Crack captured handshake|
+|aireplay-ng --deauth|Ataque de deauthentication|
+|aircrack-ng capture.cap|Descifrar handshake capturado|
 
 ---
 
@@ -175,8 +175,8 @@ MEMORY HOOK:
 |Method|
 |---|
 |Backdoor AP|
-|MAC spoofing|
-|Persistent connection|
+|Suplantación de MAC (MAC spoofing)|
+|Conexión persistente|
 
 ---
 
@@ -184,8 +184,8 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|macchanger|Change MAC address|
-|hostapd|Create fake AP|
+|macchanger|Cambiar dirección MAC|
+|hostapd|Crear AP falso|
 
 ---
 
@@ -202,9 +202,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|MAC address spoofing|
-|Clearing logs|
-|Disabling AP logs|
+|Suplantación de dirección MAC (MAC spoofing)|
+|Borrar registros (logs)|
+|Deshabilitar registros del AP|
 
 ---
 
@@ -217,16 +217,16 @@ MEMORY HOOK:
 
 |Tool|Function|
 |---|---|
-|Aircrack-ng|Crack WEP/WPA|
-|Airodump-ng|Capture packets|
-|Aireplay-ng|Packet injection|
-|Airmon-ng|Monitor mode|
-|Kismet|Passive sniffing|
-|Reaver|WPS brute force|
-|Bully|WPS attack|
-|Wash|WPS detection|
-|NetStumbler|WLAN discovery|
-|inSSIDer|WLAN analysis|
+|Aircrack-ng|Descifrar WEP/WPA|
+|Airodump-ng|Capturar paquetes|
+|Aireplay-ng|Inyección de paquetes|
+|Airmon-ng|Modo monitor|
+|Kismet|Sniffing pasivo|
+|Reaver|Fuerza bruta WPS|
+|Bully|Ataque WPS|
+|Wash|Detección de WPS|
+|NetStumbler|Descubrimiento de WLAN|
+|inSSIDer|Análisis de WLAN|
 
 ---
 
@@ -236,9 +236,9 @@ MEMORY HOOK:
 |---|---|
 |airodump-ng|Recon|
 |aireplay-ng|Deauth|
-|aircrack-ng|Key cracking|
-|reaver|WPS brute force|
-|Kismet|Passive sniffing|
+|aircrack-ng|Descifrado de claves|
+|reaver|Fuerza bruta WPS|
+|Kismet|Sniffing pasivo|
 
 ---
 
@@ -246,10 +246,10 @@ MEMORY HOOK:
 
 |Trap|Correct Answer|
 |---|---|
-|Monitor mode needed for sniffing|YES|
-|Hidden SSID secure|NO|
-|WPA2 immune to attacks|NO|
-|Deauth breaks encryption|NO|
+|El modo monitor es necesario para sniffing|SÍ|
+|¿El SSID oculto es seguro?|NO|
+|¿WPA2 es inmune a ataques?|NO|
+|¿El deauth rompe el cifrado?|NO|
 
 ---
 
@@ -267,57 +267,56 @@ Reaver attacks WPS.**
 
 | Term | Definition |
 |------|------------|
-| Wireless Hacking Methodology | 5-phase process: Recon, Scan, Gaining Access, Maintaining Access, Covering Tracks |
-| Reconnaissance | Phase 1: Identify wireless networks, SSIDs, channels, encryption passively |
-| Scanning | Phase 2: Identify active targets, connected clients, and security mechanisms |
-| Monitor Mode | Wireless interface mode that captures all traffic without associating to an AP |
-| airodump-ng | Tool used to capture wireless packets during reconnaissance |
-| aireplay-ng | Tool used for deauthentication and packet injection |
-| aircrack-ng | Tool used to crack WEP and WPA/WPA2 keys from captured handshakes |
-| airmon-ng | Tool used to enable monitor mode on a wireless interface |
-| reaver | Tool used for WPS brute-force PIN attacks |
-| Kismet | Passive wireless sniffer and detector |
-| WPS PIN Attack | Brute-forcing the 8-digit WPS PIN to gain network access |
-| Handshake Capture | Capturing the 4-way WPA2 authentication exchange for offline cracking |
-| MAC Spoofing | Changing the MAC address to impersonate an authorized device |
-| Wash | Command-line tool to detect WPS-enabled access points |
+| Wireless Hacking Methodology | Proceso de 5 fases: Recon, Scan, Gaining Access, Maintaining Access, Covering Tracks |
+| Reconnaissance | Fase 1: Identificar redes inalámbricas, SSIDs, canales y cifrado de forma pasiva |
+| Scanning | Fase 2: Identificar objetivos activos, clientes conectados y mecanismos de seguridad |
+| Monitor Mode | Modo de la interfaz inalámbrica que captura todo el tráfico sin asociarse a un AP |
+| airodump-ng | Herramienta utilizada para capturar paquetes inalámbricos durante el reconocimiento |
+| aireplay-ng | Herramienta utilizada para deauthentication e inyección de paquetes |
+| aircrack-ng | Herramienta utilizada para descifrar claves WEP y WPA/WPA2 a partir de handshakes capturados |
+| airmon-ng | Herramienta utilizada para habilitar el modo monitor en una interfaz inalámbrica |
+| reaver | Herramienta utilizada para ataques de fuerza bruta de PIN WPS |
+| Kismet | Sniffer y detector inalámbrico pasivo |
+| WPS PIN Attack | Fuerza bruta del PIN de 8 dígitos de WPS para obtener acceso a la red |
+| Handshake Capture | Captura del intercambio de autenticación WPA2 de 4 vías para descifrado sin conexión |
+| MAC Spoofing | Cambiar la dirección MAC para suplantar un dispositivo autorizado |
+| Wash | Herramienta de línea de comandos para detectar puntos de acceso con WPS habilitado |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the correct order of the CEH wireless hacking methodology?
+**1.** ¿Cuál es el orden correcto de la metodología de wireless hacking de CEH?
 - a) Scan → Recon → Access → Hide → Persist
 - b) Recon → Scan → Gaining Access → Maintaining Access → Covering Tracks
 - c) Access → Recon → Scan → Persist → Hide
 - d) Recon → Access → Scan → Cover → Persist
-**Answer:** B — The 5-phase methodology follows: Recon → Scan → Access → Persist → Hide.
+**Respuesta:** B — La metodología de 5 fases sigue: Recon → Scan → Access → Persist → Hide.
 
-**2.** Which command enables monitor mode on a wireless interface?
+**2.** ¿Qué comando habilita el modo monitor en una interfaz inalámbrica?
 - a) airodump-ng start wlan0
 - b) airmon-ng start wlan0
 - c) aireplay-ng --monitor wlan0
 - d) wash --enable wlan0
-**Answer:** B — `airmon-ng start wlan0` puts the interface into monitor mode for packet capture.
+**Respuesta:** B — `airmon-ng start wlan0` pone la interfaz en modo monitor para captura de paquetes.
 
-**3.** What must be captured BEFORE cracking a WPA2 key?
+**3.** ¿Qué se debe capturar ANTES de descifrar una clave WPA2?
 - a) IVs
-- b) The SSID
-- c) The 4-way handshake
-- d) The BSSID
-**Answer:** C — Aircrack-ng needs the captured 4-way handshake to perform offline PSK cracking.
+- b) El SSID
+- c) El handshake de 4 vías
+- d) El BSSID
+**Respuesta:** C — Aircrack-ng necesita el handshake de 4 vías capturado para realizar el descifrado offline de PSK.
 
-**4.** Which tool is specifically used for WPS brute-force attacks?
+**4.** ¿Qué herramienta se usa específicamente para ataques de fuerza bruta WPS?
 - a) airodump-ng
 - b) Kismet
 - c) reaver
 - d) macchanger
-**Answer:** C — Reaver brute-forces the WPS PIN to gain unauthorized access to the network.
+**Respuesta:** C — Reaver realiza fuerza bruta del PIN de WPS para obtener acceso no autorizado a la red.
 
-**5.** What is the purpose of MAC spoofing in Phase 4 of the methodology?
-- a) To crack the encryption key
-- b) To enable monitor mode
-- c) To impersonate an authorized device and maintain access
-- d) To capture the handshake
-**Answer:** C — MAC spoofing allows the attacker to bypass MAC filtering and maintain persistent access.
-
+**5.** ¿Cuál es el propósito del MAC spoofing en la Fase 4 de la metodología?
+- a) Para descifrar la clave de cifrado
+- b) Para habilitar el modo monitor
+- c) Para suplantar un dispositivo autorizado y mantener el acceso
+- d) Para capturar el handshake
+**Respuesta:** C — El MAC spoofing permite al atacante eludir el filtrado de MAC y mantener acceso persistente.

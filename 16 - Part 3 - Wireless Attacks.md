@@ -6,7 +6,7 @@
 
 |Item|Memorize|
 |---|---|
-|Wireless Threat|Any potential risk that exploits weaknesses in wireless communication|
+|Wireless Threat|Cualquier riesgo potencial que explota debilidades en la comunicación inalámbrica|
 
 MEMORY HOOK:  
 **Wireless = open air = exposed**
@@ -30,7 +30,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Passive Attack|Attacker monitors traffic without altering it|
+|Passive Attack|El atacante monitorea el tráfico sin alterarlo|
 
 ---
 
@@ -38,9 +38,9 @@ MEMORY HOOK:
 
 |Feature|
 |---|
-|Difficult to detect|
-|No packet modification|
-|Used for reconnaissance|
+|Difícil de detectar|
+|Sin modificación de paquetes|
+|Usado para reconocimiento|
 
 ---
 
@@ -48,9 +48,9 @@ MEMORY HOOK:
 
 |Attack|Description|
 |---|---|
-|Eavesdropping|Capturing wireless traffic|
-|Traffic analysis|Studying communication patterns|
-|Packet sniffing|Capturing packets over air|
+|Eavesdropping|Captura de tráfico inalámbrico|
+|Traffic analysis|Estudio de patrones de comunicación|
+|Packet sniffing|Captura de paquetes por aire|
 
 ---
 
@@ -67,7 +67,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Active Attack|Attacker modifies, injects, or disrupts wireless communication|
+|Active Attack|El atacante modifica, inyecta o interrumpe la comunicación inalámbrica|
 
 ---
 
@@ -98,7 +98,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Rogue AP|Unauthorized wireless access point connected to a network|
+|Rogue AP|Punto de acceso inalámbrico no autorizado conectado a una red|
 
 ---
 
@@ -106,8 +106,8 @@ MEMORY HOOK:
 
 |Purpose|
 |---|
-|Bypass security controls|
-|Provide backdoor access|
+|Eludir los controles de seguridad|
+|Proporcionar acceso backdoor|
 
 ---
 
@@ -133,7 +133,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Evil Twin|Fake AP mimicking a legitimate AP|
+|Evil Twin|AP falso que imita a un AP legítimo|
 
 ---
 
@@ -141,10 +141,10 @@ MEMORY HOOK:
 
 |Step|
 |---|
-|Attacker creates fake AP|
-|Uses same SSID|
-|Stronger signal|
-|Victim connects|
+|El atacante crea un AP falso|
+|Usa el mismo SSID|
+|Señal más fuerte|
+|La víctima se conecta|
 
 ---
 
@@ -170,7 +170,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Deauthentication Attack|Sends forged deauth frames to disconnect clients|
+|Deauthentication Attack|Envía tramas deauth falsificadas para desconectar clientes|
 
 ---
 
@@ -186,9 +186,9 @@ MEMORY HOOK:
 
 |Purpose|
 |---|
-|Force reconnection|
-|Capture handshakes|
-|Enable Evil Twin|
+|Forzar reconexión|
+|Capturar handshakes|
+|Habilitar Evil Twin|
 
 ---
 
@@ -205,7 +205,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Disassociation Attack|Forces clients to disconnect from AP|
+|Disassociation Attack|Fuerza a los clientes a desconectarse del AP|
 
 ---
 
@@ -213,8 +213,8 @@ MEMORY HOOK:
 
 |Attack|Key Difference|
 |---|---|
-|Deauth|Authentication termination|
-|Disassociation|Association termination|
+|Deauth|Terminación de autenticación|
+|Disassociation|Terminación de asociación|
 
 ---
 
@@ -231,7 +231,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|MITM|Attacker intercepts communication between client and AP|
+|MITM|El atacante intercepta la comunicación entre el cliente y el AP|
 
 ---
 
@@ -258,7 +258,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Replay Attack|Reusing captured packets to gain access|
+|Replay Attack|Reutilización de paquetes capturados para obtener acceso|
 
 ---
 
@@ -283,7 +283,7 @@ MEMORY HOOK:
 
 |Purpose|
 |---|
-|Recover WEP key|
+|Recuperar clave WEP|
 
 ---
 
@@ -291,8 +291,8 @@ MEMORY HOOK:
 
 |Method|
 |---|
-|Capture IVs|
-|Analyze patterns|
+|Capturar IVs|
+|Analizar patrones|
 
 ---
 
@@ -325,8 +325,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Decrypt traffic|
-|Replay packets|
+|Descifrar tráfico|
+|Reenviar paquetes|
 
 ---
 
@@ -343,7 +343,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Packet Injection|Injecting crafted packets into wireless network|
+|Packet Injection|Inyección de paquetes manipulados en la red inalámbrica|
 
 ---
 
@@ -351,8 +351,8 @@ MEMORY HOOK:
 
 |Purpose|
 |---|
-|Speed up WEP cracking|
-|Disrupt traffic|
+|Acelerar el cracking de WEP|
+|Interrumpir el tráfico|
 
 ---
 
@@ -369,7 +369,7 @@ MEMORY HOOK:
 
 |Item|Memorize|
 |---|---|
-|Jamming|Flooding wireless spectrum with noise|
+|Jamming|Inundación del espectro inalámbrico con ruido|
 
 ---
 
@@ -390,8 +390,8 @@ MEMORY HOOK:
 
 |Feature|Rogue AP|Evil Twin|
 |---|---|---|
-|Ownership|Legit internal|Attacker|
-|Purpose|Unauthorized access|Impersonation|
+|Ownership|Legítimo interno|Atacante|
+|Purpose|Acceso no autorizado|Suplantación de identidad|
 |Signal mimicry|No|Yes|
 
 ---
@@ -402,9 +402,9 @@ MEMORY HOOK:
 |---|---|
 |Rogue AP|Backdoor|
 |Evil Twin|Credential theft|
-|Deauth|Force reconnection|
-|Replay|Authentication bypass|
-|KRACK|Traffic decryption|
+|Deauth|Forzar reconexión|
+|Replay|Bypass de autenticación|
+|KRACK|Descifrado de tráfico|
 |Jamming|DoS|
 
 ---
@@ -427,8 +427,8 @@ KRACK breaks WPA2.**
 
 |Attack|Description|
 |---|---|
-|STP attack|Rogue switch with low priority becomes root bridge|
-|Double tagging|Uses 802.1Q frames for packet injection|
+|STP attack|Switch rogue con prioridad baja se convierte en root bridge|
+|Double tagging|Uso de tramas 802.1Q para inyección de paquetes|
 
 ---
 
@@ -437,7 +437,7 @@ KRACK breaks WPA2.**
 |Item|Memorize|
 |---|---|
 |Command|wash -i mon0|
-|Purpose|Scan for WPS-enabled access points from Linux|
+|Purpose|Escanear puntos de acceso con WPS habilitado desde Linux|
 
 ---
 
@@ -446,7 +446,7 @@ KRACK breaks WPA2.**
 |Item|Memorize|
 |---|---|
 |Command|btlejack -s|
-|Purpose|Find Bluetooth Low Energy connections|
+|Purpose|Encontrar conexiones Bluetooth Low Energy|
 
 ---
 
@@ -454,56 +454,56 @@ KRACK breaks WPA2.**
 
 | Term | Definition |
 |------|------------|
-| Passive Attack | Attacker monitors wireless traffic without altering it; hard to detect |
-| Active Attack | Attacker modifies, injects, or disrupts wireless communication |
-| Rogue AP | Unauthorized wireless access point connected to a network (not necessarily fake) |
-| Evil Twin | Fake access point mimicking a legitimate AP to steal credentials |
-| Deauthentication Attack | Sends forged deauth frames to disconnect clients from AP |
-| Disassociation Attack | Forces clients to break association with the AP |
-| MITM | Attacker intercepts communication between client and access point |
-| Replay Attack | Reusing captured packets to gain unauthorized access |
-| KRACK | Key Reinstallation Attack that breaks WPA2 4-way handshake |
-| Packet Injection | Injecting crafted packets to speed up cracking or disrupt traffic |
-| Jamming | Flooding wireless spectrum with noise causing denial of service |
-| WEP Cracking | Recovering WEP key by capturing and analyzing IVs |
-| STP Attack | Rogue switch with low priority becomes root bridge |
-| Double Tagging | Uses 802.1Q frames for packet injection across VLANs |
+| Passive Attack | El atacante monitorea el tráfico inalámbrico sin alterarlo; difícil de detectar |
+| Active Attack | El atacante modifica, inyecta o interrumpe la comunicación inalámbrica |
+| Rogue AP | Punto de acceso inalámbrico no autorizado conectado a una red (no necesariamente falso) |
+| Evil Twin | AP falso que imita a un AP legítimo para robar credenciales |
+| Deauthentication Attack | Envía tramas deauth falsificadas para desconectar clientes del AP |
+| Disassociation Attack | Fuerza a los clientes a romper la asociación con el AP |
+| MITM | El atacante intercepta la comunicación entre el cliente y el punto de acceso |
+| Replay Attack | Reutilización de paquetes capturados para obtener acceso no autorizado |
+| KRACK | Key Reinstallation Attack que rompe el handshake 4-way de WPA2 |
+| Packet Injection | Inyección de paquetes manipulados para acelerar el cracking o interrumpir el tráfico |
+| Jamming | Inundación del espectro inalámbrico con ruido provocando denial of service |
+| WEP Cracking | Recuperación de clave WEP mediante captura y análisis de IVs |
+| STP Attack | Switch rogue con prioridad baja se convierte en root bridge |
+| Double Tagging | Uso de tramas 802.1Q para inyección de paquetes a través de VLANs |
 
 ---
 
 # PRACTICE QUESTIONS
 
-**1.** What is the key difference between a Rogue AP and an Evil Twin?
-- a) Rogue AP is attacker-owned; Evil Twin is employee-installed
-- b) Rogue AP is unauthorized but legitimate; Evil Twin impersonates a real AP
-- c) Rogue AP uses WEP; Evil Twin uses WPA2
-- d) There is no difference
-**Answer:** B — A Rogue AP is an unauthorized AP on the network; an Evil Twin is a fake AP created to mimic a legitimate one.
+**1.** ¿Cuál es la diferencia clave entre un Rogue AP y un Evil Twin?
+- a) Rogue AP es propiedad del atacante; Evil Twin es instalado por un empleado
+- b) Rogue AP es no autorizado pero legítimo; Evil Twin suplanta a un AP real
+- c) Rogue AP usa WEP; Evil Twin usa WPA2
+- d) No hay diferencia
+**Answer:** B — Un Rogue AP es un AP no autorizado en la red; un Evil Twin es un AP falso creado para imitar a uno legítimo.
 
-**2.** Which IEEE protocol is exploited in a deauthentication attack?
+**2.** ¿Qué protocolo IEEE se explota en un ataque de deauthentication?
 - a) 802.3
 - b) 802.11 management frames
 - c) 802.1X
 - d) 802.1Q
-**Answer:** B — Deauth attacks exploit unprotected 802.11 management frames to force disconnection.
+**Answer:** B — Los ataques de deauth explotan las tramas de administración 802.11 no protegidas para forzar la desconexión.
 
-**3.** What is the primary goal of a KRACK attack?
-- a) Crack WEP encryption
-- b) Decrypt WPA2 traffic by exploiting the 4-way handshake
-- c) Jam the wireless signal
-- d) Steal the SSID
-**Answer:** B — KRACK forces nonce reuse in WPA2's 4-way handshake, allowing traffic decryption.
+**3.** ¿Cuál es el objetivo principal de un ataque KRACK?
+- a) Crackear la encriptación WEP
+- b) Descifrar el tráfico WPA2 explotando el handshake 4-way
+- c) Provocar jamming en la señal inalámbrica
+- d) Robar el SSID
+**Answer:** B — KRACK fuerza la reutilización de nonce en el handshake 4-way de WPA2, permitiendo el descifrado del tráfico.
 
-**4.** Which attack involves flooding the wireless spectrum with noise?
+**4.** ¿Qué ataque consiste en inundar el espectro inalámbrico con ruido?
 - a) Evil Twin
 - b) Replay
 - c) Jamming
 - d) Packet Injection
-**Answer:** C — Jamming floods the spectrum with interference, causing denial of service.
+**Answer:** C — Jamming inunda el espectro con interferencias, provocando denial of service.
 
-**5.** A passive wireless attack is characterized by:
-- a) Injecting malicious packets
-- b) Disconnecting clients from the AP
-- c) Monitoring traffic without altering it
-- d) Creating fake access points
-**Answer:** C — Passive attacks listen only, making them extremely difficult to detect.
+**5.** Un ataque inalámbrico pasivo se caracteriza por:
+- a) Inyectar paquetes maliciosos
+- b) Desconectar clientes del AP
+- c) Monitorear el tráfico sin alterarlo
+- d) Crear puntos de acceso falsos
+**Answer:** C — Los ataques pasivos solo escuchan, lo que los hace extremadamente difíciles de detectar.
