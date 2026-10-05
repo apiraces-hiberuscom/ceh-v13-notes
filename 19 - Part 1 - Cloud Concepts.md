@@ -1,19 +1,53 @@
-# OBJECTIVE 01 — SUMMARIZE CLOUD COMPUTING CONCEPTS
+# Módulo 19 · Parte 1 — Cloud Concepts
+
+> **Módulo 19 — Cloud Computing** · Parte 1 de 4 · Conceptos de cloud computing: características esenciales, modelos de servicio (IaaS, PaaS, SaaS y XaaS), shared responsibility model, modelos de despliegue y actores de la arquitectura de referencia NIST.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 01 — SUMMARIZE CLOUD COMPUTING CONCEPTS](#objective-01--summarize-cloud-computing-concepts)
+- [TYPES OF CLOUD COMPUTING SERVICES 🔥](#types-of-cloud-computing-services-high-yield)
+- [SHARED RESPONSIBILITY MODEL 🔥](#shared-responsibility-model-high-yield)
+- [CLOUD DEPLOYMENT MODELS 🔥](#cloud-deployment-models-high-yield)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Cloud computing** — entrega bajo demanda de capacidades de TI a través de Internet con pago por uso (*On-demand + Internet + Metered*).
+- **NIST SP 800-145** — 5 características esenciales: on-demand self-service, broad network access, resource pooling, rapid elasticity y measured service.
+- **On-demand self-service** — el usuario aprovisiona recursos sin interacción humana; **resource pooling** = recursos del proveedor compartidos entre múltiples inquilinos.
+- **IaaS** — el proveedor da VMs, almacenamiento y red; el cliente gestiona SO, aplicaciones y datos (el modelo con más control; ej. AWS EC2).
+- **PaaS** — plataforma de desarrollo: el cliente solo gestiona el código; el proveedor, SO, runtime y middleware (ej. Google App Engine).
+- **SaaS** — aplicación lista para usar desde el navegador (Gmail, Salesforce, Microsoft 365); desventajas: dependencia de Internet y vendor lock-in.
+- **IDaaS / SECaaS / CaaS / FaaS / XaaS** — identidad (MFA, SSO; Okta), seguridad (IDS, IPS, DLP, SIEM), contenedores (EKS, GKE), código event-driven sin servidores (AWS Lambda), cualquier servicio.
+- **Shared responsibility model** — más servicio = menos control; la seguridad NUNCA es solo del proveedor. Los service models definen la responsabilidad; los deployment models, la propiedad.
+- **Hybrid vs multi-cloud** — hybrid = público + privado; multi-cloud = varios proveedores (AWS + Azure) para evitar vendor lock-in.
+- **Private vs community cloud** — private = una sola organización (alta seguridad, alto coste); community = varias organizaciones con necesidades regulatorias comunes.
+- **NIST cloud reference architecture** — 5 actores: cloud consumer, provider, carrier (conectividad y transporte), broker (negocia entre proveedor y consumidor) y auditor (evaluación independiente).
+- **MITC (Man-in-the-Cloud)** — se evita con un **CASB** (Cloud Access Security Broker); **Docker daemon** = atiende las peticiones de la API y gestiona los objetos Docker.
 
 ---
 
-## CLOUD COMPUTING — CORE EXAM DEFINITION
+## OBJECTIVE 01 — SUMMARIZE CLOUD COMPUTING CONCEPTS
+
+### CLOUD COMPUTING — CORE EXAM DEFINITION
 
 |Term|Definition|
 |---|---|
 |Cloud Computing|Entrega bajo demanda de capacidades de TI, incluyendo infraestructura y aplicaciones, a través de Internet con un modelo de facturación basado en uso|
 
-MEMORY HOOK:  
-**On-demand + Internet + Metered**
+> 🧠 *Para recordar:* **On-demand + Internet + Metered**
 
 ---
 
-## WHAT CLOUD PROVIDES (EXAM)
+### WHAT CLOUD PROVIDES
 
 |Provides|
 |---|
@@ -26,7 +60,7 @@ MEMORY HOOK:
 
 ---
 
-## KEY CHARACTERISTICS OF CLOUD COMPUTING (VERY IMPORTANT)
+### KEY CHARACTERISTICS OF CLOUD COMPUTING (HIGH YIELD)
 
 |Characteristic|Explanation|
 |---|---|
@@ -37,12 +71,13 @@ MEMORY HOOK:
 |Measured service|Modelo de facturación por uso|
 |Automated management|Administración manual reducida|
 
-MEMORY HOOK:  
-**On-demand, pooled, elastic, measured**
+> 🧠 *Para recordar:* **On-demand, pooled, elastic, measured**
+
+> ⚠️ *Trampa de examen:* NIST (SP 800-145) define **5 características esenciales**: on-demand self-service, broad network access, resource pooling, rapid elasticity y measured service. *Automated management* no es una de las 5 de NIST.
 
 ---
 
-## LIMITATIONS OF CLOUD COMPUTING (EXAM)
+### LIMITATIONS OF CLOUD COMPUTING
 
 |Limitation|
 |---|
@@ -53,25 +88,26 @@ MEMORY HOOK:
 |Vulnerabilidades técnicas|
 |Dificultades de migración|
 
-EXAM TRAP:  
-Cloud does NOT automatically guarantee security.
+> ⚠️ *Trampa de examen:* La nube NO garantiza la seguridad automáticamente.
 
 ---
 
-# TYPES OF CLOUD COMPUTING SERVICES (CRITICAL)
+## TYPES OF CLOUD COMPUTING SERVICES (HIGH YIELD)
+
+> ⚠️ *Trampa de examen:* NIST solo define **3 service models**: IaaS, PaaS y SaaS. IDaaS, SECaaS, CaaS, FaaS y XaaS son categorías adicionales, no modelos NIST.
 
 ---
 
-## INFRASTRUCTURE-AS-A-SERVICE (IaaS)
+### INFRASTRUCTURE-AS-A-SERVICE (IaaS)
 
 |Aspect|Details|
 |---|---|
 |What it provides|Máquinas virtuales, almacenamiento, redes|
 |User controls|SO, aplicaciones, datos|
-|Provider controls|Hardware, virtualization|
+|Provider controls|Hardware, virtualización|
 |Examples|AWS EC2, Microsoft Azure, Google Compute Engine|
 
-### ADVANTAGES
+#### ADVANTAGES
 
 |Advantage|
 |---|
@@ -80,19 +116,18 @@ Cloud does NOT automatically guarantee security.
 |Elastic load balancing|
 |Global accessibility|
 
-### DISADVANTAGES
+#### DISADVANTAGES
 
 |Disadvantage|
 |---|
 |Riesgos de seguridad del software|
 |Dependencia del rendimiento|
 
-MEMORY HOOK:  
-**IaaS = rent hardware**
+> 🧠 *Para recordar:* **IaaS = alquilar hardware**
 
 ---
 
-## PLATFORM-AS-A-SERVICE (PaaS)
+### PLATFORM-AS-A-SERVICE (PaaS)
 
 |Aspect|Details|
 |---|---|
@@ -101,7 +136,7 @@ MEMORY HOOK:
 |Provider controls|SO, runtime, middleware|
 |Examples|Google App Engine, Azure App Service|
 
-### ADVANTAGES
+#### ADVANTAGES
 
 |Advantage|
 |---|
@@ -109,19 +144,18 @@ MEMORY HOOK:
 |Built-in scalability|
 |Pay-per-use|
 
-### DISADVANTAGES
+#### DISADVANTAGES
 
 |Disadvantage|
 |---|
 |Vendor lock-in|
 |Problemas de privacidad de datos|
 
-MEMORY HOOK:  
-**PaaS = build apps**
+> 🧠 *Para recordar:* **PaaS = desarrollar apps**
 
 ---
 
-## SOFTWARE-AS-A-SERVICE (SaaS)
+### SOFTWARE-AS-A-SERVICE (SaaS)
 
 |Aspect|Details|
 |---|---|
@@ -129,7 +163,7 @@ MEMORY HOOK:
 |Access|Basado en navegador|
 |Examples|Gmail, Salesforce, Microsoft 365|
 
-### ADVANTAGES
+#### ADVANTAGES
 
 |Advantage|
 |---|
@@ -137,19 +171,18 @@ MEMORY HOOK:
 |Easy administration|
 |Global access|
 
-### DISADVANTAGES
+#### DISADVANTAGES
 
 |Disadvantage|
 |---|
 |Dependencia de Internet|
 |Cambiar de proveedor es difícil|
 
-MEMORY HOOK:  
-**SaaS = use software**
+> 🧠 *Para recordar:* **SaaS = usar software**
 
 ---
 
-## IDENTITY-AS-A-SERVICE (IDaaS)
+### IDENTITY-AS-A-SERVICE (IDaaS)
 
 |Aspect|Details|
 |---|---|
@@ -157,19 +190,18 @@ MEMORY HOOK:
 |Functions|MFA, SSO, IAM|
 |Examples|Azure AD, Okta|
 
-### DISADVANTAGES
+#### DISADVANTAGES
 
 |Disadvantage|
 |---|
 |Single point of failure|
 |Riesgo de secuestro de cuentas|
 
-MEMORY HOOK:  
-**IDaaS = cloud login**
+> 🧠 *Para recordar:* **IDaaS = identidad / login en la nube**
 
 ---
 
-## SECURITY-AS-A-SERVICE (SECaaS)
+### SECURITY-AS-A-SERVICE (SECaaS)
 
 |Aspect|Details|
 |---|---|
@@ -177,12 +209,11 @@ MEMORY HOOK:
 |Services|IDS, IPS, DLP, SIEM|
 |Examples|Trend Micro, IBM Security|
 
-MEMORY HOOK:  
-**SECaaS = outsource security**
+> 🧠 *Para recordar:* **SECaaS = externalizar la seguridad**
 
 ---
 
-## CONTAINER-AS-A-SERVICE (CaaS)
+### CONTAINER-AS-A-SERVICE (CaaS)
 
 |Aspect|Details|
 |---|---|
@@ -190,12 +221,11 @@ MEMORY HOOK:
 |Technology|Docker, Kubernetes|
 |Examples|AWS EKS, Google GKE|
 
-MEMORY HOOK:  
-**CaaS = containers**
+> 🧠 *Para recordar:* **CaaS = contenedores**
 
 ---
 
-## FUNCTION-AS-A-SERVICE (FaaS)
+### FUNCTION-AS-A-SERVICE (FaaS)
 
 |Aspect|Details|
 |---|---|
@@ -203,24 +233,22 @@ MEMORY HOOK:
 |Execution|Event-driven|
 |Examples|AWS Lambda, Azure Functions|
 
-MEMORY HOOK:  
-**FaaS = code only**
+> 🧠 *Para recordar:* **FaaS = solo código**
 
 ---
 
-## ANYTHING-AS-A-SERVICE (XaaS)
+### ANYTHING-AS-A-SERVICE (XaaS)
 
 |Aspect|Details|
 |---|---|
 |Meaning|Cualquier servicio de TI entregado a través de cloud|
 |Includes|SaaS, PaaS, MaaS, DRaaS|
 
-MEMORY HOOK:  
-**XaaS = everything**
+> 🧠 *Para recordar:* **XaaS = cualquier cosa como servicio**
 
 ---
 
-# SHARED RESPONSIBILITY MODEL (EXAM FAVORITE)
+## SHARED RESPONSIBILITY MODEL (HIGH YIELD)
 
 |Layer|On-Prem|IaaS|PaaS|SaaS|
 |---|---|---|---|---|
@@ -230,19 +258,19 @@ MEMORY HOOK:
 |Virtualization|User|Provider|Provider|Provider|
 |Hardware|User|Provider|Provider|Provider|
 
-EXAM TRAP:  
-Security is NOT fully provider's responsibility.
+> ⚠️ *Trampa de examen:* La seguridad NO es responsabilidad exclusiva del proveedor.
 
-MEMORY HOOK:  
-**More service = less control**
+> 🧠 *Para recordar:* **Más servicio = menos control**
 
 ---
 
-# CLOUD DEPLOYMENT MODELS (CRITICAL)
+## CLOUD DEPLOYMENT MODELS (HIGH YIELD)
+
+> ⚠️ *Trampa de examen:* NIST define **4 deployment models**: public, private, community y hybrid. Multi-cloud no es un modelo NIST.
 
 ---
 
-## PUBLIC CLOUD
+### PUBLIC CLOUD
 
 |Aspect|Details|
 |---|---|
@@ -250,7 +278,7 @@ MEMORY HOOK:
 |Access|Internet|
 |Examples|AWS, Azure|
 
-### DISADVANTAGES
+#### DISADVANTAGES
 
 |Disadvantage|
 |---|
@@ -259,7 +287,7 @@ MEMORY HOOK:
 
 ---
 
-## PRIVATE CLOUD
+### PRIVATE CLOUD
 
 |Aspect|Details|
 |---|---|
@@ -269,7 +297,7 @@ MEMORY HOOK:
 
 ---
 
-## COMMUNITY CLOUD
+### COMMUNITY CLOUD
 
 |Aspect|Details|
 |---|---|
@@ -278,7 +306,7 @@ MEMORY HOOK:
 
 ---
 
-## HYBRID CLOUD
+### HYBRID CLOUD
 
 |Aspect|Details|
 |---|---|
@@ -287,77 +315,38 @@ MEMORY HOOK:
 
 ---
 
-## MULTI-CLOUD
+### MULTI-CLOUD
 
 |Aspect|Details|
 |---|---|
 |Uses|Múltiples proveedores|
 |Benefit|Evitar vendor lock-in|
 
-MEMORY HOOK:  
-**Hybrid = mix, Multi = many**
+> 🧠 *Para recordar:* **Hybrid = mezcla (público + privado), Multi = varios proveedores**
 
 ---
 
-# OBJECTIVE 01 — EXAM MEMORY BLOCK
+## Extras de examen (Boson Practice Test)
 
-**Cloud computing entrega servicios de TI bajo demanda a través de Internet usando un modelo de pago por uso.  
-Los modelos de servicio definen la responsabilidad.  
-Los modelos de despliegue definen la propiedad.  
-La responsabilidad compartida siempre se evalúa.**
-
----
-
-## STATUS
-
-|Objective|Status|
+|Concepto|Qué recordar|
 |---|---|
-|Concepts|COMPLETE|
-|Service models|COMPLETE|
-|Deployment models|COMPLETE|
-|Shared responsibility|COMPLETE|
+|PaaS|Platform as a Service|
+|MITC (Man-in-the-Cloud)|Man-in-the-Cloud attack — se puede evitar instalando un CASB (Cloud Access Security Broker)|
+|Docker daemon|Atiende las solicitudes de la API de Docker y gestiona los objetos de Docker (imágenes, contenedores, redes, volúmenes)|
 
----
-
-## EXAM EXTRAS (Boson Practice Test)
-
-### CLOUD ROLES
+### CLOUD ROLES — NIST CLOUD REFERENCE ARCHITECTURE
 
 |Role|Description|
 |---|---|
-|Cloud Consumer|Utiliza los servicios del proveedor de cloud|
-|Cloud Provider|Ofrece SaaS, despliega, configura y mantiene aplicaciones de software para el consumidor de cloud|
-|Cloud Carrier|Proporciona conectividad y transporte de servicios de cloud entre consumidores y proveedores|
-|Cloud Broker|Negocia relaciones entre proveedores y consumidores|
-|Cloud Auditor|Evaluación independiente del proveedor de cloud|
+|Cloud Consumer|Persona u organización que utiliza los servicios del proveedor de cloud|
+|Cloud Provider|Pone el servicio cloud a disposición de los consumidores; en SaaS despliega, configura, mantiene y actualiza las aplicaciones de software|
+|Cloud Carrier|Intermediario que proporciona conectividad y transporte de servicios de cloud entre proveedores y consumidores|
+|Cloud Broker|Gestiona el uso, rendimiento y entrega de los servicios cloud y negocia relaciones entre proveedores y consumidores|
+|Cloud Auditor|Realiza una evaluación independiente de los servicios cloud (operaciones, rendimiento y seguridad)|
 
 ---
 
-### PAAS
-
-|Item|Memorize|
-|---|---|
-PaaS|Platform as a Service|
-
----
-
-### MITM / CASB
-
-|Item|Memorize|
-|---|---|
-|MITC|Man in the Cloud attack — se puede evitar instalando CASB (Cloud Access Security Broker)|
-
----
-
-### DOCKER DAEMON
-
-|Item|Memorize|
-|---|---|
-|Docker daemon|Procesa solicitudes de API y maneja objetos de Docker|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -381,7 +370,7 @@ PaaS|Platform as a Service|
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** En el modelo de responsabilidad compartida, ¿quién es responsable de la seguridad de datos en un despliegue IaaS?
 - a) Solo el proveedor de cloud

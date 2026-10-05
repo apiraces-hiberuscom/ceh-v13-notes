@@ -1,8 +1,46 @@
-# OBJECTIVE 05 — IoT AND OT SECURITY COUNTERMEASURES
+# Módulo 18 · Parte 5 — IoT and OT Countermeasures
+
+> **Módulo 18 — IoT and OT Hacking** · Parte 5 de 5 · Contramedidas IoT (dispositivo, firmware, autenticación, red y nube) y OT (zones and conduits, DMZ, control de acceso, parcheo y monitorización), seguridad física y estándares (IEC 62443, NIST SP 800-82, OWASP IoT Top 10).
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 05 — IoT AND OT SECURITY COUNTERMEASURES](#objective-05--iot-and-ot-security-countermeasures)
+- [IOT SECURITY COUNTERMEASURES](#iot-security-countermeasures)
+- [OT SECURITY COUNTERMEASURES](#ot-security-countermeasures)
+- [PHYSICAL SECURITY (IOT + OT)](#physical-security-iot--ot)
+- [CLOUD & BACKEND SECURITY (IOT)](#cloud--backend-security-iot)
+- [SECURITY STANDARDS & FRAMEWORKS](#security-standards--frameworks)
+- [COMMON DEFENSIVE TOOLS](#common-defensive-tools)
+- [EXAM TRAPS 🔥](#exam-traps-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Device-level** — deshabilitar JTAG/UART/puertos de depuración en producción, secure boot, hardware root of trust y tamper detection.
+- **Secure boot** — garantiza que solo arranque firmware de confianza (firmado).
+- **Firmware signing vs encrypted firmware** — el cifrado por sí solo NO basta: el firmware debe ir firmado; además, secure OTA updates y eliminar las hardcoded credentials.
+- **Autenticación** — contraseñas fuertes, certificate-based authentication, RBAC y least privilege: todo dispositivo debe autenticarse.
+- **Protocol hardening** — MQTT → autenticación + TLS; CoAP → DTLS; HTTP → HTTPS.
+- **Network segmentation** — IoT nunca en una red plana: segmentación, VLANs y firewalls.
+- **Zones and conduits (IEC 62443)** — las zones agrupan activos con el mismo nivel de riesgo; los conduits son las rutas de comunicación controladas entre zones.
+- **IT → OT** — nunca comunicación directa: DMZ como zona de amortiguamiento entre IT y OT.
+- **Protocolos OT** — la mayoría no tiene seguridad nativa: Modbus → gateways seguros; DNP3 → Secure Authentication; BACnet → aislamiento de red.
+- **Patching en OT** — probar parches offline, ventanas de mantenimiento y solo actualizaciones aprobadas por el fabricante ("con cuidado, no con frecuencia").
+- **Monitorización en OT** — passive monitoring + anomaly detection; los controles de seguridad no deben interrumpir las operaciones.
+- **Estándares** — IEC 62443 = seguridad OT ("la biblia del OT"); NIST SP 800-82 = seguridad ICS; OWASP IoT Top 10 = riesgos IoT.
 
 ---
 
-## WHY COUNTERMEASURES ARE CRITICAL (EXAM LOGIC)
+## OBJECTIVE 05 — IoT AND OT SECURITY COUNTERMEASURES
+
+### WHY COUNTERMEASURES ARE CRITICAL
 
 |Reason|
 |---|
@@ -11,78 +49,68 @@
 |Los dispositivos son difíciles de actualizar|
 |Ciclos de vida operativos largos|
 
-MEMORY HOOK:  
-**Seguridad débil = daño del mundo real**
+> 🧠 *Para recordar:* **Seguridad débil = daño en el mundo real**
 
 ---
 
-# IOT SECURITY COUNTERMEASURES
+## IOT SECURITY COUNTERMEASURES
 
----
-
-## DEVICE-LEVEL COUNTERMEASURES
+### DEVICE-LEVEL COUNTERMEASURES
 
 |Countermeasure|Explanation|
 |---|---|
-|Deshabilitar interfaces no utilizadas|Apagar JTAG, UART, puertos de depuración|
+|Disable unused interfaces — deshabilitar interfaces no utilizadas|Apagar JTAG, UART y puertos de depuración|
 |Secure boot|Asegurar que solo se cargue firmware confiable|
 |Hardware root of trust|Verificación criptográfica en el arranque|
-|Detección de manipulación|Detectar intentos de acceso físico|
+|Tamper detection — detección de manipulación|Detectar intentos de acceso físico|
 
-MEMORY HOOK:  
-**No hay puertos de depuración en producción**
+> 🧠 *Para recordar:* **No hay puertos de depuración en producción**
 
 ---
 
-## FIRMWARE-LEVEL COUNTERMEASURES
+### FIRMWARE-LEVEL COUNTERMEASURES
 
 |Countermeasure|Explanation|
 |---|---|
 |Firmware signing|Prevenir firmware no autorizado|
 |Encrypted firmware|Proteger código sensible|
 |Secure OTA updates|Autenticar la fuente de la actualización|
-|Eliminar credenciales hardcodeadas|Prevenir ataques de reutilización|
+|Remove hardcoded credentials — eliminar credenciales hardcodeadas|Prevenir ataques de reutilización|
 
-EXAM TRAP:  
-La encriptación de firmware por sí sola NO es suficiente sin firma.
+> ⚠️ *Trampa de examen:* El cifrado del firmware (encrypted firmware) por sí solo NO es suficiente sin firma (**firmware signing**).
 
-MEMORY HOOK:  
-**Firmware firmado + encriptado**
+> 🧠 *Para recordar:* **Firmware firmado + cifrado (signed + encrypted)**
 
 ---
 
-## AUTHENTICATION & ACCESS CONTROL
+### AUTHENTICATION & ACCESS CONTROL
 
 |Measure|
 |---|
 |Contraseñas fuertes|
 |Certificate-based authentication|
 |Role-based access control (RBAC)|
-|Principio de mínimo privilegio|
+|Least privilege — principio de mínimo privilegio|
 
-MEMORY HOOK:  
-**Todo dispositivo debe autenticarse**
-
----
-
-## NETWORK-LEVEL IOT SECURITY
+> 🧠 *Para recordar:* **Todo dispositivo debe autenticarse**
 
 ---
 
-### SEGMENTATION (VERY IMPORTANT)
+### NETWORK-LEVEL IOT SECURITY
+
+#### SEGMENTATION (HIGH YIELD)
 
 |Measure|Purpose|
 |---|---|
-|Segmentación de red|Aislar dispositivos IoT|
+|Network segmentation — segmentación de red|Aislar dispositivos IoT|
 |VLANs|Separación lógica|
 |Firewalls|Restringir acceso|
 
-MEMORY HOOK:  
-**IoT nunca en red plana**
+> 🧠 *Para recordar:* **IoT nunca en red plana**
 
 ---
 
-### PROTOCOL HARDENING
+#### PROTOCOL HARDENING
 
 |Protocol|Countermeasure|
 |---|---|
@@ -90,55 +118,48 @@ MEMORY HOOK:
 |CoAP|DTLS|
 |HTTP|HTTPS|
 
-MEMORY HOOK:  
-**Los protocolos en texto plano no son seguros**
+> 🧠 *Para recordar:* **Los protocolos en texto plano no son seguros**
 
 ---
 
-## MONITORING & LOGGING
+### MONITORING & LOGGING
 
 |Measure|
 |---|
-|Detección de intrusiones|
-|Detección de anomalías|
-|Registro centralizado|
+|Intrusion detection — detección de intrusiones|
+|Anomaly detection — detección de anomalías|
+|Centralized logging — registro centralizado|
 
 ---
 
-# OT SECURITY COUNTERMEASURES
+## OT SECURITY COUNTERMEASURES
 
----
+### ARCHITECTURAL CONTROLS (HIGH YIELD)
 
-## ARCHITECTURAL CONTROLS (EXAM FAVORITE)
-
----
-
-### ZONE AND CONDUIT MODEL (IEC 62443)
+#### ZONE AND CONDUIT MODEL (IEC 62443)
 
 |Component|Purpose|
 |---|---|
-|Zonas|Agrupar activos con el mismo riesgo|
-|Conductos|Rutas de comunicación controladas|
+|Zones — zonas|Agrupar activos con los mismos requisitos de seguridad (mismo nivel de riesgo)|
+|Conduits — conductos|Rutas de comunicación controladas entre zonas|
 
-MEMORY HOOK:  
-**Las zonas aíslan, los conductos controlan**
+> 🧠 *Para recordar:* **Zones isolate, conduits control — las zonas aíslan, los conductos controlan**
 
 ---
 
-## NETWORK SEGMENTATION IN OT
+### NETWORK SEGMENTATION IN OT
 
 |Layer|Rule|
 |---|---|
-|IT|Expuesto a internet|
-|DMZ|Zona de amortiguamiento|
-|OT|Aislado|
+|IT|Expuesta a Internet|
+|DMZ|Zona de amortiguamiento (buffer zone) entre IT y OT|
+|OT|Aislada|
 
-EXAM TRAP:  
-La comunicación directa de IT a OT no es segura.
+> ⚠️ *Trampa de examen:* La comunicación directa de IT a OT no es segura: debe pasar por la DMZ.
 
 ---
 
-## ACCESS CONTROL IN OT
+### ACCESS CONTROL IN OT
 
 |Control|
 |---|
@@ -147,62 +168,58 @@ La comunicación directa de IT a OT no es segura.
 |Separación de roles|
 |Registro de accesos|
 
-MEMORY HOOK:  
-**Operadores ≠ administradores**
+> 🧠 *Para recordar:* **Operadores ≠ administradores**
 
 ---
 
-## PROTOCOL SECURITY IN OT
+### PROTOCOL SECURITY IN OT
 
 |Protocol|Countermeasure|
 |---|---|
 |Modbus|Gateways seguros|
-|DNP3|Autenticación segura|
+|DNP3|DNP3 Secure Authentication — autenticación segura|
 |BACnet|Aislamiento de red|
 
-EXAM TRAP:  
-La mayoría de los protocolos OT carecen de seguridad nativa.
+> ⚠️ *Trampa de examen:* La mayoría de los protocolos OT carecen de seguridad nativa.
 
 ---
 
-## PATCHING & CHANGE MANAGEMENT
+### PATCHING & CHANGE MANAGEMENT
 
 |Practice|
 |---|
-|Probar parches sin conexión|
+|Probar parches offline (fuera de producción)|
 |Programar ventanas de mantenimiento|
 |Actualizaciones aprobadas por el fabricante|
 
-MEMORY HOOK:  
-**Aplicar parches con cuidado, no con frecuencia**
+> 🧠 *Para recordar:* **Aplicar parches con cuidado, no con frecuencia**
 
 ---
 
-## MONITORING & INCIDENT RESPONSE
+### MONITORING & INCIDENT RESPONSE
 
 |Measure|
 |---|
-|Monitoreo pasivo|
-|Detección de anomalías|
-|Planes de respuesta a incidentes|
+|Passive monitoring — monitorización pasiva|
+|Anomaly detection — detección de anomalías|
+|Incident response plans — planes de respuesta a incidentes|
 
 ---
 
-# PHYSICAL SECURITY (IOT + OT)
+## PHYSICAL SECURITY (IOT + OT)
 
-| Measure              |     |
-| -------------------- | --- |
-| Gabinetes cerrados con llave      |     |
-| Vigilancia         |     |
-| Registros de acceso          |     |
-| Sellos antimanipulación |     |
+|Measure|
+|---|
+|Armarios cerrados con llave (locked cabinets)|
+|Vigilancia (surveillance)|
+|Registros de acceso (access logs)|
+|Sellos antimanipulación (tamper-evident seals)|
 
-MEMORY HOOK:  
-**Acceso físico = compromiso total**
+> 🧠 *Para recordar:* **Acceso físico = compromiso total**
 
 ---
 
-# CLOUD & BACKEND SECURITY (IOT)
+## CLOUD & BACKEND SECURITY (IOT)
 
 |Measure|
 |---|
@@ -213,20 +230,19 @@ MEMORY HOOK:
 
 ---
 
-# SECURITY STANDARDS & FRAMEWORKS (EXAM)
+## SECURITY STANDARDS & FRAMEWORKS
 
 |Standard|Purpose|
 |---|---|
-|IEC 62443|Seguridad OT|
+|IEC 62443|Seguridad OT/ICS (zones and conduits)|
 |NIST SP 800-82|Seguridad ICS|
 |OWASP IoT Top 10|Riesgos IoT|
 
-MEMORY HOOK:  
-**62443 = la biblia del OT**
+> 🧠 *Para recordar:* **62443 = la biblia del OT**
 
 ---
 
-# COMMON DEFENSIVE TOOLS (EXAM)
+## COMMON DEFENSIVE TOOLS
 
 |Tool|
 |---|
@@ -237,57 +253,18 @@ MEMORY HOOK:
 
 ---
 
-# EXAM TRAPS (VERY IMPORTANT)
+## EXAM TRAPS (HIGH YIELD)
 
 |Trap|Correct Understanding|
 |---|---|
-|La encriptación por sí sola es suficiente|Falso|
-|Se puede parchear OT como se hace con IT|Falso|
-|Las redes planas son aceptables|Falso|
-|Seguridad > seguridad significa ignorar la seguridad|Falso|
+|El cifrado por sí solo es suficiente|Falso — p. ej., el firmware cifrado debe ir además firmado (firmware signing)|
+|Se puede parchear OT como se hace con IT|Falso — probar offline, ventanas de mantenimiento y parches aprobados por el fabricante|
+|Las redes planas son aceptables|Falso — segmentar (VLANs, firewalls, zones and conduits, DMZ)|
+|Safety > security significa ignorar la ciberseguridad|Falso — se prioriza la seguridad física (safety), pero los controles de ciberseguridad siguen siendo necesarios|
 
 ---
 
-# OBJECTIVE 05 — EXAM MEMORY BLOCK
-
-**La seguridad de IoT y OT requiere defensas en capas.  
-Deshabilitar interfaces de depuración, asegurar firmware y reforzar la autenticación.  
-Segmentar redes usando zonas y conductos.  
-La mayoría de los protocolos OT son inseguros por defecto.  
-Los controles de seguridad no deben interrumpir las operaciones.**
-
----
-
-# MODULE 18 — FINAL MEMORY CHECKLIST
-
-|Item|
-|---|
-|Vulnerabilidades de dispositivos IoT|
-|Riesgos JTAG/UART|
-|Análisis de firmware|
-|Ataques MQTT/CoAP|
-|Roles de PLC/RTU/HMI|
-|Protocolos OT|
-|Stuxnet|
-|Modelo de zona y conducto|
-|Contramedidas|
-
----
-
-## MODULE 18 — STATUS
-
-|Module|Status|
-|---|---|
-|IoT concepts|COMPLETE|
-|IoT attacks|COMPLETE|
-|OT concepts|COMPLETE|
-|OT attacks|COMPLETE|
-|Countermeasures|COMPLETE|
-|Exam readiness|HIGH|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -302,14 +279,14 @@ Los controles de seguridad no deben interrumpir las operaciones.**
 | IEC 62443 | Estándar internacional para seguridad OT/ICS |
 | NIST SP 800-82 | Guía de seguridad ICS para sistemas de control industrial |
 | OWASP IoT Top 10 | Lista de los 10 principales riesgos de seguridad IoT |
-| Secure OTA Updates | Mecanismos de actualización de firmware autenticados por aire |
+| Secure OTA Updates | Mecanismos autenticados de actualización de firmware over-the-air (OTA) |
 | DMZ | Demilitarized zone — zona de amortiguamiento entre redes IT y OT |
 | Least Privilege | Otorgar los permisos mínimos necesarios a usuarios y dispositivos |
 | Passive Monitoring | Observar el tráfico de red sin interacción activa para la detección de anomalías |
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué contramedida previene que se cargue firmware no autorizado en un dispositivo IoT?
 - a) Segmentación de red

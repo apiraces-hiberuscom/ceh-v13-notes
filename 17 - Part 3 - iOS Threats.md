@@ -1,19 +1,56 @@
-# OBJECTIVE 03 — iOS THREATS AND ATTACKS
+# Módulo 17 · Parte 3 — iOS Threats
+
+> **Módulo 17 — Hacking Mobile Platforms** · Parte 3 de 5 · Amenazas y ataques en iOS: modelo de seguridad, jailbreaking y sus tipos, vectores de ataque (enterprise certificates, configuration profiles, spyware), almacenamiento de datos, herramientas y comparación Android vs iOS.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 03 — iOS THREATS AND ATTACKS](#objective-03--ios-threats-and-attacks)
+- [iOS THREAT CATEGORIES](#ios-threat-categories)
+- [JAILBREAKING — iOS 🔥](#jailbreaking--ios-high-yield)
+- [iOS ATTACK VECTORS 🔥](#ios-attack-vectors-high-yield)
+- [iOS APP VULNERABILITIES](#ios-app-vulnerabilities)
+- [iOS DATA STORAGE LOCATIONS](#ios-data-storage-locations)
+- [iOS COMMUNICATION THREATS](#ios-communication-threats)
+- [iOS SECURITY TOOLS](#ios-security-tools)
+- [iOS ATTACK CONSEQUENCES](#ios-attack-consequences)
+- [ANDROID VS iOS — EXAM COMPARISON 🔥](#android-vs-ios--exam-comparison-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **iOS security model** — Code signing (solo apps firmadas), Sandboxing (aislamiento), Secure Boot Chain (integridad en el arranque), App Store vetting, Data Protection API (cifrado por archivo ligado al passcode).
+- **Jailbreaking** — eliminar las restricciones de iOS para obtener root (en Android = rooting): desactiva code signing enforcement y sandbox, permite apps no autorizadas y rompe MDM.
+- **Tipos de jailbreak** — Tethered (computadora en cada arranque) · Semi-tethered (re-jailbreak con computadora) · Semi-untethered (re-jailbreak con una app en el propio dispositivo) · Untethered (persistente, sobrevive a reinicios).
+- **Enterprise certificate abuse** — certificados empresariales de Apple usados para instalar apps maliciosas sin pasar por la revisión de la App Store.
+- **Configuration profile attacks** — perfiles maliciosos que instalan VPN, proxy o certificados para interceptar tráfico (MITM) de forma silenciosa.
+- **iOS data storage** — Keychain (credenciales; no invulnerable con jailbreak), SQLite DB (texto plano), Plist files (fugas de configuración), cache files (residuos sensibles).
+- **Network-based attacks / spyware** — Rogue Wi-Fi, MITM, SSL stripping, fake certificates / grabación de llamadas, SMS, GPS, datos de apps.
+- **Frida / Objection** — instrumentación dinámica en runtime (iOS y Android) / framework de análisis runtime de iOS construido sobre Frida.
+- **Cydia / iFunBox** — gestor de paquetes en dispositivos con jailbreak / acceso al sistema de archivos.
+- **Android vs iOS** — open vs closed · rooting vs jailbreaking · app vetting débil vs fuerte · custom ROMs sí vs no · enterprise abuse menos vs más.
 
 ---
 
-## iOS — CORE DEFINITION (EXAM)
+## OBJECTIVE 03 — iOS THREATS AND ATTACKS
+
+### iOS — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
 |iOS|Un sistema operativo móvil de código cerrado desarrollado por Apple para dispositivos iPhone y iPad|
 
-MEMORY HOOK:  
-**Closed-source ≠ immune**
+> 🧠 *Para recordar:* **Closed-source ≠ immune**
 
 ---
 
-## iOS SECURITY MODEL (EXAM FOUNDATION)
+### iOS SECURITY MODEL
 
 | Security Feature    | Description                |
 | ------------------- | -------------------------- |
@@ -23,80 +60,75 @@ MEMORY HOOK:
 | App Store vetting   | Proceso de revisión de Apple |
 | Data Protection API | Cifrado a nivel de archivo |
 
-MEMORY HOOK:  
-**Sign → Sandbox → Secure Boot**
+> 🧠 *Para recordar:* **Sign → Sandbox → Secure Boot**
 
 ---
 
-## WHY iOS IS STILL ATTACKED
+### WHY iOS IS STILL ATTACKED
 
 |Reason|
 |---|
-|El jailbyring bypasea los controles|
-|Confianza del usuario en App Store|
-|Explotaciones de día cero|
+|El jailbreaking evade los controles|
+|Confianza del usuario en la App Store|
+|Zero-day exploits (exploits de día cero)|
 |Phishing y abuso de configuración|
 
 ---
 
-# iOS THREAT CATEGORIES (EXAM LIST)
+## iOS THREAT CATEGORIES
 
 |Category|
 |---|
 |Spyware|
 |Malware|
-|Troyanos|
-|Abuso de perfiles de configuración|
-|Ataques basados en jailbreak|
-|Ataques basados en red|
+|Trojans (troyanos)|
+|Configuration profile abuse — abuso de perfiles de configuración|
+|Jailbreak-based attacks — ataques basados en jailbreak|
+|Network-based attacks — ataques basados en red|
 
 ---
 
-# JAILBREAKING — iOS (EXAM FAVORITE)
+## JAILBREAKING — iOS (HIGH YIELD)
 
-## JAILBREAKING — DEFINITION
+### JAILBREAKING — DEFINITION
 
 |Item|Memorize|
 |---|---|
 |Jailbreaking|El proceso de eliminar las restricciones de iOS para obtener acceso root|
 
-MEMORY HOOK:  
-**Jailbreak = root access**
+> 🧠 *Para recordar:* **Jailbreak = root access**
 
 ---
 
-## JAILBREAKING — SECURITY IMPACT
+### JAILBREAKING — SECURITY IMPACT
 
 |Impact|
 |---|
-|Deshabilita la ejecución de firmado de código|
-|Bypasea el sandbox|
+|Deshabilita la obligatoriedad de la firma de código (code signing enforcement)|
+|Evade el sandbox|
 |Habilita aplicaciones no autorizadas|
-|Rompe la ejecución de MDM|
+|Rompe la aplicación de políticas MDM (MDM enforcement)|
 
-MEMORY HOOK:  
-**No sandbox, no trust**
+> 🧠 *Para recordar:* **No sandbox, no trust**
 
 ---
 
-## TYPES OF JAILBREAK (EXAM)
+### TYPES OF JAILBREAK
 
 |Type|Description|
 |---|---|
-|Tethered|Requiere computadora al iniciar|
-|Semi-tethered|Funcionalidad parcial|
-|Untethered|Jailbreak persistente|
+|Tethered|Requiere computadora en cada arranque; sin ella el dispositivo no arranca con el kernel parcheado|
+|Semi-tethered|Arranca solo y funciona con normalidad, pero sin jailbreak; para recuperarlo necesita computadora|
+|Semi-untethered|Como semi-tethered, pero el jailbreak se reaplica sin computadora mediante una app instalada (sideloaded) en el dispositivo|
+|Untethered|Jailbreak persistente: sobrevive a los reinicios sin ayuda externa|
 
-MEMORY HOOK:  
-**Un-tethered = persistent**
-
----
-
-# iOS ATTACK VECTORS (MUST MEMORIZE)
+> 🧠 *Para recordar:* **Un-tethered = persistent**
 
 ---
 
-## 1. MALICIOUS APPLICATIONS
+## iOS ATTACK VECTORS (HIGH YIELD)
+
+### 1. MALICIOUS APPLICATIONS
 
 |Aspect|Description|
 |---|---|
@@ -106,7 +138,7 @@ MEMORY HOOK:
 
 ---
 
-## 2. ENTERPRISE CERTIFICATE ABUSE
+### 2. ENTERPRISE CERTIFICATE ABUSE
 
 |Aspect|Description|
 |---|---|
@@ -114,12 +146,11 @@ MEMORY HOOK:
 |Result|Aplicaciones sin firmar instaladas|
 |Impact|Distribución de malware|
 
-MEMORY HOOK:  
-**Enterprise cert = bypass gatekeeper**
+> 🧠 *Para recordar:* **Enterprise cert = bypass gatekeeper**
 
 ---
 
-## 3. CONFIGURATION PROFILE ATTACKS
+### 3. CONFIGURATION PROFILE ATTACKS
 
 |Aspect|Description|
 |---|---|
@@ -127,12 +158,11 @@ MEMORY HOOK:
 |Abuse|VPN, proxy, instalación de certificados|
 |Result|Intercepción de tráfico|
 
-MEMORY HOOK:  
-**Profile = silent control**
+> 🧠 *Para recordar:* **Profile = silent control**
 
 ---
 
-## 4. iOS SPYWARE
+### 4. iOS SPYWARE
 
 |Capability|
 |---|
@@ -143,7 +173,7 @@ MEMORY HOOK:
 
 ---
 
-## 5. NETWORK-BASED ATTACKS
+### 5. NETWORK-BASED ATTACKS
 
 |Attack|
 |---|
@@ -154,19 +184,19 @@ MEMORY HOOK:
 
 ---
 
-# iOS APP VULNERABILITIES (EXAM TABLE)
+## iOS APP VULNERABILITIES
 
 |Vulnerability|
 |---|
-|Almacenamiento local inseguro|
-|Criptografía débil|
-|Manejo inadecuado de sesiones|
-|Credenciales hardcodeadas|
-|Validación insuficiente de certificados|
+|Insecure local storage — almacenamiento local inseguro|
+|Weak cryptography — criptografía débil|
+|Improper session handling — manejo inadecuado de sesiones|
+|Hardcoded credentials — credenciales hardcodeadas|
+|Insufficient certificate validation — validación insuficiente de certificados|
 
 ---
 
-# iOS DATA STORAGE LOCATIONS (EXAM)
+## iOS DATA STORAGE LOCATIONS
 
 |Location|Risk|
 |---|---|
@@ -175,22 +205,21 @@ MEMORY HOOK:
 |Plist files|Fugas de configuración|
 |Cache files|Residuos sensibles|
 
-MEMORY HOOK:  
-**Keychain ≠ invincible**
+> 🧠 *Para recordar:* **Keychain ≠ invincible**
 
 ---
 
-# iOS COMMUNICATION THREATS
+## iOS COMMUNICATION THREATS
 
 |Threat|
 |---|
-|TLS inseguro|
-|Aceptación de certificados inválidos|
-|Intercepción por proxy|
+|Insecure TLS — TLS inseguro|
+|Invalid certificate acceptance — aceptación de certificados inválidos|
+|Proxy interception — intercepción mediante proxy|
 
 ---
 
-# iOS SECURITY TOOLS (CEH EXPECTS RECOGNITION)
+## iOS SECURITY TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -200,23 +229,22 @@ MEMORY HOOK:
 |iFunBox|Acceso al sistema de archivos|
 |Burp Suite|Intercepción de tráfico|
 
-MEMORY HOOK:  
-**Frida = runtime control**
+> 🧠 *Para recordar:* **Frida = runtime control**
 
 ---
 
-# iOS ATTACK CONSEQUENCES (EXAM TABLE)
+## iOS ATTACK CONSEQUENCES
 
 |Impact|
 |---|
-|Fuga de datos|
-|Violaciones de privacidad|
-|Robo de credenciales|
-|Compromiso corporativo|
+|Data leakage — fuga de datos|
+|Privacy violations — violaciones de privacidad|
+|Credential theft — robo de credenciales|
+|Corporate compromise — compromiso corporativo|
 
 ---
 
-# ANDROID VS iOS — EXAM COMPARISON (VERY HIGH YIELD)
+## ANDROID VS iOS — EXAM COMPARISON (HIGH YIELD)
 
 |Feature|Android|iOS|
 |---|---|---|
@@ -226,33 +254,11 @@ MEMORY HOOK:
 |Custom ROMs|Sí|No|
 |Enterprise abuse|Menos|Más|
 
-MEMORY HOOK:  
-**Android = open risk, iOS = controlled risk**
+> 🧠 *Para recordar:* **Android = open risk, iOS = controlled risk**
 
 ---
 
-# OBJECTIVE 03 — EXAM MEMORY BLOCK
-
-**iOS se basa en code signing, sandboxing y secure boot.  
-El jailbreak elimina todas las protecciones.  
-Los ataques utilizan aplicaciones maliciosas, certificados empresariales y perfiles de configuración.  
-La interceptación de red y el spyware siguen siendo amenazas clave.**
-
----
-
-## OBJECTIVE 03 — STATUS
-
-|Item|Status|
-|---|---|
-|iOS threats|COMPLETE|
-|Jailbreaking|COMPLETE|
-|Attack vectors|COMPLETE|
-|Tools|COMPLETE|
-|Exam alignment|EXACT|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -273,7 +279,7 @@ La interceptación de red y el spyware siguen siendo amenazas clave.**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué deshabilita el jailbreaking de un dispositivo iOS?
 - a) Funcionalidad Bluetooth

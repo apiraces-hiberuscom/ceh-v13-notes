@@ -1,14 +1,38 @@
-# MODULE 16 — OVERVIEW (EXAM CONTEXT)
+# Módulo 16 · Parte 1 — Wireless Concepts
 
-|Item|Memorize|
-|---|---|
-|Module Number|16|
-|Module Name|Hacking Wireless Networks|
-|Focus|Conceptos inalámbricos, amenazas, ataques, herramientas, contramedidas|
+> **Módulo 16 — Hacking Wireless Networks** · Parte 1 de 5 — conceptos inalámbricos: terminología, técnicas de señal, estándares IEEE 802.11 y SSID.
 
----
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
 
-## LEARNING OBJECTIVES (DO NOT SKIP — EXAM LIST)
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [OBJECTIVE 01 — SUMMARIZE WIRELESS CONCEPTS](#objective-01--summarize-wireless-concepts)
+- [WIRELESS NETWORKS — DEFINITION](#wireless-networks--definition)
+- [TYPES OF WIRELESS NETWORKS](#types-of-wireless-networks)
+- [WIRELESS STANDARDS (IEEE 802.11) — CRITICAL](#wireless-standards-ieee-80211--critical)
+- [SERVICE SET IDENTIFIER (SSID)](#service-set-identifier-ssid)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **BSSID** — dirección MAC del access point; **SSID** — nombre lógico legible de la WLAN. SSID ≠ BSSID.
+- **Hidden SSID** (SSID oculto) — NO es seguridad: se descubre en las probe requests mediante escaneo pasivo.
+- **OFDM** — subportadoras ortogonales = mayor velocidad; **MIMO** — múltiples antenas = más rendimiento; **DSSS** — ensancha la banda (anti-jamming); **FHSS** — salto rápido de frecuencia (reduce interceptación).
+- **802.11** (legacy) — 2.4 GHz, DSSS/FHSS, 1–2 Mbps.
+- **802.11a** — 5 GHz, OFDM, 6–54 Mbps; **802.11b** — 2.4 GHz, DSSS, 1–11 Mbps; **802.11g** — 2.4 GHz, OFDM, 54 Mbps.
+- **802.11n** — primero en usar MIMO-OFDM, 2.4/5 GHz, 54–600 Mbps.
+- **802.11ac** — Wi-Fi 5 (alto rendimiento, 5 GHz); **802.11ax** — Wi-Fi 6.
+- **802.11i** — estándar de seguridad que define WPA2; **802.11e** — QoS; **802.11h** — control de potencia.
+- **Wireless = broadcast** — medio de difusión por ondas de radio, no punto a punto; menos seguro por defecto.
+- **Access Point (AP)** — conecta dispositivos inalámbricos a la red cableada (actúa como switch/hub); **Association** — proceso de conectar un cliente al AP.
+
+## Objetivos de aprendizaje
 
 |Objective #|Description|
 |---|---|
@@ -20,22 +44,19 @@
 
 ---
 
-# OBJECTIVE 01 — SUMMARIZE WIRELESS CONCEPTS
+## OBJECTIVE 01 — SUMMARIZE WIRELESS CONCEPTS
 
----
-
-## WIRELESS NETWORK — CORE DEFINITION
+### WIRELESS NETWORK — CORE DEFINITION
 
 |Term|Definition|
 |---|---|
 |Wireless Network|Una red que usa transmisión por ondas de radio para comunicarse en la capa física en lugar de cables|
 
-MEMORY HOOK:  
-**No wires = radio waves**
+> 🧠 *Para recordar:* **No wires = radio waves**
 
 ---
 
-## WIRELESS COMMUNICATION MEDIUM
+### WIRELESS COMMUNICATION MEDIUM
 
 |Component|Explanation|
 |---|---|
@@ -43,16 +64,13 @@ MEMORY HOOK:
 |Carrier|Aire|
 |Nature|Basado en difusión|
 
-EXAM TRAP:  
-Wireless = **broadcast**, not point-to-point.
+> ⚠️ *Trampa de examen:* Wireless = **broadcast**, not point-to-point.
 
 ---
 
-## WIRELESS NETWORK TERMINOLOGY (VERY HIGH YIELD)
+### WIRELESS NETWORK TERMINOLOGY (HIGH YIELD)
 
----
-
-### GLOBAL SYSTEM FOR MOBILE COMMUNICATIONS (GSM)
+#### GLOBAL SYSTEM FOR MOBILE COMMUNICATIONS (GSM)
 
 |Item|Memorize|
 |---|---|
@@ -60,7 +78,7 @@ Wireless = **broadcast**, not point-to-point.
 
 ---
 
-### BANDWIDTH
+#### BANDWIDTH
 
 |Item|Memorize|
 |---|---|
@@ -69,7 +87,7 @@ Wireless = **broadcast**, not point-to-point.
 
 ---
 
-### ACCESS POINT (AP)
+#### ACCESS POINT (AP)
 
 |Item|Memorize|
 |---|---|
@@ -78,19 +96,18 @@ Wireless = **broadcast**, not point-to-point.
 
 ---
 
-### BASIC SERVICE SET IDENTIFIER (BSSID)
+#### BASIC SERVICE SET IDENTIFIER (BSSID)
 
 |Item|Memorize|
 |---|---|
 |BSSID|Dirección MAC del access point|
 |Role|Identifica un access point inalámbrico|
 
-EXAM TRAP:  
-SSID ≠ BSSID
+> ⚠️ *Trampa de examen:* SSID ≠ BSSID
 
 ---
 
-### HOTSPOT
+#### HOTSPOT
 
 |Item|Memorize|
 |---|---|
@@ -99,7 +116,7 @@ SSID ≠ BSSID
 
 ---
 
-### ASSOCIATION
+#### ASSOCIATION
 
 |Item|Memorize|
 |---|---|
@@ -107,11 +124,9 @@ SSID ≠ BSSID
 
 ---
 
-## WIRELESS SIGNAL TECHNIQUES (VERY EXAM-IMPORTANT)
+### WIRELESS SIGNAL TECHNIQUES (HIGH YIELD)
 
----
-
-### ORTHOGONAL FREQUENCY-DIVISION MULTIPLEXING (OFDM)
+#### ORTHOGONAL FREQUENCY-DIVISION MULTIPLEXING (OFDM)
 
 |Item|Memorize|
 |---|---|
@@ -120,7 +135,7 @@ SSID ≠ BSSID
 
 ---
 
-### MULTIPLE INPUT MULTIPLE OUTPUT (MIMO)
+#### MULTIPLE INPUT MULTIPLE OUTPUT (MIMO)
 
 |Item|Memorize|
 |---|---|
@@ -129,7 +144,7 @@ SSID ≠ BSSID
 
 ---
 
-### DIRECT-SEQUENCE SPREAD SPECTRUM (DSSS)
+#### DIRECT-SEQUENCE SPREAD SPECTRUM (DSSS)
 
 |Item|Memorize|
 |---|---|
@@ -138,7 +153,7 @@ SSID ≠ BSSID
 
 ---
 
-### FREQUENCY-HOPPING SPREAD SPECTRUM (FHSS)
+#### FREQUENCY-HOPPING SPREAD SPECTRUM (FHSS)
 
 |Item|Memorize|
 |---|---|
@@ -152,7 +167,7 @@ MEMORY BLOCK (SIGNALS):
 
 ---
 
-# WIRELESS NETWORKS — DEFINITION
+## WIRELESS NETWORKS — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -160,7 +175,7 @@ MEMORY BLOCK (SIGNALS):
 
 ---
 
-## ADVANTAGES OF WIRELESS NETWORKS
+### ADVANTAGES OF WIRELESS NETWORKS
 
 |Advantage|
 |---|
@@ -171,7 +186,7 @@ MEMORY BLOCK (SIGNALS):
 
 ---
 
-## DISADVANTAGES OF WIRELESS NETWORKS
+### DISADVANTAGES OF WIRELESS NETWORKS
 
 |Disadvantage|
 |---|
@@ -180,16 +195,13 @@ MEMORY BLOCK (SIGNALS):
 |Interferencias|
 |Problemas de compatibilidad de hardware|
 
-EXAM TRAP:  
-Wireless = **less secure by default**
+> ⚠️ *Trampa de examen:* Wireless = **less secure by default**
 
 ---
 
-# TYPES OF WIRELESS NETWORKS
+## TYPES OF WIRELESS NETWORKS
 
----
-
-## EXTENSION TO WIRED NETWORK
+### EXTENSION TO WIRED NETWORK
 
 |Feature|Description|
 |---|---|
@@ -199,7 +211,7 @@ Wireless = **less secure by default**
 
 ---
 
-## MULTIPLE ACCESS POINTS
+### MULTIPLE ACCESS POINTS
 
 |Feature|Description|
 |---|---|
@@ -209,7 +221,7 @@ Wireless = **less secure by default**
 
 ---
 
-## LAN-TO-LAN WIRELESS NETWORK
+### LAN-TO-LAN WIRELESS NETWORK
 
 |Feature|Description|
 |---|---|
@@ -219,7 +231,7 @@ Wireless = **less secure by default**
 
 ---
 
-## 3G / 4G / 5G HOTSPOT
+### 3G / 4G / 5G HOTSPOT
 
 |Feature|Description|
 |---|---|
@@ -229,16 +241,13 @@ Wireless = **less secure by default**
 
 ---
 
-MEMORY HOOK:  
-**Extend → Expand → Bridge → Hotspot**
+> 🧠 *Para recordar:* **Extend → Expand → Bridge → Hotspot**
 
 ---
 
-# WIRELESS STANDARDS (IEEE 802.11) — CRITICAL
+## WIRELESS STANDARDS (IEEE 802.11) — CRITICAL
 
----
-
-## IEEE 802.11 — CORE IDEA
+### IEEE 802.11 — CORE IDEA
 
 |Item|Memorize|
 |---|---|
@@ -247,7 +256,7 @@ MEMORY HOOK:
 
 ---
 
-## COMMON IEEE 802.11 STANDARDS (TABLE — EXAM FAVORITE)
+### COMMON IEEE 802.11 STANDARDS (HIGH YIELD)
 
 |Standard|Frequency|Modulation|Speed (Mbps)|Range (m)|
 |---|---|---|---|---|
@@ -259,7 +268,7 @@ MEMORY HOOK:
 
 ---
 
-## EXTENDED STANDARDS (DO NOT SKIP)
+### EXTENDED STANDARDS
 
 |Standard|Purpose|
 |---|---|
@@ -276,11 +285,9 @@ MEMORY HOOK (ORDER):
 
 ---
 
-# SERVICE SET IDENTIFIER (SSID)
+## SERVICE SET IDENTIFIER (SSID)
 
----
-
-## SSID — DEFINITION
+### SSID — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -289,7 +296,7 @@ MEMORY HOOK (ORDER):
 
 ---
 
-## SSID BEHAVIOR
+### SSID BEHAVIOR
 
 |Property|Detail|
 |---|---|
@@ -297,12 +304,11 @@ MEMORY HOOK (ORDER):
 |Security|No proporciona seguridad|
 |Visibility|Puede ocultarse|
 
-EXAM TRAP:  
-Hidden SSID ≠ secure network
+> ⚠️ *Trampa de examen:* Hidden SSID ≠ secure network
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -324,7 +330,7 @@ Hidden SSID ≠ secure network
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cómo se llama la dirección MAC de un access point inalámbrico?
 - a) SSID

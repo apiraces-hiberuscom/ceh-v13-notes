@@ -1,31 +1,69 @@
-# OBJECTIVO 01 — CONCEPTOS Y ATAQUES IoT
+# Módulo 18 · Parte 1 — IoT Concepts
+
+> **Módulo 18 — IoT and OT Hacking** · Parte 1 de 5 · Qué es IoT y cómo funciona, arquitectura en 5 capas, tecnologías de comunicación, protocolos, IoT OS, modelos de comunicación y desafíos de seguridad.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 01 — IoT CONCEPTS AND ATTACKS](#objective-01--iot-concepts-and-attacks)
+- [CÓMO FUNCIONA IoT 🔥](#cómo-funciona-iot-high-yield)
+- [ARQUITECTURA DE IoT 🔥](#arquitectura-de-iot-high-yield)
+- [ÁREAS DE APLICACIÓN DE IoT](#áreas-de-aplicación-de-iot)
+- [TECNOLOGÍAS DE COMUNICACIÓN IoT 🔥](#tecnologías-de-comunicación-iot-high-yield)
+- [SISTEMAS OPERATIVOS DE IoT](#sistemas-operativos-de-iot)
+- [PROTOCOLOS DE APLICACIÓN DE IoT 🔥](#protocolos-de-aplicación-de-iot-high-yield)
+- [MODELOS DE COMUNICACIÓN DE IoT 🔥](#modelos-de-comunicación-de-iot-high-yield)
+- [DESAFÍOS DE IoT 🔥](#desafíos-de-iot-high-yield)
+- [TIPOS COMUNES DE ATAQUES IoT (INTRODUCCIÓN)](#tipos-comunes-de-ataques-iot-introducción)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **IoT vs IoE** — IoT ⊂ IoE: Internet of Everything abarca personas, datos, procesos y cosas.
+- **Arquitectura IoT (arriba → abajo)** — Application → Middleware → Internet → Access Gateway → Edge Technology Layer.
+- **Edge Technology Layer** — capa inferior: sensores, RFID, actuadores y dispositivos embebidos.
+- **Access Gateway Layer** — autenticación de dispositivos, enrutamiento de mensajes, traducción de protocolos y agregación de datos.
+- **Middleware Layer** — gestión de dispositivos, filtrado de datos, control de acceso y analítica.
+- **Modelos de comunicación** — Device-to-Device (Bluetooth, ZigBee), Device-to-Cloud (Wi-Fi, celular), Device-to-Gateway (el gateway intermedia y traduce protocolos), Back-End Data-Sharing (la nube comparte datos con terceros).
+- **MQTT vs CoAP** — MQTT: publish/subscribe ligero, "rey de la mensajería IoT" (TCP 1883, 8883 con TLS); CoAP: "HTTP ligero" sobre UDP 5683.
+- **Largo alcance y bajo consumo (LPWAN)** — LoRaWAN, Sigfox (cargas pequeñas) y NB-IoT (celular); VSAT = satélite.
+- **Corto / medio alcance** — ZigBee (malla, baja tasa de datos), Z-Wave (hogar inteligente), BLE, NFC, ANT (wearables); 6LoWPAN = IPv6 de bajo consumo.
+- **PLC en comunicación cableada** — aquí es Power-Line Communication (datos por la red eléctrica), no el Programmable Logic Controller de OT.
+- **IoT OS** — Amazon FreeRTOS (AWS), TinyOS (redes de sensores), Ubuntu Core (snaps), RIOT (ligero), Zephyr (bajo consumo), Windows 10 IoT.
+- **Desafíos de IoT** — credenciales por defecto, cifrado débil, interfaces web inseguras y parches difíciles: "barato + conectado = vulnerable".
 
 ---
 
-## QUÉ ES IoT — DEFINICIÓN BÁSICA (EXAMEN)
+## OBJECTIVE 01 — IoT CONCEPTS AND ATTACKS
+
+### QUÉ ES IoT — DEFINICIÓN BÁSICA
 
 | Término                  | Definición                                                                                                                                                   |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Internet of Things (IoT) | Una red de objetos físicos ("cosas") con sensores, software y conectividad integrados que les permite recopilar e intercambiar datos a través de Internet |
 
-GANCHO DE MEMORIA:  
-**Cosas + Sensores + Internet**
+> 🧠 *Para recordar:* **Cosas + Sensores + Internet**
 
 ---
 
-## IoT vs IoE (TRAMPA DEL EXAMEN)
+### IoT vs IoE (HIGH YIELD)
 
 |Término|Significado|
 |---|---|
 |IoT|Internet of Things|
 |IoE|Internet of Everything (personas, datos, procesos, cosas)|
 
-GANCHO DE MEMORIA:  
-**IoT ⊂ IoE**
+> 🧠 *Para recordar:* **IoT ⊂ IoE**
 
 ---
 
-## POR QUÉ IoT ES IMPORTANTE (CONTEXTO DEL EXAMEN)
+### POR QUÉ IoT ES IMPORTANTE
 
 |Razón|
 |---|
@@ -37,56 +75,48 @@ GANCHO DE MEMORIA:
 
 ---
 
-# CÓMO FUNCIONA IoT (FLUJO DE PASOS — DEBE MEMORIZARSE)
+## CÓMO FUNCIONA IoT (HIGH YIELD)
 
 1. Los sensores recopilan datos del entorno
-    
-2. Los datos se envían a la puerta de enlace
-    
-3. La puerta de enlace reenvía los datos a la nube
-    
+2. Los datos se envían al **IoT gateway** (puerta de enlace)
+3. El gateway reenvía los datos a la nube (**cloud server**)
 4. Los datos se procesan y analizan
-    
-5. El usuario accede a los datos mediante una aplicación remota
-    
+5. El usuario accede a los datos mediante una aplicación remota (**remote app**)
 6. Se activan acciones/alertas si se cumplen las condiciones
-    
 
-GANCHO DE MEMORIA:  
-**Sentir → Enviar → Almacenar → Analizar → Actuar**
+> 🧠 *Para recordar:* **Sentir → Enviar → Almacenar → Analizar → Actuar**
 
 ---
 
-## COMPONENTES BÁSICOS DE IoT (TABLA DEL EXAMEN)
+### COMPONENTES BÁSICOS DE IoT
 
 |Componente|Descripción|
 |---|---|
-|Sensores|Recopilan datos|
-|Actuadores|Realizan acciones|
-|Puerta de enlace IoT|Conecta dispositivos a Internet|
-|Servidor en la nube|Almacenamiento y procesamiento de datos|
-|Aplicación remota|Interacción del usuario|
+|Sensors — sensores|Recopilan datos|
+|Actuators — actuadores|Realizan acciones|
+|IoT Gateway — puerta de enlace IoT|Conecta los dispositivos a Internet|
+|Cloud Server — servidor en la nube|Almacenamiento y procesamiento de datos|
+|Remote App — aplicación remota|Interacción del usuario|
 
 ---
 
-# ARQUITECTURA DE IoT (FAVORITO DEL EXAMEN)
+## ARQUITECTURA DE IoT (HIGH YIELD)
 
-## CAPAS DE IoT (ARRIBA → ABAJO)
+### CAPAS DE IoT (ARRIBA → ABAJO)
 
 |Capa|Propósito|
 |---|---|
-|Capa de aplicación|Servicios orientados al usuario|
-|Capa de middleware|Procesamiento y gestión de datos|
-|Capa de Internet|Comunicación|
-|Capa de puerta de enlace de acceso|Traducción de protocolos|
-|Capa de tecnología de borde|Sensores y dispositivos|
+|Application Layer — capa de aplicación|Servicios orientados al usuario|
+|Middleware Layer — capa de middleware|Procesamiento y gestión de datos|
+|Internet Layer — capa de Internet|Comunicación|
+|Access Gateway Layer — capa de puerta de enlace de acceso|Traducción de protocolos|
+|Edge Technology Layer — capa de tecnología de borde|Sensores y dispositivos|
 
-GANCHO DE MEMORIA:  
-**Aplicación → Middleware → Internet → Puerta de enlace → Borde**
+> 🧠 *Para recordar:* **Application → Middleware → Internet → Access Gateway → Edge Technology**
 
 ---
 
-## CAPA DE TECNOLOGÍA DE BORDE (EXAMEN)
+### EDGE TECHNOLOGY LAYER — CAPA DE TECNOLOGÍA DE BORDE
 
 |Incluye|
 |---|
@@ -97,7 +127,7 @@ GANCHO DE MEMORIA:
 
 ---
 
-## CAPA DE PUERTA DE ENLACE DE ACCESO
+### ACCESS GATEWAY LAYER — CAPA DE PUERTA DE ENLACE DE ACCESO
 
 |Función|
 |---|
@@ -108,17 +138,17 @@ GANCHO DE MEMORIA:
 
 ---
 
-## CAPA DE INTERNET
+### INTERNET LAYER — CAPA DE INTERNET
 
 |Propósito|
 |---|
-|Dispositivo a dispositivo|
-|Dispositivo a nube|
-|Comunicación dispositivo a puerta de enlace|
+|Device-to-device — dispositivo a dispositivo|
+|Device-to-cloud — dispositivo a nube|
+|Device-to-gateway — dispositivo a puerta de enlace|
 
 ---
 
-## CAPA DE MIDDLEWARE
+### MIDDLEWARE LAYER — CAPA DE MIDDLEWARE
 
 |Funciones|
 |---|
@@ -129,87 +159,85 @@ GANCHO DE MEMORIA:
 
 ---
 
-## CAPA DE APLICACIÓN
+### APPLICATION LAYER — CAPA DE APLICACIÓN
 
 |Ejemplos|
 |---|
 |Aplicaciones de hogar inteligente|
-|Tableros de atención médica|
+|Dashboards sanitarios (healthcare)|
 |Aplicaciones de control industrial|
 
 ---
 
-# ÁREAS DE APLICACIÓN DE IoT (TABLA DEL EXAMEN)
+## ÁREAS DE APLICACIÓN DE IoT
 
 |Sector|Ejemplos|
 |---|---|
-|Hogar inteligente|Iluminación, HVAC|
-|Atención médica|Dispositivos vestibles, implantes|
+|Smart Home — hogar inteligente|Iluminación, HVAC|
+|Healthcare — salud|Wearables (dispositivos vestibles), implantes|
 |Industrial|IIoT, automatización|
-|Transporte|Tráfico inteligente|
-|Comercio|Estantes inteligentes|
-|Energía|Redes inteligentes|
-|Seguridad|Vigilancia|
+|Transportation — transporte|Tráfico inteligente|
+|Retail — comercio|Estanterías inteligentes (smart shelves)|
+|Energy — energía|Smart grids (redes eléctricas inteligentes)|
+|Security — seguridad|Vigilancia|
 
-GANCHO DE MEMORIA:  
-**Hogar, Salud, Industria, Transporte**
-
----
-
-# TECNOLOGÍAS DE COMUNICACIÓN IoT (RENDIMIENTO MUY ALTO)
+> 🧠 *Para recordar:* **Hogar, Salud, Industria, Transporte**
 
 ---
 
-## INALÁMBRICO DE CORTO ALCANCE
+## TECNOLOGÍAS DE COMUNICACIÓN IoT (HIGH YIELD)
+
+### SHORT-RANGE WIRELESS — INALÁMBRICO DE CORTO ALCANCE
 
 |Tecnología|Uso|
 |---|---|
 |Bluetooth LE|Bajo consumo|
 |NFC|Autenticación de corto alcance|
 |RFID|Identificación|
-|ZigBee|Baja tasa de datos, malla|
+|ZigBee|Baja tasa de datos, red en malla (mesh)|
 |Z-Wave|Hogares inteligentes|
-|ANT|Dispositivos vestibles|
+|ANT|Wearables (dispositivos vestibles)|
 |Wi-Fi|Ancho de banda alto|
 
 ---
 
-## INALÁMBRICO DE MEDIANO ALCANCE
+### MEDIUM-RANGE WIRELESS — INALÁMBRICO DE MEDIO ALCANCE
 
 |Tecnología|Uso|
 |---|---|
-|Wi-Fi|Conectividad estándar|
+|HaLow (Wi-Fi 802.11ah)|Wi-Fi para IoT con más alcance y menor consumo|
 |LTE-A|Mayor rendimiento|
 |6LoWPAN|IPv6 de bajo consumo|
 
 ---
 
-## INALÁMBRICO DE LARGO ALCANCE
+### LONG-RANGE WIRELESS — INALÁMBRICO DE LARGO ALCANCE
 
 |Tecnología|Uso|
 |---|---|
 |LPWAN|IoT de largo alcance|
 |LoRaWAN|Bajo consumo, largo alcance|
-|Sigfox|Cargas pequeñas|
+|Sigfox|Cargas útiles pequeñas (small payloads)|
 |NB-IoT|IoT celular|
 |VSAT|Satelital|
 
-GANCHO DE MEMORIA:  
-**LoRa + Sigfox = largo alcance, bajo consumo**
+> 🧠 *Para recordar:* **LoRa + Sigfox = largo alcance, bajo consumo**
 
 ---
 
-## COMUNICACIÓN CON CABLE
+### WIRED COMMUNICATION — COMUNICACIÓN CABLEADA
 
 |Tecnología|Uso|
 |---|---|
 |Ethernet|Conexión cableada estable|
-|MoCA|Coaxial|
-|PLC|Líneas eléctricas|
+|MoCA (Multimedia over Coax Alliance)|Red sobre cable coaxial|
+|PLC (Power-Line Communication)|Datos sobre las líneas eléctricas|
+
+> ⚠️ *Trampa de examen:* Aquí **PLC = Power-Line Communication**; en OT, **PLC = Programmable Logic Controller**.
 
 ---
 
-# SISTEMAS OPERATIVOS DE IoT (LISTA DEL EXAMEN)
+## SISTEMAS OPERATIVOS DE IoT
 
 |SO|Notas|
 |---|---|
@@ -218,34 +246,32 @@ GANCHO DE MEMORIA:
 |Ubuntu Core|Basado en Snap|
 |Amazon FreeRTOS|AWS|
 |Zephyr|Bajo consumo|
-|Linux embebido|Común|
+|Embedded Linux — Linux embebido|Muy común|
 |TinyOS|Redes de sensores|
 
-GANCHO DE MEMORIA:  
-**FreeRTOS = Amazon**
+> 🧠 *Para recordar:* **FreeRTOS = Amazon**
 
 ---
 
-# PROTOCOLOS DE APLICACIÓN DE IoT (CRÍTICO)
+## PROTOCOLOS DE APLICACIÓN DE IoT (HIGH YIELD)
 
 |Protocolo|Propósito|
 |---|---|
-|CoAP|HTTP ligero|
+|CoAP|HTTP ligero sobre UDP (dispositivos restringidos)|
 |MQTT|Publicación/suscripción|
 |AMQP|Cola de mensajes|
 |XMPP|Mensajería|
 |LWM2M|Gestión de dispositivos|
 
-GANCHO DE MEMORIA:  
-**MQTT = rey de la mensajería IoT**
+> 🧠 *Para recordar:* **MQTT = rey de la mensajería IoT**
+
+> 🧠 *Para recordar:* **MQTT: TCP 1883 (8883 con TLS) · CoAP: UDP 5683 (5684 con DTLS)**
 
 ---
 
-# MODELOS DE COMUNICACIÓN DE IoT (FAVORITO DEL EXAMEN)
+## MODELOS DE COMUNICACIÓN DE IoT (HIGH YIELD)
 
----
-
-## DISPOSITIVO A DISPOSITIVO
+### DEVICE-TO-DEVICE — DISPOSITIVO A DISPOSITIVO
 
 |Descripción|
 |---|
@@ -255,7 +281,7 @@ GANCHO DE MEMORIA:
 
 ---
 
-## DISPOSITIVO A NUBE
+### DEVICE-TO-CLOUD — DISPOSITIVO A NUBE
 
 |Descripción|
 |---|
@@ -264,48 +290,46 @@ GANCHO DE MEMORIA:
 
 ---
 
-## DISPOSITIVO A PUERTA DE ENLACE
+### DEVICE-TO-GATEWAY — DISPOSITIVO A PUERTA DE ENLACE
 
 |Descripción|
 |---|
-|La puerta de enlace actúa como intermediario|
+|El gateway actúa como intermediario|
 |Traducción de protocolos|
 
 ---
 
-## COMPARTICIÓN DE DATOS EN BACK-END
+### BACK-END DATA-SHARING — COMPARTICIÓN DE DATOS EN BACK-END
 
 |Descripción|
 |---|
 |La nube comparte datos IoT con terceros|
 |Se usa para analítica|
 
-GANCHO DE MEMORIA:  
-**D2D, D2C, D2G, Back-end**
+> 🧠 *Para recordar:* **D2D, D2C, D2G, Back-end**
 
 ---
 
-# DESAFÍOS DE IoT (TRAMPAS DEL EXAMEN)
+## DESAFÍOS DE IoT (HIGH YIELD)
 
 |Desafío|
 |---|
-|Falta de seguridad y privacidad|
-|Credenciales predeterminadas|
+|Falta de seguridad y privacidad (lack of security and privacy)|
+|Credenciales por defecto (default credentials)|
 |Cifrado débil|
-|Interfaces web inseguras|
+|Interfaces web inseguras (insecure web interfaces)|
 |Almacenamiento limitado|
-|Dificultad de parches|
+|Dificultad para aplicar parches|
 |Problemas de interoperabilidad|
-|Manipulación física|
-|Bloqueo del proveedor|
+|Manipulación física (physical tampering)|
+|Dependencia del proveedor (vendor lock-in)|
 |Datos no estructurados|
 
-GANCHO DE MEMORIA:  
-**Barato + conectado = vulnerable**
+> 🧠 *Para recordar:* **Barato + conectado = vulnerable**
 
 ---
 
-# TIPOS COMUNES DE ATAQUES IoT (INTRODUCCIÓN — PROFUNDIZACIÓN DESPUÉS)
+## TIPOS COMUNES DE ATAQUES IoT (INTRODUCCIÓN)
 
 |Ataque|
 |---|
@@ -313,35 +337,12 @@ GANCHO DE MEMORIA:
 |Botnets|
 |Jamming|
 |BlueBorne|
-|Ataques de código rodante|
-|Manipulación de firmware|
+|Rolling code attack — ataque de código rodante|
+|Firmware tampering — manipulación de firmware|
 
 ---
 
-# OBJETIVO 01 — BLOQUE DE MEMORIA PARA EL EXAMEN
-
-**IoT conecta dispositivos físicos utilizando sensores, puertas de enlace y servicios en la nube.  
-Utiliza una arquitectura en capas, protocolos ligeros y diversas tecnologías de comunicación.  
-La seguridad es débil debido a credenciales predeterminadas, recursos limitados y parches deficientes.  
-Existen múltiples modelos de comunicación, cada uno con riesgos únicos.**
-
----
-
-## OBJETIVO 01 — ESTADO
-
-|Elemento|Estado|
-|---|---|
-|Conceptos de IoT|COMPLETO|
-|Arquitectura|COMPLETO|
-|Protocolos|COMPLETO|
-|SO|COMPLETO|
-|Modelos de comunicación|COMPLETO|
-|Desafíos|COMPLETO|
-|Alineación con el examen|EXACTO|
-
----
-
-# TARJETAS DE MEMORIA PARA EL EXAMEN
+## Flashcards
 
 | Término | Definición |
 |---------|------------|
@@ -354,16 +355,16 @@ Existen múltiples modelos de comunicación, cada uno con riesgos únicos.**
 | 6LoWPAN | Red IPv6 de bajo consumo para dispositivos restringidos |
 | LoRaWAN | Protocolo WAN de largo alcance y bajo consumo para IoT |
 | LPWAN | Low Power Wide Area Network — comunicación IoT de largo alcance |
-| Capa de tecnología de borde | Capa inferior de IoT que contiene sensores, RFID, actuadores y dispositivos embebidos |
-| Capa de puerta de enlace de acceso | Capa de IoT responsable de la autenticación de dispositivos, enrutamiento de mensajes y traducción de protocolos |
-| Dispositivo a dispositivo | Modelo de comunicación IoT donde los dispositivos se comunican directamente usando Bluetooth o ZigBee |
-| Dispositivo a nube | Modelo de comunicación IoT donde los dispositivos envían datos directamente a servicios en la nube |
-| Dispositivo a puerta de enlace | Modelo de comunicación IoT donde una puerta de enlace actúa como intermediario con traducción de protocolos |
+| Edge Technology Layer | Capa inferior de IoT que contiene sensores, RFID, actuadores y dispositivos embebidos |
+| Access Gateway Layer | Capa de IoT responsable de la autenticación de dispositivos, enrutamiento de mensajes y traducción de protocolos |
+| Device-to-Device | Modelo de comunicación IoT donde los dispositivos se comunican directamente usando Bluetooth o ZigBee |
+| Device-to-Cloud | Modelo de comunicación IoT donde los dispositivos envían datos directamente a servicios en la nube |
+| Device-to-Gateway | Modelo de comunicación IoT donde una puerta de enlace actúa como intermediario con traducción de protocolos |
 | TinyOS | Sistema operativo diseñado para redes de sensores inalámbricos |
 
 ---
 
-# PREGUNTAS DE PRÁCTICA
+## Preguntas de práctica
 
 **1.** ¿Qué modelo de comunicación IoT utiliza una puerta de enlace como intermediario entre dispositivos y la nube?
 - a) Dispositivo a dispositivo

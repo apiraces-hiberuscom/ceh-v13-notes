@@ -1,14 +1,57 @@
-# MODULE 01 — INTRODUCTION TO ETHICAL HACKING
+# Módulo 01 — Introduction to Ethical Hacking
 
-|Item|Memorize|
-|---|---|
-|Module Number|01|
-|Module Name|Introduction to Ethical Hacking|
-|Focus|Fundamentos de seguridad, análisis de riesgos, marcos de trabajo, tipos de ataques, pen testing|
+> **Enfoque:** fundamentos de seguridad de la información, análisis de riesgos, marcos de trabajo (Cyber Kill Chain, MITRE ATT&CK, Diamond Model), threat intelligence, leyes, tipos de ataques y fases del pen testing.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [ELEMENTS OF INFORMATION SECURITY](#elements-of-information-security)
+- [RISK ANALYSIS](#risk-analysis)
+- [CIA TRIAD — DETAILED](#cia-triad--detailed)
+- [INCIDENT RESPONSE (IR) — 9 PHASES](#incident-response-ir--9-phases)
+- [HACKING METHODOLOGY — 5 STEPS](#hacking-methodology--5-steps)
+- [CYBER KILL CHAIN — 7 PHASES](#cyber-kill-chain--7-phases)
+- [TTPS AND ADVERSARY BEHAVIORAL IDENTIFICATION](#ttps-and-adversary-behavioral-identification)
+- [IOC — INDICATORS OF COMPROMISE](#ioc--indicators-of-compromise)
+- [MITRE ATT&CK FRAMEWORK](#mitre-attck-framework)
+- [DIAMOND MODEL](#diamond-model)
+- [INFORMATION ASSURANCE (IA)](#information-assurance-ia)
+- [RISK FORMULAS](#risk-formulas)
+- [CYBER THREAT INTELLIGENCE (CTI)](#cyber-threat-intelligence-cti)
+- [THREAT MODELING](#threat-modeling)
+- [INCIDENT MANAGEMENT](#incident-management)
+- [LAWS AND STANDARDS](#laws-and-standards)
+- [HACKING TERMINOLOGY](#hacking-terminology)
+- [ATTACK TYPES](#attack-types)
+- [PEN TEST PHASES](#pen-test-phases)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Elements of information security** — 5: Confidentiality, Integrity, Availability, Authenticity, Non-repudiation.
+- **Integrity** — se garantiza con **hash functions** (checksums), no con cifrado.
+- **ALE = SLE × ARO** — pérdida anual esperada = coste de un incidente × nº de ocurrencias al año.
+- **Hacking methodology (5 fases)** — Footprinting → Scanning → Enumeration → Vulnerability Analysis → System Hacking (Gaining Access → Escalating Privileges → Maintaining Access → Clearing Logs).
+- **Cyber Kill Chain (7 fases)** — Reconnaissance → Weaponization (se crea el payload) → Delivery → Exploitation → Installation → Command & Control → Actions on Objectives.
+- **MITRE ATT&CK** — 14 tactics (de Reconnaissance a Impact); tactic = el porqué (objetivo), technique = el cómo; marco gratuito y sin ánimo de lucro.
+- **Diamond Model** — Adversary, Capability, Infrastructure, Victim.
+- **Incident Response (9 fases)** — Preparation → Recording and Assignment → Triage → Notification → Containment → Evidence Gathering → Eradication → Recovery → Post-Incident Activity.
+- **Tipos de CTI** — Strategic = alto nivel para directivos; Tactical = TTPs para el personal de seguridad; Operational = ataques/campañas concretas próximas (chat rooms, redes sociales, foros); Technical = IoCs para el SOC y sus herramientas.
+- **Passive vs Active attack** — passive no modifica nada (sniffing, eavesdropping) y es más difícil de detectar; active altera datos (SQL injection, DDoS).
+- **Leyes** — PCI DSS = tarjetas de pago, HIPAA = salud (EE. UU.), SOX = información financiera, DMCA = copyright digital, FISMA = agencias federales de EE. UU. (NIST), DPA 2018 = Reino Unido, ISO/IEC 27001 = ISMS.
+- **SIEM (p. ej. Splunk)** — herramienta para detectar y responder a incidentes, no para atacar.
 
 ---
 
-## LEARNING OBJECTIVES
+## Objetivos de aprendizaje
 
 |Objective #|Description|
 |---|---|
@@ -36,8 +79,7 @@
 |Authenticity|Garantía de que archivos, comunicaciones y transacciones son genuinos|
 |Non-repudiation|Garantía de que el remitente no puede negar haber enviado un mensaje|
 
-MEMORY HOOK:
-**CIA + A + N = Can I Always Authenticate? No!**
+> 🧠 *Para recordar:* **CIA + A + N = Can I Always Authenticate? No!**
 
 ---
 
@@ -61,12 +103,11 @@ MEMORY HOOK:
 
 |Element|Security Focus|Example Controls|
 |---|---|---|
-|Confidentiality|Secrecy, privacy|Passwords, user IDs, encryption, access controls|
-|Integrity|Accuracy, trustworthiness|Hash functions, checksums, version control|
-|Availability|Uptime, access|Redundancy, backups, DoS protection, failover|
+|Confidentiality|Secreto, privacidad|Contraseñas, user IDs, cifrado (encryption), controles de acceso|
+|Integrity|Exactitud, fiabilidad|Hash functions, checksums, control de versiones|
+|Availability|Disponibilidad (uptime), acceso|Redundancia, backups, protección contra DoS, failover|
 
-EXAM TRAP:
-Integrity is assured via **hash functions** — not encryption.
+> ⚠️ *Trampa de examen:* Integrity se garantiza con **hash functions**, no con cifrado.
 
 ---
 
@@ -84,8 +125,7 @@ Integrity is assured via **hash functions** — not encryption.
 |8. Recovery|Restaurar sistemas a operación normal|
 |9. Post-Incident Activity|Revisar, documentar lecciones aprendidas, mejorar|
 
-MEMORY HOOK:
-**Prep → Record → Triage → Notify → Contain → Evidence → Erase → Recover → Review**
+> 🧠 *Para recordar:* **Prep → Record → Triage → Notify → Contain → Evidence → Erase → Recover → Review**
 
 ---
 
@@ -108,8 +148,7 @@ MEMORY HOOK:
 |Maintaining Access|Asegurar acceso persistente (backdoors, rootkits)|
 |Clearing Logs|Ocultar el ataque alterando registros, ocultando archivos, usando túneles|
 
-EXAM TRAP:
-Las herramientas **SIEM** (Security Incident and Event Management) como **Splunk** se usan para detectar y responder a incidentes — no para realizar ataques.
+> ⚠️ *Trampa de examen:* Las herramientas **SIEM** (Security Information and Event Management) como **Splunk** se usan para detectar y responder a incidentes — no para realizar ataques.
 
 ---
 
@@ -125,8 +164,7 @@ Las herramientas **SIEM** (Security Incident and Event Management) como **Splunk
 |6. Command & Control (C2)|Establecer un canal para exfiltración de datos y control remoto|
 |7. Actions on Objectives|Ejecutar la misión: robo de datos, destrucción, despliegue de botnets|
 
-MEMORY HOOK:
-**Recon → Weapon → Deliver → Exploit → Install → C2 → Act**
+> 🧠 *Para recordar:* **Recon → Weapon → Deliver → Exploit → Install → C2 → Act**
 
 ---
 
@@ -138,8 +176,7 @@ MEMORY HOOK:
 |Techniques|Los métodos técnicos específicos utilizados (ej. herramientas para privilege escalation)|
 |Procedures|Una secuencia de acciones o pasos tomados para ejecutar un ataque|
 
-MEMORY HOOK:
-**TTP = How they think (tactics) → What they do (techniques) → Step by step (procedures)**
+> 🧠 *Para recordar:* **TTP = cómo piensan (tactics) → qué hacen (techniques) → paso a paso (procedures)**
 
 ---
 
@@ -152,8 +189,7 @@ MEMORY HOOK:
 |Host-Based Indicators|Nombres de archivo específicos, hashes de archivos, claves de registro|
 |Behavioral Indicators|Ejecución de PowerShell, ejecución de comandos remotos, comportamiento inusual de procesos|
 
-MEMORY HOOK:
-**IoC = Clues left behind. Check: Email → Network → Host → Behavior**
+> 🧠 *Para recordar:* **IoC = pistas que deja el atacante. Revisa: Email → Network → Host → Behavioral**
 
 ---
 
@@ -185,11 +221,9 @@ MEMORY HOOK:
 |13|Exfiltration|
 |14|Impact|
 
-MEMORY HOOK:
-**Recon → Resource → Access → Execute → Persist → Escalate → Evade → Credentials → Discover → Move → Collect → C2 → Exfil → Impact**
+> 🧠 *Para recordar:* **Recon → Resource → Access → Execute → Persist → Escalate → Evade → Credentials → Discover → Move → Collect → C2 → Exfil → Impact**
 
-EXAM TRAP:
-MITRE ATT&CK es un marco de trabajo **gratuito y sin fines de lucro** — no es un producto comercial. Úsalo para mapear el comportamiento de adversarios de forma sistemática.
+> ⚠️ *Trampa de examen:* MITRE ATT&CK es un marco de trabajo **gratuito y sin fines de lucro** — no es un producto comercial. Úsalo para mapear el comportamiento de adversarios de forma sistemática.
 
 ---
 
@@ -202,31 +236,29 @@ MITRE ATT&CK es un marco de trabajo **gratuito y sin fines de lucro** — no es 
 |Infrastructure|¿Dónde?|Servidores C2, dominios maliciosos, direcciones IP|
 |Victim|¿Quién es el objetivo?|Organizaciones, individuos, industrias|
 
-MEMORY HOOK:
-**Diamond = Who + What + Where + Whom**
+> 🧠 *Para recordar:* **Diamond = Who + What + Where + Whom**
 
 ---
 
 ## INFORMATION ASSURANCE (IA)
 
-|Definition|IA starts with policy, ends with people — everything in between is risk management|
+|Definition|La IA empieza con las políticas y termina con las personas — todo lo intermedio es gestión de riesgos|
 |---|---|
 
 ### IA Lifecycle
 
 |Step|Action|
 |---|---|
-|1|Plan|
-|2|Design|
-|3|Find problems|
-|4|Get resources|
-|5|Plan fixes|
-|6|Apply controls|
-|7|Verify|
-|8|Train people|
+|1|Plan — desarrollar políticas, procesos y guías locales|
+|2|Design — diseñar la estrategia de autenticación de red y de usuarios|
+|3|Find problems — identificar vulnerabilidades y amenazas de la red|
+|4|Get resources — identificar problemas y requisitos de recursos|
+|5|Plan fixes — crear planes para los requisitos de recursos identificados|
+|6|Apply controls — aplicar los controles de information assurance adecuados|
+|7|Verify — certificación y acreditación|
+|8|Train people — formación en information assurance|
 
-MEMORY HOOK:
-**Plan → Design → Find → Fund → Fix → Apply → Verify → Train**
+> 🧠 *Para recordar:* **Plan → Design → Find → Fund → Fix → Apply → Verify → Train**
 
 ---
 
@@ -238,8 +270,7 @@ MEMORY HOOK:
 |RISK = Threat × Vulnerability × Asset Value|Ecuación alternativa de riesgo|
 |Level of RISK = Consequence × Likelihood|Cálculo de matriz de riesgo|
 
-EXAM TRAP:
-El riesgo es multiplicativo — un cero en cualquier factor significa sin riesgo.
+> ⚠️ *Trampa de examen:* El riesgo es multiplicativo — un cero en cualquier factor significa sin riesgo.
 
 ---
 
@@ -252,10 +283,12 @@ El riesgo es multiplicativo — un cero en cualquier factor significa sin riesgo
 
 |Type|Audience|Purpose|
 |---|---|---|
-|Strategic Intelligence|Ejecutivos|Tendencias de alto nivel, postura de riesgo, decisiones de negocio|
-|Tactical Intelligence|Equipos de Seguridad|Métodos de ataque próximos, herramientas, patrones|
-|Operational Intelligence|Respuesta a Incidentes|Campañas específicas, intención del atacante, cronograma|
-|Technical Intelligence|Sistemas/SIEM/IDS|IPs, hashes, dominios, firmas|
+|Strategic Intelligence|Ejecutivos y alta dirección|Información de alto nivel y poco técnica: tendencias, impacto financiero, postura de riesgo, decisiones de negocio|
+|Tactical Intelligence|Personal de seguridad (administradores, responsables de IT/SOC)|TTPs de los atacantes: herramientas, técnicas, procedimientos y vulnerabilidades explotadas|
+|Operational Intelligence|Responsables de seguridad / Incident Response|Ataques y campañas concretas próximas contra la organización: intención, capacidad y cronograma; se obtiene de salas de chat, redes sociales, foros|
+|Technical Intelligence|SOC y herramientas (SIEM, IDS, firewalls)|IoCs: IPs, hashes, dominios, URLs, firmas, muestras de malware y phishing|
+
+> ⚠️ *Trampa de examen:* "Ataque concreto que se está preparando" o fuentes como chat rooms/redes sociales = **Operational**. TTPs = **Tactical**. IoCs = **Technical**. Visión de alto nivel para directivos = **Strategic**.
 
 ### CTI Lifecycle
 
@@ -268,8 +301,7 @@ El riesgo es multiplicativo — un cero en cualquier factor significa sin riesgo
 |5. Dissemination|Entregar inteligencia a las personas adecuadas|
 |6. Feedback|Refinar requisitos según los resultados|
 
-MEMORY HOOK:
-**Direction → Collect → Process → Analyze → Disseminate → Feedback**
+> 🧠 *Para recordar:* **Direction → Collect → Process → Analyze → Disseminate → Feedback**
 
 ---
 
@@ -283,6 +315,7 @@ MEMORY HOOK:
 ## INCIDENT MANAGEMENT
 
 |Definition|Identificar, priorizar, analizar, resolver y mejorar el manejo de incidentes|
+|---|---|
 
 ### Comparison
 
@@ -291,8 +324,7 @@ MEMORY HOOK:
 |Incident Management|Identify → Prioritize → Analyze → Resolve → Improve|
 |Incident Response|Preparation → Recording → Triage → Notification → Containment → Evidence → Eradication → Recovery → Post-Incident|
 
-EXAM TRAP:
-Incident **Management** es más amplio (identify → improve). Incident **Response** es táctico (contain → recover).
+> ⚠️ *Trampa de examen:* Incident **Management** es más amplio (identify → improve). Incident **Response** es táctico (contain → recover).
 
 ---
 
@@ -308,8 +340,7 @@ Incident **Management** es más amplio (identify → improve). Incident **Respon
 |FISMA|Federal Information Security Management Act|Agencias federales de EE.UU. y contratistas; usa estándares NIST|
 |DPA 2018|Data Protection Act 2018|Ley principal de protección de datos personales del Reino Unido|
 
-MEMORY HOOK:
-**PCI = Cards, ISO = Framework, HIPAA = Health, SOX = Finance, DMCA = Copyright, FISMA = Federal, DPA = UK**
+> 🧠 *Para recordar:* **PCI = Cards, ISO = Framework, HIPAA = Health, SOX = Finance, DMCA = Copyright, FISMA = Federal, DPA = UK**
 
 ---
 
@@ -323,7 +354,7 @@ MEMORY HOOK:
 |Script Kiddies|Individuos sin habilidades que usan herramientas prefabricadas|
 |Cyber Terrorists|Motivados por creencias religiosas o políticas|
 |State-Sponsored|Empleados por un estado-nación para atacar a otras naciones|
-|Hacktivists|Motivados por agenda política — vandalizando o desactivando sitios web|
+|Hacktivists|Motivados por una agenda política — hacen defacement de sitios web o los inutilizan|
 |Hacker Teams|Hackers hábiles que operan con sus propios recursos|
 |Industrial Spies|Participan en espionaje corporativo|
 |Insiders|Usuarios de confianza que ejecutan ataques desde dentro de la organización|
@@ -342,8 +373,7 @@ MEMORY HOOK:
 |Insider Attack|Ejecutado por alguien con acceso autorizado|Empleado descontento, abuso de credenciales|
 |Distribution Attack|Ocurre antes de que el sistema llegue al cliente|Hardware manipulado, cadena de suministro infectada|
 
-EXAM TRAP:
-Los ataques passive = **sin modificación**, más difíciles de detectar. Los ataques active = **datos alterados**, mayor riesgo de ser descubiertos.
+> ⚠️ *Trampa de examen:* Los ataques passive = **sin modificación**, más difíciles de detectar. Los ataques active = **datos alterados**, mayor riesgo de ser descubiertos.
 
 ---
 
@@ -355,12 +385,16 @@ Los ataques passive = **sin modificación**, más difíciles de detectar. Los at
 |2. Assessment|Ejecutar la prueba de penetración real|
 |3. Conclusion (Post-Assessment)|Preparación del informe, hallazgos, recomendaciones|
 
-MEMORY HOOK:
-**Prep → Assess → Report**
+> 🧠 *Para recordar:* **Prep → Assess → Report**
 
 ---
 
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
+
+|Concepto|Qué recordar|
+|---|---|
+|Actions on Objectives (Cyber Kill Chain)|Fase de destrucción del sistema — ejecución de la misión final|
+|SOX (Sarbanes-Oxley)|Requiere que las empresas divulguen información financiera|
 
 ### APT LIFECYCLE
 
@@ -370,7 +404,8 @@ MEMORY HOOK:
 |2. Initial Intrusion|Infiltrar el entorno del objetivo, desplegar malware|
 |3. Expansion|Expandir acceso, obtener privilegios administrativos|
 |4. Persistence|Crear puntos de apoyo adicionales, establecer C2|
-|5. Cleanup|Evadir detección, eliminar evidencia|
+|5. Search and Exfiltration|Localizar y exfiltrar los datos objetivo|
+|6. Cleanup|Evadir detección, eliminar evidencia|
 
 ---
 
@@ -378,57 +413,41 @@ MEMORY HOOK:
 
 |Type|Focus|
 |---|---|
-|Tactical|Herramientas, técnicas y procedimientos (TTPs) y vulnerabilidades|
-|Strategic|Visión general del panorama de amenazas, no muy técnico|
-|Technical|Indicators of compromise (IOCs), muestras de malware, muestras de phishing, URLs|
-|Operational|Recopila información de discusiones en línea, redes sociales, salas de chat|
+|Tactical|Tools, techniques and procedures (TTPs) y vulnerabilidades — para el personal de seguridad|
+|Strategic|Visión general del panorama de amenazas, poco técnica — para directivos|
+|Technical|Indicators of compromise (IoCs), muestras de malware, muestras de phishing, URLs — para SOC y herramientas|
+|Operational|Ataques concretos próximos; recopila información de discusiones en línea, redes sociales, salas de chat|
 
 ---
 
-### CYBER KILL CHAIN — ACTIONS & OBJECTIVES
-
-|Phase|Description|
-|---|---|
-|Actions on Objectives|Fase de destrucción del sistema — ejecución de la misión final|
-
----
-
-### SOX (SARBANES-OXLEY)
-
-|Item|Memorize|
-|---|---|
-|SOX|Requiere que las empresas divulguen información financiera|
-
----
-
-## EXAM FLASHCARDS
+## Flashcards
 
 |Term|Answer|
 |---|---|
-|ALE formula|`ALE = SLE × ARO`|
+|Fórmula de ALE|`ALE = SLE × ARO`|
 |CIA + A + N|Confidentiality, Integrity, Availability, Authenticity, Non-repudiation|
-|Integrity is ensured via|Hash functions|
-|Phases of hacking methodology|Footprinting → Scanning → Enumeration → Vulnerability Analysis → System Hacking|
-|System hacking sub-steps|Gain access → Escalate privileges → Maintain access → Clear logs|
-|Cyber Kill Chain phases|Recon → Weaponize → Deliver → Exploit → Install → C2 → Act|
-|MITRE ATT&CK tactics count|14|
-|Diamond Model elements|Adversary, Capability, Infrastructure, Victim|
-|IoC categories|Email, Network, Host-Based, Behavioral|
-|PCI DSS scope|Payment card data|
-|HIPAA protects|Health information|
-|DMCA protects|Digital copyrighted content (DRM)|
-|ISO 27001 is about|ISMS framework|
-|Passive attack example|Sniffing, eavesdropping|
-|Active attack example|SQL injection, DDoS|
+|Integrity se garantiza con|Hash functions|
+|Fases de la hacking methodology|Footprinting → Scanning → Enumeration → Vulnerability Analysis → System Hacking|
+|Subpasos de System Hacking|Gaining Access → Escalating Privileges → Maintaining Access → Clearing Logs|
+|Fases de la Cyber Kill Chain|Recon → Weaponize → Deliver → Exploit → Install → C2 → Act|
+|Número de tactics en MITRE ATT&CK|14|
+|Elementos del Diamond Model|Adversary, Capability, Infrastructure, Victim|
+|Categorías de IoC|Email, Network, Host-Based, Behavioral|
+|Ámbito de PCI DSS|Datos de tarjetas de pago|
+|HIPAA protege|Información de salud|
+|DMCA protege|Contenido digital con copyright (DRM)|
+|ISO 27001 trata de|Marco para el ISMS|
+|Ejemplo de passive attack|Sniffing, eavesdropping|
+|Ejemplo de active attack|SQL injection, DDoS|
 |CTI lifecycle|Direction → Collection → Processing → Analysis → Dissemination → Feedback|
-|Risk formula|`Risk = Threat × Vulnerability × Impact`|
+|Fórmula de riesgo|`Risk = Threat × Vulnerability × Impact`|
 |Incident Management vs IR|Management = identify→improve; IR = preparation→post-incident|
-|SIEM tool example|Splunk|
-|Threat modeling definition|Identify what can go wrong, how attacked, how to mitigate|
+|Ejemplo de herramienta SIEM|Splunk|
+|Definición de threat modeling|Identificar qué puede salir mal, cómo se puede atacar y cómo mitigarlo|
 
 ---
 
-## PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **Q1:** ¿Cuál es la fórmula correcta para Annualized Loss Expectancy (ALE)?
 

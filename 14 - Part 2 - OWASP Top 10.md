@@ -1,6 +1,51 @@
+# Módulo 14 · Parte 2 — OWASP Top 10
+
+> **Módulo 14 — Hacking Web Applications** · Parte 2 de 5 · Amenazas de web applications según el OWASP Top 10 (2021): significado, causas, ejemplos e impacto de cada categoría A01–A10.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 02 — WEB APPLICATION THREATS](#objective-02--web-application-threats)
+- [OWASP TOP 10 (2021) — MASTER LIST 🔥](#owasp-top-10-2021--master-list-high-yield)
+- [A01:2021 — BROKEN ACCESS CONTROL](#a012021--broken-access-control)
+- [A02:2021 — CRYPTOGRAPHIC FAILURES](#a022021--cryptographic-failures)
+- [A03:2021 — INJECTION](#a032021--injection)
+- [A04:2021 — INSECURE DESIGN](#a042021--insecure-design)
+- [A05:2021 — SECURITY MISCONFIGURATION](#a052021--security-misconfiguration)
+- [A06:2021 — VULNERABLE AND OUTDATED COMPONENTS](#a062021--vulnerable-and-outdated-components)
+- [A07:2021 — IDENTIFICATION AND AUTHENTICATION FAILURES](#a072021--identification-and-authentication-failures)
+- [A08:2021 — SOFTWARE AND DATA INTEGRITY FAILURES](#a082021--software-and-data-integrity-failures)
+- [A09:2021 — SECURITY LOGGING AND MONITORING FAILURES](#a092021--security-logging-and-monitoring-failures)
+- [A10:2021 — SERVER-SIDE REQUEST FORGERY (SSRF)](#a102021--server-side-request-forgery-ssrf)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **OWASP Top 10 (2021), en orden** — A01 Broken Access Control → A02 Cryptographic Failures → A03 Injection → A04 Insecure Design → A05 Security Misconfiguration → A06 Vulnerable and Outdated Components → A07 Identification and Authentication Failures → A08 Software and Data Integrity Failures → A09 Security Logging and Monitoring Failures → A10 SSRF.
+- **A01 Broken Access Control** — un usuario autenticado realiza acciones no autorizadas: IDOR, force browsing, metadata manipulation, control de acceso en el cliente.
+- **A02 Cryptographic Failures** — cifrado ausente o débil (texto plano, sin TLS, hardcoded keys); afecta a datos en tránsito y en reposo.
+- **A03 Injection** — entrada no confiable interpretada como comando (SQL, NoSQL, OS command, LDAP, XPath); causa raíz: falta de validación de entrada.
+- **A04 Insecure Design** — fallo de diseño (sin threat modeling), NO un error de codificación.
+- **A05 Security Misconfiguration** — default credentials, verbose errors/stack traces, directory listing, servicios innecesarios.
+- **A06 Vulnerable and Outdated Components** — bibliotecas, frameworks o SO con CVEs conocidos y sin parchear.
+- **A07 Identification and Authentication Failures** — sustituye a la antigua **Broken Authentication**: contraseñas débiles, sin MFA, session fixation, credential stuffing.
+- **A08 Software and Data Integrity Failures** — unsigned updates, insecure deserialization, CI/CD o plugins comprometidos.
+- **A09 Security Logging and Monitoring Failures** — sin logs, sin monitorizar o sin alertas → detección tardía de la brecha.
+- **A10 SSRF** — el servidor hace peticiones a sistemas internos con una URL controlada por el atacante (escaneo interno, cloud metadata).
+- **XXE / WS-Security** — XXE: XML injection contra bibliotecas XML usando `<!DOCTYPE>`; WS-Security: integridad y confidencialidad de mensajes SOAP.
+
+---
+
 ## OBJECTIVE 02 — WEB APPLICATION THREATS
 
-### CEH CORE STATEMENT (MEMORIZE)
+### CEH CORE STATEMENT (HIGH YIELD)
 
 |Item|Memorize|
 |---|---|
@@ -8,7 +53,7 @@
 
 ---
 
-## OWASP TOP 10 (2021) — MASTER LIST (EXAM MUST)
+## OWASP TOP 10 (2021) — MASTER LIST (HIGH YIELD)
 
 |Rank|Vulnerability Code|Name|
 |---|---|---|
@@ -23,8 +68,7 @@
 |9|A09:2021|Security Logging and Monitoring Failures|
 |10|A10:2021|Server-Side Request Forgery (SSRF)|
 
-MEMORY HOOK:  
-**Access → Crypto → Injection → Design → Config → Components → Auth → Integrity → Logging → SSRF**
+> 🧠 *Para recordar:* **Access → Crypto → Injection → Design → Config → Components → Auth → Integrity → Logging → SSRF**
 
 ---
 
@@ -43,11 +87,11 @@ MEMORY HOOK:
 
 |Cause|
 |---|
-|Missing access checks|
-|Client-side access control|
+|Missing access checks — falta de comprobaciones de autorización|
+|Client-side access control — control de acceso solo en el cliente|
 |IDOR (Insecure Direct Object Reference)|
-|Metadata manipulation|
-|Force browsing|
+|Metadata manipulation — manipulación de metadatos|
+|Force browsing — navegación forzada a recursos no enlazados|
 
 ---
 
@@ -66,9 +110,9 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Data exposure|
-|Privilege escalation|
-|Account takeover|
+|Exposición de datos (data exposure)|
+|Privilege escalation — escalada de privilegios|
+|Account takeover — toma de control de la cuenta|
 
 ---
 
@@ -87,11 +131,11 @@ MEMORY HOOK:
 
 |Failure|
 |---|
-|Plaintext data transmission|
-|Weak encryption algorithms|
-|Hardcoded keys|
-|No TLS|
-|Improper key management|
+|Transmisión de datos en texto plano (plaintext)|
+|Algoritmos de cifrado débiles|
+|Hardcoded keys — claves escritas en el código|
+|Sin TLS|
+|Gestión inadecuada de claves (key management)|
 
 ---
 
@@ -105,8 +149,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**No crypto → datos robados**
+> 🧠 *Para recordar:* **No crypto → datos robados**
 
 ---
 
@@ -137,9 +180,9 @@ MEMORY HOOK:
 
 |Step|Action|
 |---|---|
-|1|Attacker submits crafted input|
-|2|Application trusts input|
-|3|Interpreter executes payload|
+|1|El atacante envía una entrada manipulada (crafted input)|
+|2|La aplicación confía en la entrada|
+|3|El intérprete ejecuta el payload|
 
 ---
 
@@ -147,9 +190,9 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Data loss|
-|Authentication bypass|
-|Remote code execution|
+|Pérdida de datos|
+|Authentication bypass — evasión de la autenticación|
+|Remote code execution (RCE)|
 
 ---
 
@@ -168,9 +211,9 @@ MEMORY HOOK:
 
 |Characteristic|
 |---|
-|No threat modeling|
-|Missing business logic validation|
-|Insecure workflows|
+|Sin threat modeling|
+|Falta de validación de la lógica de negocio|
+|Flujos de trabajo inseguros (insecure workflows)|
 
 ---
 
@@ -178,8 +221,8 @@ MEMORY HOOK:
 
 |Trap|Correct|
 |---|---|
-|Coding bug|NO|
-|Design flaw|YES|
+|Error de codificación (coding bug)|NO|
+|Fallo de diseño (design flaw)|SÍ|
 
 ---
 
@@ -198,11 +241,11 @@ MEMORY HOOK:
 
 |Example|
 |---|
-|Default credentials|
-|Verbose errors|
-|Unnecessary services|
-|Directory listing|
-|Unpatched software|
+|Default credentials — credenciales por defecto|
+|Verbose errors — mensajes de error detallados|
+|Servicios innecesarios|
+|Directory listing — listado de directorios|
+|Software sin parchear|
 
 ---
 
@@ -230,9 +273,9 @@ MEMORY HOOK:
 
 |Cause|
 |---|
-|No inventory|
-|No patching|
-|Unsupported software|
+|Sin inventario de componentes|
+|Sin aplicación de parches|
+|Software sin soporte|
 
 ---
 
@@ -240,13 +283,12 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Exploitable known CVEs|
-|Full system compromise|
+|CVEs conocidos explotables|
+|Compromiso total del sistema|
 
 ---
 
-MEMORY HOOK:  
-**Viejo = explotable**
+> 🧠 *Para recordar:* **Viejo = explotable**
 
 ---
 
@@ -276,8 +318,8 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Account takeover|
-|Privilege escalation|
+|Account takeover — toma de control de la cuenta|
+|Privilege escalation — escalada de privilegios|
 
 ---
 
@@ -296,9 +338,9 @@ MEMORY HOOK:
 
 |Example|
 |---|
-|Unsigned updates|
-|Insecure deserialization|
-|Compromised plugins|
+|Unsigned updates — actualizaciones sin firmar|
+|Insecure deserialization — deserialización insegura|
+|Plugins comprometidos|
 
 ---
 
@@ -307,7 +349,7 @@ MEMORY HOOK:
 |Impact|
 |---|
 |Ejecución remota de código|
-|Compromiso de cadena de suministro|
+|Compromiso de la cadena de suministro (supply chain)|
 
 ---
 
@@ -327,7 +369,7 @@ MEMORY HOOK:
 |Example|
 |---|
 |Sin registros|
-|Registros no monitoreados|
+|Registros no monitorizados|
 |Sin alertas|
 
 ---
@@ -366,44 +408,27 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Internal port scanning|
-|Cloud metadata access|
-|Credential leakage|
+|Escaneo de puertos internos|
+|Acceso a los metadatos de la nube (cloud metadata)|
+|Filtración de credenciales|
 
 ---
 
-MEMORY HOOK:  
-**El servidor se convierte en proxy del atacante**
+> 🧠 *Para recordar:* **El servidor se convierte en proxy del atacante**
 
 ---
 
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
 
-### XXE (XML EXTERNAL ENTITY)
-
-|Item|Memorize|
+|Concepto|Qué recordar|
 |---|---|
-|XXE|XML injection que se dirige a bibliotecas XML usando `<!DOCTYPE>`|
-
----
-
-### IDOR (INSECURE DIRECT OBJECT REFERENCE)
-
-|Item|Memorize|
-|---|---|
-|IDOR|Vulnerabilidad que permite acceder a recursos no autorizados manipulando referencias de objetos|
-
----
-
-### WS-SECURITY
-
-|Item|Memorize|
-|---|---|
+|XXE (XML External Entity)|XML injection que se dirige a bibliotecas XML usando `<!DOCTYPE>`|
+|IDOR (Insecure Direct Object Reference)|Vulnerabilidad que permite acceder a recursos no autorizados manipulando referencias de objetos|
 |WS-Security|Proporciona integridad y confidencialidad para mensajes SOAP|
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -423,7 +448,7 @@ MEMORY HOOK:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué categoría del OWASP Top 10 (2021) reemplaza la categoría anterior "Broken Authentication"?
 - a) A01 — Broken Access Control

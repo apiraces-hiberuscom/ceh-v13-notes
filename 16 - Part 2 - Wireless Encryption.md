@@ -1,20 +1,54 @@
-# OBJECTIVE 02 — WIRELESS ENCRYPTION ALGORITHMS
+# Módulo 16 · Parte 2 — Wireless Encryption
 
----
+> **Módulo 16 — Hacking Wireless Networks** · Parte 2 de 5 — algoritmos de cifrado inalámbrico: WEP, WPA, WPA2 y WPA3, sus cifrados y ataques asociados.
 
-## WHY WIRELESS ENCRYPTION EXISTS (EXAM DEFINITION)
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 02 — WIRELESS ENCRYPTION ALGORITHMS](#objective-02--wireless-encryption-algorithms)
+- [WIRED EQUIVALENT PRIVACY (WEP)](#wired-equivalent-privacy-wep)
+- [WI-FI PROTECTED ACCESS (WPA)](#wi-fi-protected-access-wpa)
+- [WI-FI PROTECTED ACCESS 2 (WPA2)](#wi-fi-protected-access-2-wpa2)
+- [WI-FI PROTECTED ACCESS 3 (WPA3)](#wi-fi-protected-access-3-wpa3)
+- [COMPARISON TABLE 🔥](#comparison-table-high-yield)
+- [EXAM FAVORITE QUESTIONS 🔥](#exam-favorite-questions-high-yield)
+- [QUICK MEMORY LADDER](#quick-memory-ladder)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **WEP** — RC4 con **IV de 24 bits**, clave de 64/128 bits; roto por reutilización de IV (se cracked en minutos).
+- **WPA** — **TKIP** sobre RC4 + **MIC**; parche temporal de WEP, hoy obsoleto.
+- **WPA2** — estándar **IEEE 802.11i**; **AES con CCMP**, clave de 128 bits.
+- **WPA3** — **SAE** (Dragonfly) contra ataques de diccionario offline + forward secrecy; Personal con AES-128, **Enterprise con AES-GCMP-256 (192-bit)**.
+- **Cifrado por protocolo** — RC4 → WEP y WPA; TKIP → WPA; **AES-CCMP → WPA2**; **SAE/GCMP → WPA3**.
+- **IV de 24 bits** — debilidad central de WEP que causa reutilización y permite el crackeo rápido de la clave.
+- **KRACK** — Key Reinstallation Attack; explota el 4-way handshake de WPA2 forzando reutilización de nonce.
+- **Dragonblood** — vulnerabilidad que afecta a la implementación SAE de WPA3.
+- **Modos** — Personal usa **PSK**; Enterprise usa servidor **RADIUS** (WPA/WPA2/WPA3).
+- **Escalera de seguridad** — WEP → WPA → WPA2 → WPA3 (débil → el más fuerte).
+
+## OBJECTIVE 02 — WIRELESS ENCRYPTION ALGORITHMS
+
+### WHY WIRELESS ENCRYPTION EXISTS
 
 |Item|Memorize|
 |---|---|
 |Purpose|Proteger la confidencialidad e integridad de los datos inalámbricos|
 |Problem Addressed|Medio de difusión abierto|
 
-MEMORY HOOK:  
-**Wireless = everyone can hear**
+> 🧠 *Para recordar:* **Wireless = everyone can hear**
 
 ---
 
-## WIRELESS SECURITY GOALS (CEH LANGUAGE)
+### WIRELESS SECURITY GOALS
 
 |Goal|
 |---|
@@ -25,11 +59,9 @@ MEMORY HOOK:
 
 ---
 
-# WIRED EQUIVALENT PRIVACY (WEP)
+## WIRED EQUIVALENT PRIVACY (WEP)
 
----
-
-## WEP — CORE DEFINITION (VERY IMPORTANT)
+### WEP — CORE DEFINITION (HIGH YIELD)
 
 |Item|Memorize|
 |---|---|
@@ -37,7 +69,7 @@ MEMORY HOOK:
 
 ---
 
-## WEP CHARACTERISTICS
+### WEP CHARACTERISTICS
 
 |Feature|Detail|
 |---|---|
@@ -48,7 +80,7 @@ MEMORY HOOK:
 
 ---
 
-## WEP WORKING (LOGIC FLOW)
+### WEP WORKING
 
 |Step|
 |---|
@@ -59,7 +91,7 @@ MEMORY HOOK:
 
 ---
 
-## WEP WEAKNESSES (EXAM MUST)
+### WEP WEAKNESSES (HIGH YIELD)
 
 |Weakness|
 |---|
@@ -69,12 +101,11 @@ MEMORY HOOK:
 |Sin gestión de claves|
 |Fácilmente crackeable|
 
-MEMORY HOOK:  
-**WEP = Weak Encryption Protocol**
+> 🧠 *Para recordar:* **WEP = Weak Encryption Protocol**
 
 ---
 
-## WEP ATTACK RESULT
+### WEP ATTACK RESULT
 
 |Outcome|
 |---|
@@ -82,11 +113,9 @@ MEMORY HOOK:
 
 ---
 
-# WI-FI PROTECTED ACCESS (WPA)
+## WI-FI PROTECTED ACCESS (WPA)
 
----
-
-## WPA — CORE DEFINITION
+### WPA — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -94,7 +123,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA FEATURES
+### WPA FEATURES
 
 |Feature|Detail|
 |---|---|
@@ -105,7 +134,7 @@ MEMORY HOOK:
 
 ---
 
-## TEMPORAL KEY INTEGRITY PROTOCOL (TKIP)
+### TEMPORAL KEY INTEGRITY PROTOCOL (TKIP)
 
 |Item|Memorize|
 |---|---|
@@ -113,7 +142,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA MODES
+### WPA MODES
 
 |Mode|Description|
 |---|---|
@@ -122,7 +151,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA LIMITATIONS (EXAM)
+### WPA LIMITATIONS
 
 |Limitation|
 |---|
@@ -130,16 +159,13 @@ MEMORY HOOK:
 |Vulnerable a ataques|
 |Obsoleto|
 
-MEMORY HOOK:  
-**WPA = WEP with patches**
+> 🧠 *Para recordar:* **WPA = WEP with patches**
 
 ---
 
-# WI-FI PROTECTED ACCESS 2 (WPA2)
+## WI-FI PROTECTED ACCESS 2 (WPA2)
 
----
-
-## WPA2 — CORE DEFINITION
+### WPA2 — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -147,7 +173,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA2 FEATURES
+### WPA2 FEATURES
 
 |Feature|Detail|
 |---|---|
@@ -158,7 +184,7 @@ MEMORY HOOK:
 
 ---
 
-## COUNTER MODE WITH CBC-MAC PROTOCOL (CCMP)
+### COUNTER MODE WITH CBC-MAC PROTOCOL (CCMP)
 
 |Item|Memorize|
 |---|---|
@@ -166,7 +192,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA2 MODES
+### WPA2 MODES
 
 |Mode|Description|
 |---|---|
@@ -175,7 +201,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA2 WEAKNESSES (EXAM TRAPS)
+### WPA2 WEAKNESSES (HIGH YIELD)
 
 |Weakness|
 |---|
@@ -183,16 +209,13 @@ MEMORY HOOK:
 |Ataque KRACK|
 |Cracking de PSK|
 
-MEMORY HOOK:  
-**Strong crypto, weak passwords**
+> 🧠 *Para recordar:* **Strong crypto, weak passwords**
 
 ---
 
-# WI-FI PROTECTED ACCESS 3 (WPA3)
+## WI-FI PROTECTED ACCESS 3 (WPA3)
 
----
-
-## WPA3 — CORE DEFINITION
+### WPA3 — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -200,7 +223,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA3 SECURITY IMPROVEMENTS
+### WPA3 SECURITY IMPROVEMENTS
 
 |Feature|Benefit|
 |---|---|
@@ -210,38 +233,37 @@ MEMORY HOOK:
 
 ---
 
-## SIMULTANEOUS AUTHENTICATION OF EQUALS (SAE)
+### SIMULTANEOUS AUTHENTICATION OF EQUALS (SAE)
 
 |Item|Memorize|
 |---|---|
 |SAE|Autenticación basada en contraseña resistente a fuerza bruta|
 
-MEMORY HOOK:  
-**WPA3 stops offline guessing**
+> 🧠 *Para recordar:* **WPA3 stops offline guessing**
 
 ---
 
-## WPA3 MODES
+### WPA3 MODES
 
 |Mode|Description|
 |---|---|
-|WPA3-Personal|Basado en SAE|
-|WPA3-Enterprise|Cifrado de 192-bit|
+|WPA3-Personal|Basado en SAE (AES-128)|
+|WPA3-Enterprise|Cifrado de 192-bit (AES-GCMP-256)|
 
 ---
 
-# COMPARISON TABLE (VERY HIGH YIELD)
+## COMPARISON TABLE (HIGH YIELD)
 
 |Feature|WEP|WPA|WPA2|WPA3|
 |---|---|---|---|---|
 |Cipher|RC4|RC4|AES|AES|
 |Key Mgmt|Static|TKIP|CCMP|SAE|
-|Security|Débil|Medio|Fuerte|Muy Fuerto|
+|Security|Débil|Medio|Fuerte|Muy Fuerte|
 |Status|Obsoleto|Obsoleto|Común|Último|
 
 ---
 
-# EXAM FAVORITE QUESTIONS (MEMORY TRAPS)
+## EXAM FAVORITE QUESTIONS (HIGH YIELD)
 
 |Question|Correct Answer|
 |---|---|
@@ -253,19 +275,17 @@ MEMORY HOOK:
 
 ---
 
-# QUICK MEMORY LADDER
+## QUICK MEMORY LADDER
 
 |Order|
 |---|
 |WEP → WPA → WPA2 → WPA3|
 
-MEMORY HOOK:  
-**Weak → Better → Strong → Strongest**
+> 🧠 *Para recordar:* **Weak → Better → Strong → Strongest**
 
 ---
 
-
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
 
 ### WEP/WPA/WPA2/WPA3 COMPARISON TABLE
 
@@ -286,7 +306,7 @@ MEMORY HOOK:
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -306,7 +326,7 @@ MEMORY HOOK:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué protocolo de cifrado inalámbrico utiliza AES con CCMP?
 - a) WEP

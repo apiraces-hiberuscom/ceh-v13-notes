@@ -1,35 +1,70 @@
-# MODULE 02 — Footprinting and Reconnaissance
+# Módulo 02 — Footprinting and Reconnaissance
 
-|Item|Memorize|
-|---|---|
-|Module Number|02|
-|Module Name|Footprinting and Reconnaissance|
-|Focus|Recopilación de información, OSINT, DNS/WHOIS, escaneo de red, social engineering, escaneo de puertos|
+> **Enfoque:** recopilación de información sobre el objetivo: OSINT, Google operators, WHOIS/DNS, redes sociales, fundamentos TCP/IP, escaneo de puertos y social engineering.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [OBJECTIVE 01 — TCP/IP NETWORKING](#objective-01--tcpip-networking)
+- [OBJECTIVE 02 — PACKET CRAFTING TOOLS](#objective-02--packet-crafting-tools)
+- [OBJECTIVE 03 — TYPES OF RECONNAISSANCE](#objective-03--types-of-reconnaissance)
+- [OBJECTIVE 04 — GOOGLE ADVANCED SEARCH OPERATORS](#objective-04--google-advanced-search-operators)
+- [OBJECTIVE 05 — SEARCH ENGINES FOR OSINT](#objective-05--search-engines-for-osint)
+- [OBJECTIVE 06 — SUB-DOMAIN AND DNS TOOLS](#objective-06--sub-domain-and-dns-tools)
+- [OBJECTIVE 07 — COMPETITIVE INTELLIGENCE GATHERING](#objective-07--competitive-intelligence-gathering)
+- [OBJECTIVE 08 — SOCIAL NETWORK RECONNAISSANCE](#objective-08--social-network-reconnaissance)
+- [OBJECTIVE 09 — WHOIS AND DNS FOOTPRINTING](#objective-09--whois-and-dns-footprinting)
+- [PORTS AND PORT SCANNING](#ports-and-port-scanning)
+- [SOCIAL ENGINEERING (FOOTPRINTING CONTEXT)](#social-engineering-footprinting-context)
+- [AUTOMATING FOOTPRINTING TASKS](#automating-footprinting-tasks)
+- [MIB INFORMATION](#mib-information)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Passive vs Active reconnaissance** — passive: sin interacción directa (OSINT), no deja rastro; active: interactúa con el objetivo (DNS interrogation, social engineering, port scanning) y puede detectarse.
+- **TCP flags** — SYN, ACK, PSH, URG, FIN, RST; handshake SYN → SYN/ACK → ACK; FIN cierra de forma ordenada, RST fuerza el cierre.
+- **Google operators** — `site:` (dominio), `intitle:`/`allintitle:`, `inurl:`/`allinurl:`, `cache:`, `link:`, `related:`, `info:`, `location:`; `filetype:pcf` = configuraciones de Cisco VPN.
+- **Shodan, Censys, ZoomEye** — motores de búsqueda de dispositivos conectados a Internet (IoT/SCADA).
+- **theHarvester** — `-d` dominio, `-b` fuente de datos, `-l` límite de resultados; recolecta emails y subdominios.
+- **WHOIS** — Thick = información WHOIS completa; Thin = solo el nombre del servidor WHOIS del registrador.
+- **RIRs** — ARIN (Norteamérica), AFRINIC (África), APNIC (Asia-Pacífico), RIPE NCC (Europa, Oriente Medio, Asia Central), LACNIC (Latinoamérica y Caribe).
+- **DNS records** — A = IPv4, AAAA = IPv6, MX = correo, NS = name server, CNAME = alias, SOA = autoridad de la zona, PTR = búsqueda inversa, HINFO = hardware/SO, TXT = SPF/DKIM.
+- **Port ranges** — well-known 0–1023, registered 1024–49151, dynamic/private 49152–65535; DNS usa 53 TCP y UDP, DHCP 67 UDP.
+- **Full connect vs SYN scan** — connect completa el handshake (el más fiable y el más detectable); SYN = half-open/stealth y es el scan por defecto de Nmap con privilegios.
+- **XMAS scan / ACK flag probe** — XMAS = FIN + URG + PSH (abierto = sin respuesta, cerrado = RST; no funciona contra Windows); ACK probe: abierto si el RST trae TTL < 64 o Window > 0, y RST de vuelta = sin firewall.
+- **Orden del footprinting** — passive primero → OSINT → WHOIS/DNS → port scanning → social engineering → automatizar (Maltego, Recon-ng, FOCA).
 
 ---
 
-## LEARNING OBJECTIVES (DO NOT SKIP — EXAM LIST)
+## Objetivos de aprendizaje
 
 |Objective #|Description|
 |---|---|
 |01|Comprender los fundamentos de redes TCP/IP|
-|02|Aprender herramientas y técnicas de creación de paquetes|
-|03|Identificar tipos de reconnaissance (pasiva vs activa)|
-|04|Usar operadores de búsqueda avanzada de Google para footprinting|
+|02|Aprender herramientas y técnicas de packet crafting (creación de paquetes)|
+|03|Identificar tipos de reconnaissance (passive vs active)|
+|04|Usar los Google advanced search operators para footprinting|
 |05|Explorar motores de búsqueda para OSINT|
 |06|Enumerar subdominios y registros DNS|
-|07|Realizar recopilación de inteligencia competitiva|
-|08|Conductar reconnaissance en redes sociales|
+|07|Realizar competitive intelligence gathering (inteligencia competitiva)|
+|08|Realizar reconnaissance en redes sociales|
 |09|Realizar footprinting WHOIS y DNS|
 |10|Comprender técnicas de escaneo de puertos y Nmap|
 
 ---
 
-# OBJECTIVE 01 — TCP/IP NETWORKING
+## OBJECTIVE 01 — TCP/IP NETWORKING
 
----
-
-## TCP FLAGS (CRITICAL — MEMORIZE FOR EXAM)
+### TCP FLAGS (HIGH YIELD)
 
 |Flag|Full Name|Purpose|
 |---|---|---|
@@ -38,71 +73,65 @@
 |RST|Reset|Fuerza la terminación de la conexión en ambas direcciones|
 |FIN|Finish|Cierra las comunicaciones de forma ordenada|
 |URG|Urgent|Indica que se están enviando datos fuera de banda (por ejemplo, cancelando un mensaje en medio del flujo)|
+|PSH|Push|Fuerza el envío inmediato de los datos del buffer a la aplicación|
 
-[Imagen disponible en Obsidian: TCP segment structure]
+> 🧠 *Para recordar:* **SYN → SYN/ACK → ACK → FIN/RST** (three-way handshake + teardown)
 
-[Imagen disponible en Obsidian: Three-way handshake]
-
-MEMORY HOOK:
-**SYN → SYN/ACK → ACK → FIN/RST** (three-way handshake + teardown)
-
-EXAM TRAP:
-El número de secuencia SYN es aleatorio e incrementa con cada paquete enviado — muchos intentos de ataque intentan adivinar este número.
+> ⚠️ *Trampa de examen:* El número de secuencia SYN es aleatorio e incrementa con cada paquete enviado — muchos ataques intentan adivinar este número.
 
 ---
 
-## UDP — KEY PROTOCOLS
+### UDP — KEY PROTOCOLS
 
 |Item|Memorize|
 |---|---|
-|Nature|Connectionless|
-|Most used protocols|TFTP, DNS, DHCP|
+|Naturaleza|Connectionless (sin conexión)|
+|Protocolos más usados|TFTP, DNS, DHCP|
 
-EXAM TRAP:
-UDP es connectionless — no hay handshake, no hay entrega garantizada.
+> ⚠️ *Trampa de examen:* UDP es connectionless — no hay handshake, no hay entrega garantizada.
 
 ---
 
-## TCP/UDP COMPARISON
+### TCP/UDP COMPARISON
 
 |Feature|TCP|UDP|
 |---|---|---|
-|Connection|Connection-oriented|Connectionless|
-|Reliability|Garantía de entrega|Sin garantía|
-|Speed|Más lento|Más rápido|
+|Conexión|Connection-oriented|Connectionless|
+|Fiabilidad|Garantía de entrega|Sin garantía|
+|Velocidad|Más lento|Más rápido|
 |Handshake|Sí (three-way)|No|
 
 ---
 
-## NETWORKING CONCEPTS
+### NETWORKING CONCEPTS
 
 |Item|Memorize|
 |---|---|
 |Switched networks|Reduce el número de tramas recibidas que no están dirigidas a tu sistema|
 |IPv4 addressing|Unicast, multicast, broadcast|
-|ICMP|Internet Control Message Protocol (Capa de red)|
+|ICMP|Internet Control Message Protocol (network layer, capa 3)|
 
 ---
 
-## ICMP MESSAGE CODES
+### ICMP MESSAGE CODES
 
-|Code|Type|
+|Type/Code|Mensaje|
 |---|---|
 |0|Echo Reply|
-|3|Destino inalcanzable|
-|3/0|Red de destino inalcanzable|
-|3/1|Host de destino inalcanzable|
-|3/6|Red desconocida|
-|3/9|Red administrativamente prohibida|
-|3/13|Comunicación administrativamente prohibida|
-|4|Source quench|
+|3|Destination Unreachable — destino inalcanzable|
+|3/0|Destination Network Unreachable — red de destino inalcanzable|
+|3/1|Destination Host Unreachable — host de destino inalcanzable|
+|3/6|Destination Network Unknown — red de destino desconocida|
+|3/9|Network Administratively Prohibited — red administrativamente prohibida|
+|3/13|Communication Administratively Prohibited — comunicación administrativamente prohibida|
+|4|Source Quench|
 |5|Redirect|
-|8|Echo request|
-|11|Tiempo excedido|
+|8|Echo Request|
+|11|Time Exceeded — tiempo excedido|
 
 ---
 
-# OBJECTIVE 02 — PACKET CRAFTING TOOLS
+## OBJECTIVE 02 — PACKET CRAFTING TOOLS
 
 |Tool|Description|
 |---|---|
@@ -118,19 +147,18 @@ IANA mantiene el Service Name/Transport Protocol Port Number Registry — la lis
 
 ---
 
-# OBJECTIVE 03 — TYPES OF RECONNAISSANCE
+## OBJECTIVE 03 — TYPES OF RECONNAISSANCE
 
 |Type|Interaction|Examples|
 |---|---|---|
 |Passive|Sin interacción directa|OSINT, bases de datos, intercambio de inteligencia|
-|Active|Interacción directa con el objetivo|Interrogación DNS, social engineering, escaneo de puertos|
+|Active|Interacción directa con el objetivo|DNS interrogation, social engineering, port scanning|
 
-EXAM TRAP:
-La reconnaissance pasiva no deja **ninguna pista** en el objetivo. La reconnaissance activa puede ser **detectada**.
+> ⚠️ *Trampa de examen:* La passive reconnaissance no deja **ningún rastro** en el objetivo. La active reconnaissance puede ser **detectada**.
 
 ---
 
-# OBJECTIVE 04 — GOOGLE ADVANCED SEARCH OPERATORS
+## OBJECTIVE 04 — GOOGLE ADVANCED SEARCH OPERATORS
 
 |Search Operator|Purpose|
 |---|---|
@@ -145,14 +173,13 @@ La reconnaissance pasiva no deja **ninguna pista** en el objetivo. La reconnaiss
 |inurl:|Documentos que contengan la palabra clave en la URL|
 |location:|Buscar información para una ubicación específica|
 
-MEMORY HOOK:
-**site:domain.com intitle:keyword** — la combinación más común en preguntas de examen.
+> 🧠 *Para recordar:* **site:domain.com intitle:keyword** — la combinación más común en preguntas de examen.
 
 ---
 
-# OBJECTIVE 05 — SEARCH ENGINES FOR OSINT
+## OBJECTIVE 05 — SEARCH ENGINES FOR OSINT
 
-## META SEARCH ENGINES
+### META SEARCH ENGINES
 
 |Tool|Description|
 |---|---|
@@ -160,7 +187,7 @@ MEMORY HOOK:
 |Metager|Agregación de metabúsqueda|
 |etools.ch|Búsqueda multi-motor|
 
-## FTP SEARCH ENGINES
+### FTP SEARCH ENGINES
 
 |Tool|URL/Description|
 |---|---|
@@ -169,7 +196,7 @@ MEMORY HOOK:
 |Mamont|Búsqueda FTP|
 |globalfilesearch.com|Búsqueda FTP global|
 
-## SCADA / IoT SEARCH ENGINES
+### SCADA / IoT SEARCH ENGINES
 
 |Tool|Description|
 |---|---|
@@ -177,12 +204,11 @@ MEMORY HOOK:
 |Censys|Escaneo y búsqueda en toda la Internet|
 |ZoomEye|Motor de búsqueda de ciberespacio|
 
-EXAM TRAP:
-Shodan, Censys y ZoomEye están diseñados específicamente para el **descubrimiento de dispositivos SCADA/IoT**.
+> ⚠️ *Trampa de examen:* Shodan, Censys y ZoomEye están diseñados específicamente para el **descubrimiento de dispositivos SCADA/IoT**.
 
 ---
 
-# OBJECTIVE 06 — SUB-DOMAIN AND DNS TOOLS
+## OBJECTIVE 06 — SUB-DOMAIN AND DNS TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -194,7 +220,7 @@ Shodan, Censys y ZoomEye están diseñados específicamente para el **descubrimi
 
 ---
 
-# OBJECTIVE 07 — COMPETITIVE INTELLIGENCE GATHERING
+## OBJECTIVE 07 — COMPETITIVE INTELLIGENCE GATHERING
 
 |Tool/Database|Description|
 |---|---|
@@ -204,7 +230,7 @@ Shodan, Censys y ZoomEye están diseñados específicamente para el **descubrimi
 |BusinessWire|Comunicados de prensa y noticias|
 |Factiva|Información de noticias y negocios|
 |MarketWatch|Datos de mercados financieros|
-|The Wall Street Transcript|Transcripciones de ganancias corporativas|
+|The Wall Street Transcript|Transcripciones de presentaciones de resultados (earnings) de empresas|
 |Euromonitor|Investigación de mercados internacionales|
 |Experian|Datos de crédito y empresariales|
 |The Search Monitor|Monitoreo de marcas y publicidad|
@@ -215,7 +241,7 @@ Shodan, Censys y ZoomEye están diseñados específicamente para el **descubrimi
 
 ---
 
-# OBJECTIVE 08 — SOCIAL NETWORK RECONNAISSANCE
+## OBJECTIVE 08 — SOCIAL NETWORK RECONNAISSANCE
 
 |Tool|Purpose|
 |---|---|
@@ -224,7 +250,7 @@ Shodan, Censys y ZoomEye están diseñados específicamente para el **descubrimi
 |Sherlock|Enumeración de nombres de usuario en redes sociales|
 |Social Searcher|Búsqueda de personas en redes sociales|
 
-## THEHARVESTER COMMAND EXAMPLES
+### THEHARVESTER COMMAND EXAMPLES
 
 ```bash
 theharvester -d microsoft -l 200 -b linkedin
@@ -236,12 +262,11 @@ theharvester -d microsoft -l 200 -b linkedin
 |-b|Especifica la fuente de datos (por ejemplo, linkedin)|
 |-l|Limita los resultados (por ejemplo, -l 200 = 200 resultados)|
 
-EXAM TRAP:
-**-d** es dominio, **-b** es fuente de datos, **-l** es límite de resultados. No confundas estos flags.
+> ⚠️ *Trampa de examen:* **-d** es dominio, **-b** es fuente de datos, **-l** es límite de resultados. No confundas estos flags.
 
 ---
 
-## PUBLIC SOURCE CODE REPOSITORIES
+### PUBLIC SOURCE CODE REPOSITORIES
 
 |Tool|Description|
 |---|---|
@@ -249,11 +274,9 @@ EXAM TRAP:
 
 ---
 
-# OBJECTIVE 09 — WHOIS AND DNS FOOTPRINTING
+## OBJECTIVE 09 — WHOIS AND DNS FOOTPRINTING
 
----
-
-## WHOIS — DEFINITION
+### WHOIS — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -261,7 +284,7 @@ EXAM TRAP:
 
 ---
 
-## TYPES OF WHOIS
+### TYPES OF WHOIS
 
 |Type|Description|
 |---|---|
@@ -269,30 +292,27 @@ EXAM TRAP:
 |Thin WHOIS|Almacena solo el nombre del servidor WHOIS|
 |Decentralized WHOIS|Información completa gestionada por entidades independientes|
 
-MEMORY HOOK:
-**Thick = completa, Thin = solo nombre del servidor**
+> 🧠 *Para recordar:* **Thick = completa, Thin = solo nombre del servidor**
 
-EXAM TRAP:
-El WHOIS descentralizado significa que cada registrador gestiona sus propios registros de forma independiente.
+> ⚠️ *Trampa de examen:* El WHOIS descentralizado significa que cada registrador gestiona sus propios registros de forma independiente.
 
 ---
 
-## REGIONAL INTERNET REGISTRIES (RIRs)
+### REGIONAL INTERNET REGISTRIES (RIRs)
 
 |Registry|Region|
 |---|---|
 |ARIN|Américas (Norteamérica)|
 |AFRINIC|África|
-|APNIC|Centro de Información de Redes de Asia-Pacífico|
-|RIPE|Europa, Medio Oriente, Asia Central|
+|APNIC|Asia-Pacific Network Information Centre — Asia-Pacífico|
+|RIPE|Europa, Oriente Medio, Asia Central|
 |LACNIC|América Latina y el Caribe|
 
-MEMORY HOOK:
-**ARIN → Américas, AFRINIC → África, APNIC → Asia, RIPE → Europa, LACNIC → América Latina**
+> 🧠 *Para recordar:* **ARIN → Américas, AFRINIC → África, APNIC → Asia, RIPE → Europa, LACNIC → América Latina**
 
 ---
 
-## GEOLOCATION
+### GEOLOCATION
 
 |Tool|Description|
 |---|---|
@@ -300,7 +320,7 @@ MEMORY HOOK:
 
 ---
 
-## DNS RECORD TYPES (HIGH YIELD)
+### DNS RECORD TYPES (HIGH YIELD)
 
 |Record Type|Label|Description|
 |---|---|---|
@@ -316,12 +336,11 @@ MEMORY HOOK:
 |HINFO|Host information|Almacena el tipo de hardware y el sistema operativo|
 |TXT|Text record|Almacena datos de texto para DKIM y SPF|
 
-MEMORY HOOK:
-**A = IPv4, AAAA = IPv6, MX = correo, NS = nameserver, PTR = inverso**
+> 🧠 *Para recordar:* **A = IPv4, AAAA = IPv6, MX = correo, NS = nameserver, PTR = inverso**
 
 ---
 
-## DNS ENUMERATION TOOLS
+### DNS ENUMERATION TOOLS
 
 |Tool|Description|
 |---|---|
@@ -331,21 +350,19 @@ MEMORY HOOK:
 
 ---
 
-# PORTS AND PORT SCANNING
+## PORTS AND PORT SCANNING
 
----
-
-## PORT RANGES
+### PORT RANGES
 
 |Range|Type|
 |---|---|
-|0–1023|Puertos conocidos|
-|1024–49151|Puertos registrados|
-|49152–65535|Puertos dinámicos/privados|
+|0–1023|Well-known ports — puertos conocidos|
+|1024–49151|Registered ports — puertos registrados|
+|49152–65535|Dynamic/private ports — puertos dinámicos/privados|
 
 ---
 
-## IMPORTANT PORT NUMBERS (MEMORIZE)
+### IMPORTANT PORT NUMBERS (HIGH YIELD)
 
 |Port Number|Protocol|Transport|
 |---|---|---|
@@ -357,28 +374,26 @@ MEMORY HOOK:
 |67|DHCP|UDP|
 |69|TFTP|UDP|
 |80|HTTP|TCP|
-|88|Kerberos|TCP|
+|88|Kerberos|TCP/UDP|
 |110|POP3|TCP|
 |123|NTP|UDP|
 |135|MS RPC|TCP|
 |137–139|NetBIOS|TCP/UDP|
 |143|IMAP|TCP|
 |161/162|SNMP|UDP|
-|178|RTSP|TCP/UDP|
 |389|LDAP|TCP/UDP|
 |443|HTTPS|TCP|
 |445|SMB|TCP|
 |514|Syslog|UDP/TCP|
+|554|RTSP|TCP/UDP|
 
-MEMORY HOOK:
-**21=FTP, 22=SSH, 23=Telnet, 25=SMTP, 53=DNS, 80=HTTP, 443=HTTPS** — los primeros 7 son favoritos de examen.
+> 🧠 *Para recordar:* **21=FTP, 22=SSH, 23=Telnet, 25=SMTP, 53=DNS, 80=HTTP, 443=HTTPS** — estos 7 son los favoritos del examen.
 
-EXAM TRAP:
-DNS usa **tanto TCP como UDP** en el puerto 53. DHCP usa **UDP** en el puerto 67.
+> ⚠️ *Trampa de examen:* DNS usa **tanto TCP como UDP** en el puerto 53. DHCP usa **UDP** en el puerto 67.
 
 ---
 
-## PORT STATES
+### PORT STATES
 
 |State|Meaning|
 |---|---|
@@ -387,7 +402,7 @@ DNS usa **tanto TCP como UDP** en el puerto 53. DHCP usa **UDP** en el puerto 67
 
 ---
 
-## NETSTAT COMMANDS
+### NETSTAT COMMANDS
 
 |Command|Description|
 |---|---|
@@ -396,38 +411,36 @@ DNS usa **tanto TCP como UDP** en el puerto 53. DHCP usa **UDP** en el puerto 67
 
 ---
 
-## PORT SCANNING TECHNIQUES (VERY HIGH YIELD)
+### PORT SCANNING TECHNIQUES (HIGH YIELD)
 
 |Scan Type|Description|Detection Difficulty|
 |---|---|---|
 |Full connect|TCP connect / full open scan — completa el three-way handshake, termina con RST. Los puertos abiertos responden con SYN/ACK, los cerrados con RST|El más fácil de detectar, el más confiable|
 |Stealth (SYN scan)|Half-open scan — solo envía paquetes SYN. No se establece una conexión completa|Menos notorio|
 |Inverse TCP flag|Usa flags FIN, URG o PSH. Abiertos = sin respuesta, cerrados = RST/ACK|Medio|
-|Christmas scan (XMAS)|Todos los flags activados. Misma respuesta que el inverse TCP scan. No funciona contra máquinas Microsoft|Medio|
+|Christmas scan (XMAS)|Flags FIN, URG y PSH activados. Misma respuesta que el inverse TCP scan. No funciona contra máquinas Microsoft|Medio|
 |ACK flag probe|Envía ACK, verifica TTL (si RST < 64 = abierto) o Window size (si > 0 = abierto). También puede detectar firewalls (RST de vuelta = sin firewall)|Medio|
-|IDLE scan|Suplanta una dirección IP, requiere una máquina idle|Difícil de rastrear|
+|IDLE scan|Suplanta una dirección IP, requiere una máquina idle (zombie)|Difícil de rastrear|
 
-MEMORY HOOK:
-**Full connect = confiable pero ruidoso, SYN = sigiloso, XMAS = todos los flags activados pero falla en Windows**
+> 🧠 *Para recordar:* **Full connect = fiable pero ruidoso, SYN = sigiloso, XMAS = FIN+URG+PSH pero falla en Windows**
 
-EXAM TRAP:
-El Christmas scan **NO** funciona contra máquinas **Microsoft**.
+> ⚠️ *Trampa de examen:* El Christmas scan **NO** funciona contra máquinas **Microsoft**.
 
 ---
 
-## PING SWEEP
+### PING SWEEP
 
 |Item|Memorize|
 |---|---|
-|Purpose|Encontrar máquinas activas en una red|
-|Noise level|Muy ruidoso|
+|Propósito|Encontrar máquinas activas en una red|
+|Nivel de ruido|Muy ruidoso|
 
-### PING SWEEP TOOLS
+#### PING SWEEP TOOLS
 
 |Tool|
 |---|
 |Angry IP Scanner|
-|SolarWinds Engineers Toolset|
+|SolarWinds Engineer's Toolset|
 |Network Ping|
 |OpUtils|
 |Superscan|
@@ -436,49 +449,48 @@ El Christmas scan **NO** funciona contra máquinas **Microsoft**.
 
 ---
 
-## ARP
+### ARP
 
 |Item|Memorize|
 |---|---|
-|Purpose|Asocia dirección IP con dirección MAC en la red local|
+|Propósito|Asocia dirección IP con dirección MAC en la red local|
 |ARP scan (Nmap)|nmap -sn -PR 192.168.1.69|
 
 ---
 
-## ADDITIONAL SCANNING TOOLS
+### ADDITIONAL SCANNING TOOLS
 
 |Tool|Description|
 |---|---|
 |Nmap|El tipo de escaneo por defecto es el SYN scan|
 |NetScanTools|Suite de utilidades de red|
-|Hping3|Creación de paquetes y escaneo de red|
+|Hping3|Packet crafting y escaneo de red|
 
-EXAM TRAP:
-Nmap sin opciones ejecuta un **SYN scan** por defecto.
+> ⚠️ *Trampa de examen:* Nmap sin opciones ejecuta un **SYN scan** por defecto (si se ejecuta con privilegios root/administrador; sin privilegios usa TCP connect, `-sT`).
 
 ---
 
-## NMAP THROUGH TOR
+### NMAP THROUGH TOR
 
 |Item|Memorize|
 |---|---|
-|Use case|Anonimizar el tráfico de escaneo|
-|Note|Los port scanners funcionan manipulando los flags TCP para identificar hosts activos y escanear puertos|
+|Caso de uso|Anonimizar el tráfico de escaneo|
+|Nota|Los port scanners funcionan manipulando los flags TCP para identificar hosts activos y escanear puertos|
 
 ---
 
-# SOCIAL ENGINEERING (FOOTPRINTING CONTEXT)
+## SOCIAL ENGINEERING (FOOTPRINTING CONTEXT)
 
 |Technique|Description|
 |---|---|
 |Eavesdropping|Escuchar conversaciones|
-|Shoulder surfing|Observar al objetivo secretamente|
+|Shoulder surfing|Observar en secreto al objetivo (pantalla, teclado) por encima del hombro|
 |Dumpster diving|Buscar en materiales descartados|
 |Impersonation|Hacerse pasar por una persona legítima o autorizada|
 
 ---
 
-# AUTOMATING FOOTPRINTING TASKS
+## AUTOMATING FOOTPRINTING TASKS
 
 |Tool|Description|
 |---|---|
@@ -486,13 +498,13 @@ Nmap sin opciones ejecuta un **SYN scan** por defecto.
 |Recon-ng|Web reconnaissance framework, open-source|
 |FOCA|Encontrar metadatos e información oculta en documentos escaneados|
 |subfinder|Descubrimiento de subdominios|
-|OSINT Framework|Herramientas OSINT agregadas|
+|OSINT Framework|Colección de herramientas OSINT agrupadas por categoría|
 |Recon-dog|Usa APIs para recopilar información sobre el sistema objetivo|
 |BillCipher|DNS lookup, WHOIS, escaneo de puertos, transferencia de zona y más|
 
 ---
 
-# MIB INFORMATION
+## MIB INFORMATION
 
 |Item|Memorize|
 |---|---|
@@ -500,33 +512,17 @@ Nmap sin opciones ejecuta un **SYN scan** por defecto.
 
 ---
 
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
 
-### ZOOMINFO
-
-|Item|Memorize|
+|Concepto|Qué recordar|
 |---|---|
-|Zoominfo|Obtener información sobre empresas, CEOs, CTOs, etc.|
+|ZoomInfo|Obtener información sobre empresas, CEOs, CTOs, etc.|
+|Cisco VPN file type|PCF — usar el Google dork `filetype:pcf`|
+|RIPE NCC|Regional Internet Registry (RIR) de Europa|
 
 ---
 
-### CISCO VPN FILETYPE
-
-|Item|Memorize|
-|---|---|
-|Cisco VPN file type|PCF — usar Google dork `filetype:pcf`|
-
----
-
-### RIPE NCC
-
-|Item|Memorize|
-|---|---|
-|RIPE NCC|Registro regional de Internet de Europa (RIR)|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 |Term|Definition|
 |---|---|
@@ -540,7 +536,7 @@ Nmap sin opciones ejecuta un **SYN scan** por defecto.
 |SOA record|Start of Authority — define la autoridad para una zona DNS|
 |PTR record|Pointer record — búsqueda DNS inversa (IP a hostname)|
 |SYN scan|Escaneo de puertos half-open — envía SYN, analiza la respuesta sin completar el handshake|
-|Christmas scan|Escaneo XMAS — todos los flags TCP establecidos; no funciona en sistemas Microsoft|
+|Christmas scan|Escaneo XMAS — flags FIN, URG y PSH activados; no funciona en sistemas Microsoft|
 |Full connect scan|Completa el three-way handshake en cada puerto; más confiable pero más detectable|
 |ACK probe|Envía paquete ACK, verifica TTL o Window size para determinar el estado del puerto y la presencia de firewall|
 |Shodan|Motor de búsqueda para dispositivos conectados a Internet (SCADA/IoT)|
@@ -548,7 +544,7 @@ Nmap sin opciones ejecuta un **SYN scan** por defecto.
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 |Q#|Question|Answer|
 |---|---|---|
@@ -557,8 +553,3 @@ Nmap sin opciones ejecuta un **SYN scan** por defecto.
 |3|¿Cuál es la diferencia entre un SYN scan y un full connect scan?|SYN scan envía solo SYN (half-open, sigiloso); Full connect completa el three-way handshake (confiable, detectable)|
 |4|Nombra tres motores de búsqueda SCADA/IoT y su propósito.|Shodan, Censys, ZoomEye — todos diseñados para descubrir dispositivos conectados a Internet y sistemas SCADA|
 |5|¿Qué tipo de registro DNS se usa para búsquedas inversas y qué asocia?|Registro PTR — asocia una dirección IP de vuelta a un hostname (inverso del registro A)|
-
----
-
-MEMORY BLOCK (OVERALL):
-**Footprinting = pasivo primero → recopilar OSINT → WHOIS/DNS → escanear puertos → social engineering → automatizar con herramientas**

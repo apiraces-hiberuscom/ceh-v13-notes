@@ -1,27 +1,68 @@
-# MODULE 11 — SESSION HIJACKING (CONTEXTO DEL EXAMEN)
+# Módulo 11 — Session Hijacking
 
-|Item|Memorize|
-|---|---|
-|Número de Módulo|11|
-|Nombre del Módulo|Session Hijacking|
-|Enfoque|Conceptos de session hijacking, fases, ataques a nivel de aplicación/red, herramientas, contramedidas|
+> **Enfoque:** Conceptos de session hijacking, fases, ataques a nivel de aplicación y de red, herramientas, detección y contramedidas
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [SESSION HIJACKING CONCEPTS](#session-hijacking-concepts)
+- [SESSION HIJACKING PHASES](#session-hijacking-phases)
+- [PASSIVE vs ACTIVE HIJACKING](#passive-vs-active-hijacking)
+- [SPOOFING vs HIJACKING](#spoofing-vs-hijacking)
+- [APPLICATION LEVEL SESSION HIJACKING](#application-level-session-hijacking)
+- [MAN-IN-THE-MIDDLE (MITM) — SPLIT TCP CONNECTIONS](#man-in-the-middle-mitm--split-tcp-connections)
+- [MAN IN THE BROWSER (MITB)](#man-in-the-browser-mitb)
+- [CLIENT-SIDE SESSION ATTACKS](#client-side-session-attacks)
+- [ATTACK COMPARISON TABLE (ALL ATTACKS)](#attack-comparison-table-all-attacks)
+- [NETWORK LEVEL SESSION HIJACKING](#network-level-session-hijacking)
+- [NETWORK ATTACK CLASSIFICATION](#network-attack-classification)
+- [NETWORK ATTACK COMPARISON TABLE](#network-attack-comparison-table)
+- [SESSION HIJACKING TOOLS](#session-hijacking-tools)
+- [SESSION HIJACK DETECTION](#session-hijack-detection)
+- [PREVENTING SESSION HIJACKING](#preventing-session-hijacking)
+- [PREVENTING MAN-IN-THE-MIDDLE](#preventing-man-in-the-middle)
+- [IPsec](#ipsec)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Session hijacking** — tomar el control de una sesión TCP válida ya establecida robando o prediciendo el session ID (la autenticación solo ocurre al inicio de la sesión)
+- **Session hijacking phases** — Tracking the connection → Desynchronizing the connection → Injecting attacker packet
+- **Next Sequence Number (NSN)** — dato necesario para el análisis de paquetes de un session hijacking local
+- **Passive vs Active hijacking** — passive: solo observa y registra tráfico (sniffing de cookies, bajo riesgo de detección); active: interviene en la conexión y toma la sesión (MITM)
+- **Spoofing vs Hijacking** — spoofing inicia una sesión NUEVA con credenciales robadas; hijacking toma una sesión YA activa
+- **XSS vs CSRF** — XSS roba cookies con `document.cookie` (se mitiga con la flag HttpOnly); CSRF = one-click attack / session riding (anti-CSRF tokens, cookies SameSite)
+- **Session fixation** — el atacante fija el session ID antes de que la víctima inicie sesión; defensa: regenerar el session ID tras el login
+- **CRIME vs Forbidden attack** — CRIME: canal lateral por compresión TLS (deshabilitar la compresión); Forbidden: reutilización de nonce en AES-GCM durante el TLS handshake
+- **Man-in-the-Browser (MITB)** — un troyano modifica valores del DOM: el servidor recibe la transacción modificada y el usuario ve los datos originales
+- **RST vs Blind hijacking** — RST: paquete falsificado con flag RST y ACK correcto que corta la sesión (Colasoft Packet Builder, tcpdump); blind: inyecta sin ver respuestas prediciendo números de secuencia
+- **PetitPotam** — abusa de MS-EFSRPC para forzar al DC a autenticarse y hace NTLM relay a AD CS para obtener admin
+- **Contramedidas** — HSTS fuerza HTTPS (evita downgrade); Token Binding vincula los tokens a la conexión TLS; IPsec Transport cifra solo el payload, Tunnel el paquete completo
 
 ---
 
-## OBJETIVOS DE APRENDIZAJE (NO SALTAR — LISTA DEL EXAMEN)
+## Objetivos de aprendizaje
 
 |Objetivo #|Descripción|
 |---|---|
 |01|Comprender los conceptos de session hijacking y por qué tiene éxito|
 |02|Identificar las fases del session hijacking|
-|03|Explicar hijacking pasivo vs activo y spoofing vs hijacking|
+|03|Explicar passive vs active hijacking y spoofing vs hijacking|
 |04|Demostrar técnicas de session hijacking a nivel de aplicación|
 |05|Explicar técnicas de session hijacking a nivel de red|
 |06|Identificar herramientas y contramedidas de session hijacking|
 
 ---
 
-# CONCEPTOS DE SESSION HIJACKING
+## SESSION HIJACKING CONCEPTS
 
 |Item|Memorize|
 |---|---|
@@ -31,38 +72,36 @@
 
 ---
 
-## POR QUÉ EL SESSION HIJACKING TIENE ÉXITO
+### WHY SESSION HIJACKING IS SUCCESSFUL
 
 |Motivo|Detalle|
 |---|---|
-|Sin bloqueo de cuenta|Los session IDs inválidos no son rechazados|
-|Generación débil de session ID|Session IDs pequeños o algoritmos débiles|
-|Manejo inseguro de session IDs|Session IDs transmitidos o almacenados de forma insegura|
-|Tiempo de sesión indefinido|Las sesiones nunca expiran|
-|Vulnerabilidad de TCP/IP|La mayoría de las computadoras que usan TCP/IP son vulnerables|
-|Ausencia de cifrado|La mayoría de las contramedidas fallan sin cifrado|
+|No account lockout — sin bloqueo de cuenta|Los session IDs inválidos no son rechazados|
+|Weak session-ID generation — generación débil de session IDs|Session IDs pequeños o algoritmos débiles|
+|Insecure handling of session IDs — manejo inseguro|Session IDs transmitidos o almacenados de forma insegura|
+|Indefinite session timeout — sesiones sin expiración|Las sesiones nunca expiran|
+|TCP/IP vulnerability — vulnerabilidad de TCP/IP|La mayoría de las computadoras que usan TCP/IP son vulnerables|
+|Encryption absence — ausencia de cifrado|La mayoría de las contramedidas fallan sin cifrado|
 
-MEMORY HOOK:
-**Sin bloqueo + ID débil + sin tiempo de expiración + sin cifrado = hijacking exitoso**
+> 🧠 *Para recordar:* **Sin bloqueo + ID débil + sin tiempo de expiración + sin cifrado = hijacking exitoso**
 
 ---
 
-# FASES DEL SESSION HIJACKING
+## SESSION HIJACKING PHASES
 
 |Fase|Acción|Herramientas / Detalle|
 |---|---|---|
-|1. Seguimiento de la conexión|Sniffear tráfico de la víctima, identificar objetivo|Sniffer, Nmap (números de secuencia TCP predecibles)|
-|2. Desincronización de la conexión|Cambiar números SEQ/ACK del servidor|Enviar datos nulos o bandera RST para desincronizar|
-|3. Inyección del paquete del atacante|Insertar datos en la red o actuar como MITM|Paquetes fabricados con número de secuencia predicho|
+|1. Tracking the connection — seguimiento de la conexión|Sniffear tráfico de la víctima, identificar objetivo|Sniffer, Nmap (números de secuencia TCP predecibles)|
+|2. Desynchronizing the connection — desincronización de la conexión|Cambiar números SEQ/ACK del servidor|Enviar datos nulos o bandera RST para desincronizar|
+|3. Injecting attacker packet — inyección del paquete del atacante|Insertar datos en la red o actuar como MITM|Paquetes fabricados con número de secuencia predicho|
 
-EXAM TRAP:
-El análisis de paquetes de session hijacking local requiere conocer el **Next Sequence Number (NSN)**.
+> ⚠️ *Trampa de examen:* El análisis de paquetes de session hijacking local requiere conocer el **Next Sequence Number (NSN)**.
 
 ---
 
-# HIJACKING PASIVO vs ACTIVO
+## PASSIVE vs ACTIVE HIJACKING
 
-|Característica|Hijacking Pasivo|Hijacking Activo|
+|Característica|Passive Hijacking|Active Hijacking|
 |---|---|---|
 |Actividad del atacante|Solo observar y registrar tráfico|Romper activamente la conexión o participar|
 |Datos capturados|Session IDs y contraseñas|Control completo de la sesión|
@@ -70,12 +109,11 @@ El análisis de paquetes de session hijacking local requiere conocer el **Next S
 |Riesgo de detección|Bajo|Alto|
 |Adivinanza de números de secuencia|No requerida|A menudo requerida (la generación aleatoria limita el éxito)|
 
-MEMORY HOOK:
-**Pasivo = observar, Activo = actuar**
+> 🧠 *Para recordar:* **Passive = observar, Active = actuar**
 
 ---
 
-# SPOOFING vs HIJACKING
+## SPOOFING vs HIJACKING
 
 |Característica|Spoofing|Hijacking|
 |---|---|---|
@@ -83,26 +121,23 @@ MEMORY HOOK:
 |Estado de sesión|Inicia una nueva sesión usando credenciales robadas|Depende de que el usuario ya haya establecido la conexión|
 |Diferencia clave|Robo de identidad|Robo de sesión|
 
-MEMORY HOOK:
-**Spoofing = nueva sesión, Hijacking = sesión existente**
+> 🧠 *Para recordar:* **Spoofing = nueva sesión, Hijacking = sesión existente**
 
 ---
 
-# SESSION HIJACKING A NIVEL DE APLICACIÓN
+## APPLICATION LEVEL SESSION HIJACKING
 
----
-
-## ROBO DE SESSION IDS
+### STEALING SESSION IDS
 
 |Técnica|Descripción|
 |---|---|
-|Stealing|Usar diferentes técnicas (XSS, sniffing, malware) para robar session IDs|
-|Guessing|Intentar adivinar el session ID observando variables de sesión|
-|Brute forcing|Probar todas las permutaciones posibles del session ID|
+|Stealing (robo)|Usar diferentes técnicas (XSS, sniffing, malware) para robar session IDs|
+|Guessing (adivinación)|Intentar adivinar el session ID observando variables de sesión|
+|Brute forcing (fuerza bruta)|Probar todas las permutaciones posibles del session ID|
 
 ---
 
-## SESSION SNIFFING
+### SESSION SNIFFING
 
 |Item|Memorize|
 |---|---|
@@ -111,7 +146,7 @@ MEMORY HOOK:
 
 ---
 
-## PREDICCIÓN DE TOKENS DE SESIÓN
+### PREDICTING SESSION TOKENS
 
 |Debilidad|Detalle|
 |---|---|
@@ -123,7 +158,7 @@ MEMORY HOOK:
 
 ---
 
-# MAN-IN-THE-MIDDLE (MITM) — CONEXIONES TCP DIVIDIDAS
+## MAN-IN-THE-MIDDLE (MITM) — SPLIT TCP CONNECTIONS
 
 |Item|Memorize|
 |---|---|
@@ -133,12 +168,11 @@ MEMORY HOOK:
 |Capacidad|El atacante puede modificar e insertar en la comunicación interceptada|
 |Objetivo HTTP|La conexión TCP se convierte en el objetivo de la transacción HTTP|
 
-MEMORY HOOK:
-**MITM divide la tubería: Cliente ↔ Atacante ↔ Servidor**
+> 🧠 *Para recordar:* **MITM divide la tubería: Cliente ↔ Atacante ↔ Servidor**
 
 ---
 
-# MAN IN THE BROWSER (MITB)
+## MAN IN THE BROWSER (MITB)
 
 |Paso|Descripción|
 |---|---|
@@ -146,66 +180,65 @@ MEMORY HOOK:
 |2|El troyano instala código malicioso|
 |3|Después del reinicio del navegador, el código se carga|
 |4|Se registra un manejador para cada visita a una página web|
-|5|La extensión coincide la URL con sitios objetivo conocidos|
+|5|La extensión compara la URL con una lista de sitios objetivo conocidos|
 |6|El usuario inicia sesión en el sitio|
 |7|La extensión registra el manejador de eventos|
 |8|La extensión extrae valores del DOM y los modifica|
 |9|El navegador envía valores modificados al servidor|
 |10|El servidor recibe valores modificados|
-|11|Se otorga el recibo|
+|11|Se emite el recibo (receipt) de la transacción|
 |12|El navegador recibe el recibo de la transacción modificada|
 |13|El navegador muestra el recibo con los detalles originales|
 |14|El usuario no sabe que algo ha ocurrido|
 
-MEMORY HOOK:
-**MITB = Troyano → modificar DOM → usuario ve original, servidor ve modificado**
+> 🧠 *Para recordar:* **MITB = Troyano → modificar DOM → usuario ve original, servidor ve modificado**
 
 ---
 
-# ATAQUES DE SESIÓN DEL LADO DEL CLIENTE
+## CLIENT-SIDE SESSION ATTACKS
 
 |Ataque|Idea Central|Cómo Funciona|Requisito Clave|Palabra Clave CEH|Prevención|
 |---|---|---|---|---|---|
-|**Cross-Site Scripting (XSS)**|Inyectar JS para robar session cookies|`<SCRIPT>alert(document.cookie);</SCRIPT>` se ejecuta en el navegador de la víctima; la aplicación web no depura la entrada|Depuración de entrada deficiente|Ejecución de código del lado del cliente|Validación de entrada, codificación de salida, cookies HttpOnly|
-|**JavaScript Malicioso|Payload JS roba o reenvía tokens|JS captura session ID y lo envía al atacante|Vector de inyección de scripts|Exfiltración de session tokens|CSP, depuración, HttpOnly|
-|**Troyano|Malware roba datos de sesión|El troyano lee la memoria del navegador o las cookies|Sistema de la víctima infectado|Compromiso del cliente|AV, seguridad de endpoint|
-|**Cross-Site Request Forgery (CSRF)**|Abusar de sesión autenticada|Session riding de un clic; la víctima hace clic en un enlace → el navegador envía cookies válidas automáticamente; la aplicación no verifica el origen de la petición|El usuario ya ha iniciado sesión|Ataque de un clic / Session riding|Tokens anti-CSRF, cookies SameSite|
-|**Session Replay Attack|Capturar y reutilizar token de autenticación|Sniffear tráfico, capturar token de autenticación, repetir petición al servidor|Reutilización de tokens permitida|Autenticación por repetición|TLS, nonce, expiración de tokens|
-|**Session Fixation|El atacante establece el session ID de antemano|El atacante obtiene session ID, la víctima abre enlace e ingresa credenciales, validando la sesión del atacante|Session ID no regenerado|Session ID pre-autenticación|Regenerar session ID después del login|
-|**Proxy-based Session Hijacking|Robar sesión mediante proxy falso|Usar servidor proxy como sitio, luego repetir token|El usuario confía en el proxy|Man-in-the-Browser|HTTPS, validación de certificados|
-|**CRIME Attack|Filtrar secretos mediante compresión|Compression Ratio Information Leak Made Easy; explota vulnerabilidades de compresión TLS/SPDY/HTTPS|Compresión TLS habilitada|Canal lateral de compresión|Deshabilitar compresión TLS|
-|**Forbidden Attack|Romper criptografía TLS mediante reutilización de nonce|MITM explota la reutilización de nonce criptográfico durante el handshake TLS; inyecta código malicioso y contenido falsificado; afecta a AES-GCM|Configuración TLS débil|Reutilización de nonce TLS|Cifrados fuertes, hardening TLS|
-|**Session Donation Attack|La víctima se autentica en la sesión del atacante|El atacante inicia sesión → la víctima hace clic en un enlace → el atacante obtiene acceso a la información de la víctima|Sesión compartida o reutilizada|Sesión mal vinculada|Vincular sesión a usuario/IP/dispositivo|
+|**Cross-Site Scripting (XSS)**|Inyectar JS para robar session cookies|`<SCRIPT>alert(document.cookie);</SCRIPT>` se ejecuta en el navegador de la víctima; la aplicación web no sanea la entrada|Saneamiento de entrada deficiente|Client-side code execution (ejecución de código en el cliente)|Validación de entrada, codificación de salida, cookies HttpOnly|
+|**Malicious JavaScript** (JavaScript malicioso)|Payload JS roba o reenvía tokens|JS captura session ID y lo envía al atacante|Vector de inyección de scripts|Session token exfiltration (exfiltración de tokens)|CSP, saneamiento de entrada, HttpOnly|
+|**Trojan** (troyano)|Malware roba datos de sesión|El troyano lee la memoria del navegador o las cookies|Sistema de la víctima infectado|Client compromise (cliente comprometido)|AV, seguridad de endpoint|
+|**Cross-Site Request Forgery (CSRF)**|Abusar de sesión autenticada|Session riding de un clic; la víctima hace clic en un enlace → el navegador envía cookies válidas automáticamente; la aplicación no verifica el origen de la petición|El usuario ya ha iniciado sesión|One-click attack / Session riding|Tokens anti-CSRF, cookies SameSite|
+|**Session Replay Attack**|Capturar y reutilizar token de autenticación|Sniffear tráfico, capturar token de autenticación, repetir petición al servidor|Reutilización de tokens permitida|Replay authentication (autenticación repetida)|TLS, nonce, expiración de tokens|
+|**Session Fixation**|El atacante establece el session ID de antemano|El atacante obtiene session ID, la víctima abre enlace e ingresa credenciales, validando la sesión del atacante|Session ID no regenerado|Pre-authentication session ID (session ID previo al login)|Regenerar session ID después del login|
+|**Proxy-based Session Hijacking**|Robar sesión mediante proxy falso|Usar servidor proxy como sitio, luego repetir token|El usuario confía en el proxy|Man-in-the-Browser|HTTPS, validación de certificados|
+|**CRIME Attack**|Filtrar secretos mediante compresión|Compression Ratio Info-leak Made Easy; explota vulnerabilidades de compresión TLS/SPDY/HTTPS|Compresión TLS habilitada|Compression side-channel (canal lateral por compresión)|Deshabilitar compresión TLS|
+|**Forbidden Attack**|Romper criptografía TLS mediante reutilización de nonce|MITM explota la reutilización de nonce criptográfico durante el handshake TLS; inyecta código malicioso y contenido falsificado; afecta a AES-GCM|Configuración TLS débil|TLS nonce reuse (reutilización de nonce)|Cifrados fuertes, hardening TLS|
+|**Session Donation Attack**|La víctima se autentica en la sesión del atacante|El atacante inicia sesión → la víctima hace clic en un enlace → el atacante obtiene acceso a la información de la víctima|Sesión compartida o reutilizada|Session misbinding (sesión mal vinculada)|Vincular sesión a usuario/IP/dispositivo|
 
 MEMORY HOOK (ATAQUES DEL CLIENTE):
-**CÓDIGO → XSS, JS Malicioso | CONFIANZA → CSRF, Session Donation | REUTILIZACIÓN → Replay, Fixation | RED → Proxy, CRIME | CRIPTOGRAFÍA → Forbidden**
+**CÓDIGO → XSS, Malicious JS | CONFIANZA → CSRF, Session Donation | REUTILIZACIÓN → Replay, Fixation | RED → Proxy, CRIME | CRIPTOGRAFÍA → Forbidden**
 
 ---
 
-# TABLA DE COMPARACIÓN DE ATAQUES (TODOS LOS ATAQUES)
+## ATTACK COMPARISON TABLE (ALL ATTACKS)
 
 |Ataque|Idea Central (1 línea)|Cómo Funciona (Flujo Resumido)|Requisito Clave|Palabra Clave CEH|Prevención|
 |---|---|---|---|---|---|
-|**XSS**|Inyectar JS para robar session cookies|Script malicioso se ejecuta en navegador de víctima → lee `document.cookie`|Depuración de entrada deficiente|Ejecución de código del lado del cliente|Validación de entrada, codificación de salida, cookies HttpOnly|
-|**JavaScript Malicioso|Payload JS roba o reenvía tokens|JS captura session ID → envía al atacante|Vector de inyección de scripts|Exfiltración de session tokens|CSP, depuración, HttpOnly|
-|**Troyano|Malware roba datos de sesión|El troyano lee la memoria del navegador o cookies|Sistema de víctima infectado|Compromiso del cliente|AV, seguridad de endpoint|
-|**CSRF**|Abusar de sesión autenticada|Víctima hace clic en enlace → navegador envía cookies válidas automáticamente|Usuario ya ha iniciado sesión|Ataque de un clic / Session riding|Tokens anti-CSRF, cookies SameSite|
-|**Session Replay|Capturar y reutilizar token de autenticación|Sniffear tráfico → capturar token de auth → repetir petición|Reutilización de tokens permitida|Autenticación por repetición|TLS, nonce, expiración de tokens|
-|**Session Fixation|El atacante establece session ID de antemano|Víctima inicia sesión usando session ID conocido por el atacante|Session ID no regenerado|Session ID pre-autenticación|Regenerar session ID después del login|
-|**Proxy-based|Robar sesión mediante proxy falso|Víctima se conecta a través de proxy controlado por atacante|Usuario confía en proxy|Man-in-the-Browser|HTTPS, validación de certificados|
-|**CRIME|Filtrar secretos mediante compresión|Explota ratio de compresión TLS/HTTP para inferir cookies|Compresión TLS habilitada|Canal lateral de compresión|Deshabilitar compresión TLS|
-|**Forbidden|Romper criptografía TLS|MITM fuerza reutilización de nonce (AES-GCM)|Configuración TLS débil|Reutilización de nonce TLS|Cifrados fuertes, hardening TLS|
-|**Session Donation|Víctima se autentica en sesión del atacante|Atacante inicia sesión → víctima hace clic en enlace → atacante obtiene acceso|Sesión compartida o reutilizada|Sesión mal vinculada|Vincular sesión a usuario/IP/dispositivo|
+|**XSS**|Inyectar JS para robar session cookies|Script malicioso se ejecuta en navegador de víctima → lee `document.cookie`|Saneamiento de entrada deficiente|Client-side code execution (ejecución de código en el cliente)|Validación de entrada, codificación de salida, cookies HttpOnly|
+|**Malicious JavaScript** (JavaScript malicioso)|Payload JS roba o reenvía tokens|JS captura session ID → envía al atacante|Vector de inyección de scripts|Session token exfiltration (exfiltración de tokens)|CSP, saneamiento de entrada, HttpOnly|
+|**Trojan** (troyano)|Malware roba datos de sesión|El troyano lee la memoria del navegador o cookies|Sistema de víctima infectado|Client compromise (cliente comprometido)|AV, seguridad de endpoint|
+|**CSRF**|Abusar de sesión autenticada|Víctima hace clic en enlace → navegador envía cookies válidas automáticamente|Usuario ya ha iniciado sesión|One-click attack / Session riding|Tokens anti-CSRF, cookies SameSite|
+|**Session Replay**|Capturar y reutilizar token de autenticación|Sniffear tráfico → capturar token de auth → repetir petición|Reutilización de tokens permitida|Replay authentication (autenticación repetida)|TLS, nonce, expiración de tokens|
+|**Session Fixation**|El atacante establece session ID de antemano|Víctima inicia sesión usando session ID conocido por el atacante|Session ID no regenerado|Pre-authentication session ID (session ID previo al login)|Regenerar session ID después del login|
+|**Proxy-based**|Robar sesión mediante proxy falso|Víctima se conecta a través de proxy controlado por atacante|Usuario confía en proxy|Man-in-the-Browser|HTTPS, validación de certificados|
+|**CRIME**|Filtrar secretos mediante compresión|Explota ratio de compresión TLS/HTTP para inferir cookies|Compresión TLS habilitada|Compression side-channel (canal lateral por compresión)|Deshabilitar compresión TLS|
+|**Forbidden**|Romper criptografía TLS|MITM fuerza reutilización de nonce (AES-GCM)|Configuración TLS débil|TLS nonce reuse (reutilización de nonce)|Cifrados fuertes, hardening TLS|
+|**Session Donation**|Víctima se autentica en sesión del atacante|Atacante inicia sesión → víctima hace clic en enlace → atacante obtiene acceso|Sesión compartida o reutilizada|Session misbinding (sesión mal vinculada)|Vincular sesión a usuario/IP/dispositivo|
 
 ---
 
-# SESSION HIJACKING A NIVEL DE RED
+## NETWORK LEVEL SESSION HIJACKING
 
-**Explota vulnerabilidades en el handshake de tres vías de TCP.**
+**Explota vulnerabilidades del three-way handshake de TCP.**
 
 ---
 
-## TCP/IP HIJACKING
+### TCP/IP HIJACKING
 
 |Paso|Descripción|
 |---|---|
@@ -215,12 +248,12 @@ MEMORY HOOK (ATAQUES DEL CLIENTE):
 |4|La máquina de la víctima ignora el paquete ACK con número de secuencia fuera de secuencia|
 |5|El receptor recibe paquetes con número de secuencia incorrecto|
 |6|El atacante fuerza la conexión de la víctima a un estado desincronizado|
-|7|Rastrea números de secuencia y continua falsificando paquetes desde la IP de la víctima|
+|7|Rastrea números de secuencia y continúa falsificando paquetes desde la IP de la víctima|
 |8|El atacante se comunica mientras la conexión de la víctima queda colgada|
 
 ---
 
-## IP SPOOFING — PAQUETES SOURCE ROUTED
+### IP SPOOFING — SOURCE ROUTED PACKETS
 
 |Paso|Descripción|
 |---|---|
@@ -232,7 +265,7 @@ MEMORY HOOK (ATAQUES DEL CLIENTE):
 
 ---
 
-## RST HIJACKING
+### RST HIJACKING
 
 |Item|Memorize|
 |---|---|
@@ -242,7 +275,7 @@ MEMORY HOOK (ATAQUES DEL CLIENTE):
 
 ---
 
-## BLIND HIJACKING
+### BLIND HIJACKING
 
 |Item|Memorize|
 |---|---|
@@ -252,7 +285,7 @@ MEMORY HOOK (ATAQUES DEL CLIENTE):
 
 ---
 
-## UDP HIJACKING
+### UDP HIJACKING
 
 |Paso|Descripción|
 |---|---|
@@ -262,7 +295,7 @@ MEMORY HOOK (ATAQUES DEL CLIENTE):
 
 ---
 
-## MITM USANDO ICMP FALSIFICADO
+### MITM USING FORGED ICMP
 
 |Item|Memorize|
 |---|---|
@@ -271,7 +304,7 @@ MEMORY HOOK (ATAQUES DEL CLIENTE):
 
 ---
 
-## ARP SPOOFING
+### ARP SPOOFING
 
 |Item|Memorize|
 |---|---|
@@ -280,48 +313,47 @@ MEMORY HOOK (ATAQUES DEL CLIENTE):
 
 ---
 
-## PETITPOTAM HIJACKING
+### PETITPOTAM HIJACKING
 
 |Paso|Descripción|
 |---|---|
 |1|Forzar al controlador de dominio a iniciar autenticación hacia el servidor del atacante|
 |2|Usar la API MS-EFSRPC para session hijacking de autenticación|
-|3|Relevar autenticación NTLM compartida por el controlador de dominio a AD Certificate Services|
+|3|Reenviar (NTLM relay) la autenticación NTLM del controlador de dominio a AD Certificate Services|
 |4|Obtener privilegios de administrador|
 
-MEMORY HOOK:
-**PetitPotam = Forzar auth del DC → relevar NTLM → admin**
+> 🧠 *Para recordar:* **PetitPotam = Forzar auth del DC → NTLM relay → admin**
 
 ---
 
-# CLASIFICACIÓN DE ATAQUES DE RED
+## NETWORK ATTACK CLASSIFICATION
 
 |Categoría|Ataques|
 |---|---|
-|Abuso de Secuencia TCP|TCP/IP Hijacking, Blind Hijacking, RST Hijacking|
-|Abuso de Confianza|IP Spoofing, PetitPotam|
-|Abuso sin Estado|UDP Hijacking|
-|Abuso de Enrutamiento|ICMP Forgery|
-|Envenenamiento LAN|ARP Spoofing|
+|TCP Sequence Abuse — abuso de números de secuencia TCP|TCP/IP Hijacking, Blind Hijacking, RST Hijacking|
+|Trust Abuse — abuso de confianza|IP Spoofing, PetitPotam|
+|Stateless Abuse — abuso de protocolos sin estado|UDP Hijacking|
+|Routing Abuse — abuso del enrutamiento|ICMP Forgery|
+|LAN Poisoning — envenenamiento de la LAN|ARP Spoofing|
 
 ---
 
-# TABLA DE COMPARACIÓN DE ATAQUES DE RED
+## NETWORK ATTACK COMPARISON TABLE
 
 |Ataque|Idea Central (1 línea)|Cómo Funciona el Ataque (Flujo Resumido)|Requisito Clave|Palabras Clave CEH|
 |---|---|---|---|---|
-|**TCP/IP Hijacking**|Tomar control de sesión TCP activa desincronizando números de secuencia|Sniffear conexión → enviar paquete falsificado con seq predicho → receptor incrementa seq → víctima ignora ACK → conexión desincronizada → atacante sigue falsificando paquetes como víctima|Capacidad de sniffear o predecir números de secuencia TCP|Predicción de números de secuencia, desincronización|
-|**IP Spoofing (Source Routing)**|Impersonar host de confianza usando IP falsificada|Atacante falsifica IP de confianza → inyecta paquetes falsificados antes de que el host real responda → servidor acepta paquetes del atacante → paquetes source-routed controlan la ruta|Source routing habilitado + IP de confianza|Abuso de host de confianza, source routing|
-|**RST Hijacking**|Terminar forzosamente una sesión TCP|Atacante inyecta paquete TCP falsificado con bandera RST + ACK válido → víctima cree que el par reinició conexión → sesión cae|Número de secuencia/ACK preciso|Bandera TCP RST, reset forzado|
-|**Blind Hijacking**|Inyectar datos sin ver respuestas|Atacante no puede sniffear tráfico → predice números de secuencia → inyecta datos → no puede ver respuestas|Números de secuencia predecibles|Inyección a ciegas, sin sniffing|
-|**UDP Hijacking**|Inyectar o reemplazar comunicación UDP|Atacante envía respuesta UDP falsificada → compite o MITM con respuesta real del servidor → víctima acepta datos falsos|Comunicación UDP sin estado|Falsificación de paquetes, sin conexión|
-|**MITM usando ICMP Falsificado**|Redirigir tráfico usando errores ICMP falsos|Atacante falsifica mensajes de error ICMP → cliente/servidor redirigen tráfico a través del atacante → MITM logrado|Confianza en mensajes de enrutamiento ICMP|Redirect ICMP, redirección de tráfico|
-|**ARP Spoofing**|Envenenar caché ARP para interceptar tráfico|Atacante envía respuestas ARP falsificadas → víctimas actualizan tablas ARP → tráfico enruta al atacante|Acceso a red local|Envenenamiento ARP, falsificación MAC|
-|**PetitPotam Hijacking**|Forzar autenticación del DC y relevarla|Atacante abusa de MS-EFSRPC → fuerza al DC a autenticar → releva NTLM a AD CS → obtiene privilegios de admin|NTLM habilitado + AD CS|Coacción de autenticación, relevo NTLM|
+|**TCP/IP Hijacking**|Tomar control de sesión TCP activa desincronizando números de secuencia|Sniffear conexión → enviar paquete falsificado con seq predicho → receptor incrementa seq → víctima ignora ACK → conexión desincronizada → atacante sigue falsificando paquetes como víctima|Capacidad de sniffear o predecir números de secuencia TCP|Sequence number prediction, desynchronization|
+|**IP Spoofing (Source Routing)**|Suplantar a un host de confianza usando IP falsificada|Atacante falsifica IP de confianza → inyecta paquetes falsificados antes de que el host real responda → servidor acepta paquetes del atacante → paquetes source-routed controlan la ruta|Source routing habilitado + IP de confianza|Trusted host abuse, source routing|
+|**RST Hijacking**|Terminar forzosamente una sesión TCP|Atacante inyecta paquete TCP falsificado con bandera RST + ACK válido → víctima cree que el par reinició conexión → sesión cae|Número de secuencia/ACK preciso|TCP RST flag, forced reset|
+|**Blind Hijacking**|Inyectar datos sin ver respuestas|Atacante no puede sniffear tráfico → predice números de secuencia → inyecta datos → no puede ver respuestas|Números de secuencia predecibles|Blind injection, no sniffing|
+|**UDP Hijacking**|Inyectar o reemplazar comunicación UDP|Atacante envía respuesta UDP falsificada → compite con la respuesta real del servidor o la intercepta (MITM) → víctima acepta datos falsos|Comunicación UDP sin estado|Packet spoofing, connectionless|
+|**MITM using Forged ICMP**|Redirigir tráfico usando errores ICMP falsos|Atacante falsifica mensajes de error ICMP → cliente/servidor redirigen tráfico a través del atacante → MITM logrado|Confianza en mensajes de enrutamiento ICMP|ICMP redirect, traffic rerouting|
+|**ARP Spoofing**|Envenenar caché ARP para interceptar tráfico|Atacante envía respuestas ARP falsificadas → víctimas actualizan tablas ARP → tráfico enruta al atacante|Acceso a red local|ARP poisoning, MAC spoofing|
+|**PetitPotam Hijacking**|Forzar la autenticación del DC y reenviarla (relay)|Atacante abusa de MS-EFSRPC → fuerza al DC a autenticarse → reenvía (relay) la autenticación NTLM a AD CS → obtiene privilegios de admin|NTLM habilitado + AD CS|Authentication coercion, NTLM relay|
 
 ---
 
-# HERRAMIENTAS DE SESSION HIJACKING
+## SESSION HIJACKING TOOLS
 
 |Herramienta|Descripción|
 |---|---|
@@ -331,7 +363,7 @@ MEMORY HOOK:
 
 ---
 
-# DETECCIÓN DE SESSION HIJACKING
+## SESSION HIJACK DETECTION
 
 |Herramienta|Uso|
 |---|---|
@@ -340,7 +372,7 @@ MEMORY HOOK:
 
 ---
 
-# PREVENCIÓN DEL SESSION HIJACKING
+## PREVENTING SESSION HIJACKING
 
 |Contramedida|Descripción|
 |---|---|
@@ -349,12 +381,11 @@ MEMORY HOOK:
 |Herramientas: Checkmarx One (SAST)|Pruebas estáticas de seguridad de aplicaciones para encontrar vulnerabilidades de sesión|
 |Herramientas: Fiddler|Inspección de tráfico y proxy de depuración|
 
-MEMORY HOOK:
-**HSTS + Token Binding = columna vertebral de protección de sesión**
+> 🧠 *Para recordar:* **HSTS + Token Binding = columna vertebral de protección de sesión**
 
 ---
 
-# PREVENCIÓN DE MAN-IN-THE-MIDDLE
+## PREVENTING MAN-IN-THE-MIDDLE
 
 |Contramedida|Descripción|
 |---|---|
@@ -369,21 +400,20 @@ MEMORY HOOK:
 
 ---
 
-# IPsec
+## IPsec
 
 |Modo|Qué Cifra|
 |---|---|
 |Transport Mode|Cifra solo el payload del paquete IP|
 |Tunnel Mode|IPsec encapsula y cifra el paquete IP completo|
 
-MEMORY HOOK:
-**Transport = solo payload, Tunnel = paquete completo**
+> 🧠 *Para recordar:* **Transport = solo payload, Tunnel = paquete completo**
 
 ---
 
-## EXTRAS DE EXAMEN (Examen de Práctica Boson)
+## Extras de examen (Boson Practice Test)
 
-### DEFINICIONES DE XSS, CSRF, SSRF
+### XSS, CSRF, SSRF DEFINITIONS
 
 |Término|Definición|
 |---|---|
@@ -393,14 +423,14 @@ MEMORY HOOK:
 
 ---
 
-# FLASHCARDS DE EXAMEN
+## Flashcards
 
 |Término|Definición|
 |---|---|
 |Session Hijacking|Tomar el control de una sesión de comunicación TCP válida y establecida|
 |Session ID|Identificador único asignado a una sesión de usuario; robado para autenticar|
-|Hijacking Pasivo|Observar y registrar tráfico para capturar session IDs sin alterar datos|
-|Hijacking Activo|Romper o participar activamente en una conexión para tomar control de la sesión|
+|Passive Hijacking|Observar y registrar tráfico para capturar session IDs sin alterar datos|
+|Active Hijacking|Romper o participar activamente en una conexión para tomar control de la sesión|
 |Spoofing|Fingir ser otro usuario o máquina; inicia nueva sesión con credenciales robadas|
 |MITM (Split TCP)|Dividir una conexión TCP en dos: cliente↔atacante y atacante↔servidor|
 |MITB|El troyano modifica el DOM en el navegador; el usuario ve lo original, el servidor recibe datos modificados|
@@ -411,14 +441,14 @@ MEMORY HOOK:
 |RST Hijacking|Inyectar paquetes RST falsificados para terminar forzosamente la conexión de la víctima|
 |Blind Hijacking|Inyectar datos en sesión TCP sin ver respuestas del servidor|
 |ARP Spoofing|Envenenar caché ARP para redirigir tráfico de red local a través del atacante|
-|PetitPotam|Forzar autenticación del controlador de dominio y relevar NTLM para obtener admin|
+|PetitPotam|Forzar la autenticación del controlador de dominio y hacer NTLM relay para obtener admin|
 |HSTS|HTTP Strict Transport Security; fuerza HTTPS para prevenir ataques de downgrade|
 |IPsec Transport|Cifra solo el payload del paquete IP|
 |IPsec Tunnel|Cifra el paquete IP completo|
 
 ---
 
-# PREGUNTAS DE PRÁCTICA
+## Preguntas de práctica
 
 **Q1.** Un probador de penetración sniffear tráfico de red y captura una session cookie válida de una petición HTTP sin modificar ningún paquete. ¿Qué tipo de session hijacking es este?
 - A) Hijacking Activo

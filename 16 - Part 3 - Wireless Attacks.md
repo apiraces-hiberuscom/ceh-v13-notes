@@ -1,19 +1,52 @@
-# OBJECTIVE 03 — WIRELESS THREATS & ATTACKS
+# Módulo 16 · Parte 3 — Wireless Attacks
 
----
+> **Módulo 16 — Hacking Wireless Networks** · Parte 3 de 5 — amenazas y ataques inalámbricos: pasivos vs activos, Rogue AP, Evil Twin, deauth, KRACK, jamming.
 
-## WIRELESS THREAT — CORE DEFINITION
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 03 — WIRELESS THREATS & ATTACKS](#objective-03--wireless-threats--attacks)
+- [PASSIVE WIRELESS ATTACKS](#passive-wireless-attacks)
+- [ACTIVE WIRELESS ATTACKS](#active-wireless-attacks)
+- [MAJOR WIRELESS ATTACKS 🔥](#major-wireless-attacks-high-yield)
+- [COMPARISON — ROGUE AP vs EVIL TWIN 🔥](#comparison--rogue-ap-vs-evil-twin-high-yield)
+- [ATTACK → GOAL MAPPING](#attack--goal-mapping)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Passive attack vs Active attack** — el pasivo solo escucha (difícil de detectar); el activo modifica, inyecta o interrumpe.
+- **Rogue AP** — AP no autorizado conectado a la red (puede instalarlo un empleado); NO es necesariamente del atacante ni falso.
+- **Evil Twin** — AP falso que imita a uno legítimo (mismo SSID, señal más fuerte) para robo de credenciales y MITM.
+- **Rogue AP vs Evil Twin** — el Evil Twin imita señal/SSID de un AP real; el Rogue AP no suplanta identidad.
+- **Deauthentication attack** — tramas deauth falsificadas que explotan los **802.11 management frames**; fuerza la reconexión y permite capturar el handshake.
+- **Deauth vs Disassociation** — deauth termina la autenticación; disassoc termina la asociación.
+- **KRACK** (Key Reinstallation Attack) — ataca el 4-way handshake de **WPA2**; no rompe el cifrado por sí solo, reinstala la clave.
+- **Replay attack** — reutiliza paquetes capturados; típico contra redes **WEP**.
+- **Packet injection** — inyecta paquetes para acelerar el cracking de WEP o interrumpir el tráfico.
+- **Jamming** — inunda el espectro con ruido = **Denial of Service**.
+- **MITM** — métodos habituales: Evil Twin, Rogue AP, ARP spoofing.
+
+## OBJECTIVE 03 — WIRELESS THREATS & ATTACKS
+
+### WIRELESS THREAT — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
 |Wireless Threat|Cualquier riesgo potencial que explota debilidades en la comunicación inalámbrica|
 
-MEMORY HOOK:  
-**Wireless = open air = exposed**
+> 🧠 *Para recordar:* **Wireless = open air = exposed**
 
 ---
 
-## CLASSIFICATION OF WIRELESS ATTACKS (EXAM STRUCTURE)
+### CLASSIFICATION OF WIRELESS ATTACKS
 
 |Category|
 |---|
@@ -22,11 +55,9 @@ MEMORY HOOK:
 
 ---
 
-# PASSIVE WIRELESS ATTACKS
+## PASSIVE WIRELESS ATTACKS
 
----
-
-## PASSIVE ATTACK — DEFINITION
+### PASSIVE ATTACK — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -34,7 +65,7 @@ MEMORY HOOK:
 
 ---
 
-## PASSIVE ATTACK CHARACTERISTICS
+### PASSIVE ATTACK CHARACTERISTICS
 
 |Feature|
 |---|
@@ -44,7 +75,7 @@ MEMORY HOOK:
 
 ---
 
-## COMMON PASSIVE WIRELESS ATTACKS
+### COMMON PASSIVE WIRELESS ATTACKS
 
 |Attack|Description|
 |---|---|
@@ -54,16 +85,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Passive = listen only**
+> 🧠 *Para recordar:* **Passive = listen only**
 
 ---
 
-# ACTIVE WIRELESS ATTACKS
+## ACTIVE WIRELESS ATTACKS
 
----
-
-## ACTIVE ATTACK — DEFINITION
+### ACTIVE ATTACK — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -71,7 +99,7 @@ MEMORY HOOK:
 
 ---
 
-## ACTIVE ATTACK CHARACTERISTICS
+### ACTIVE ATTACK CHARACTERISTICS
 
 |Feature|
 |---|
@@ -81,20 +109,15 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Active = interfere**
+> 🧠 *Para recordar:* **Active = interfere**
 
 ---
 
-# MAJOR WIRELESS ATTACKS (EXAM CRITICAL)
+## MAJOR WIRELESS ATTACKS (HIGH YIELD)
 
----
+### ROGUE ACCESS POINT ATTACK
 
-## ROGUE ACCESS POINT ATTACK
-
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -102,7 +125,7 @@ MEMORY HOOK:
 
 ---
 
-### PURPOSE
+#### PURPOSE
 
 |Purpose|
 |---|
@@ -111,7 +134,7 @@ MEMORY HOOK:
 
 ---
 
-### EXAM TRAP
+#### EXAM TRAP
 
 |Statement|Correct|
 |---|---|
@@ -120,16 +143,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Rogue = unauthorized, not fake**
+> 🧠 *Para recordar:* **Rogue = unauthorized, not fake**
 
 ---
 
-## EVIL TWIN ATTACK
+### EVIL TWIN ATTACK
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -137,7 +157,7 @@ MEMORY HOOK:
 
 ---
 
-### ATTACK LOGIC
+#### ATTACK LOGIC
 
 |Step|
 |---|
@@ -148,7 +168,7 @@ MEMORY HOOK:
 
 ---
 
-### GOAL
+#### GOAL
 
 |Goal|
 |---|
@@ -157,16 +177,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Evil Twin = fake AP**
+> 🧠 *Para recordar:* **Evil Twin = fake AP**
 
 ---
 
-## DEAUTHENTICATION ATTACK
+### DEAUTHENTICATION ATTACK
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -174,7 +191,7 @@ MEMORY HOOK:
 
 ---
 
-### PROTOCOL EXPLOITED
+#### PROTOCOL EXPLOITED
 
 |Protocol|
 |---|
@@ -182,7 +199,7 @@ MEMORY HOOK:
 
 ---
 
-### PURPOSE
+#### PURPOSE
 
 |Purpose|
 |---|
@@ -192,16 +209,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Deauth = kick users off**
+> 🧠 *Para recordar:* **Deauth = kick users off**
 
 ---
 
-## DISASSOCIATION ATTACK
+### DISASSOCIATION ATTACK
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -209,7 +223,7 @@ MEMORY HOOK:
 
 ---
 
-### DIFFERENCE FROM DEAUTH
+#### DIFFERENCE FROM DEAUTH
 
 |Attack|Key Difference|
 |---|---|
@@ -218,16 +232,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Deauth ≠ Disassoc**
+> 🧠 *Para recordar:* **Deauth ≠ Disassoc**
 
 ---
 
-## MAN-IN-THE-MIDDLE (MITM)
+### MAN-IN-THE-MIDDLE (MITM)
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -235,7 +246,7 @@ MEMORY HOOK:
 
 ---
 
-### METHODS
+#### METHODS
 
 |Method|
 |---|
@@ -245,16 +256,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**MITM = attacker in between**
+> 🧠 *Para recordar:* **MITM = attacker in between**
 
 ---
 
-## REPLAY ATTACK
+### REPLAY ATTACK
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -262,7 +270,7 @@ MEMORY HOOK:
 
 ---
 
-### COMMONLY TARGETS
+#### COMMONLY TARGETS
 
 |Target|
 |---|
@@ -270,16 +278,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Replay = reuse packets**
+> 🧠 *Para recordar:* **Replay = reuse packets**
 
 ---
 
-## WEP CRACKING ATTACK
+### WEP CRACKING ATTACK
 
----
-
-### PURPOSE
+#### PURPOSE
 
 |Purpose|
 |---|
@@ -287,7 +292,7 @@ MEMORY HOOK:
 
 ---
 
-### METHOD
+#### METHOD
 
 |Method|
 |---|
@@ -296,16 +301,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**More IVs = faster crack**
+> 🧠 *Para recordar:* **More IVs = faster crack**
 
 ---
 
-## KRACK ATTACK
+### KRACK ATTACK
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -313,7 +315,7 @@ MEMORY HOOK:
 
 ---
 
-### TARGET
+#### TARGET
 
 |Target|
 |---|
@@ -321,7 +323,7 @@ MEMORY HOOK:
 
 ---
 
-### IMPACT
+#### IMPACT
 
 |Impact|
 |---|
@@ -330,16 +332,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**KRACK breaks handshake**
+> 🧠 *Para recordar:* **KRACK breaks handshake**
 
 ---
 
-## PACKET INJECTION ATTACK
+### PACKET INJECTION ATTACK
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -347,7 +346,7 @@ MEMORY HOOK:
 
 ---
 
-### PURPOSE
+#### PURPOSE
 
 |Purpose|
 |---|
@@ -356,16 +355,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Inject = fake packets**
+> 🧠 *Para recordar:* **Inject = fake packets**
 
 ---
 
-## JAMMING ATTACK
+### JAMMING ATTACK
 
----
-
-### DEFINITION
+#### DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -373,7 +369,7 @@ MEMORY HOOK:
 
 ---
 
-### RESULT
+#### RESULT
 
 |Result|
 |---|
@@ -381,12 +377,11 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Noise kills Wi-Fi**
+> 🧠 *Para recordar:* **Noise kills Wi-Fi**
 
 ---
 
-# COMPARISON — ROGUE AP vs EVIL TWIN (EXAM FAVORITE)
+## COMPARISON — ROGUE AP vs EVIL TWIN (HIGH YIELD)
 
 |Feature|Rogue AP|Evil Twin|
 |---|---|---|
@@ -396,7 +391,7 @@ MEMORY HOOK:
 
 ---
 
-# ATTACK → GOAL MAPPING (MEMORY TABLE)
+## ATTACK → GOAL MAPPING
 
 |Attack|Goal|
 |---|---|
@@ -409,19 +404,7 @@ MEMORY HOOK:
 
 ---
 
-# OBJECTIVE 03 — MEMORY BLOCK
-
-**Passive attacks listen.  
-Active attacks interfere.  
-Rogue AP is unauthorized.  
-Evil Twin is fake.  
-Deauth kicks users.  
-KRACK breaks WPA2.**
-
----
-
-
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
 
 ### STP ATTACK AND DOUBLE TAGGING
 
@@ -432,25 +415,16 @@ KRACK breaks WPA2.**
 
 ---
 
-### WASH COMMAND
+### COMANDOS WPS / BLE (wash, btlejack)
 
-|Item|Memorize|
+|Comando|Propósito|
 |---|---|
-|Command|wash -i mon0|
-|Purpose|Escanear puntos de acceso con WPS habilitado desde Linux|
+|wash -i mon0|Escanear puntos de acceso con WPS habilitado desde Linux|
+|btlejack -s|Encontrar conexiones Bluetooth Low Energy (BLE)|
 
 ---
 
-### BTLEJACK
-
-|Item|Memorize|
-|---|---|
-|Command|btlejack -s|
-|Purpose|Encontrar conexiones Bluetooth Low Energy|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -471,7 +445,7 @@ KRACK breaks WPA2.**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es la diferencia clave entre un Rogue AP y un Evil Twin?
 - a) Rogue AP es propiedad del atacante; Evil Twin es instalado por un empleado

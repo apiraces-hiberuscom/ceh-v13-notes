@@ -1,19 +1,56 @@
-# OBJECTIVE 02 — ANDROID OS THREATS AND ATTACKS
+# Módulo 17 · Parte 2 — Android Threats
+
+> **Módulo 17 — Hacking Mobile Platforms** · Parte 2 de 5 · Amenazas y ataques en Android OS: arquitectura, categorías de malware, abuso de permisos, rooting, ataques (repackaging, drive-by, MITMO...) y ADB.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 02 — ANDROID OS THREATS AND ATTACKS](#objective-02--android-os-threats-and-attacks)
+- [ANDROID THREAT CATEGORIES](#android-threat-categories)
+- [ANDROID MALWARE DELIVERY METHODS](#android-malware-delivery-methods)
+- [ANDROID PERMISSION ABUSE 🔥](#android-permission-abuse-high-yield)
+- [ROOTING — ANDROID 🔥](#rooting--android-high-yield)
+- [ANDROID OS ATTACKS 🔥](#android-os-attacks-high-yield)
+- [ANDROID APP VULNERABILITIES](#android-app-vulnerabilities)
+- [ANDROID COMMUNICATION ATTACKS](#android-communication-attacks)
+- [ANDROID DEBUG BRIDGE (ADB) — EXAM TOOL](#android-debug-bridge-adb--exam-tool)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Android OS** — SO móvil open-source basado en Linux (Google); su apertura lo hace flexible pero atacable (tiendas de terceros, fragmentación, rooting, weak app vetting).
+- **Android architecture** — Linux Kernel → HAL → Native Libraries → Android Runtime (ART) → Application Framework → Applications.
+- **Threat categories** — Malware, Spyware, Trojans, Ransomware, Botnets, Backdoors, Adware (MST RBB A).
+- **Delivery methods** — malicious apps (tiendas de terceros), repackaged apps, drive-by downloads, phishing (actualizaciones falsas), SMS links (smishing).
+- **Dangerous permissions** — READ_SMS = robo de OTP · SEND_SMS = fraude premium · RECORD_AUDIO = escucha · CAMERA = vigilancia · ACCESS_FINE_LOCATION = rastreo.
+- **Rooting** — acceso de superusuario en Android (en iOS = jailbreaking): deshabilita el sandboxing, evade el modelo de permisos, permite persistencia de malware y rompe los controles MDM.
+- **Rooting methods** — explotar vulnerabilidades del OS, desbloquear el bootloader, flashear una custom ROM, apps de rooting maliciosas.
+- **Repackaging attack** — app legítima descompilada, modificada con código malicioso y re-firmada ("same app, evil inside").
+- **Drive-by download** — visitar un sitio malicioso descarga malware automáticamente, con mínima o ninguna acción de la víctima (≠ repackaging, que altera la app antes de instalarla).
+- **Man-in-the-Mobile (MITMO)** — malware que intercepta el tráfico de apps bancarias mediante overlay + interceptación de SMS.
+- **ADB (Android Debug Bridge)** — CLI para controlar el dispositivo: `adb devices` (listar), `adb shell`, `adb pull` (desde el dispositivo), `adb push` (al dispositivo), `adb install` (APK).
 
 ---
 
-## ANDROID OS — CORE DEFINITION (EXAM)
+## OBJECTIVE 02 — ANDROID OS THREATS AND ATTACKS
+
+### ANDROID OS — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
 |Android OS|Un sistema operativo móvil de código abierto basado en Linux desarrollado por Google|
 
-MEMORY HOOK:  
-**Open-source = flexible + attackable**
+> 🧠 *Para recordar:* **Open-source = flexible + attackable**
 
 ---
 
-## ANDROID ARCHITECTURE (EXAM FOUNDATION)
+### ANDROID ARCHITECTURE
 
 |Layer|Description|
 |---|---|
@@ -24,12 +61,11 @@ MEMORY HOOK:
 |Application Framework|APIs|
 |Applications|Aplicaciones instaladas por el usuario|
 
-MEMORY HOOK:  
-**Kernel → HAL → Runtime → Framework → Apps**
+> 🧠 *Para recordar:* **Kernel → HAL → Runtime → Framework → Apps**
 
 ---
 
-## WHY ANDROID IS A HIGH-VALUE TARGET
+### WHY ANDROID IS A HIGH-VALUE TARGET
 
 |Reason|
 |---|
@@ -37,11 +73,11 @@ MEMORY HOOK:
 |Instalación de apps de terceros|
 |Fragmentación|
 |Rooting posible|
-|Débil revisión de apps|
+|Revisión de apps débil (weak app vetting)|
 
 ---
 
-# ANDROID THREAT CATEGORIES (EXAM LIST)
+## ANDROID THREAT CATEGORIES
 
 |Category|
 |---|
@@ -53,12 +89,11 @@ MEMORY HOOK:
 |Backdoors|
 |Adware|
 
-MEMORY HOOK:  
-**MST RBB A**
+> 🧠 *Para recordar:* **MST RBB A**
 
 ---
 
-## ANDROID MALWARE — DEFINITION
+### ANDROID MALWARE — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -66,7 +101,7 @@ MEMORY HOOK:
 
 ---
 
-## COMMON ANDROID MALWARE BEHAVIORS
+### COMMON ANDROID MALWARE BEHAVIORS
 
 |Behavior|
 |---|
@@ -79,7 +114,7 @@ MEMORY HOOK:
 
 ---
 
-# ANDROID MALWARE DELIVERY METHODS
+## ANDROID MALWARE DELIVERY METHODS
 
 |Method|Description|
 |---|---|
@@ -89,32 +124,30 @@ MEMORY HOOK:
 |Phishing|Actualizaciones falsas|
 |SMS links|Smishing|
 
-MEMORY HOOK:  
-**App + Link + SMS**
+> 🧠 *Para recordar:* **App + Link + SMS**
 
 ---
 
-# ANDROID PERMISSION ABUSE (HIGH-YIELD)
+## ANDROID PERMISSION ABUSE (HIGH YIELD)
 
-## DANGEROUS PERMISSIONS
+### DANGEROUS PERMISSIONS
 
 |Permission|Abuse|
 |---|---|
 |READ_SMS|Robo de OTP|
 |SEND_SMS|Fraude premium|
 |READ_CONTACTS|Robo de datos|
-|RECORD_AUDIO|Escucha|
+|RECORD_AUDIO|Escucha (eavesdropping)|
 |CAMERA|Vigilancia|
 |ACCESS_FINE_LOCATION|Rastreo|
 
-MEMORY HOOK:  
-**SMS = money, mic = spy**
+> 🧠 *Para recordar:* **SMS = money, mic = spy**
 
 ---
 
-# ROOTING — ANDROID (EXAM FAVORITE)
+## ROOTING — ANDROID (HIGH YIELD)
 
-## ROOTING — DEFINITION
+### ROOTING — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -122,7 +155,7 @@ MEMORY HOOK:
 
 ---
 
-## ROOTING — SECURITY IMPACT
+### ROOTING — SECURITY IMPACT
 
 |Impact|
 |---|
@@ -131,27 +164,24 @@ MEMORY HOOK:
 |Habilita la persistencia de malware|
 |Rompe los controles MDM|
 
-MEMORY HOOK:  
-**Root = no rules**
+> 🧠 *Para recordar:* **Root = no rules**
 
 ---
 
-## ROOTING METHODS (EXAM)
+### ROOTING METHODS
 
 |Method|
 |---|
 |Explotar vulnerabilidades del OS|
-|Desbloquear bootloader|
-|Flashear ROM personalizada|
+|Desbloquear el bootloader|
+|Flashear una custom ROM (ROM personalizada)|
 |Apps de rooting maliciosas|
 
 ---
 
-# ANDROID OS ATTACKS (MUST MEMORIZE)
+## ANDROID OS ATTACKS (HIGH YIELD)
 
----
-
-## 1. REPACKAGING ATTACK
+### 1. REPACKAGING ATTACK
 
 |Aspect|Description|
 |---|---|
@@ -159,12 +189,11 @@ MEMORY HOOK:
 |How|Descompilada, modificada, re-firmada|
 |Result|El usuario instala malware|
 
-MEMORY HOOK:  
-**Same app, evil inside**
+> 🧠 *Para recordar:* **Same app, evil inside**
 
 ---
 
-## 2. DRIVE-BY DOWNLOAD ATTACK
+### 2. DRIVE-BY DOWNLOAD ATTACK
 
 |Aspect|Description|
 |---|---|
@@ -174,7 +203,7 @@ MEMORY HOOK:
 
 ---
 
-## 3. SMS-BASED ATTACKS
+### 3. SMS-BASED ATTACKS
 
 |Attack|
 |---|
@@ -184,7 +213,7 @@ MEMORY HOOK:
 
 ---
 
-## 4. MAN-IN-THE-MOBILE (MITMO)
+### 4. MAN-IN-THE-MOBILE (MITMO)
 
 |Aspect|Description|
 |---|---|
@@ -192,12 +221,11 @@ MEMORY HOOK:
 |Target|Aplicaciones bancarias|
 |Method|Overlay + interceptación de SMS|
 
-MEMORY HOOK:  
-**MITM on mobile = MITMO**
+> 🧠 *Para recordar:* **MITM on mobile = MITMO**
 
 ---
 
-## 5. CLICKJACKING
+### 5. CLICKJACKING
 
 |Aspect|Description|
 |---|---|
@@ -206,7 +234,7 @@ MEMORY HOOK:
 
 ---
 
-## 6. ANDROID BOTNETS
+### 6. ANDROID BOTNETS
 
 |Feature|
 |---|
@@ -217,33 +245,33 @@ MEMORY HOOK:
 
 ---
 
-# ANDROID APP VULNERABILITIES (EXAM TABLE)
+## ANDROID APP VULNERABILITIES
 
 |Vulnerability|
 |---|
-|Almacenamiento inseguro de datos|
-|Cifrado débil|
-|Manejo inadecuado de sesiones|
-|Credenciales hardcodeadas|
-|IPC inseguro|
-|Modo debug habilitado|
+|Insecure data storage — almacenamiento inseguro de datos|
+|Weak encryption — cifrado débil|
+|Improper session handling — manejo inadecuado de sesiones|
+|Hardcoded credentials — credenciales hardcodeadas|
+|Insecure IPC — comunicación entre procesos insegura|
+|Debug mode enabled — modo debug habilitado|
 
 ---
 
-# ANDROID COMMUNICATION ATTACKS
+## ANDROID COMMUNICATION ATTACKS
 
 |Attack|
 |---|
 |Wi-Fi sniffing|
 |Rogue AP|
 |SSL stripping|
-|Certificados falsos|
+|Fake certificates (certificados falsos)|
 
 ---
 
-# ANDROID DEBUG BRIDGE (ADB) — EXAM TOOL
+## ANDROID DEBUG BRIDGE (ADB) — EXAM TOOL
 
-## ADB — DEFINITION
+### ADB — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -251,7 +279,7 @@ MEMORY HOOK:
 
 ---
 
-## COMMON ADB COMMANDS (CEH EXPECTS RECOGNITION)
+### COMMON ADB COMMANDS
 
 |Command|Purpose|
 |---|---|
@@ -261,34 +289,11 @@ MEMORY HOOK:
 |adb push|Copiar archivos al dispositivo|
 |adb install|Instalar APK|
 
-MEMORY HOOK:  
-**ADB = control channel**
+> 🧠 *Para recordar:* **ADB = control channel**
 
 ---
 
-# ANDROID SECURITY RISKS SUMMARY (EXAM BLOCK)
-
-**Los ataques Android explotan la apertura, permisos, rooting, apps débiles y redes inseguras.  
-El malware entra a través de apps, SMS y web.  
-Rooting rompe la seguridad.  
-ADB permite el control.**
-
----
-
-## OBJECTIVE 02 — STATUS
-
-|Item|Status|
-|---|---|
-|Android threats|COMPLETE|
-|Android attacks|COMPLETE|
-|Rooting|COMPLETE|
-|Permissions|COMPLETE|
-|Tools|COMPLETE|
-|Exam alignment|EXACT|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -309,7 +314,7 @@ ADB permite el control.**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es el impacto de seguridad de hacer rooting a un dispositivo Android?
 - a) Fortalece el sandbox

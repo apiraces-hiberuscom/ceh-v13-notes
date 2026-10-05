@@ -30,7 +30,11 @@
 | Feature | Description |
 |---------|-------------|
 | 📚 **Comprehensive** | All 20 CEH modules fully covered |
-| 📊 **Quick Reference Tables** | Scan key concepts at a glance |
+| 🎯 **Lo esencial** | Every note starts with the must-know facts for the exam |
+| 📑 **Index per note** | Collapsible table of contents at the top of each file |
+| ⚠️ **Exam traps & mnemonics** | Highlighted callouts (⚠️ *Trampa de examen* / 🧠 *Para recordar*) |
+| 🇬🇧 **Official English terms** | Spanish explanations, but official CEH terms kept in English (the exam is in English) |
+| ⭐ **Repaso final** | [REPASO-FINAL.md](REPASO-FINAL.md): key facts, traps and mnemonics of all modules in one page |
 | 🃏 **Flashcards** | End-of-module cards for memorization |
 | ❓ **Practice Questions** | Test your knowledge per module |
 | 📱 **Web Version** | Read online with GitHub Pages |
@@ -40,41 +44,64 @@
 
 ## 🧭 Navigation
 
-| # | Module | Files |
-|---|--------|-------|
-| 01 | Introduction to Ethical Hacking | `01 - Intro.md` |
-| 02 | Footprinting and Reconnaissance | `02 - footprinting and reconnaissance.md` |
-| 03 | Scanning Networks | `03 - Scanning networks.md` |
-| 04 | Enumeration | `04 - Enumeration.md` |
-| 05 | Vulnerability Analysis | `05 - Vulnerability analysis.md` |
-| 06 | System Hacking | `06 - System hacking.md` |
-| 07 | Malware Threats | `07 - Malware threats.md` |
-| 08 | Network Sniffing | `08 - Network sniffing.md` |
-| 09 | Social Engineering | `09 - Social Engineering.md` |
-| 10 | Denial of Service | `10 - Denial of service.md` |
-| 11 | Session Hijacking | `11 - Session hijacking.md` |
-| 12 | Evading IDS, Firewalls & Honeypots | `12 - Evading IDS, Firewalls and Honeypots.md` |
-| 13 | Hacking Web Servers | `13 - Hacking Web Servers.md` |
-| 14 | Hacking Web Applications | `14 - Part 1 - Foundations.md` ... `14 - Part 5 - Security Testing.md` |
-| 15 | SQL Injection | `15 - Part 1 - SQL Injection Fundamentals.md` ... `15 - Part 5 - SQLi Countermeasures.md` |
-| 16 | Hacking Wireless Networks | `16 - Part 1 - Wireless Concepts.md` ... `16 - Part 5 - Wireless Countermeasures.md` |
-| 17 | Hacking Mobile Platforms | `17 - Part 1 - Mobile Attack Vectors.md` ... `17 - Part 5 - Mobile Security Tools.md` |
-| 18 | Hacking IoT & OT | `18 - Part 1 - IoT Concepts.md` ... `18 - Part 5 - IoT Countermeasures.md` |
-| 19 | Cloud Computing | `19 - Part 1 - Cloud Concepts.md` ... `19 - Part 4 - Cloud Security.md` |
-| 20 | Cryptography | `20 - Part 1 - Symmetric and Asymmetric.md` ... `20 - Part 6 - Cryptographic Attacks.md` |
-| Extra | Web Servers Deep Dive | `Extra - Web Servers Deep Dive.md` |
+| # | Module | Notes |
+|:-:|--------|-------|
+| 01 | **Introduction to Ethical Hacking** | [Notes](01%20-%20Intro.md) |
+| 02 | **Footprinting and Reconnaissance** | [Notes](02%20-%20footprinting%20and%20reconnaissance.md) |
+| 03 | **Scanning Networks** | [Notes](03%20-%20Scanning%20networks.md) |
+| 04 | **Enumeration** | [Notes](04%20-%20Enumeration.md) |
+| 05 | **Vulnerability Analysis** | [Notes](05%20-%20Vulnerability%20analysis.md) |
+| 06 | **System Hacking** | [Notes](06%20-%20System%20hacking.md) |
+| 07 | **Malware Threats** | [Notes](07%20-%20Malware%20threats.md) |
+| 08 | **Sniffing** | [Notes](08%20-%20Network%20sniffing.md) |
+| 09 | **Social Engineering** | [Notes](09%20-%20Social%20Engineering.md) |
+| 10 | **Denial-of-Service** | [Notes](10%20-%20Denial%20of%20service.md) |
+| 11 | **Session Hijacking** | [Notes](11%20-%20Session%20hijacking.md) |
+| 12 | **Evading IDS, Firewalls, and Honeypots** | [Notes](12%20-%20Evading%20IDS%2C%20Firewalls%20and%20Honeypots.md) |
+| 13 | **Hacking Web Servers** | [Notes](13%20-%20Hacking%20Web%20Servers.md) |
+| 14 | **Hacking Web Applications** | [1 · Foundations](14%20-%20Part%201%20-%20Foundations.md)<br>[2 · OWASP Top 10](14%20-%20Part%202%20-%20OWASP%20Top%2010.md)<br>[3 · Hacking Methodology](14%20-%20Part%203%20-%20Hacking%20Methodology.md)<br>[4 · APIs and Webhooks](14%20-%20Part%204%20-%20APIs%20and%20Webhooks.md)<br>[5 · Security Testing](14%20-%20Part%205%20-%20Security%20Testing.md) |
+| 15 | **SQL Injection** | [1 · SQL Injection Fundamentals](15%20-%20Part%201%20-%20SQL%20Injection%20Fundamentals.md)<br>[2 · SQLi Types](15%20-%20Part%202%20-%20SQLi%20Types.md)<br>[3 · SQLi Methodology](15%20-%20Part%203%20-%20SQLi%20Methodology.md)<br>[4 · SQLi Evasion](15%20-%20Part%204%20-%20SQLi%20Evasion.md)<br>[5 · SQLi Countermeasures](15%20-%20Part%205%20-%20SQLi%20Countermeasures.md) |
+| 16 | **Hacking Wireless Networks** | [1 · Wireless Concepts](16%20-%20Part%201%20-%20Wireless%20Concepts.md)<br>[2 · Wireless Encryption](16%20-%20Part%202%20-%20Wireless%20Encryption.md)<br>[3 · Wireless Attacks](16%20-%20Part%203%20-%20Wireless%20Attacks.md)<br>[4 · Wireless Hacking Methodology](16%20-%20Part%204%20-%20Wireless%20Hacking%20Methodology.md)<br>[5 · Wireless Countermeasures](16%20-%20Part%205%20-%20Wireless%20Countermeasures.md) |
+| 17 | **Hacking Mobile Platforms** | [1 · Mobile Attack Vectors](17%20-%20Part%201%20-%20Mobile%20Attack%20Vectors.md)<br>[2 · Android Threats](17%20-%20Part%202%20-%20Android%20Threats.md)<br>[3 · iOS Threats](17%20-%20Part%203%20-%20iOS%20Threats.md)<br>[4 · MDM and BYOD](17%20-%20Part%204%20-%20MDM%20and%20BYOD.md)<br>[5 · Mobile Security Tools](17%20-%20Part%205%20-%20Mobile%20Security%20Tools.md) |
+| 18 | **IoT and OT Hacking** | [1 · IoT Concepts](18%20-%20Part%201%20-%20IoT%20Concepts.md)<br>[2 · IoT Threats and Attacks](18%20-%20Part%202%20-%20IoT%20Threats%20and%20Attacks.md)<br>[3 · IoT Hacking Tools and Techniques](18%20-%20Part%203%20-%20IoT%20Hacking%20Tools%20and%20Techniques.md)<br>[4 · OT Concepts and Attacks](18%20-%20Part%204%20-%20OT%20Concepts%20and%20Attacks.md)<br>[5 · IoT and OT Countermeasures](18%20-%20Part%205%20-%20IoT%20and%20OT%20Countermeasures.md) |
+| 19 | **Cloud Computing** | [1 · Cloud Concepts](19%20-%20Part%201%20-%20Cloud%20Concepts.md)<br>[2 · Cloud Threats](19%20-%20Part%202%20-%20Cloud%20Threats.md)<br>[3 · Cloud Attacks](19%20-%20Part%203%20-%20Cloud%20Attacks.md)<br>[4 · Cloud Security](19%20-%20Part%204%20-%20Cloud%20Security.md) |
+| 20 | **Cryptography** | [1 · Cryptography Concepts](20%20-%20Part%201%20-%20Cryptography%20Concepts.md)<br>[2 · Symmetric Encryption](20%20-%20Part%202%20-%20Symmetric%20Encryption.md)<br>[3 · Asymmetric Encryption](20%20-%20Part%203%20-%20Asymmetric%20Encryption.md)<br>[4 · Hash Functions](20%20-%20Part%204%20-%20Hash%20Functions.md)<br>[5 · PKI and Digital Certificates](20%20-%20Part%205%20-%20PKI%20and%20Digital%20Certificates.md)<br>[6 · Cryptographic Attacks](20%20-%20Part%206%20-%20Cryptographic%20Attacks.md) |
+| ⭐ | **Repaso final** | [REPASO-FINAL.md](REPASO-FINAL.md) — final review: key facts, exam traps and mnemonics of every module |
+| Extra | Web Servers Deep Dive | [Notes](Extra%20-%20Web%20Servers%20Deep%20Dive.md) |
 
 ---
 
 ## 📖 How to Use
 
 ```
-1️⃣  READ        → Go through notes module by module
-2️⃣  SCAN        → Use tables for quick concept review
-3️⃣  MEMORIZE    → Flashcards at end of each file
-4️⃣  TEST        → Practice questions to check knowledge
-5️⃣  REVIEW      → Exam Cheat Sheet for last-minute prep
+1️⃣  PREVIEW     → Read "Lo esencial para el examen" at the top of the note
+2️⃣  READ        → Go through the note (use the collapsible "Índice" to jump around)
+3️⃣  FOCUS       → Stop at every ⚠️ Trampa de examen, 🔥 HIGH YIELD section and 🧠 Para recordar
+4️⃣  MEMORIZE    → Flashcards at the end of each file
+5️⃣  TEST        → Practice questions to check knowledge
+6️⃣  REVIEW      → REPASO-FINAL.md + Exam Cheat Sheet for last-minute prep
 ```
+
+### ✍️ Editing the notes
+
+Each note follows the same layout: title → one-line summary → `Índice` → **Lo esencial para el examen** →
+content → **Extras de examen (Boson)** → **Flashcards** → **Preguntas de práctica**.
+
+Callouts are written as blockquotes:
+
+```markdown
+> ⚠️ *Trampa de examen:* Integrity se garantiza con **hash functions**, no con cifrado.
+
+> 🧠 *Para recordar:* **Recon → Weapon → Deliver → Exploit → Install → C2 → Act**
+```
+
+After editing any note, regenerate the per-note indexes and the final review:
+
+```bash
+python scripts/generar_indices.py
+```
+
+(It also accepts the old `MEMORY HOOK:` / `EXAM TRAP:` format and converts it.)
 
 ---
 
@@ -89,7 +116,7 @@
 | 5 | 14, 15 | 4-6h | 🟣 Web (high exam weight) |
 | 6 | 16, 17 | 3-4h | 🔵 Wireless & Mobile |
 | 7 | 18, 19, 20 | 3-4h | 🟡 IoT, Cloud, Crypto |
-| 8 | Review + Extra | 4-6h | ⚫ Final Review |
+| 8 | Repaso final + Extra | 4-6h | ⚫ Final Review |
 
 ---
 

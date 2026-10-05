@@ -1,19 +1,58 @@
-# OBJETIVO 05 — DIRECTRICES Y HERRAMIENTAS DE MOBILE SECURITY
+# Módulo 17 · Parte 5 — Mobile Security Tools
+
+> **Módulo 17 — Hacking Mobile Platforms** · Parte 5 de 5 · Directrices de seguridad móvil (dispositivo, app, red, datos, empresa), testing (SAST/DAST/IAST), herramientas Android/iOS y de análisis de malware, y mapeo ataque → defensa.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 05 — MOBILE SECURITY GUIDELINES AND TOOLS](#objective-05--mobile-security-guidelines-and-tools)
+- [OBJETIVOS DE MOBILE SECURITY](#objetivos-de-mobile-security)
+- [DIRECTRICES DE MOBILE SECURITY 🔥](#directrices-de-mobile-security-high-yield)
+- [MOBILE SECURITY PARA AMBIENTES EMPRESARIALES](#mobile-security-para-ambientes-empresariales)
+- [TESTING DE MOBILE SECURITY](#testing-de-mobile-security)
+- [HERRAMIENTAS DE MOBILE SECURITY](#herramientas-de-mobile-security)
+- [VPN Y GESTIÓN DE CERTIFICADOS](#vpn-y-gestión-de-certificados)
+- [MAPEO DE ATAQUE → DEFENSA EN MOBILE SECURITY 🔥](#mapeo-de-ataque--defensa-en-mobile-security-high-yield)
+- [CONCIENCIACIÓN DEL USUARIO 🔥](#concienciación-del-usuario-high-yield)
+- [ESTÁNDARES DE CUMPLIMIENTO EN MOBILE SECURITY](#estándares-de-cumplimiento-en-mobile-security)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Mobile security** — protege dispositivo + app + datos; las amenazas apuntan al SO, las apps, las redes y los usuarios (Android es abierto, iOS es controlado).
+- **Device-level guidelines** — bloqueo de pantalla fuerte, biometría, cifrar el almacenamiento, deshabilitar USB debugging y Bluetooth sin uso, remote wipe, actualizar el SO.
+- **Network-level guidelines** — evitar Wi-Fi público (o usar VPN), deshabilitar auto-connect, verificar certificados SSL.
+- **Enterprise** — MDM + containerization + compliance policies + device posture; MDM impone políticas y permite acciones remotas.
+- **SAST vs DAST vs IAST** — SAST analiza código fuente/binario sin ejecutar; DAST prueba la app en runtime; IAST combina ambos.
+- **Android tools** — Drozer (security assessment de apps), APKTool (reverse engineering/recompilar APK), JADX (DEX → Java), Androguard (análisis estático de malware).
+- **Frida / Objection / Cycript** — hooking e instrumentación en runtime (Android e iOS) / manipulación runtime sobre Frida / inspección runtime en iOS.
+- **MobSF / Burp Suite** — análisis estático y dinámico automatizado (Android e iOS) / proxy interceptador HTTP/HTTPS (análisis MITM).
+- **Malware analysis tools** — VirusTotal (múltiples motores AV), Androguard (estático), Cuckoo Sandbox (dinámico).
+- **VPN & certificate management** — certificados de confianza, bloquear CAs instaladas por el usuario y VPN empresarial para prevenir MITM y SSL stripping ("bad cert = MITM").
+- **Attack → Defense** — Malware → app vetting + MDM · Smishing → concienciación · MITM → VPN + TLS · Root/Jailbreak → device compliance checks · Data leakage → cifrado · Rogue Wi-Fi → deshabilitar auto-connect.
+- **Defensas obligatorias** — cifrado, actualizaciones, VPN y concienciación del usuario ("human = weakest link").
 
 ---
 
-## MOBILE SECURITY — DEFINICIÓN BÁSICA (EXAM)
+## OBJECTIVE 05 — MOBILE SECURITY GUIDELINES AND TOOLS
+
+### MOBILE SECURITY — DEFINICIÓN BÁSICA
 
 |Term|Definition|
 |---|---|
 |Mobile Security|La protección de dispositivos móviles, aplicaciones y datos contra amenazas, vulnerabilidades y accesos no autorizados|
 
-MEMORY HOOK:
-**Device + App + Data**
+> 🧠 *Para recordar:* **Device + App + Data**
 
 ---
 
-# OBJETIVOS DE MOBILE SECURITY (EXAM)
+## OBJETIVOS DE MOBILE SECURITY
 
 |Goal|
 |---|
@@ -23,16 +62,13 @@ MEMORY HOOK:
 |Asegurar cumplimiento normativo|
 |Mantener privacidad del usuario|
 
-MEMORY HOOK:
-**Protect, Prevent, Detect**
+> 🧠 *Para recordar:* **Protect, Prevent, Detect**
 
 ---
 
-# DIRECTRICES DE MOBILE SECURITY (LISTA CEH — MEMORIZAR OBLIGATORIO)
+## DIRECTRICES DE MOBILE SECURITY (HIGH YIELD)
 
----
-
-## DIRECTRICES DE SEGURIDAD A NIVEL DE DISPOSITIVO
+### DIRECTRICES DE SEGURIDAD A NIVEL DE DISPOSITIVO
 
 |Guideline|
 |---|
@@ -41,15 +77,14 @@ MEMORY HOOK:
 |Cifrar almacenamiento del dispositivo|
 |Deshabilitar USB debugging|
 |Deshabilitar Bluetooth cuando no se use|
-|Habilitar borrado remoto|
+|Habilitar remote wipe (borrado remoto)|
 |Instalar actualizaciones del SO|
 
-MEMORY HOOK:
-**Lock, Encrypt, Update**
+> 🧠 *Para recordar:* **Lock, Encrypt, Update**
 
 ---
 
-## DIRECTRICES DE SEGURIDAD A NIVEL DE APLICACIÓN
+### DIRECTRICES DE SEGURIDAD A NIVEL DE APLICACIÓN
 
 |Guideline|
 |---|
@@ -59,26 +94,24 @@ MEMORY HOOK:
 |Eliminar apps no utilizadas|
 |Actualizar apps regularmente|
 
-MEMORY HOOK:
-**Trust source, limit permissions**
+> 🧠 *Para recordar:* **Trust source, limit permissions**
 
 ---
 
-## DIRECTRICES DE SEGURIDAD A NIVEL DE RED
+### DIRECTRICES DE SEGURIDAD A NIVEL DE RED
 
 |Guideline|
 |---|
 |Evitar Wi-Fi público|
 |Usar VPN|
-|Deshabilitar auto-conexión|
+|Deshabilitar auto-connect (conexión automática)|
 |Verificar certificados SSL|
 
-MEMORY HOOK:
-**Public Wi-Fi = VPN required**
+> 🧠 *Para recordar:* **Public Wi-Fi = VPN required**
 
 ---
 
-## DIRECTRICES DE SEGURIDAD A NIVEL DE DATOS
+### DIRECTRICES DE SEGURIDAD A NIVEL DE DATOS
 
 |Guideline|
 |---|
@@ -87,29 +120,27 @@ MEMORY HOOK:
 |Usar gestión segura de claves|
 |Habilitar backups seguros|
 
-MEMORY HOOK:
-**Encrypt at rest and transit**
+> 🧠 *Para recordar:* **Encrypt at rest and transit**
 
 ---
 
-# MOBILE SECURITY PARA AMBIENTES EMPRESARIALES
+## MOBILE SECURITY PARA AMBIENTES EMPRESARIALES
 
 |Control|
 |---|
 |Imponer MDM|
 |Aplicar containerization|
-|Imponer políticas de cumplimiento|
-|Monitorear posture del dispositivo|
-|Restringir acceso a recursos corporativos|
+|Imponer políticas de cumplimiento (compliance policies)|
+|Monitorizar la postura del dispositivo (device posture)|
+|Restringir el acceso a recursos corporativos|
 
-MEMORY HOOK:
-**Enterprise = MDM + Policy**
+> 🧠 *Para recordar:* **Enterprise = MDM + Policy**
 
 ---
 
-# TESTING DE MOBILE SECURITY (CONCEPTO DE EXAM)
+## TESTING DE MOBILE SECURITY
 
-## MOBILE APPLICATION SECURITY TESTING (MAST)
+### MOBILE APPLICATION SECURITY TESTING (MAST)
 
 |Type|Description|
 |---|---|
@@ -117,16 +148,13 @@ MEMORY HOOK:
 |Dynamic Analysis (DAST)|Testing en tiempo de ejecución|
 |Interactive Analysis (IAST)|Enfoque combinado|
 
-MEMORY HOOK:
-**Static sees code, Dynamic sees behavior**
+> 🧠 *Para recordar:* **Static sees code, Dynamic sees behavior**
 
 ---
 
-# HERRAMIENTAS DE MOBILE SECURITY (CEH ESPERA RECONOCIMIENTO)
+## HERRAMIENTAS DE MOBILE SECURITY
 
----
-
-## HERRAMIENTAS DE SEGURIDAD ANDROID
+### HERRAMIENTAS DE SEGURIDAD ANDROID
 
 |Tool|Purpose|
 |---|---|
@@ -138,12 +166,11 @@ MEMORY HOOK:
 |Androguard|Análisis de malware|
 |MobSF|Análisis automatizado|
 
-MEMORY HOOK:
-**Drozer probes, APKTool breaks**
+> 🧠 *Para recordar:* **Drozer probes, APKTool breaks**
 
 ---
 
-## HERRAMIENTAS DE SEGURIDAD iOS
+### HERRAMIENTAS DE SEGURIDAD iOS
 
 |Tool|Purpose|
 |---|---|
@@ -154,12 +181,11 @@ MEMORY HOOK:
 |Burp Suite|Análisis MITM|
 |MobSF|Análisis de apps iOS|
 
-MEMORY HOOK:
-**Frida everywhere**
+> 🧠 *Para recordar:* **Frida everywhere**
 
 ---
 
-## HERRAMIENTAS DE ANÁLISIS DE MOBILE MALWARE
+### HERRAMIENTAS DE ANÁLISIS DE MOBILE MALWARE
 
 |Tool|Purpose|
 |---|---|
@@ -170,7 +196,7 @@ MEMORY HOOK:
 
 ---
 
-# VPN Y GESTIÓN DE CERTIFICADOS (EXAM)
+## VPN Y GESTIÓN DE CERTIFICADOS
 
 |Control|
 |---|
@@ -179,25 +205,24 @@ MEMORY HOOK:
 |Usar VPN empresarial|
 |Prevenir SSL stripping|
 
-MEMORY HOOK:
-**Bad cert = MITM**
+> 🧠 *Para recordar:* **Bad cert = MITM**
 
 ---
 
-# MAPEO DE ATAQUE → DEFENSA EN MOBILE SECURITY (ALTO RENDIMIENTO)
+## MAPEO DE ATAQUE → DEFENSA EN MOBILE SECURITY (HIGH YIELD)
 
 |Attack|Defense|
 |---|---|
-|Malware|Validación de apps + MDM|
-|Smishing|Concienciación del usuario|
+|Malware|App vetting (revisión de apps) + MDM|
+|Smishing|User awareness (concienciación del usuario)|
 |MITM|VPN + TLS|
-|Root/Jailbreak|Verificaciones de cumplimiento del dispositivo|
+|Root/Jailbreak|Device compliance checks (verificación de cumplimiento del dispositivo)|
 |Data leakage|Cifrado|
-|Rogue Wi-Fi|Deshabilitar auto-conexión|
+|Rogue Wi-Fi|Deshabilitar auto-connect (conexión automática)|
 
 ---
 
-# CONCIENCIACIÓN DEL USUARIO (ÉNFASIS EN EXAM)
+## CONCIENCIACIÓN DEL USUARIO (HIGH YIELD)
 
 |Awareness Topic|
 |---|
@@ -207,12 +232,11 @@ MEMORY HOOK:
 |Actualizaciones falsas|
 |Riesgos de Wi-Fi público|
 
-MEMORY HOOK:
-**Human = weakest link**
+> 🧠 *Para recordar:* **Human = weakest link**
 
 ---
 
-# ESTÁNDARES DE CUMPLIMIENTO EN MOBILE SECURITY (RECONOCIMIENTO)
+## ESTÁNDARES DE CUMPLIMIENTO EN MOBILE SECURITY
 
 |Standard|
 |---|
@@ -223,50 +247,7 @@ MEMORY HOOK:
 
 ---
 
-# MÓDULOS 17 — BLOQUE FINAL DE MEMORIA
-
-**Mobile security protege dispositivos, apps y datos.
-Las amenazas apuntan al SO, apps, redes y usuarios.
-Android es abierto; iOS es controlado.
-MDM impone políticas y permite acciones remotas.
-Herramientas como Drozer, Frida y MobSF analizan apps.
-Cifrado, actualizaciones, VPNs y concienciación son obligatorios.**
-
----
-
-# MÓDULO 17 — ESTADO COMPLETO
-
-|Item|Status|
-|---|---|
-|Objetivo 01|COMPLETO|
-|Objetivo 02|COMPLETO|
-|Objetivo 03|COMPLETO|
-|Objetivo 04|COMPLETO|
-|Objetivo 05|COMPLETO|
-|Herramientas cubiertas|COMPLETO|
-|Comandos/conceptos|COMPLETO|
-|Alineación con examen|EXACTO|
-
----
-
-## MÓDULO 17 COMPLETO
-
-Has cubierto completamente **Hacking Mobile Platforms** para CEH v13.
-
-Próximas opciones:
-
-- Siguiente módulo de CEH (indica el número/nombre)
-    
-- Trampas de examen para el módulo 17
-    
-- Hoja de un página de ataques vs defensas móviles
-    
-- Ejercicio de reconocimiento de herramientas/comandos
-    
-
----
-
-# TARJETAS DE MEMORIA PARA EXAMEN
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -288,7 +269,7 @@ Próximas opciones:
 
 ---
 
-# PREGUNTAS DE PRÁCTICA
+## Preguntas de práctica
 
 **1.** ¿Qué herramienta se usa para descompilar un APK de Android en código Java legible?
 - a) Drozer

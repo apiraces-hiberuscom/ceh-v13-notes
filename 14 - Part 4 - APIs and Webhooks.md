@@ -1,4 +1,48 @@
-# OBJECTIVE 04 — WEB APIs AND WEBHOOKS
+# Módulo 14 · Parte 4 — APIs and Webhooks
+
+> **Módulo 14 — Hacking Web Applications** · Parte 4 de 5 · Web APIs (REST, SOAP, GraphQL), métodos de autenticación, vulnerabilidades y superficie de ataque de las APIs, y funcionamiento y riesgos de los webhooks.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [1. WEB API — CEH DEFINITION](#1-web-api--ceh-definition)
+- [2. PURPOSE OF WEB APIs](#2-purpose-of-web-apis)
+- [3. COMMON WEB API TYPES 🔥](#3-common-web-api-types-high-yield)
+- [4. REST API — CORE CONCEPTS](#4-rest-api--core-concepts)
+- [5. SOAP API — CORE CONCEPTS](#5-soap-api--core-concepts)
+- [6. API AUTHENTICATION METHODS 🔥](#6-api-authentication-methods-high-yield)
+- [7. COMMON API VULNERABILITIES](#7-common-api-vulnerabilities)
+- [8. API ATTACK SURFACE](#8-api-attack-surface)
+- [9. API ATTACK LOGIC (GENERIC)](#9-api-attack-logic-generic)
+- [10. API TESTING TOOLS](#10-api-testing-tools)
+- [11. WEBHOOK — CEH DEFINITION](#11-webhook--ceh-definition)
+- [12. HOW WEBHOOKS WORK](#12-how-webhooks-work)
+- [13. WEBHOOK SECURITY RISKS](#13-webhook-security-risks)
+- [14. WEBHOOK ATTACK LOGIC](#14-webhook-attack-logic)
+- [15. API VS WEBHOOK](#15-api-vs-webhook)
+- [16. API SECURITY CONTROLS 🔥](#16-api-security-controls-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Web API types** — REST (métodos HTTP, stateless), SOAP (solo XML, mensajería estricta, WS-Security), GraphQL (el cliente define la consulta de datos).
+- **REST principles** — stateless, separación client-server, cacheable, uniform interface.
+- **HTTP methods** — GET obtiene, POST envía, PUT actualiza, PATCH actualiza parcialmente, DELETE elimina (**G P P P D**).
+- **SOAP components** — WSDL (describe operaciones e interfaz del servicio), Envelope (envoltorio), Header (seguridad y metadatos), Body (petición/respuesta).
+- **API authentication** — API Keys (token estático), Basic Auth (usuario/contraseña), OAuth 2.0 (acceso delegado basado en tokens), JWT (tokens JSON firmados).
+- **BOLA (Broken Object Level Authorization)** — cambiar IDs de objetos en los parámetros para acceder a registros de otro usuario.
+- **Mass Assignment** — el atacante modifica propiedades del objeto no previstas a través de los parámetros de la API.
+- **Lack of Rate Limiting** — se mitiga con **rate limiting**: límite de peticiones por periodo de tiempo.
+- **API testing tools** — Postman e Insomnia (REST), SoapUI (SOAP), Burp Suite (intercepción), OWASP ZAP (escaneo).
+- **Webhook** — envía datos en tiempo real vía **HTTP POST** cuando ocurre un evento: Event → Trigger → POST → Process.
+- **API vs Webhook** — API: el cliente pide (pull), basada en peticiones, bidireccional; webhook: el servidor envía (push), basado en eventos, unidireccional.
+- **Webhook risks** — sin autenticación, payload tampering, replay attacks, data leakage.
 
 ---
 
@@ -21,7 +65,7 @@
 
 ---
 
-## 3. COMMON WEB API TYPES (EXAM MUST)
+## 3. COMMON WEB API TYPES (HIGH YIELD)
 
 |API Type|Description|
 |---|---|
@@ -37,10 +81,10 @@
 
 |Principle|
 |---|
-|Comunicación sin estado|
-|Separación cliente-servidor|
-|Respuestas con caché|
-|Interfaz uniforme|
+|Stateless — comunicación sin estado|
+|Client-server — separación cliente-servidor|
+|Cacheable — respuestas que se pueden cachear|
+|Uniform interface — interfaz uniforme|
 
 ---
 
@@ -54,8 +98,7 @@
 |PATCH|Actualización parcial|
 |DELETE|Eliminar datos|
 
-MEMORY HOOK:  
-**G P P P D**
+> 🧠 *Para recordar:* **G P P P D**
 
 ---
 
@@ -91,7 +134,7 @@ MEMORY HOOK:
 
 ---
 
-## 6. API AUTHENTICATION METHODS (VERY IMPORTANT)
+## 6. API AUTHENTICATION METHODS (HIGH YIELD)
 
 |Method|Description|
 |---|---|
@@ -100,12 +143,11 @@ MEMORY HOOK:
 |OAuth 2.0|Acceso delegado basado en tokens|
 |JWT|Tokens JSON firmados|
 
-MEMORY HOOK:  
-**Key → Basic → Token → JWT**
+> 🧠 *Para recordar:* **Key → Basic → Token → JWT**
 
 ---
 
-## 7. COMMON API VULNERABILITIES (CEH LIST)
+## 7. COMMON API VULNERABILITIES
 
 |Vulnerability|
 |---|
@@ -124,10 +166,10 @@ MEMORY HOOK:
 |Attack Surface|
 |---|
 |Endpoints|
-|Parameters|
+|Parámetros|
 |Headers|
-|Authentication tokens|
-|API versions|
+|Tokens de autenticación|
+|Versiones de la API|
 
 ---
 
@@ -143,7 +185,7 @@ MEMORY HOOK:
 
 ---
 
-## 10. API TESTING TOOLS (CEH-EXPECTED)
+## 10. API TESTING TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -163,7 +205,7 @@ MEMORY HOOK:
 
 ---
 
-## 12. HOW WEBHOOKS WORK (EXAM FLOW)
+## 12. HOW WEBHOOKS WORK
 
 |Step|Action|
 |---|---|
@@ -172,8 +214,7 @@ MEMORY HOOK:
 |3|Se envía un HTTP POST|
 |4|El receptor procesa el payload|
 
-MEMORY HOOK:  
-**Event → Trigger → POST → Process**
+> 🧠 *Para recordar:* **Event → Trigger → POST → Process**
 
 ---
 
@@ -182,9 +223,9 @@ MEMORY HOOK:
 |Risk|
 |---|
 |Sin autenticación|
-|Manipulación del payload|
-|Ataques de repetición (replay attacks)|
-|Filtración de datos|
+|Payload tampering — manipulación del payload|
+|Replay attacks — ataques de repetición|
+|Data leakage — filtración de datos|
 
 ---
 
@@ -199,7 +240,7 @@ MEMORY HOOK:
 
 ---
 
-## 15. API VS WEBHOOK (EXAM COMPARISON)
+## 15. API VS WEBHOOK
 
 |Feature|API|Webhook|
 |---|---|---|
@@ -209,7 +250,7 @@ MEMORY HOOK:
 
 ---
 
-## 16. API SECURITY CONTROLS (MEMORIZE)
+## 16. API SECURITY CONTROLS (HIGH YIELD)
 
 |Control|
 |---|
@@ -217,11 +258,11 @@ MEMORY HOOK:
 |Verificaciones de autorización|
 |Validación de entradas|
 |Rate limiting|
-|Registro y monitoreo|
+|Logging y monitorización|
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -241,7 +282,7 @@ MEMORY HOOK:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué método HTTP se utiliza para enviar datos a un endpoint de REST API?
 - a) GET

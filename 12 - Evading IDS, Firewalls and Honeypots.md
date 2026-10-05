@@ -1,30 +1,66 @@
-# MODULE 12 — EVADING IDS, FIREWALLS AND HONEYPOTS (EXAM CONTEXT)
+# Módulo 12 — Evading IDS, Firewalls, and Honeypots
 
-|Item|Memorize|
-|---|---|
-|Module Number|12|
-|Module Name|Evading IDS, Firewalls and Honeypots|
-|Focus|Detección de intrusiones, firewalls, técnicas de evasion, honeypots, seguridad de endpoint|
+> **Enfoque:** Detección de intrusiones (IDS/IPS), firewalls, técnicas de evasión, honeypots y evasión de la seguridad de endpoint
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [IDS CONCEPTS](#ids-concepts)
+- [NIDS VS HIDS COMPARISON](#nids-vs-hids-comparison)
+- [TYPES OF IDS ALERTS](#types-of-ids-alerts)
+- [INTRUSION PREVENTION SYSTEM (IPS)](#intrusion-prevention-system-ips)
+- [FIREWALL CONCEPTS](#firewall-concepts)
+- [TYPES OF FIREWALLS](#types-of-firewalls)
+- [FIREWALL COMPARISON TABLE 🔥](#firewall-comparison-table-high-yield)
+- [YARA RULES (INTRUSION DETECTION)](#yara-rules-intrusion-detection)
+- [IDS/IPS TOOLS](#idsips-tools)
+- [IDS/FIREWALL EVASION TECHNIQUES](#idsfirewall-evasion-techniques)
+- [NAC AND ENDPOINT SECURITY EVASION](#nac-and-endpoint-security-evasion)
+- [IDS/FIREWALL EVASION TOOLS](#idsfirewall-evasion-tools)
+- [HONEYPOTS](#honeypots)
+- [DETECTING HONEYPOTS](#detecting-honeypots)
+- [DETECTING AND DEFEATING HONEYPOTS](#detecting-and-defeating-honeypots)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Signature Recognition** (misuse detection) — el método más común: compara con patrones conocidos; si hay coincidencia, la anomaly detection se omite
+- **Anomaly Detection vs Protocol Anomaly Detection** — desviación respecto a una baseline de comportamiento vs desviación de los estándares del protocolo (RFC)
+- **False Negative** — ataque real sin alarma: el caso más peligroso (False Positive = alarma sin ataque)
+- **NIDS vs HIDS** — NIDS: black box en modo promiscuo que vigila el tráfico de la red; HIDS: en un host, vigila archivos, llamadas al sistema y logs (consume muchos recursos)
+- **IPS** — IDS activo que además bloquea el tráfico; HIPS en un host, NIPS inline en el segmento de red
+- **Capas OSI de los firewalls** — Packet filtering y Stateful L3/L4; Circuit-level gateway L5 (valida el three-way handshake); Application-level (proxy) L7; NGFW L3–L7
+- **Bastion host / Screened subnet / DMZ** — mediador con interfaz pública y privada / DMZ creada con un firewall de dos o tres interfaces (multi-homed) / zona búfer entre la red interna e internet
+- **Firewalking** — envía paquetes con un TTL un salto mayor que el firewall (como traceroute) para descubrir las ACL del gateway
+- **Session Splicing vs Tiny Fragments** — repartir el payload en muchos paquetes pequeños para que ninguno dispare la firma vs forzar parte del header TCP al siguiente fragmento
+- **Tunneling → herramienta** — ICMP: ICMPTX · ACK: Hping · HTTP (TCP 80): Chisel · SSH/SOCKS: Bitvise · DNS (límite UDP de 255 bytes): Iodine, dnscat2
+- **Fast Flux vs DGA** — Fast Flux cambia rápidamente IPs y nombres DNS para ocultar el C&C; DGA genera dominios nuevos para evadir bloqueos
+- **Honeypots** — Low emula pocos servicios (KFSensor, Honeytrap), Medium simula SO/apps/servicios, High simula todos los servicios; se delatan por el OUI de VMware en la MAC, la latencia o Send Safe Honeypot Hunter
 
 ---
 
-## LEARNING OBJECTIVES (DO NOT SKIP — EXAM LIST)
+## Objetivos de aprendizaje
 
 |Objective #|Description|
 |---|---|
 |01|Resumir conceptos de IDS, IPS y firewall|
-|02|Explicar técnicas de evasion de IDS/Firewall|
-|03|Describir técnicas de evasion de seguridad de endpoint|
+|02|Explicar técnicas de evasión de IDS/Firewall|
+|03|Describir técnicas de evasión de seguridad de endpoint|
 |04|Explicar tipos de honeypots y su detección|
-|05|Demostrar herramientas de evasion de IDS/Firewall|
+|05|Demostrar herramientas de evasión de IDS/Firewall|
 
 ---
 
-# IDS CONCEPTS
+## IDS CONCEPTS
 
----
-
-## INTRUSION DETECTION SYSTEM — CORE
+### INTRUSION DETECTION SYSTEM — CORE
 
 |Item|Memorize|
 |---|---|
@@ -34,7 +70,7 @@
 
 ---
 
-## IDS PLACEMENT
+### IDS PLACEMENT
 
 |Placement|Detail|
 |---|---|
@@ -42,12 +78,11 @@
 |Inside Network|Ubicación ideal cerca del DMZ|
 |Best Practice|Uno fuera del FW y uno dentro cerca del DMZ|
 
-MEMORY HOOK:
-**Outside + Inside near DMZ = best practice**
+> 🧠 *Para recordar:* **Uno fuera + uno dentro cerca de la DMZ = best practice**
 
 ---
 
-## HOW IDS WORKS
+### HOW IDS WORKS
 
 |Step|Action|
 |---|---|
@@ -58,56 +93,51 @@ MEMORY HOOK:
 
 ---
 
-## HOW IDS DETECTS INTRUSION
+### HOW IDS DETECTS INTRUSION
 
 |Detection Method|Explanation|EXAM Key|
 |---|---|---|
-|Signature Recognition|Detección de uso indebido; coincide con patrones conocidos|Método más común|
-|Anomaly Detection|Intrusión basada en características conductuales|Comparación con línea base|
+|Signature Recognition|Misuse detection (detección de uso indebido); coincide con patrones conocidos|Método más común|
+|Anomaly Detection|Intrusión basada en características conductuales|Comparación con la baseline (línea base)|
 |Protocol Anomaly Detection|Desviaciones de los estándares de protocolo establecidos|Verificación de cumplimiento de RFC|
 
-EXAM TRAP:
-Signature match → anomaly detection is **skipped**
+> ⚠️ *Trampa de examen:* Si hay signature match (coincidencia de firma) → la anomaly detection se **omite**
 
 ---
 
-# NIDS VS HIDS COMPARISON
+## NIDS VS HIDS COMPARISON
 
 |Feature|NIDS|HIDS|
 |---|---|---|
 |Type|Network-based|Host-based|
-|Placement|Caja negra en red en modo promiscuo|Instalado en un host específico|
+|Placement|Black box (caja negra) en la red, en modo promiscuo|Instalado en un host específico|
 |Monitors|Patrones de tráfico de red|Modificación de archivos, llamadas al sistema, registros|
 |Detects|DDoS, anomalías de red|Cambios en archivos, ataques locales|
 |Resource Usage|Bajo en hosts|Alto — consume muchos recursos|
 |Commonality|Común|No común|
 |Visibility|En toda la red|Detalle de un solo host|
 
-MEMORY HOOK:
-**NIDS = network watchdog; HIDS = host watchdog**
+> 🧠 *Para recordar:* **NIDS = vigila la red; HIDS = vigila el host**
 
 ---
 
-# TYPES OF IDS ALERTS
+## TYPES OF IDS ALERTS
 
 |Alert Type|Action|Explanation|
 |---|---|---|
-|True Positive|Ataque → Alarma|El IDS genera alarma cuando ocurre un ataque legítimo|
+|True Positive|Ataque → Alarma|El IDS genera alarma cuando ocurre un ataque real|
 |False Positive|Sin ataque → Alarma|El IDS genera alarma cuando no hay ataque|
 |False Negative|Ataque → Sin alarma|El IDS no genera alarma cuando hay un ataque — EL MÁS PELIGROSO|
 |True Negative|Sin ataque → Sin alarma|El IDS no genera alarma cuando no ha ocurrido ningún ataque|
 
-MEMORY HOOK:
-**True = correct; Positive = alert; Negative = no alert**
-**False Negative = worst case = attack missed**
+> 🧠 *Para recordar:* **True = acierto; Positive = hay alerta; Negative = no hay alerta**  
+> **False Negative = el peor caso = ataque no detectado**
 
 ---
 
-# INTRUSION PREVENTION SYSTEM (IPS)
+## INTRUSION PREVENTION SYSTEM (IPS)
 
----
-
-## IPS — DEFINITION
+### IPS — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -116,7 +146,7 @@ MEMORY HOOK:
 
 ---
 
-## IPS CAPABILITIES
+### IPS CAPABILITIES
 
 |Capability|Detail|
 |---|---|
@@ -128,7 +158,7 @@ MEMORY HOOK:
 
 ---
 
-## IPS CLASSIFICATION
+### IPS CLASSIFICATION
 
 |Type|Placement|
 |---|---|
@@ -137,38 +167,33 @@ MEMORY HOOK:
 
 ---
 
-# FIREWALL CONCEPTS
+## FIREWALL CONCEPTS
 
----
-
-## FIREWALL — DEFINITION
+### FIREWALL — DEFINITION
 
 |Item|Memorize|
 |---|---|
 |Purpose|Prevenir accesos no autorizados|
 |Placement|Unión o puerta de enlace entre dos redes|
-|Function|Examina todos los mensajes que entran y salen del internet|
+|Function|Examina todos los mensajes que entran y salen de internet|
 
 ---
 
-## FIREWALL ARCHITECTURE
+### FIREWALL ARCHITECTURE
 
 |Architecture|Definition|
 |---|---|
 |Bastion Host|Diseñado para defender la red contra ataques; mediador entre dentro y fuera; dos interfaces — pública (directa a internet) y privada (conectada a la red interna)|
-|Screened Subnet (DMZ)|Creado con un firewall de dos o tres interfaces detrás del firewall de filtrado; firewall multi-homed = nodo con múltiples NICs que conectan segmentos de red separados|
+|Screened Subnet (DMZ)|Se crea con un firewall dual-homed o three-homed (de dos o tres interfaces) detrás del screening firewall (firewall de filtrado); firewall multi-homed = nodo con múltiples NICs que conectan segmentos de red separados|
 |DMZ|Ubicada en zona neutral entre la red interna y la red externa no confiable; sirve como búfer entre la red interna segura y el internet inseguro|
 
-MEMORY HOOK:
-**Bastion = mediator; Screened subnet = two-firewall DMZ; DMZ = buffer zone**
+> 🧠 *Para recordar:* **Bastion = mediador; Screened subnet = DMZ tras el screening firewall; DMZ = zona búfer**
 
 ---
 
-# TYPES OF FIREWALLS
+## TYPES OF FIREWALLS
 
----
-
-## BY CONFIGURATION
+### BY CONFIGURATION
 
 |Type|Description|Examples|
 |---|---|---|
@@ -177,7 +202,7 @@ MEMORY HOOK:
 
 ---
 
-## BY WORKING MECHANISM
+### BY WORKING MECHANISM
 
 |Firewall Type|How It Works|Key Features|
 |---|---|---|
@@ -187,12 +212,12 @@ MEMORY HOOK:
 |Stateful Multi-Layer Inspection|Puede recordar paquetes que han pasado|Combina las mejores características del filtrado de paquetes y el basado en aplicación; Cisco PIX = stateful|
 |Application Proxy|Útil para logging; reduce la carga en la red|Realiza autenticación a nivel de usuario; protege implementaciones de IP débiles o defectuosas|
 |Network Address Translation (NAT)|Traduce IPs privadas a IPs públicas|Oculta la estructura de IP interna|
-|VPN Firewall|Conecta WAN; cifra el tráfico|Verifica la protección de integridad; descifra el tráfico eventualmente|
+|VPN Firewall|Conecta WAN; cifra el tráfico|Verifica la protección de integridad; finalmente descifra el tráfico|
 |Next-Generation Firewall (NGFW)|Deep packet inspection + application awareness + control|IPS integrado; inteligencia de amenazas basada en la nube; opera en varias capas del OSI|
 
 ---
 
-# FIREWALL COMPARISON TABLE (EXAM FAVORITE)
+## FIREWALL COMPARISON TABLE (HIGH YIELD)
 
 |Firewall Type|OSI Layer|How It Works|CEH Keywords|
 |---|---|---|---|
@@ -200,11 +225,11 @@ MEMORY HOOK:
 |Stateful Firewall|L3 / L4|Rastrea el estado de la conexión|Session awareness|
 |Circuit-Level Gateway|L5|Valida handshakes de TCP|Session validation|
 |Application-Level Firewall (Proxy)|L7|Inspecciona datos de aplicación|Deep packet inspection|
-|Next-Generation Firewall (NGFW)|L3–L7|DPI + IDS/IPS + conciencia de aplicaciones|Application awareness|
+|Next-Generation Firewall (NGFW)|L3–L7|DPI + IDS/IPS + application awareness (reconocimiento de aplicaciones)|Application awareness|
 
 ---
 
-# YARA RULES (INTRUSION DETECTION)
+## YARA RULES (INTRUSION DETECTION)
 
 |Item|Memorize|
 |---|---|
@@ -216,7 +241,7 @@ MEMORY HOOK:
 
 ---
 
-# IDS/IPS TOOLS
+## IDS/IPS TOOLS
 
 |Tool|Type|Key Features|
 |---|---|---|
@@ -228,11 +253,9 @@ MEMORY HOOK:
 
 ---
 
-# IDS/FIREWALL EVASION TECHNIQUES
+## IDS/FIREWALL EVASION TECHNIQUES
 
----
-
-## IDENTIFICATION TECHNIQUES
+### IDENTIFICATION TECHNIQUES
 
 |Technique|Definition|Detail|
 |---|---|---|
@@ -242,17 +265,17 @@ MEMORY HOOK:
 
 ---
 
-## IP ADDRESS SPOOFING, SOURCE ROUTING, AND FRAGMENTATION
+### IP ADDRESS SPOOFING, SOURCE ROUTING, AND FRAGMENTATION
 
 |Technique|Definition|Tool/Detail|
 |---|---|---|
 |IP Address Spoofing|Alterar la IP de origen; crear paquetes con direcciones de origen falsificadas|Hping para creación de paquetes|
 |Source Routing|Paquetes enrutados a través de segmentos menos designados, menos estructurados, menos monitoreados o alternativos|Las soluciones de firewall están parcialmente o no instaladas en esos segmentos|
-|Tiny Fragments|Crear fragmentos tiny de paquetes salientes|Fuerza parte de la información del encabezado TCP al siguiente fragmento; el IDS no puede reensamblar a tiempo|
+|Tiny Fragments|Crear fragmentos diminutos de los paquetes salientes|Fuerza parte de la información del encabezado TCP al siguiente fragmento; el IDS no puede reensamblar a tiempo|
 
 ---
 
-## PROXY SERVER BYPASS
+### PROXY SERVER BYPASS
 
 |Item|Memorize|
 |---|---|
@@ -261,17 +284,17 @@ MEMORY HOOK:
 
 ---
 
-## ICMP TUNNELING
+### ICMP TUNNELING
 
 |Item|Memorize|
 |---|---|
 |Tool|ICMPTX|
-|Method|Insertar comandos de cliente maliciosos o payloads en la porción de datos de las solicitudes de eco ICMP|
+|Method|Insertar comandos de cliente maliciosos o payloads en la porción de datos de los ICMP echo requests (solicitudes de eco)|
 |Why it works|El IDS asume que es ICMP legítimo y los deja pasar|
 
 ---
 
-## ACK TUNNELING
+### ACK TUNNELING
 
 |Step|Action|
 |---|---|
@@ -280,21 +303,20 @@ MEMORY HOOK:
 |3|Usando Hping, crea un paquete ACK|
 |4|El firewall los deja pasar|
 
-MEMORY HOOK:
-**ACK = already established = allowed**
+> 🧠 *Para recordar:* **ACK = conexión ya establecida = se deja pasar**
 
 ---
 
-## HTTP TUNNELING
+### HTTP TUNNELING
 
 |Item|Memorize|
 |---|---|
-|Method|Tunnelizar tráfico vía TCP port 80 usando herramientas como Chisel|
+|Method|Tunelizar tráfico por el puerto TCP 80 usando herramientas como Chisel|
 |Purpose|Ocultar identidad, navegar sitios bloqueados, compartir recursos de forma segura sobre HTTP|
 
 ---
 
-## SSH TUNNELING
+### SSH TUNNELING
 
 |Type|Description|
 |---|---|
@@ -304,21 +326,20 @@ MEMORY HOOK:
 
 ---
 
-## DNS TUNNELING
+### DNS TUNNELING
 
 |Item|Memorize|
 |---|---|
 |Method|Usar el límite de 255 bytes de UDP en consultas salientes|
-|Detail|Datos maliciosos incrustados en paquetes DNS; DNSSEC no puede detectar|
+|Detail|Datos maliciosos incrustados en paquetes DNS; DNSSEC no puede detectarlo|
 |Use Case|El malware evita el IDS y mantiene conexión con C&C|
 |Tools|Iodine, dnscat2|
 
-MEMORY HOOK:
-**DNS tunnel = 255 bytes of evil in UDP**
+> 🧠 *Para recordar:* **DNS tunnel = 255 bytes maliciosos dentro de UDP**
 
 ---
 
-## EXTERNAL SYSTEM ATTACKS
+### EXTERNAL SYSTEM ATTACKS
 
 |Step|Action|
 |---|---|
@@ -331,27 +352,27 @@ MEMORY HOOK:
 
 ---
 
-## MITM ATTACKS (EVASION CONTEXT)
+### MITM ATTACKS (EVASION CONTEXT)
 
 |Step|Action|
 |---|---|
-|1|El atacante realiza envenenamiento del servidor DNS|
+|1|El atacante realiza DNS server poisoning (envenenamiento del servidor DNS)|
 |2|El usuario envía solicitud a facebook.com|
 |3|El usuario accede al servidor malicioso|
-|4|El atacante tunneliza el tráfico HTTP del usuario|
+|4|El atacante tuneliza el tráfico HTTP del usuario|
 
 ---
 
-## CONTENT-BASED BYPASS
+### CONTENT-BASED BYPASS
 
 |Item|Memorize|
 |---|---|
 |Method|Enviar contenido que contiene código malicioso|
-|Techniques|Explot de bypass por macro; formatos ejecutables: .exe, .com, .bat|
+|Techniques|Macro bypass exploit (exploit de bypass mediante macros); formatos ejecutables: .exe, .com, .bat|
 
 ---
 
-## XSS ATTACK (EVASION CONTEXT)
+### XSS ATTACK (EVASION CONTEXT)
 
 |Item|Memorize|
 |---|---|
@@ -361,18 +382,18 @@ MEMORY HOOK:
 
 ---
 
-## WAF BYPASS
+### WAF BYPASS
 
 |Technique|Detail|Tool|
 |---|---|---|
 |HTTP Header Spoofing|Headers y sintaxis falsificados|Elaboración manual|
 |Blacklist Detection|Identificar palabras clave en lista negra (SQL)|Escaneo automatizado|
-|Fuzzing/Brute Forcing|Probar listas de palabras contra reglas de WAF|Listas de palabras Assetnote|
+|Fuzzing/Brute Forcing|Probar wordlists (listas de palabras) contra las reglas del WAF|Wordlists de Assetnote|
 |Abusing SSL/TLS Ciphers|Explotar debilidades en la negociación de cifrados|sslscan2|
 
 ---
 
-## HTML SMUGGLING
+### HTML SMUGGLING
 
 |Method|Detail|
 |---|---|
@@ -382,24 +403,24 @@ MEMORY HOOK:
 
 ---
 
-## WINDOWS BITS (BACKGROUND INTELLIGENT TRANSFER SERVICE)
+### WINDOWS BITS (BACKGROUND INTELLIGENT TRANSFER SERVICE)
 
 |Item|Memorize|
 |---|---|
 |Purpose|Distribuye actualizaciones automáticas de Windows|
-|Attack|bitsadmin puede crear un trabajo para transferir archivo malicioso|
+|Attack|bitsadmin puede crear un job (trabajo) para transferir un archivo malicioso|
 |Goal|Crear persistencia|
 
 ---
 
-## OTHER EVASION TECHNIQUES
+### OTHER EVASION TECHNIQUES
 
 |Technique|Definition|
 |---|---|
 |Insertion Attack|Confundir al IDS forzándolo a leer paquetes inválidos|
 |Evasion|El IDS descarta paquetes pero el host los acepta; ocurre en la capa IP; la conexión TCP debe estar en estado abierto con handshake|
 |DoS|Crear un estado donde todos los recursos son consumidos; causa que el dispositivo se bloquee y no investigue todas las alarmas|
-|Ofuscación|Solo el destino puede decodificar, no el IDS|
+|Obfuscating|Ofuscación: solo el destino puede decodificar el contenido, no el IDS|
 |False Positive Generation|Paquetes construidos para generar gran cantidad de reportes falsos; oculta el ataque real entre ellos|
 |Session Splicing|Divide el tráfico en un número excesivo de paquetes para que ningún paquete individual active el IDS; el IDS no puede manejar paquetes pequeños excesivos; Tool: Nessus|
 |Unicode Evasion|Múltiples representaciones de un solo carácter (UTF-16: "/" = "%u2215"; UTF-8: "©" = "%c2%a9")|
@@ -407,22 +428,19 @@ MEMORY HOOK:
 |TTL Attack|Cuando el TTL llega a 0, el paquete se descarta; requiere conocimiento de la topología de red de la víctima|
 |Urgency Flag|TCP ignora todos los datos antes del puntero URG; los IDS no consideran la característica de urgencia de TCP|
 |Invalid RST Packets|Se usan checksums de 16 bits de TCP; paquete RST enviado con checksum inválido|
-|Polymorphic Shellcode|NIDS identifica el ataque coincidiendo firmas; el ataque polymorphic incluye múltiples firmas|
+|Polymorphic Shellcode|El NIDS identifica el ataque por coincidencia de firmas; el shellcode polimórfico incluye múltiples firmas|
 |ASCII Shellcode|Solo caracteres del estándar ASCII; evade la detección de firmas binarias|
 |Application Layer Attacks|A través de archivos multimedia — imágenes, audios, videos; se explotan fallas en datos comprimidos|
-|Desynchronization|SYN pre-conexión con checksum inválido antes de la conexión real; SYN post-conexión con números de secuencia divergentes|
+|Desynchronization|Pre-connection SYN: SYN con checksum inválido antes de la conexión real; post-connection SYN: SYN con números de secuencia divergentes|
 |Domain Generation Algorithms (DGA)|Software genera nuevos nombres de dominio para ejecutar malware; ayuda a cambiar dominios frecuentemente para evadir bloqueos|
 
-MEMORY HOOK:
-**Insertion → Evasion → DoS → Obfuscation → False Positives = 5 pillars of evasion**
+> 🧠 *Para recordar:* **Insertion → Evasion → DoS → Obfuscation → False Positives = los 5 pilares de la evasión**
 
 ---
 
-# NAC AND ENDPOINT SECURITY EVASION
+## NAC AND ENDPOINT SECURITY EVASION
 
----
-
-## NETWORK ACCESS CONTROL (NAC) EVASION
+### NETWORK ACCESS CONTROL (NAC) EVASION
 
 |Technique|Definition|Tool|
 |---|---|---|
@@ -431,43 +449,42 @@ MEMORY HOOK:
 
 ---
 
-## BYPASS ENDPOINT SECURITY
+### BYPASS ENDPOINT SECURITY
 
 |Technique|Definition|
 |---|---|
 |Ghostwriting|Modificar la estructura del malware sin afectar su funcionalidad; evadir AV usando deconstrucción binaria, inserción de código assembly arbitrario, reconstrucción; Tool: Ghostwriting.sh|
-|Application Whitelisting|Hijacking de DLL para colocar una DLL maliciosa con un nombre legítimo que la aplicación busca|
-|Dechaining Macros|Generación a través de ShellCOM; referenciar cualquier objeto asociado a COM a través de script VBA; generación usando XMLDOM para descargar y ejecutar código dentro del proceso de Office|
+|Application Whitelisting|DLL hijacking para colocar una DLL maliciosa con un nombre legítimo que la aplicación busca|
+|Dechaining Macros|Spawning (lanzar procesos) a través de ShellCOM; referenciar cualquier objeto asociado a COM desde un script VBA; spawning usando XMLDOM para descargar y ejecutar código dentro del proceso de Office|
 |Clearing Memory Hooks|Encontrar DLLs asociadas con funciones/syscalls exportadas; usar x64dbg para identificar syscalls en memoria; crear payload que sobrescriba los hooks restaurando los bytes exactos de datos|
 |Process Injection|Malware en el espacio de memoria de un proceso en ejecución; mantener persistencia, escalar privilegios; funciones API: VirtualAllocEx(), WriteProcessMemory(), CreateRemoteThread()|
 |LoL Bins|Binarios Living off the Land; herramientas preinstaladas en el sistema; configurar Deimos C2 para comunicar sobre HTTPS; ejecutar comando para descargar archivo remoto, ejecutar shell personalizado|
 |Control Panel Side Loading|Imita la funcionalidad original del applet CPL para ocultarse; Tool: CPLResourceRunner|
 |Metasploit Templates|Payloads de msfvenom; probar con VirusTotal para verificar tasa de detección|
-|AMSI Bypass|Degradación de PowerShell a 2.0; usar ofuscación; forzar un error; secuestrar memoria|
+|AMSI Bypass|PowerShell downgrade (degradar PowerShell a 2.0); usar ofuscación; forzar un error; secuestrar memoria|
 |Hosting Phishing Sites|Servir contenido malicioso desde infraestructura controlada por el atacante|
 |Encoded Commands|Pasar comandos codificados para evadir inspección de contenido|
 |Fast Flux|Método DNS que cambia tanto las direcciones IPs como los nombres DNS rápidamente; elude listas negras; oculta C&C|
-|Timing-Based Evasion|Parchado de sleep; APIs de retraso; bombas de tiempo|
+|Timing-Based Evasion|Sleep patching (parchear sleep); delay APIs (APIs de retardo); time bombs (bombas de tiempo)|
 |Single Binary Proxy Execution|rundll32 para ejecutar código malicioso|
 |Shellcode Encryption|Cifrar shellcode para evadir detección de firmas|
 |Reducing Entropy|Manipular características binarias para reducir puntuaciones de entropía|
 |Escaping Local AV Sandbox|Evadir análisis de sandbox en protección de endpoint|
-|Dismanting Event Tracing|Deshabilitar ETW para prevenir el registro de actividad maliciosa|
+|Disabling Event Tracing|Deshabilitar ETW (Event Tracing for Windows) para impedir el registro de la actividad maliciosa|
 |Spoofing Thread Call Stack|Falsificar pila de llamadas de hilo para evadir detección|
-|In-Memory Encryption|Cifrar beacon en memoria para evitar detección|
+|In-Memory Encryption|Cifrar el beacon en memoria para evitar la detección|
 
-MEMORY HOOK:
-**Ghostwriting → DLL hijack → Process injection → AMSI bypass = top 4 endpoint evasion**
+> 🧠 *Para recordar:* **Ghostwriting → DLL hijack → Process injection → AMSI bypass = top 4 de evasión de endpoint**
 
 ---
 
-# IDS/FIREWALL EVASION TOOLS
+## IDS/FIREWALL EVASION TOOLS
 
 |Tool|Purpose|
 |---|---|
 |Traffic IQ Professional|Probar efectividad de IDS/firewall con ataques simulados|
-|Colasoft Packet Builder|Crear paquetes personalizados para pruebas de evasion|
-|Hping|Creación y spoofing de paquetes|
+|Colasoft Packet Builder|Crear paquetes personalizados para pruebas de evasión|
+|Hping|Packet crafting (creación de paquetes) y spoofing|
 |Chisel|HTTP tunneling|
 |Bitvise SSH Client|SSH tunneling / proxy SOCKS|
 |Iodine / dnscat2|DNS tunneling|
@@ -476,11 +493,9 @@ MEMORY HOOK:
 
 ---
 
-# HONEYPOTS
+## HONEYPOTS
 
----
-
-## HONEYPOT — CORE PURPOSE
+### HONEYPOT — CORE PURPOSE
 
 |Function|Detail|
 |---|---|
@@ -490,7 +505,7 @@ MEMORY HOOK:
 
 ---
 
-## TYPES OF HONEYPOTS
+### TYPES OF HONEYPOTS
 
 |Type|Definition|
 |---|---|
@@ -502,17 +517,16 @@ MEMORY HOOK:
 |Research Honeypots|Desplegados por instituciones de investigación para estudiar patrones de ataque|
 |Malware Honeypots|Usados para atrapar campañas de malware; simulados con APIs obsoletas, protocolos SMBv1 vulnerables|
 |Database Honeypots|Atrapar ataques específicos de base de datos|
-|Spam Honeypots|Relays de correo abiertos y proxies abiertos|
+|Spam Honeypots|Open mail relays (relays de correo abiertos) y open proxies|
 |Email Honeypots|Direcciones de correo falsas para atraer atacantes|
 |Spider Honeypots|Diseñados para atrapar crawlers y spiders web|
 |Honeynets|Red de honeypots|
 
-MEMORY HOOK:
-**Low = emulate; Medium = simulate partial; High = full simulation**
+> 🧠 *Para recordar:* **Low = emula; Medium = simula en parte; High = simulación completa**
 
 ---
 
-## HONEYPOT TOOLS
+### HONEYPOT TOOLS
 
 |Tool|Type|
 |---|---|
@@ -522,7 +536,7 @@ MEMORY HOOK:
 
 ---
 
-# DETECTING HONEYPOTS
+## DETECTING HONEYPOTS
 
 |Technique|Method / Command|
 |---|---|
@@ -532,27 +546,26 @@ MEMORY HOOK:
 |Enumerate Unexpected Open Ports|nmap -p ip; verificar configuraciones por defecto, banners obsoletos, discrepancias en información del sistema|
 |Analyze System Configuration and Metadata|Resumir configuraciones; verificar configuraciones por defecto|
 
-MEMORY HOOK:
-**nmap + arp-scan + MAC = honeypot detection trio**
+> 🧠 *Para recordar:* **nmap + arp-scan + MAC = trío para detectar honeypots**
 
 ---
 
-# DETECTING AND DEFEATING HONEYPOTS
+## DETECTING AND DEFEATING HONEYPOTS
 
 |Technique|Definition / Detail|
 |---|---|
 |Layer 7 Tar Pits|Similar a honeypots; ralentizan intentos no autorizados; detectados por latencia de respuesta|
-|Layer 4 Tar Pits|Manipular pila TCP/IP; ralentizar propagación de gusanos/backdoors; interruptor iptables a tamaño de ventana cero bloqueando más datos|
+|Layer 4 Tar Pits|Manipular la pila TCP/IP; ralentizar la propagación de gusanos/backdoors; iptables cambia a un tamaño de ventana cero (zero-window), bloqueando el envío de más datos|
 |Layer 2 Tar Pits|Proteger de ataques en el mismo segmento de red|
 |Honeypots on VMware|Identificar analizando dirección MAC para prefijo OUI de VMware|
-|Honeyd Honeypot|Demonio honeypot; crea respuestas SMTP falsas; identificar con fingerprinting TCP basado en tiempo; comportamiento de proxy SYN|
+|Honeyd Honeypot|Honeypot daemon (demonio); crea respuestas SMTP falsas; se identifica con time-based TCP fingerprinting; comportamiento de SYN proxy|
 |User-Mode UML Linux|Analizar archivos en /proc/mounts, /proc/interrupts, /proc/cmdline|
 |snort_inline|Capaz de manipular paquetes; reescribir reglas en iptables; usado principalmente en honeynets de Gen 2|
 |Bait and Switch|Redirigir todo el tráfico al honeypot; desviar la atención del atacante|
 
 ---
 
-## HONEYPOT DETECTION TOOLS
+### HONEYPOT DETECTION TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -560,7 +573,7 @@ MEMORY HOOK:
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 |Term|Definition|
 |---|---|
@@ -569,20 +582,20 @@ MEMORY HOOK:
 |IPS|IDS activo que detecta Y previene intrusiones|
 |Firewalking|Usa TTL para determinar filtros ACL de puerta de enlace; sondea como traceroute|
 |Session Splicing|Divide el tráfico en muchos paquetes pequeños para evadir coincidencia de firmas de IDS|
-|DGA|Algoritmos de generación de dominios; malware genera nuevos nombres de dominio rápidamente|
-|AMSI|Antimalware Scan Interface; evadido mediante degradación de PowerShell a 2.0|
+|DGA|Domain Generation Algorithms (algoritmos de generación de dominios); el malware genera nuevos nombres de dominio rápidamente|
+|AMSI|Antimalware Scan Interface; se evade con un downgrade de PowerShell a 2.0|
 |LoL Bin|Binario Living off the Land; usa herramientas preinstaladas del sistema para atacar|
 |Fast Flux|Método DNS que cambia rápidamente IP y nombres DNS para ocultar C&C|
 |HTML Smuggling|Payload incrustado en HTML5/JavaScript; decodificado del lado del cliente|
 |Bastion Host|Servidor público que media entre redes interna y externa|
 |DMZ|Zona búfer entre la red interna segura y el internet inseguro|
 |Packet Filtering|Filtra basándose en IP src/dst, puerto, protocolo — stateless|
-|Stateful Firewall|Rastrea estado de conexión — conciencia de sesión|
+|Stateful Firewall|Rastrea el estado de la conexión — session awareness|
 |Honeynet|Red de honeypots trabajando juntos|
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 |Q#|Question|
 |---|---|

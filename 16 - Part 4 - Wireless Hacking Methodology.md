@@ -1,8 +1,44 @@
-# OBJECTIVE 04 — WIRELESS HACKING METHODOLOGY
+# Módulo 16 · Parte 4 — Wireless Hacking Methodology
 
----
+> **Módulo 16 — Hacking Wireless Networks** · Parte 4 de 5 — metodología de hacking inalámbrico de CEH: fases, comandos y herramientas de la suite Aircrack-ng.
 
-## CEH WIRELESS HACKING — CORE DEFINITION
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 04 — WIRELESS HACKING METHODOLOGY](#objective-04--wireless-hacking-methodology)
+- [PHASE 1 — WIRELESS RECONNAISSANCE](#phase-1--wireless-reconnaissance)
+- [PHASE 2 — WIRELESS SCANNING](#phase-2--wireless-scanning)
+- [PHASE 3 — GAINING ACCESS](#phase-3--gaining-access)
+- [PHASE 4 — MAINTAINING ACCESS](#phase-4--maintaining-access)
+- [PHASE 5 — COVERING TRACKS](#phase-5--covering-tracks)
+- [CEH WIRELESS TOOLS — MASTER TABLE 🔥](#ceh-wireless-tools--master-table-high-yield)
+- [TOOL → ATTACK MAPPING](#tool--attack-mapping)
+- [EXAM TRAPS 🔥](#exam-traps-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Metodología de 5 fases** — Reconnaissance → Scanning → Gaining Access → Maintaining Access → Covering Tracks.
+- **Reconnaissance** (pasivo) — airodump-ng, Kismet, NetStumbler, inSSIDer; recopila SSID, BSSID, canal y tipo de cifrado.
+- **Scanning** — airmon-ng (modo monitor), iwconfig, wash (detecta APs con WPS).
+- **Monitor mode** — captura todo el tráfico sin asociarse al AP; imprescindible para el sniffing.
+- **WEP** — capturar paquetes → recopilar **IVs** → crackear la clave; **WPA/WPA2** — capturar el **4-way handshake** (deauth para forzarlo) → crackear el PSK offline.
+- **aircrack-ng** — crackea claves WEP/WPA; **aireplay-ng** — deauth e inyección de paquetes; **reaver / bully** — fuerza bruta de WPS.
+- `airmon-ng start wlan0` habilita el modo monitor; `aircrack-ng capture.cap` crackea el handshake capturado.
+- **WPS PIN attack** — fuerza bruta del PIN de 8 dígitos para obtener acceso.
+- **Deauth NO rompe el cifrado** — solo fuerza la reconexión (para capturar el handshake o habilitar un Evil Twin).
+- **MAC spoofing** (macchanger) — suplanta un dispositivo autorizado para eludir el filtrado MAC y mantener acceso.
+- El **4-way handshake** de WPA2 debe capturarse ANTES de poder crackear la clave.
+
+## OBJECTIVE 04 — WIRELESS HACKING METHODOLOGY
+
+### CEH WIRELESS HACKING — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -10,7 +46,7 @@
 
 ---
 
-## CEH WIRELESS ATTACK METHODOLOGY (EXAM SEQUENCE)
+### CEH WIRELESS ATTACK METHODOLOGY
 
 |Phase #|Phase Name|
 |---|---|
@@ -20,16 +56,13 @@
 |4|Maintaining Access|
 |5|Covering Tracks|
 
-MEMORY HOOK:  
-**Recon → Scan → Access → Persist → Hide**
+> 🧠 *Para recordar:* **Recon → Scan → Access → Persist → Hide**
 
 ---
 
-# PHASE 1 — WIRELESS RECONNAISSANCE
+## PHASE 1 — WIRELESS RECONNAISSANCE
 
----
-
-## PURPOSE
+### PURPOSE
 
 |Purpose|
 |---|
@@ -40,7 +73,7 @@ MEMORY HOOK:
 
 ---
 
-## INFORMATION GATHERED
+### INFORMATION GATHERED
 
 |Parameter|
 |---|
@@ -52,7 +85,7 @@ MEMORY HOOK:
 
 ---
 
-## TOOLS USED (PASSIVE MODE)
+### TOOLS USED (PASSIVE MODE)
 
 |Tool|Purpose|
 |---|---|
@@ -63,16 +96,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Recon = listen only**
+> 🧠 *Para recordar:* **Recon = listen only**
 
 ---
 
-# PHASE 2 — WIRELESS SCANNING
+## PHASE 2 — WIRELESS SCANNING
 
----
-
-## PURPOSE
+### PURPOSE
 
 |Purpose|
 |---|
@@ -82,7 +112,7 @@ MEMORY HOOK:
 
 ---
 
-## ACTIVE SCANNING TOOLS
+### ACTIVE SCANNING TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -92,7 +122,7 @@ MEMORY HOOK:
 
 ---
 
-## COMMAND RECOGNITION (EXAM)
+### COMMAND RECOGNITION
 
 |Command|Purpose|
 |---|---|
@@ -101,16 +131,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Monitor mode = hacking mode**
+> 🧠 *Para recordar:* **Monitor mode = hacking mode**
 
 ---
 
-# PHASE 3 — GAINING ACCESS
+## PHASE 3 — GAINING ACCESS
 
----
-
-## COMMON ACCESS METHODS
+### COMMON ACCESS METHODS
 
 |Method|
 |---|
@@ -121,7 +148,7 @@ MEMORY HOOK:
 
 ---
 
-## WEP ATTACK METHOD (LOGIC)
+### WEP ATTACK METHOD
 
 |Step|
 |---|
@@ -131,7 +158,7 @@ MEMORY HOOK:
 
 ---
 
-## WPA/WPA2 ATTACK METHOD
+### WPA/WPA2 ATTACK METHOD
 
 |Step|
 |---|
@@ -141,7 +168,7 @@ MEMORY HOOK:
 
 ---
 
-## TOOLS USED
+### TOOLS USED
 
 |Tool|Purpose|
 |---|---|
@@ -152,7 +179,7 @@ MEMORY HOOK:
 
 ---
 
-## COMMAND RECOGNITION (EXAM)
+### COMMAND RECOGNITION
 
 |Command|Purpose|
 |---|---|
@@ -161,16 +188,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Handshake first, crack later**
+> 🧠 *Para recordar:* **Handshake first, crack later**
 
 ---
 
-# PHASE 4 — MAINTAINING ACCESS
+## PHASE 4 — MAINTAINING ACCESS
 
----
-
-## METHODS
+### METHODS
 
 |Method|
 |---|
@@ -180,7 +204,7 @@ MEMORY HOOK:
 
 ---
 
-## TOOLS
+### TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -189,16 +213,13 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Persistence = stay connected**
+> 🧠 *Para recordar:* **Persistence = stay connected**
 
 ---
 
-# PHASE 5 — COVERING TRACKS
+## PHASE 5 — COVERING TRACKS
 
----
-
-## TECHNIQUES
+### TECHNIQUES
 
 |Technique|
 |---|
@@ -208,12 +229,11 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**No logs, no proof**
+> 🧠 *Para recordar:* **No logs, no proof**
 
 ---
 
-# CEH WIRELESS TOOLS — MASTER TABLE (VERY HIGH YIELD)
+## CEH WIRELESS TOOLS — MASTER TABLE (HIGH YIELD)
 
 |Tool|Function|
 |---|---|
@@ -230,7 +250,7 @@ MEMORY HOOK:
 
 ---
 
-# TOOL → ATTACK MAPPING (MEMORY TABLE)
+## TOOL → ATTACK MAPPING
 
 |Tool|Attack|
 |---|---|
@@ -242,7 +262,7 @@ MEMORY HOOK:
 
 ---
 
-# EXAM TRAPS (VERY IMPORTANT)
+## EXAM TRAPS (HIGH YIELD)
 
 |Trap|Correct Answer|
 |---|---|
@@ -253,17 +273,7 @@ MEMORY HOOK:
 
 ---
 
-# OBJECTIVE 04 — MEMORY BLOCK
-
-**Recon listens.  
-Monitor mode captures.  
-Deauth forces handshake.  
-Aircrack cracks keys.  
-Reaver attacks WPS.**
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -284,7 +294,7 @@ Reaver attacks WPS.**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es el orden correcto de la metodología de wireless hacking de CEH?
 - a) Scan → Recon → Access → Hide → Persist

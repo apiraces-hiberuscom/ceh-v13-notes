@@ -1,8 +1,47 @@
-# OBJECTIVE 04 — SQL INJECTION EVASION TECHNIQUES
+# Módulo 15 · Parte 4 — SQLi Evasion
+
+> **Módulo 15 — SQL Injection** · Parte 4 de 5 · Técnicas para evadir WAF, filtros y detección por firmas: encoding, case manipulation, comentarios, whitespace, sustitución de operadores, ofuscación lógica, CHAR() y concatenación.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [CEH CORE STATEMENT 🔥](#ceh-core-statement-high-yield)
+- [WHY EVASION IS REQUIRED](#why-evasion-is-required)
+- [CLASSIFICATION OF EVASION TECHNIQUES 🔥](#classification-of-evasion-techniques-high-yield)
+- [1. ENCODING TECHNIQUES](#1-encoding-techniques)
+- [2. CASE MANIPULATION](#2-case-manipulation)
+- [3. COMMENT INJECTION](#3-comment-injection)
+- [4. WHITESPACE MANIPULATION](#4-whitespace-manipulation)
+- [5. OPERATOR SUBSTITUTION](#5-operator-substitution)
+- [6. LOGICAL OBFUSCATION](#6-logical-obfuscation)
+- [7. CHAR AND ASCII FUNCTIONS](#7-char-and-ascii-functions)
+- [8. CONCATENATION EVASION](#8-concatenation-evasion)
+- [9. SQL INJECTION EVASION SUMMARY 🔥](#9-sql-injection-evasion-summary-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **SQL Injection Evasion** — técnicas para evadir WAF, input validation, blacklist filters y signature-based detection (Blocked ≠ Secure).
+- **URL encoding** — `'` = `%27`, espacio = `%20`, `=` = `%3D`, `OR` = `%4F%52`; `%27%20OR%201%3D1--` es `' OR 1=1--` codificado.
+- **Double encoding** — codifica datos ya codificados para evadir una segunda capa de decodificación.
+- **Case manipulation** — `SeLeCt`, `UnIoN`, `oR`: evade filtros sensibles a mayúsculas/minúsculas.
+- **Comment injection** — `--` (la mayoría de BD), `#` (MySQL), `/* */` (todas las BD): rompen la lógica e ignoran el resto de la consulta.
+- **Whitespace manipulation** — sustituir espacios por comentarios, tabulaciones o saltos de línea: `SELECT/**/FROM`.
+- **Operator substitution** — `=` → `LIKE`, `AND` → `&&`, `OR` → `||`: misma lógica, otra sintaxis.
+- **Logical obfuscation** — expresiones aritméticas o booleanas equivalentes: `1=1` → `2-1=1`, `TRUE` → `NOT FALSE`.
+- **CHAR() / CHR()** — construyen cadenas sin comillas: `CHAR()` en MySQL/MSSQL, `CHR()` en Oracle (p. ej. `CHAR(65,66,67)`).
+- **Concatenation evasion** — dividir palabras clave con `CONCAT()`, `+` o `||` para sobrevivir a los filtros de palabras clave.
+- **Técnica → qué evade** — encoding: filtros de firmas; case: filtros case-sensitive; operator substitution: filtros de palabras clave; obfuscation: detección por patrones.
 
 ---
 
-## CEH CORE STATEMENT (MEMORIZE)
+## CEH CORE STATEMENT (HIGH YIELD)
 
 |Item|Memorize|
 |---|---|
@@ -15,25 +54,24 @@
 |Reason|
 |---|
 |Web Application Firewalls (WAFs)|
-|Input validation|
-|Blacklist filters|
-|Signature-based detection|
+|Input validation — validación de entrada|
+|Blacklist filters — filtros de lista negra|
+|Signature-based detection — detección basada en firmas|
 
-MEMORY HOOK:  
-**Blocked ≠ Secure**
+> 🧠 *Para recordar:* **Blocked ≠ Secure**
 
 ---
 
-## CLASSIFICATION OF EVASION TECHNIQUES (EXAM MUST)
+## CLASSIFICATION OF EVASION TECHNIQUES (HIGH YIELD)
 
 |Category|
 |---|
-|Encoding techniques|
-|Case manipulation|
-|Comment injection|
-|Whitespace manipulation|
-|Operator substitution|
-|Logical obfuscation|
+|Encoding techniques — técnicas de codificación|
+|Case manipulation — alternar mayúsculas y minúsculas|
+|Comment injection — inyección de comentarios|
+|Whitespace manipulation — manipulación de espacios en blanco|
+|Operator substitution — sustitución de operadores|
+|Logical obfuscation — ofuscación lógica|
 
 ---
 
@@ -58,18 +96,17 @@ MEMORY HOOK:
 
 ---
 
-### EXAM EXAMPLES (RECOGNITION)
+### EXAM EXAMPLES
 
 |Normal|Encoded|
 |---|---|
 |'|%27|
-|space|%20|
+|espacio|%20|
 |OR|%4F%52|
 
 ---
 
-MEMORY HOOK:  
-**Encoded ≠ detected**
+> 🧠 *Para recordar:* **Encoded ≠ detected**
 
 ---
 
@@ -87,9 +124,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Uppercase keywords|
-|Lowercase keywords|
-|Mixed-case keywords|
+|Uppercase keywords — palabras clave en mayúsculas|
+|Lowercase keywords — palabras clave en minúsculas|
+|Mixed-case keywords — mezcla de mayúsculas y minúsculas|
 
 ---
 
@@ -103,8 +140,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Case changes bypass weak filters**
+> 🧠 *Para recordar:* **Cambiar mayúsculas/minúsculas evade los filtros débiles**
 
 ---
 
@@ -118,13 +154,13 @@ MEMORY HOOK:
 
 ---
 
-### COMMENT TYPES (REPEAT – EXAM IMPORTANT)
+### COMMENT TYPES (HIGH YIELD)
 
 |Comment|DB Support|
 |---|---|
-|--|Most DBs|
+|--|La mayoría de las BD|
 |#|MySQL|
-|/* */|All DBs|
+|/* */|Todas las BD|
 
 ---
 
@@ -137,8 +173,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Comment = query terminator**
+> 🧠 *Para recordar:* **Comentario = fin de la consulta**
 
 ---
 
@@ -156,9 +191,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Replace space with comments|
-|Replace space with tabs|
-|Replace space with newline|
+|Sustituir espacios por comentarios|
+|Sustituir espacios por tabulaciones|
+|Sustituir espacios por saltos de línea|
 
 ---
 
@@ -170,8 +205,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**No space ≠ no SQL**
+> 🧠 *Para recordar:* **No space ≠ no SQL**
 
 ---
 
@@ -191,12 +225,11 @@ MEMORY HOOK:
 |---|---|
 |=|LIKE|
 |AND|&&|
-|OR||
+|OR|\|\||
 
 ---
 
-MEMORY HOOK:  
-**Same logic, different syntax**
+> 🧠 *Para recordar:* **Misma lógica, distinta sintaxis**
 
 ---
 
@@ -214,9 +247,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Arithmetic expressions|
-|Boolean expressions|
-|Nested queries|
+|Arithmetic expressions — expresiones aritméticas|
+|Boolean expressions — expresiones booleanas|
+|Nested queries — consultas anidadas|
 
 ---
 
@@ -229,12 +262,11 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Math hides truth**
+> 🧠 *Para recordar:* **La aritmética oculta la condición verdadera**
 
 ---
 
-## 7. CHAR() AND ASCII FUNCTIONS
+## 7. CHAR AND ASCII FUNCTIONS
 
 ### PURPOSE
 
@@ -246,7 +278,7 @@ MEMORY HOOK:
 
 ### DB-SPECIFIC FUNCTIONS
 
-|Database|Function AJ|
+|Database|Function|
 |---|---|
 |MySQL|CHAR()|
 |MSSQL|CHAR()|
@@ -262,8 +294,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**No quotes, no filter**
+> 🧠 *Para recordar:* **Sin comillas no hay filtro**
 
 ---
 
@@ -282,8 +313,8 @@ MEMORY HOOK:
 |Technique|
 |---|
 |CONCAT()|
-|+ operator|
-||
+|Operador +|
+|Operador \|\||
 
 ---
 
@@ -291,29 +322,28 @@ MEMORY HOOK:
 
 |Keyword|Obfuscated|
 |---|---|
-|UNION|UN|
+|UNION|CONCAT('UN','ION')|
 
 ---
 
-MEMORY HOOK:  
-**Split keyword survives filter**
+> 🧠 *Para recordar:* **La palabra clave dividida sobrevive al filtro**
 
 ---
 
-## 9. SQL INJECTION EVASION SUMMARY (EXAM GOLD)
+## 9. SQL INJECTION EVASION SUMMARY (HIGH YIELD)
 
 |Technique|Bypasses|
 |---|---|
-|Encoding|Signature filters|
-|Case manipulation|Case-sensitive filters|
-|Comments|Query parsing|
-|Whitespace tricks|Space filters|
-|Operator substitution|Keyword filters|
-|Obfuscation|Pattern detection|
+|Encoding|Filtros basados en firmas|
+|Case manipulation|Filtros sensibles a mayúsculas/minúsculas|
+|Comments|El parsing (análisis) de la consulta|
+|Whitespace tricks|Filtros de espacios|
+|Operator substitution|Filtros de palabras clave|
+|Obfuscation|Detección por patrones|
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -321,7 +351,7 @@ MEMORY HOOK:
 | URL Encoding | Codifica caracteres como valores % hex (por ejemplo, `'` se convierte en `%27`) |
 | Hex Encoding | Representa caracteres usando valores hexadecimales para evadir filtros |
 | Double Encoding | Codifica datos ya codificados para evadir capas de decodificación secundarias |
-| Case Manipulation | Usa palabras clave en caso mixto (por ejemplo, `SeLeCt`) para evadir filtros sensibles a mayúsculas/minúsculas |
+| Case Manipulation | Usa palabras clave mezclando mayúsculas y minúsculas (por ejemplo, `SeLeCt`) para evadir filtros sensibles a mayúsculas/minúsculas |
 | Comment Injection | Inserta comentarios SQL (`--`, `#`, `/* */`) para romper la lógica de la consulta e ignorar el resto del SQL |
 | Whitespace Manipulation | Reemplaza espacios con comentarios, tabulaciones o saltos de línea para evadir filtros basados en espacios |
 | Operator Substitution | Reemplaza operadores bloqueados con equivalentes (por ejemplo, `=` con `LIKE`, `AND` con `&&`) |
@@ -329,11 +359,11 @@ MEMORY HOOK:
 | CHAR()/CHR() Functions | Construye cadenas sin comillas (MySQL/MSSQL usan CHAR(), Oracle usa CHR()) |
 | Concatenation Evasion | Divide las palabras clave en partes usando CONCAT(), `+`, o `\|\|` para sobrevivir a los filtros de palabras clave |
 | WAF Bypass Goal | Evadir controles de seguridad que bloquean firmas conocidas de SQL injection |
-| `SELECT/**/FROM` | Evasion de whitespace usando comentarios en línea en lugar de espacios |
+| `SELECT/**/FROM` | Evasión de whitespace usando comentarios en línea en lugar de espacios |
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** Un atacante quiere evadir un WAF que bloquea la palabra clave "SELECT". ¿Qué técnica de evasion sería más efectiva?
 - a) Usar un payload más largo

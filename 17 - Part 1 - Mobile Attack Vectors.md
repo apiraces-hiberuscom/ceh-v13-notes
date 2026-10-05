@@ -1,35 +1,60 @@
-# MODULE 17 — OVERVIEW (EXAM)
+# Módulo 17 · Parte 1 — Mobile Attack Vectors
 
-## MODULE NAME
+> **Módulo 17 — Hacking Mobile Platforms** · Parte 1 de 5 · Por qué los móviles (siempre conectados y con datos sensibles) son objetivo de alto valor: superficie de ataque, OWASP Mobile Top 10 2024 y vectores de ataque en dispositivo, red y data center/cloud.
 
-Hacking Mobile Platforms
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
 
-## WHY THIS MODULE MATTERS
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [OBJECTIVE 01 — MOBILE PLATFORM ATTACK VECTORS](#objective-01--mobile-platform-attack-vectors)
+- [OWASP TOP 10 MOBILE RISKS — 2024 🔥](#owasp-top-10-mobile-risks--2024-high-yield)
+- [ANATOMY OF A MOBILE ATTACK 🔥](#anatomy-of-a-mobile-attack-high-yield)
+- [ATTACK VECTORS — DEVICE LEVEL](#attack-vectors--device-level)
+- [ATTACK VECTORS — NETWORK LEVEL](#attack-vectors--network-level)
+- [ATTACK VECTORS — DATA CENTER / CLOUD](#attack-vectors--data-center--cloud)
+- [WHAT HAPPENS AFTER DEVICE COMPROMISE](#what-happens-after-device-compromise)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
 
-Los dispositivos móviles almacenan datos personales y corporativos sensibles y están siempre conectados a redes, lo que los convierte en objetivos de alto valor para los atacantes.
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Three primary attack points** — Device → Network → Data Center/Cloud (anatomía de un ataque móvil).
+- **OWASP Mobile Top 10 2024** — M1 Improper Credential Usage → M2 Supply Chain → M3 Auth → M4 Input/Output → M5 Communication → M6 Privacy → M7 Binary → M8 Misconfiguration → M9 Data Storage → M10 Cryptography.
+- **M1 Improper Credential Usage** — credenciales hardcodeadas o mal gestionadas; no confundir con M3 (Insecure Authentication/Authorization) ni M9 (Insecure Data Storage).
+- **M7 Insufficient Binary Protections** — reverse engineering, code tampering y ausencia de ofuscación.
+- **Browser-based attacks** — Phishing, Framing (iframes ocultos), Clickjacking (engaño de UI), Man-in-the-Mobile (MITMO).
+- **Phone/SMS-based attacks** — Baseband attacks (GSM/3GPP), Smishing (phishing por SMS), call-based attacks (números premium).
+- **OS-based attacks** — no passcode, Jailbreaking (iOS), Rooting (Android), OS data caching, password cracking, user-initiated code.
+- **Network-level attacks** — Wi-Fi sniffing, rogue access points, MITM, session hijacking, DNS poisoning, SSL stripping, fake certificates.
+- **Tras el compromiso (Table 17.1)** — Surveillance, Data theft, Botnet activity (DDoS, click fraud), Impersonation.
+- **Trustjacking** — un host comprometido con el que el iPhone sincroniza iTunes puede controlarlo por red inalámbrica.
+- **IntentFuzzer / Spearphone / aLTEr** — fuzzing del IPC de Android / altavoz + acelerómetro / metadatos de capa 2 de LTE para saber qué sitios visita el usuario.
 
 ---
 
-## LEARNING OBJECTIVES (EXAM LIST)
+## Objetivos de aprendizaje
 
 |Objective No.|Objective|
 |---|---|
-|01|Explicar los Vectores de Ataque en Plataformas Móviles|
-|02|Explicar Diversas Amenazas y Ataques en Android OS|
-|03|Explicar Diversas Amenazas y Ataques en iOS|
-|04|Resumir los Conceptos de Gestión de Dispositivos Móviles (MDM)|
-|05|Presentar Herramientas y Directrices de Seguridad Móvil|
+|01|Explain Mobile Platform Attack Vectors — explicar los vectores de ataque en plataformas móviles|
+|02|Explain Various Android OS Threats and Attacks — explicar las amenazas y ataques en Android OS|
+|03|Explain Various iOS Threats and Attacks — explicar las amenazas y ataques en iOS|
+|04|Summarize Mobile Device Management (MDM) Concepts — resumir los conceptos de MDM|
+|05|Present Mobile Security Guidelines and Tools — presentar directrices y herramientas de seguridad móvil|
 
-MEMORY HOOK:
-**Vectors → Android → iOS → MDM → Defense**
-
----
-
-# OBJECTIVE 01 — MOBILE PLATFORM ATTACK VECTORS
+> 🧠 *Para recordar:* **Vectors → Android → iOS → MDM → Defense**
 
 ---
 
-## CORE DEFINITION (EXAM)
+## OBJECTIVE 01 — MOBILE PLATFORM ATTACK VECTORS
+
+### CORE DEFINITION
 
 |Term|Definition|
 |---|---|
@@ -37,7 +62,7 @@ MEMORY HOOK:
 
 ---
 
-## WHY MOBILE PLATFORMS ARE TARGETED
+### WHY MOBILE PLATFORMS ARE TARGETED
 
 |Reason|
 |---|
@@ -47,14 +72,13 @@ MEMORY HOOK:
 |Confianza del usuario en las aplicaciones|
 |Bring Your Own Device (BYOD)|
 
-MEMORY HOOK:
-**Always on + personal data = prime target**
+> 🧠 *Para recordar:* **Always on + personal data = prime target**
 
 ---
 
-## VULNERABLE AREAS IN A MOBILE BUSINESS ENVIRONMENT
+### VULNERABLE AREAS IN A MOBILE BUSINESS ENVIRONMENT
 
-### ENTRY POINTS (EXAM FAVORITE)
+#### ENTRY POINTS (HIGH YIELD)
 
 |Area|
 |---|
@@ -67,12 +91,11 @@ MEMORY HOOK:
 |Intranet corporativa|
 |Gateway VPN corporativo|
 
-MEMORY HOOK:
-**Device → Network → Cloud**
+> 🧠 *Para recordar:* **Device → Network → Cloud**
 
 ---
 
-## MOBILE ATTACK SURFACE (HIGH-YIELD)
+### MOBILE ATTACK SURFACE (HIGH YIELD)
 
 |Layer|Description|
 |---|---|
@@ -82,33 +105,30 @@ MEMORY HOOK:
 
 ---
 
-# OWASP TOP 10 MOBILE RISKS — 2024 (MUST MEMORIZE)
+## OWASP TOP 10 MOBILE RISKS — 2024 (HIGH YIELD)
 
 |ID|Risk|
 |---|---|
-|M1|Uso Improperio de Credenciales|
-|M2|Seguridad Inadecuada de la Cadena de Suministro|
-|M3|Autenticación/Autorización Insegura|
-|M4|Validación Insuficiente de Entrada/Salida|
-|M5|Comunicación Insegura|
-|M6|Controles de Privacidad Inadecuados|
-|M7|Protecciones Insuficientes de Binarios|
-|M8|Configuración de Seguridad Incorrecta|
-|M9|Almacenamiento de Datos Inseguro|
-|M10|Criptografía Insuficiente|
+|M1|Improper Credential Usage — uso inadecuado de credenciales|
+|M2|Inadequate Supply Chain Security — seguridad insuficiente de la cadena de suministro|
+|M3|Insecure Authentication/Authorization — autenticación/autorización insegura|
+|M4|Insufficient Input/Output Validation — validación insuficiente de entrada/salida|
+|M5|Insecure Communication — comunicación insegura|
+|M6|Inadequate Privacy Controls — controles de privacidad inadecuados|
+|M7|Insufficient Binary Protections — protecciones insuficientes del binario|
+|M8|Security Misconfiguration — configuración de seguridad incorrecta|
+|M9|Insecure Data Storage — almacenamiento de datos inseguro|
+|M10|Insufficient Cryptography — criptografía insuficiente|
 
-MEMORY HOOK:
-**Credentials → Supply → Auth → Input → Comm → Privacy → Binary → Config → Storage → Crypto**
+> 🧠 *Para recordar:* **Credentials → Supply → Auth → Input → Comm → Privacy → Binary → Config → Storage → Crypto**
 
----
-
-**Carlos Se Auto Invita a Comer Para Beber Cerveza Sin Cebada**
+> 🧠 *Para recordar:* **Carlos Se Auto Invita a Comer Para Beber Cerveza Sin Cebada** (C·S·A·I·C·P·B·C·S·C → M1…M10)
 
 ---
 
-## OWASP MOBILE RISKS — EXPLANATIONS (NOT SKIPPED)
+### OWASP MOBILE RISKS — EXPLANATIONS
 
-### M1 — Improper Credential Usage
+#### M1 — Improper Credential Usage
 
 |Details|
 |---|
@@ -119,7 +139,7 @@ MEMORY HOOK:
 
 ---
 
-### M2 — Inadequate Supply Chain Security
+#### M2 — Inadequate Supply Chain Security
 
 |Details|
 |---|
@@ -129,17 +149,17 @@ MEMORY HOOK:
 
 ---
 
-### M3 — Insecure Authentication/Authorization
+#### M3 — Insecure Authentication/Authorization
 
 |Details|
 |---|
 |Políticas de contraseña débiles|
-|Gestión de sesiones comprometida|
+|Gestión de sesiones defectuosa (broken session handling)|
 |Bypass de autorización|
 
 ---
 
-### M4 — Insufficient Input/Output Validation
+#### M4 — Insufficient Input/Output Validation
 
 |Details|
 |---|
@@ -149,7 +169,7 @@ MEMORY HOOK:
 
 ---
 
-### M5 — Insecure Communication
+#### M5 — Insecure Communication
 
 |Details|
 |---|
@@ -159,7 +179,7 @@ MEMORY HOOK:
 
 ---
 
-### M6 — Inadequate Privacy Controls
+#### M6 — Inadequate Privacy Controls
 
 |Details|
 |---|
@@ -168,17 +188,17 @@ MEMORY HOOK:
 
 ---
 
-### M7 — Insufficient Binary Protections
+#### M7 — Insufficient Binary Protections
 
 |Details|
 |---|
-|Ingeniería inversa|
-|Manipulación de código|
-|Sin ofuscación|
+|Reverse engineering (ingeniería inversa)|
+|Code tampering (manipulación de código)|
+|Sin ofuscación (no obfuscation)|
 
 ---
 
-### M8 — Security Misconfiguration
+#### M8 — Security Misconfiguration
 
 |Details|
 |---|
@@ -188,7 +208,7 @@ MEMORY HOOK:
 
 ---
 
-### M9 — Insecure Data Storage
+#### M9 — Insecure Data Storage
 
 |Details|
 |---|
@@ -198,7 +218,7 @@ MEMORY HOOK:
 
 ---
 
-### M10 — Insufficient Cryptography
+#### M10 — Insufficient Cryptography
 
 |Details|
 |---|
@@ -208,24 +228,23 @@ MEMORY HOOK:
 
 ---
 
-# ANATOMY OF A MOBILE ATTACK (EXAM CRITICAL)
+## ANATOMY OF A MOBILE ATTACK (HIGH YIELD)
 
-## THREE PRIMARY ATTACK POINTS
+### THREE PRIMARY ATTACK POINTS
 
 |Point|Target|
 |---|---|
-|Point 01|Dispositivo|
-|Point 02|Red|
+|Point 01|Device (dispositivo)|
+|Point 02|Network (red)|
 |Point 03|Data Center / Cloud|
 
-MEMORY HOOK:
-**Device → Network → Cloud**
+> 🧠 *Para recordar:* **Device → Network → Cloud**
 
 ---
 
-# ATTACK VECTORS — DEVICE LEVEL
+## ATTACK VECTORS — DEVICE LEVEL
 
-## BROWSER-BASED ATTACKS
+### BROWSER-BASED ATTACKS
 
 |Attack|Description|
 |---|---|
@@ -236,7 +255,7 @@ MEMORY HOOK:
 
 ---
 
-## PHONE/SMS-BASED ATTACKS
+### PHONE/SMS-BASED ATTACKS
 
 |Attack|Description|
 |---|---|
@@ -246,7 +265,7 @@ MEMORY HOOK:
 
 ---
 
-## APPLICATION-BASED ATTACKS
+### APPLICATION-BASED ATTACKS
 
 |Attack|Description|
 |---|---|
@@ -258,7 +277,7 @@ MEMORY HOOK:
 
 ---
 
-## OS-BASED ATTACKS
+### OS-BASED ATTACKS
 
 |Attack|Description|
 |---|---|
@@ -271,7 +290,7 @@ MEMORY HOOK:
 
 ---
 
-# ATTACK VECTORS — NETWORK LEVEL
+## ATTACK VECTORS — NETWORK LEVEL
 
 |Attack|
 |---|
@@ -284,28 +303,27 @@ MEMORY HOOK:
 |SSL stripping|
 |Fake certificates|
 
-MEMORY HOOK:
-**Sniff → Intercept → Redirect**
+> 🧠 *Para recordar:* **Sniff → Intercept → Redirect**
 
 ---
 
-# ATTACK VECTORS — DATA CENTER / CLOUD
+## ATTACK VECTORS — DATA CENTER / CLOUD
 
-## WEB SERVER-BASED
+### WEB SERVER-BASED
 
 |Attack|
 |---|
-|Vulnerabilidades de plataforma|
-|Mala configuración del servidor|
+|Platform vulnerabilities — vulnerabilidades de la plataforma|
+|Server misconfiguration — mala configuración del servidor|
 |XSS|
 |CSRF|
-|Fallos de validación de entrada web|
+|Web input validation flaws — fallos de validación de entrada web|
 |Brute-force|
 |SQL injection|
 
 ---
 
-# WHAT HAPPENS AFTER DEVICE COMPROMISE (TABLE 17.1)
+## WHAT HAPPENS AFTER DEVICE COMPROMISE
 
 |Category|Examples|
 |---|---|
@@ -314,89 +332,31 @@ MEMORY HOOK:
 |Botnet activity|DDoS, fraude de clics|
 |Impersonation|Correos falsos, publicaciones en redes sociales|
 
-MEMORY HOOK:
-**Spy → Steal → Spread → Impersonate**
+> 🧠 *Para recordar:* **Spy → Steal → Spread → Impersonate**
 
 ---
 
-# OBJECTIVE 01 — EXAM MEMORY BLOCK
+## Extras de examen (Boson Practice Test)
 
-**Los ataques móviles objetivan dispositivos, redes y cloud.
-OWASP Mobile Top 10 define el modelo de riesgo.
-Las aplicaciones, OS, SMS, navegador y Wi-Fi son puntos de entrada.
-La compromisión conduce a vigilancia, robo, suplantación y botnets.**
-
----
-
-## STATUS CHECK
-
-|Item|Status|
+|Concepto|Qué recordar|
 |---|---|
-|Objective 01|COMPLETE|
-|OWASP Top 10|COMPLETE|
-|Attack vectors|COMPLETE|
-|Exam alignment|EXACT|
+|IntentFuzzer|Fuzzer que ataca la comunicación entre procesos (IPC) de Android|
+|Semi-untethered jailbreak|Una app sideloaded en el dispositivo puede volver a hacer jailbreak tras cada reinicio, sin computadora|
+|Trident|Monitoriza las llamadas del iPhone; se basa en un jailbreak remoto|
+|Trustjacking|Un host comprometido con el que el iPhone sincroniza iTunes puede controlarlo a través de la red inalámbrica|
+|Spearphone|Explota el altavoz (loudspeaker) y el acelerómetro del teléfono|
+|aLTEr|Ataque a LTE que usa meta-información de capa 2 para determinar qué sitios visita el usuario|
 
 ---
 
-## EXAM EXTRAS (Boson Practice Test)
-
-### INTENTFUZZER
-
-|Item|Memorize|
-|---|---|
-|IntentFuzzer|Objetiva la comunicación inter-procesos (IPC) de Android|
-
----
-
-### SEMI-TETHERED JAILBREAK
-
-|Item|Memorize|
-|---|---|
-|Semi-tethered jailbreak|Una aplicación sideloaded puede hacer jailbreak al dispositivo incluso después del reinicio|
-
----
-
-### TRIDENT
-
-|Item|Memorize|
-|---|---|
-|Trident|Monitorea llamadas de iPhone; requiere jailbreak remoto|
-
----
-
-### TRUSTJACKING
-
-|Item|Memorize|
-|---|---|
-|Trustjacking|Un host comprometido con iTunes puede controlar iPhone a través de red inalámbrica|
-
----
-
-### SPEARPHONE
-
-|Item|Memorize|
-|---|---|
-|Spearphone|Explota el altavoz y acelerómetro del teléfono|
-
----
-
-### ALTER
-
-|Item|Memorize|
-|---|---|
-|aLTEr|Utiliza meta-información de capa 2 para determinar qué sitios visita el usuario|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
 | Mobile Platform Attack Vector | Una ruta o método utilizado para comprometer dispositivos móviles, redes o sistemas backend |
 | OWASP Mobile Top 10 | Lista estándar de la industria de los riesgos de seguridad móvil más críticos |
 | Smishing | Ataque de phishing entregado mediante mensajes SMS |
-| Man-in-the-Mobile (MITMO) | Malware que intercepta tráfico móvil, objetivando aplicaciones bancarias |
+| Man-in-the-Mobile (MITMO) | Malware que intercepta tráfico móvil, dirigido a aplicaciones bancarias |
 | Clickjacking | Engaño de interfaz de usuario que engaña a los usuarios para realizar acciones no deseadas |
 | Baseband Attack | Explotación de la pila de protocolos celulares GSM/3GPP |
 | Phishing | Sitios web falsos diseñados para robar credenciales |
@@ -410,7 +370,7 @@ La compromisión conduce a vigilancia, robo, suplantación y botnets.**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** Según OWASP Mobile Top 10, ¿qué riesgo implica un manejo débil de credenciales y contraseñas hardcodeadas?
 - a) M3 — Insecure Authentication

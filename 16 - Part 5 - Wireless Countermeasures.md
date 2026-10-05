@@ -1,19 +1,49 @@
-# OBJECTIVE 05 — WIRELESS ATTACK COUNTERMEASURES
+# Módulo 16 · Parte 5 — Wireless Countermeasures
 
----
+> **Módulo 16 — Hacking Wireless Networks** · Parte 5 de 5 — contramedidas de ataques inalámbricos: cifrado fuerte, 802.11w, WIDS/WIPS, segmentación y hardening.
 
-## WIRELESS SECURITY — CORE DEFINITION (EXAM)
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 05 — WIRELESS ATTACK COUNTERMEASURES](#objective-05--wireless-attack-countermeasures)
+- [PRIMARY WIRELESS SECURITY CONTROLS](#primary-wireless-security-controls)
+- [WIRELESS ATTACK → COUNTERMEASURE MAPPING 🔥](#wireless-attack--countermeasure-mapping-high-yield)
+- [WIRELESS SECURITY BEST PRACTICES](#wireless-security-best-practices)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Strong encryption** — el control MÁS importante según CEH: WPA3 recomendado, WPA2-AES como mínimo, deshabilitar WEP/WPA.
+- **IEEE 802.11w** (Management Frame Protection) — previene los ataques de **deauthentication / disassociation**.
+- **WIDS vs WIPS** — WIDS detecta y alerta; WIPS detecta y **previene activamente** (contiene Rogue AP, Evil Twin, deauth, MAC spoofing).
+- **MAC address filtering** — NO es seguridad real: se elude trivialmente con **MAC spoofing** (macchanger); las MAC viajan en claro.
+- **Hidden SSID** — solo disuasión, NO protección.
+- **Disable WPS** — el PIN es vulnerable a fuerza bruta.
+- **Enterprise > Personal** — WPA2/WPA3-Enterprise usan servidor **RADIUS** y certificados.
+- **Network segmentation** (VLANs) — separa WLAN de LAN, aísla la red de invitados y limita el movimiento lateral.
+- **VPN sobre wireless** — cifra el tráfico de extremo a extremo; protege el Wi-Fi abierto.
+- **Attack → countermeasure** — Evil Twin / Rogue AP → WIDS/WIPS; Deauth → 802.11w; WEP cracking → WPA3; MITM → cifrado fuerte; Jamming → spectrum analysis.
+- **Firmware patching** y **seguridad física** — firmware antiguo = puerta abierta; acceso físico al AP = acceso total.
+
+## OBJECTIVE 05 — WIRELESS ATTACK COUNTERMEASURES
+
+### WIRELESS SECURITY — CORE DEFINITION
 
 |Item|Memorize|
 |---|---|
 |Wireless Security|Medidas implementadas para proteger redes inalámbricas contra accesos no autorizados y ataques|
 
-MEMORY HOOK:  
-**Wireless security = prevención + detección**
+> 🧠 *Para recordar:* **Wireless security = prevención + detección**
 
 ---
 
-## WHY WIRELESS NETWORKS NEED COUNTERMEASURES
+### WHY WIRELESS NETWORKS NEED COUNTERMEASURES
 
 |Reason|
 |---|
@@ -24,11 +54,9 @@ MEMORY HOOK:
 
 ---
 
-# PRIMARY WIRELESS SECURITY CONTROLS
+## PRIMARY WIRELESS SECURITY CONTROLS
 
----
-
-## 1. STRONG ENCRYPTION (MOST IMPORTANT)
+### 1. STRONG ENCRYPTION (HIGH YIELD)
 
 |Control|Description|
 |---|---|
@@ -36,12 +64,11 @@ MEMORY HOOK:
 |WPA2-AES|Mínimo aceptable|
 |Disable WEP/WPA|Obligatorio|
 
-MEMORY HOOK:  
-**No WEP. No WPA.**
+> 🧠 *Para recordar:* **No WEP. No WPA.**
 
 ---
 
-## 2. STRONG AUTHENTICATION
+### 2. STRONG AUTHENTICATION
 
 |Control|Description|
 |---|---|
@@ -49,24 +76,22 @@ MEMORY HOOK:
 |WPA2/WPA3-Enterprise|Utiliza RADIUS|
 |Certificates|Autenticación más robusta|
 
-MEMORY HOOK:  
-**Enterprise > Personal**
+> 🧠 *Para recordar:* **Enterprise > Personal**
 
 ---
 
-## 3. DISABLE WPS
+### 3. DISABLE WPS
 
 |Reason|
 |---|
 |Vulnerable a fuerza bruta|
 |Debilidad basada en PIN|
 
-MEMORY HOOK:  
-**WPS = weak point**
+> 🧠 *Para recordar:* **WPS = weak point**
 
 ---
 
-## 4. ACCESS POINT CONFIGURATION HARDENING
+### 4. ACCESS POINT CONFIGURATION HARDENING
 
 |Hardening Step|
 |---|
@@ -75,13 +100,12 @@ MEMORY HOOK:
 |Reducir potencia de señal|
 |Cambiar SSID predeterminado|
 
-EXAM TRAP:  
-Hidden SSID ≠ seguridad  
-Sigue siendo útil como **disuasión**, no como protección.
+> ⚠️ *Trampa de examen:* Hidden SSID ≠ seguridad  
+> Sigue siendo útil como **disuasión**, no como protección.
 
 ---
 
-## 5. MAC ADDRESS FILTERING
+### 5. MAC ADDRESS FILTERING
 
 |Feature|Reality|
 |---|---|
@@ -89,16 +113,13 @@ Sigue siendo útil como **disuasión**, no como protección.
 |Previene ataques|NO|
 |Fácilmente falsificable|SÍ|
 
-MEMORY HOOK:  
-**MAC filtering = speed bump**
+> 🧠 *Para recordar:* **MAC filtering = speed bump**
 
 ---
 
-## 6. WIRELESS INTRUSION DETECTION / PREVENTION SYSTEMS (WIDS/WIPS)
+### 6. WIRELESS INTRUSION DETECTION / PREVENTION SYSTEMS (WIDS/WIPS)
 
----
-
-### WIDS — DEFINITION
+#### WIDS — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -106,7 +127,7 @@ MEMORY HOOK:
 
 ---
 
-### WIPS — DEFINITION
+#### WIPS — DEFINITION
 
 |Item|Memorize|
 |---|---|
@@ -114,7 +135,7 @@ MEMORY HOOK:
 
 ---
 
-### DETECTED THREATS
+#### DETECTED THREATS
 
 |Threat|
 |---|
@@ -123,12 +144,11 @@ MEMORY HOOK:
 |Deauth attacks|
 |MAC spoofing|
 
-MEMORY HOOK:  
-**IDS sees, IPS stops**
+> 🧠 *Para recordar:* **IDS sees, IPS stops**
 
 ---
 
-## 7. NETWORK SEGMENTATION
+### 7. NETWORK SEGMENTATION
 
 |Technique|
 |---|
@@ -136,24 +156,22 @@ MEMORY HOOK:
 |Usar VLANs|
 |Aislamiento de red de invitados|
 
-MEMORY HOOK:  
-**Compartmentalize damage**
+> 🧠 *Para recordar:* **Compartmentalize damage**
 
 ---
 
-## 8. VPN OVER WIRELESS
+### 8. VPN OVER WIRELESS
 
 |Benefit|
 |---|
 |Cifra el tráfico de extremo a extremo|
 |Protege Wi-Fi abierto|
 
-MEMORY HOOK:  
-**VPN shields wireless**
+> 🧠 *Para recordar:* **VPN shields wireless**
 
 ---
 
-## 9. REGULAR PATCHING AND FIRMWARE UPDATES
+### 9. REGULAR PATCHING AND FIRMWARE UPDATES
 
 |Component|
 |---|
@@ -161,12 +179,11 @@ MEMORY HOOK:
 |Routers|
 |Wireless controllers|
 
-MEMORY HOOK:  
-**Old firmware = open door**
+> 🧠 *Para recordar:* **Old firmware = open door**
 
 ---
 
-## 10. PHYSICAL SECURITY
+### 10. PHYSICAL SECURITY
 
 |Measure|
 |---|
@@ -174,12 +191,11 @@ MEMORY HOOK:
 |Prevenir instalación de dispositivos no autorizados|
 |Controlar acceso al hardware de red|
 
-MEMORY HOOK:  
-**Physical access = total access**
+> 🧠 *Para recordar:* **Physical access = total access**
 
 ---
 
-# WIRELESS ATTACK → COUNTERMEASURE MAPPING (EXAM FAVORITE)
+## WIRELESS ATTACK → COUNTERMEASURE MAPPING (HIGH YIELD)
 
 |Attack|Countermeasure|
 |---|---|
@@ -192,19 +208,18 @@ MEMORY HOOK:
 
 ---
 
-## IEEE 802.11w — MANAGEMENT FRAME PROTECTION
+### IEEE 802.11w — MANAGEMENT FRAME PROTECTION
 
 |Item|Memorize|
 |---|---|
 |802.11w|Protege tramas de gestión|
 |Prevents|Ataques de Deauth/Disassoc|
 
-MEMORY HOOK:  
-**11w stops deauth**
+> 🧠 *Para recordar:* **11w stops deauth**
 
 ---
 
-# WIRELESS SECURITY BEST PRACTICES (CEH LIST)
+## WIRELESS SECURITY BEST PRACTICES
 
 |#|Practice|
 |---|---|
@@ -218,48 +233,7 @@ MEMORY HOOK:
 
 ---
 
-# MODULE 16 — COMPLETE MEMORY BLOCK
-
-**Wireless es transmisión por broadcast.  
-El cifrado es obligatorio.  
-WEP está roto.  
-WPA3 es el mejor.  
-Recon escucha.  
-Deauth fuerza reconexión.  
-Aircrack rompe claves.  
-WIPS detiene ataques.**
-
----
-
-# MODULE 16 — FINAL STATUS
-
-|Item|Status|
-|---|---|
-|Objectives covered|100%|
-|Tools covered|100%|
-|Commands covered|100%|
-|Attacks covered|100%|
-|Countermeasures covered|100%|
-|Exam alignment|Exact|
-
----
-
-## MODULE 16 COMPLETE
-
-You are now ready for:
-
-- **Module 17 – Hacking Mobile Platforms**
-    
-- **Wireless attack scenario drills**
-    
-- **Aircrack / Reaver command flash review**
-    
-- **One-page wireless exam cheat sheet**
-    
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -280,7 +254,7 @@ You are now ready for:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué contramedida previene directamente los ataques de deauthentication?
 - a) MAC filtering

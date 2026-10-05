@@ -1,31 +1,70 @@
-# OBJETIVO 05 — CONTRAMEDIDAS DE SQL INJECTION
+# Módulo 15 · Parte 5 — SQLi Countermeasures
+
+> **Módulo 15 — SQL Injection** · Parte 5 de 5 · Contramedidas contra SQL injection (parameterized queries, prepared statements, input validation, least privilege, WAF) y herramientas de SQLi como sqlmap.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [DEFINICIÓN BÁSICA DE CEH 🔥](#definición-básica-de-ceh-high-yield)
+- [CAUSA RAÍZ DE SQL INJECTION](#causa-raíz-de-sql-injection)
+- [TÉCNICAS PRINCIPALES DE PREVENCIÓN DE SQL INJECTION](#técnicas-principales-de-prevención-de-sql-injection)
+- [1. PARAMETERIZED QUERIES 🔥](#1-parameterized-queries-high-yield)
+- [2. PREPARED STATEMENTS](#2-prepared-statements)
+- [3. STORED PROCEDURES](#3-stored-procedures)
+- [4. INPUT VALIDATION](#4-input-validation)
+- [5. ESCAPING USER INPUT](#5-escaping-user-input)
+- [6. LEAST PRIVILEGE](#6-least-privilege)
+- [7. WEB APPLICATION FIREWALL (WAF)](#7-web-application-firewall-waf)
+- [HERRAMIENTAS DE DETECCIÓN DE SQL INJECTION 🔥](#herramientas-de-detección-de-sql-injection-high-yield)
+- [SQLMAP — HERRAMIENTA FAVORITA DE CEH](#sqlmap--herramienta-favorita-de-ceh)
+- [OTHER SQL INJECTION TOOLS](#other-sql-injection-tools)
+- [SQL INJECTION PREVENTION CHECKLIST 🔥](#sql-injection-prevention-checklist-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Root cause** — falta de validación de entrada y construcción insegura de consultas SQL dinámicas (Dynamic SQL = danger).
+- **Parameterized queries** — la defensa MÁS eficaz: separan la lógica SQL de la entrada, que se trata siempre como datos (Code ≠ Data).
+- **Prepared statements** — se compilan una vez y se ejecutan muchas veces con distintos parámetros; previenen la inyección y mejoran el rendimiento.
+- **Stored procedures** — NO son seguros por sí mismos: solo lo son si usan parameterized input (EXAM TRAP).
+- **Input validation** — whitelisting > blacklisting, más comprobación de longitud y de tipo; la blacklist se evade con codificación u ofuscación.
+- **Escaping user input** — neutraliza caracteres especiales, pero por sí solo NO es suficiente.
+- **Least privilege** — permisos mínimos en la BD: nada de usuarios admin, usuarios separados para lectura y escritura.
+- **WAF** — detecta y bloquea payloads de SQLi, pero se puede evadir con técnicas de evasión.
+- **Prevention checklist** — parameterized queries, prepared statements, validar la entrada, least privilege, ocultar mensajes de error, parchear el DBMS, desplegar un WAF.
+- **sqlmap** — herramienta favorita de CEH para detectar y explotar SQLi: `-u` URL objetivo, `--dbs` bases de datos, `--tables`, `--columns`, `--dump` volcar datos, `--os-shell` shell del SO.
+- **Otras herramientas** — Havij (GUI), jSQL Injection (Java, multiplataforma), SQLninja (MSSQL), BBQSQL (blind SQLi).
+- **Resumen del módulo 15** — Inject → Enumerate → Extract → Evade → Prevent: conceptos, tipos, metodología, evasión, contramedidas y herramientas.
 
 ---
 
-## DEFINICIÓN BÁSICA DE CEH (MEMORIZAR)
+## DEFINICIÓN BÁSICA DE CEH (HIGH YIELD)
 
 |Item|Memorize|
 |---|---|
-|Contramedidas de SQL Injection|Controles de seguridad implementados para evitar que los atacantes inyecten código SQL malicioso en las consultas|
+|SQL Injection Countermeasures|Controles de seguridad implementados para evitar que los atacantes inyecten código SQL malicioso en las consultas|
 
 ---
 
-## CAUSA RAÍZ DE SQL INJECTION (EXAM STATEMENT)
+## CAUSA RAÍZ DE SQL INJECTION
 
 |Root Cause|
 |---|
 |Falta de validación de entrada adecuada y construcción insegura de consultas SQL dinámicas|
 
-MEMORY HOOK:  
-**Dynamic SQL = danger**
+> 🧠 *Para recordar:* **Dynamic SQL = danger**
 
 ---
 
 ## TÉCNICAS PRINCIPALES DE PREVENCIÓN DE SQL INJECTION
 
----
-
-## 1. PARAMETERIZED QUERIES (MÁS IMPORTANTE)
+## 1. PARAMETERIZED QUERIES (HIGH YIELD)
 
 ### DEFINITION
 
@@ -52,8 +91,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Code ≠ Data**
+> 🧠 *Para recordar:* **Code ≠ Data**
 
 ---
 
@@ -87,8 +125,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Prepare once, execute safely**
+> 🧠 *Para recordar:* **Se prepara una vez, se ejecuta de forma segura**
 
 ---
 
@@ -102,17 +139,16 @@ MEMORY HOOK:
 
 ---
 
-### SECURITY NOTE (EXAM TRAP)
+### SECURITY NOTE (HIGH YIELD)
 
-| Statement                     | Correct |
-| ----------------------------- | ------- |
-| Stored procedures always safe | NO      |
-| Safe only if parameterized    | YES     |
+| Statement                                      | Correct |
+| ---------------------------------------------- | ------- |
+| Los stored procedures siempre son seguros      | NO      |
+| Solo son seguros si están parametrizados       | SÍ      |
 
 ---
 
-MEMORY HOOK:  
-**Stored ≠ secure**
+> 🧠 *Para recordar:* **Stored ≠ secure**
 
 ---
 
@@ -130,9 +166,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Whitelisting|
-|Length checking|
-|Type checking|
+|Whitelisting — permitir solo la entrada conocida como válida|
+|Length checking — comprobar la longitud|
+|Type checking — comprobar el tipo de dato|
 
 ---
 
@@ -144,8 +180,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Allow known good only**
+> 🧠 *Para recordar:* **Permitir solo lo conocido como bueno**
 
 ---
 
@@ -159,7 +194,7 @@ MEMORY HOOK:
 
 ---
 
-### LIMITATION (EXAM TRAP)
+### LIMITATION (HIGH YIELD)
 
 |Item|
 |---|
@@ -167,8 +202,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Escape helps, not enough**
+> 🧠 *Para recordar:* **El escaping ayuda, pero no basta**
 
 ---
 
@@ -191,8 +225,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Less privilege, less damage**
+> 🧠 *Para recordar:* **Menos privilegios, menos daño**
 
 ---
 
@@ -214,16 +247,11 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**WAF ≠ silver bullet**
+> 🧠 *Para recordar:* **Un WAF no es la solución definitiva**
 
 ---
 
-## OBJETIVO 06 — HERRAMIENTAS DE SQL INJECTION
-
----
-
-## HERRAMIENTAS DE DETECCIÓN DE SQL INJECTION (EXAM MUST)
+## HERRAMIENTAS DE DETECCIÓN DE SQL INJECTION (HIGH YIELD)
 
 |Tool|Purpose|
 |---|---|
@@ -256,7 +284,7 @@ MEMORY HOOK:
 
 ---
 
-### BASIC SQLMAP COMMAND STRUCTURE (RECOGNITION)
+### BASIC SQLMAP COMMAND STRUCTURE
 
 |Structure|
 |---|
@@ -264,7 +292,7 @@ MEMORY HOOK:
 
 ---
 
-### IMPORTANT SQLMAP OPTIONS (EXAM)
+### IMPORTANT SQLMAP OPTIONS
 
 |Option|Purpose|
 |---|---|
@@ -277,8 +305,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**sqlmap = automate everything**
+> 🧠 *Para recordar:* **sqlmap = automatizarlo todo**
 
 ---
 
@@ -293,7 +320,7 @@ MEMORY HOOK:
 
 ---
 
-## SQL INJECTION PREVENTION CHECKLIST (EXAM GOLD)
+## SQL INJECTION PREVENTION CHECKLIST (HIGH YIELD)
 
 |#|Control|
 |---|---|
@@ -307,55 +334,7 @@ MEMORY HOOK:
 
 ---
 
-## BLOQUE FINAL DE MEMORIA DEL MÓDULO 15
-
-### OBJECTIVES
-
-|Objective|Status|
-|---|---|
-|Conceptos|Cubiertos|
-|Tipos|Cubiertos|
-|Metodología|Cubierta|
-|Evasión|Cubierta|
-|Contramedidas|Cubiertas|
-|Herramientas|Cubiertas|
-
----
-
-### CORE MEMORY HOOK
-
-**Inject → Enumerate → Extract → Evade → Prevent**
-
----
-
-## ESTADO DEL MÓDULO 15
-
-|Item|Status|
-|---|---|
-|Páginas cubiertas|100%|
-|Conceptos omitidos|0|
-|Herramientas omitidas|0|
-|Alineación con el examen|Exacta|
-
----
-
-## MÓDULO 15 COMPLETADO
-
-Próximos módulos disponibles:
-
-- **Módulo 16 – Hacking de Redes Inalámbricas**
-    
-- **Módulo 17 – Hacking de Plataformas Móviles**
-    
-- **Ejercicios prácticos rápidos de SQLi**
-    
-- **Hoja de memoria de SQLi de una página**
-    
-
-Dime **qué sigue**.
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -376,7 +355,7 @@ Dime **qué sigue**.
 
 ---
 
-# PREGUNTAS DE PRÁCTICA
+## Preguntas de práctica
 
 **1.** ¿Cuál de las siguientes es la técnica MÁS efectiva para prevenir SQL injection?
 - a) Desplegar un WAF

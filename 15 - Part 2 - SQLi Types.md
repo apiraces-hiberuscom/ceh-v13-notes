@@ -1,8 +1,41 @@
-# OBJECTIVE 02 — TYPES OF SQL INJECTION
+# Módulo 15 · Parte 2 — SQLi Types
+
+> **Módulo 15 — SQL Injection** · Parte 2 de 5 · Clasificación de los tipos de SQL injection: in-band (error-based, UNION-based), inferential/blind (boolean-based, time-based) y out-of-band.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [MASTER CLASSIFICATION 🔥](#master-classification-high-yield)
+- [1. IN-BAND SQL INJECTION](#1-in-band-sql-injection)
+- [1.1 ERROR-BASED SQL INJECTION](#11-error-based-sql-injection)
+- [1.2 UNION-BASED SQL INJECTION](#12-union-based-sql-injection)
+- [2. INFERENTIAL (BLIND) SQL INJECTION](#2-inferential-blind-sql-injection)
+- [2.1 BOOLEAN-BASED BLIND SQL INJECTION](#21-boolean-based-blind-sql-injection)
+- [2.2 TIME-BASED BLIND SQL INJECTION](#22-time-based-blind-sql-injection)
+- [3. OUT-OF-BAND SQL INJECTION](#3-out-of-band-sql-injection)
+- [COMPLETE TYPE COMPARISON 🔥](#complete-type-comparison-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **In-band SQLi** — usa el mismo canal para inyectar y recibir resultados; la más común y rápida. Subtipos: **Error-based** y **UNION-based**.
+- **Inferential (Blind) SQLi** — no hay errores ni salida visible: el atacante infiere el resultado. Subtipos: **Boolean-based** y **Time-based**.
+- **Out-of-band SQLi** — exfiltra datos por un canal distinto (**DNS** o **HTTP**); se usa cuando in-band no está disponible y blind es demasiado lenta.
+- **Error-based** — aprovecha errores verbosos y un mal manejo de errores: filtran tipo de BD, nombres de tablas y columnas y estructura de la consulta.
+- **UNION-based: prerrequisitos** — mismo número de columnas y tipos de datos compatibles (p. ej. `' UNION SELECT 1,2,3--`).
+- **Boolean-based** — se compara la respuesta de la página con `' AND 1=1--` (TRUE) frente a `' AND 1=2--` (FALSE).
+- **Time-based: funciones por BD** — MySQL `SLEEP()`, MSSQL `WAITFOR DELAY`, PostgreSQL `pg_sleep()`, Oracle `DBMS_LOCK.SLEEP`.
+- **Velocidad** — Error-based/UNION-based (rápidas) > Out-of-band (media) > Boolean-based (lenta) > Time-based (muy lenta).
 
 ---
 
-## MASTER CLASSIFICATION (EXAM MUST)
+## MASTER CLASSIFICATION (HIGH YIELD)
 
 |Category|Subtypes|
 |---|---|
@@ -10,8 +43,7 @@
 |Inferential (Blind) SQL Injection|Boolean-based, Time-based|
 |Out-of-band SQL Injection|DNS/HTTP-based|
 
-MEMORY HOOK:  
-**In-band → Blind → Out-of-band**
+> 🧠 *Para recordar:* **In-band → Blind → Out-of-band**
 
 ---
 
@@ -75,7 +107,7 @@ MEMORY HOOK:
 
 ---
 
-### EXAM PAYLOADS (RECOGNITION)
+### EXAM PAYLOADS
 
 |Payload|
 |---|
@@ -85,9 +117,7 @@ MEMORY HOOK:
 
 ---
 
-### MEMORY HOOK
-
-**Error = information**
+> 🧠 *Para recordar:* **Error = información**
 
 ---
 
@@ -101,7 +131,7 @@ MEMORY HOOK:
 
 ---
 
-### PREREQUISITES (VERY IMPORTANT)
+### PREREQUISITES (HIGH YIELD)
 
 |Requirement|
 |---|
@@ -130,9 +160,7 @@ MEMORY HOOK:
 
 ---
 
-### MEMORY HOOK
-
-**UNION = merge results**
+> 🧠 *Para recordar:* **UNION = combinar resultados**
 
 ---
 
@@ -185,9 +213,7 @@ MEMORY HOOK:
 
 ---
 
-### MEMORY HOOK
-
-**Page change = answer**
+> 🧠 *Para recordar:* **Cambio en la página = respuesta**
 
 ---
 
@@ -222,9 +248,7 @@ MEMORY HOOK:
 
 ---
 
-### MEMORY HOOK
-
-**Delay = TRUE**
+> 🧠 *Para recordar:* **Delay = TRUE**
 
 ---
 
@@ -266,25 +290,23 @@ MEMORY HOOK:
 
 ---
 
-### MEMORY HOOK
-
-**Different channel = Out-of-band**
+> 🧠 *Para recordar:* **Canal distinto = Out-of-band**
 
 ---
 
-## COMPLETE TYPE COMPARISON (EXAM GOLD)
+## COMPLETE TYPE COMPARISON (HIGH YIELD)
 
 |Type|Speed|Output|
 |---|---|---|
-|Error-based|Fast|Errores|
-|UNION-based|Fast|Resultados de la consulta|
-|Boolean-based|Slow|Comportamiento de la página|
-|Time-based|Very slow|Retardo en la respuesta|
-|Out-of-band|Medium|Respuesta externa|
+|Error-based|Rápida|Errores|
+|UNION-based|Rápida|Resultados de la consulta|
+|Boolean-based|Lenta|Comportamiento de la página|
+|Time-based|Muy lenta|Retardo en la respuesta|
+|Out-of-band|Media|Respuesta externa|
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -292,8 +314,8 @@ MEMORY HOOK:
 | Error-based SQLi | Explota los mensajes de error verbosos de la base de datos para extraer información |
 | UNION-based SQLi | Utiliza el operador UNION para combinar la consulta del atacante con los resultados de una consulta legítima |
 | Blind SQL Injection | No se muestra error ni salida directa; el atacante infiere los resultados indirectamente |
-| Boolean-based Blind SQLi | Infere los resultados observando las diferencias en la respuesta de la página TRUE/FALSE |
-| Time-based Blind SQLi | Utiliza retardos temporales (por ejemplo, SLEEP()) para inferir los resultados de la ejecución de la consulta |
+| Boolean-based Blind SQLi | Infiere los resultados observando las diferencias en la respuesta de la página TRUE/FALSE |
+| Time-based Blind SQLi | Utiliza retardos temporales (por ejemplo, SLEEP()) para inferir el resultado de la ejecución de la consulta |
 | Out-of-band SQLi | Exfiltración de datos utilizando un canal diferente como DNS o HTTP |
 | UNION Prerequisites | Mismo número de columnas y tipos de datos compatibles entre las consultas |
 | SLEEP() | Función de MySQL utilizada para SQL injection blind basada en tiempo |
@@ -304,7 +326,7 @@ MEMORY HOOK:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** Un atacante inyecta `' UNION SELECT 1,2,3--` y la página muestra los números 1, 2 y 3. ¿Qué tipo de SQL injection es este?
 - a) Boolean-based blind SQLi

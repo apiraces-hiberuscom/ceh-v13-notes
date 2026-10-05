@@ -1,14 +1,57 @@
-# MODULE 06 — SYSTEM HACKING (EXAM CONTEXT)
+# Módulo 06 — System Hacking
 
-|Item|Memorize|
-|---|---|
-|Module Number|06|
-|Module Name|System Hacking|
-|Focus|Obtención de acceso, password cracking, privilege escalation, mantenimiento de acceso, ocultación de evidencia|
+> **Enfoque:** Gaining access (obtención de acceso), password cracking, privilege escalation, maintaining access (mantenimiento del acceso) y hiding evidence (ocultación de evidencias)
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [01 — GAINING ACCESS](#01--gaining-access)
+- [02 — PASSWORD CRACKING](#02--password-cracking)
+- [03 — PASSWORD CRACKING TOOLS](#03--password-cracking-tools)
+- [04 — KERBEROS CRACKING](#04--kerberos-cracking)
+- [05 — VULNERABILITY EXPLOITATION](#05--vulnerability-exploitation)
+- [06 — METASPLOIT](#06--metasploit)
+- [07 — BUFFER OVERFLOW](#07--buffer-overflow)
+- [08 — WINDOWS BUFFER OVERFLOW](#08--windows-buffer-overflow)
+- [09 — ADVANCED EXPLOIT TECHNIQUES](#09--advanced-exploit-techniques)
+- [10 — AD ENUMERATION WITH POWERVIEW](#10--ad-enumeration-with-powerview)
+- [11 — DOMAIN TRUST FORESTS](#11--domain-trust-forests)
+- [12 — PRIVILEGE ESCALATION](#12--privilege-escalation)
+- [13 — PRIVILEGE ESCALATION TOOLS](#13--privilege-escalation-tools)
+- [14 — MAINTAINING ACCESS](#14--maintaining-access)
+- [15 — DOMAIN DOMINANCE](#15--domain-dominance)
+- [16 — HIDING EVIDENCE](#16--hiding-evidence)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **SAM** — `%SystemRoot%\system32\config\SAM` (`HKEY_LOCAL_MACHINE\SAM`); guarda solo hashes LM/NTLM, cifrados parcialmente con SYSKEY, y no se puede copiar con Windows en ejecución
+- **Kerberos vs NTLM** — Kerberos = secret key cryptography (KDC, AS, TGS): AS → TGT → TGS → Service Ticket → servicio; NTLM = challenge-response; NTLMv2 > LM pero < Kerberos
+- **Password cracking types** — Non-electronic (social engineering), Active online, Passive online (no modifica el sistema) y Offline (a partir de un volcado de hashes)
+- **LLMNR/NBT-NS poisoning** — se explota con Responder; se detecta con Vindicate, Respounder o got-responder
+- **AS-REP Roasting vs Kerberoasting** — AS-REP solo funciona en cuentas SIN Kerberos pre-authentication; Kerberoasting crackea hashes de cuentas de servicio (hashcat)
+- **Pass the Hash / Pass the Ticket** — PtH = hash injection del hash comprometido; PtT = robar TGT/ST con Mimikatz; Overpass the Hash (OPtH) extiende ambos
+- **Golden vs Silver Ticket** — Golden = TGT falsificado comprometiendo la cuenta del Key Distribution Service; Silver = ticket TGS falsificado (ambos con Mimikatz)
+- **Rainbow table attack** — usa hashes precalculados (rtgen, RainbowCrack); se mitiga con **salt**
+- **Metasploit modules** — Encoder codifica payloads para evadir AV/IDS (polimorfismo); Evasion modifica su comportamiento; NOPS genera NOP sleds; Auxiliary = acciones puntuales (scan, DoS, fuzzing)
+- **Payload types** — Singles (autónomos), Stagers (establecen la conexión atacante-víctima), Stages (descargados por el stager); msfvenom: LHOST = IP del atacante, LPORT por defecto 4444
+- **Buffer overflow** — sobrescribir **EIP** = ejecución de código; en Windows: Spiking → Fuzzing → Identify Offset (`pattern_create` / `pattern_offset`)
+- **Horizontal vs Vertical privilege escalation** — acceder a recursos de otro usuario con permisos similares vs. obtener privilegios superiores
+- **DCSync** — requiere una cuenta con derechos de replicación del dominio; `lsadump::dcsync` de Mimikatz extrae los hashes NTLM
+- **Ocultar datos** — NTFS **ADS** (detección: Stream Armor, AlternateStreamView) y **steganography** (SNOW texto, OpenStego imágenes, DeepSound audio, Spam Mimic email)
+- **Hiding evidence** — Disable auditing → Clear logs (Meterpreter) → Manipulate logs → Cover tracks → Delete files → Disable Windows functionality; `cipher.exe` para borrar archivos
 
 ---
 
-## LEARNING OBJECTIVES (DO NOT SKIP — EXAM LIST)
+## Objetivos de aprendizaje
 
 |Objective #|Description|
 |---|---|
@@ -20,21 +63,19 @@
 
 ---
 
-# 01 — GAINING ACCESS
+## 01 — GAINING ACCESS
 
----
-
-## WINDOWS SAM DATABASE
+### WINDOWS SAM DATABASE
 
 |Property|Detail|
 |---|---|
 |Full Name|Windows Security Accounts Manager (SAM)|
 |Purpose|Gestionar cuentas y contraseñas en formato hasheado (hash unidireccional)|
 |Password Storage|NO almacena texto plano — usa solo hash|
-|File Role|Archivo de registro de base de datos|
+|File Role|Archivo de base de datos del registro de Windows|
 |Copy Restriction|No se puede copiar el archivo SAM mientras Windows está en ejecución|
 |Dump Method|Es posible volcar contenido del disco incluyendo SAM con diversas técnicas|
-|Encryption|Usa la función SYSKEY para encriptar parcialmente los password hashes|
+|Encryption|Usa la función SYSKEY para cifrar parcialmente los password hashes|
 
 |Property|Detail|
 |---|---|
@@ -42,18 +83,17 @@
 |Registry Key|HKEY_LOCAL_MACHINE\SAM|
 |Hash Types Stored|Contraseñas hasheadas LM o NTLM|
 
-MEMORY HOOK:
-**SAM = solo hashes, no se puede copiar mientras está en ejecución, SYSKEY encripta**
+> 🧠 *Para recordar:* **SAM = solo hashes, no se puede copiar mientras Windows está en ejecución, SYSKEY cifra**
 
 ---
 
-## NTLM AUTHENTICATION
+### NTLM AUTHENTICATION
 
 |Property|Detail|
 |---|---|
 |Full Name|NT LAN Manager (NTLM)|
 |Status|Esquema de autenticación predeterminado|
-|Protocol Spec|Sin especificación de protocolo oficial — sin garantía de operación efectiva cada vez|
+|Protocol Spec|Sin especificación oficial del protocolo — no hay garantía de que funcione correctamente siempre|
 |LM Status (Vista+)|LM hashing deshabilitado; el valor del LM hash está en blanco|
 |Security|NTLMv2 razonablemente seguro pero aún más débil que Kerberos|
 
@@ -61,11 +101,11 @@ MEMORY HOOK:
 |---|---|
 |pwdump7|Extracción principal de password hashes|
 |Mimikatz|Extracción de credenciales|
-|DSInternals|Internals de servicios de directorio|
+|DSInternals|Directory Services Internals — acceso a funciones internas de AD|
 |hashcat|Offline hash cracking|
 |PyCrack|Cracking basado en Python|
 
-### NTLM Authentication Process
+#### NTLM Authentication Process
 
 |Step|Action|
 |---|---|
@@ -74,12 +114,11 @@ MEMORY HOOK:
 |3|El cliente calcula response|
 |4|El servidor verifica vía AD o SAM|
 
-EXAM TRAP:
-**NTLMv2 es más fuerte que LM pero aún más débil que Kerberos**
+> ⚠️ *Trampa de examen:* **NTLMv2 es más fuerte que LM pero aún más débil que Kerberos**
 
 ---
 
-## KERBEROS AUTHENTICATION
+### KERBEROS AUTHENTICATION
 
 |Component|Full Name|
 |---|---|
@@ -90,22 +129,22 @@ EXAM TRAP:
 
 |Property|Detail|
 |---|---|
-|Method|Cryptography de clave secreta|
-|Status|Actualización desde NTLM|
+|Method|Secret key cryptography (criptografía de clave secreta)|
+|Status|Mejora (upgrade) respecto a NTLM|
 
-### Kerberos Authentication Process
+#### Kerberos Authentication Process
 
 |Step|Action|
 |---|---|
 |1|Inicio de sesión y solicitud de ticket (AS)|
 |2|Recepción de Ticket-Granting Ticket (TGT)|
 |3|Solicitud de acceso al servicio|
-|4|Recepción de Ticket-Granting Service TGS|
+|4|Recepción del Service Ticket (ST) emitido por el TGS|
 |5|Acceso al servicio|
 
 ---
 
-## CRACKING OPTIONS — OVERVIEW
+### CRACKING OPTIONS — OVERVIEW
 
 |Category|Methods|
 |---|---|
@@ -117,28 +156,26 @@ EXAM TRAP:
 
 ---
 
-# 02 — PASSWORD CRACKING
+## 02 — PASSWORD CRACKING
 
----
-
-## PASSWORD CRACKING TYPES
+### PASSWORD CRACKING TYPES
 
 |Type|Description|
 |---|---|
-|Non-Electronic|Ingeniería social, dumpster diving, etc.|
-|Active Online|Adivinanza de contraseñas, dictionary/brute forcing, password spraying, mask attack, hash injection, envenenamiento LLMNR/NBT-NS, troyanos/spyware/keyloggers, ataques de monólogo interno, markov-chain|
+|Non-Electronic|Social engineering (ingeniería social), dumpster diving, etc.|
+|Active Online|Password guessing (adivinar contraseñas), dictionary/brute forcing, password spraying, mask attack, hash injection, LLMNR/NBT-NS poisoning, trojans/spyware/keyloggers, internal monologue attacks, Markov-chain|
 |Passive Online|No cambia el sistema de ninguna manera; la contraseña se obtiene mediante monitoreo pasivo de datos|
 |Offline|Recuperar contraseñas a partir de volcado de hash|
 
 ---
 
-## ATTACK TYPES (ACTIVE ONLINE)
+### ATTACK TYPES (ACTIVE ONLINE)
 
 |Attack|Description|
 |---|---|
 |Dictionary Attack|Archivo de diccionario cargado en aplicación de cracking ejecutado contra cuentas de usuario|
 |Brute Force Attack|El software usa cada combinación hasta que se descifra la contraseña|
-|Rule-Based Attack|Información parcial de contraseña; híbrido usa diccionario + contraseña antigua; syllable attack usa diccionario + otros métodos|
+|Rule-Based Attack|Se usa cuando se tiene información parcial de la contraseña; el hybrid attack usa diccionario + contraseña antigua; el syllable attack combina diccionario + otros métodos|
 |Password Spraying|Apunta a múltiples cuentas simultáneamente|
 |Hash Injection (Pass the Hash)|Inyectar hash comprometido en sesión local para validar recursos de red; usar hash de usuario logueado para acceder al controlador de dominio|
 |LLMNR/NBT-NS Poisoning|LLMNR y NBT-NS son dos elementos principales de Windows para resolución de nombres en el mismo enlace (Herramienta: Responder)|
@@ -146,12 +183,12 @@ EXAM TRAP:
 
 |Attack|Description|
 |---|---|
-|Rainbow Table Attack|Usa información pre-calculada almacenada en memoria para descifrar encriptación; Herramienta: rtgen|
+|Rainbow Table Attack|Usa información precalculada almacenada en memoria para romper el cifrado; Herramienta: rtgen|
 |Distributed Network Attack|Usa múltiples máquinas en la red; Herramienta: Exterro Password Recovery Toolkit|
 
 ---
 
-## LLMNR/NBT-NS POISONING DETECTION TOOLS
+### LLMNR/NBT-NS POISONING DETECTION TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -161,11 +198,9 @@ EXAM TRAP:
 
 ---
 
-# 03 — PASSWORD CRACKING TOOLS
+## 03 — PASSWORD CRACKING TOOLS
 
----
-
-## PASSWORD CRACKING TOOLS
+### PASSWORD CRACKING TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -179,16 +214,16 @@ EXAM TRAP:
 
 ---
 
-## MASK ATTACK
+### MASK ATTACK
 
 |Property|Detail|
 |---|---|
-|Method|El brute force recupera contraseñas de hashes usando patrón de contraseña|
+|Method|Brute force que recupera contraseñas a partir de hashes usando un patrón de la contraseña|
 |Tool|hashcat -m para especificar modo de hash (ej., MD5)|
 
 ---
 
-## DEFAULT PASSWORD RESOURCES
+### DEFAULT PASSWORD RESOURCES
 
 |Resource|URL|
 |---|---|
@@ -197,15 +232,15 @@ EXAM TRAP:
 
 ---
 
-## PASSWORD SALTING
+### PASSWORD SALTING
 
 |Property|Detail|
 |---|---|
-|Definition|Agregar cadena aleatoria de caracteres antes de calcular hashes|
+|Definition|Añadir una cadena aleatoria de caracteres a la contraseña antes de calcular el hash|
 
 ---
 
-## PASSWORD RECOVERY TOOLS
+### PASSWORD RECOVERY TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -218,15 +253,13 @@ EXAM TRAP:
 
 ---
 
-# 04 — KERBEROS CRACKING
+## 04 — KERBEROS CRACKING
 
----
-
-## KERBEROS ATTACK TECHNIQUES
+### KERBEROS ATTACK TECHNIQUES
 
 |Technique|Description|
 |---|---|
-|AS-REP Roasting|Descifrar TGT; requiere conectividad al DC y cuenta de dominio; solo apunta a cuentas sin pre-authenticación Kerberos requerida|
+|AS-REP Roasting|Descifrar TGT; requiere conectividad al DC y cuenta de dominio; solo apunta a cuentas sin Kerberos pre-authentication (preautenticación) requerida|
 |Kerberoasting|Obtener y descifrar hashes de cuentas de servicio; apunta a acceder a cuentas de mayor privilegio y moverse lateralmente; Herramienta: hashcat|
 |Pass the Ticket|Usar ticket Kerberos sin proporcionar contraseña; robar ST/TGT de máquina de usuario o servidor; Herramienta: Mimikatz|
 |NTLM Relay|Intercepción y retransmisión de solicitudes de autenticación NTLM; Herramientas: Responder, ntlmrelayx; comando: responder -I eth0|
@@ -234,30 +267,29 @@ EXAM TRAP:
 |PRINCE Attack|Usa cadenas de palabras combinadas|
 |Markov Chain Attack|Divide la contraseña en sílabas de dos-tres caracteres creando nuevo alfabeto|
 
-EXAM TRAP:
-**AS-REP Roasting solo funciona en cuentas SIN pre-authenticación Kerberos**
+> ⚠️ *Trampa de examen:* **AS-REP Roasting solo funciona en cuentas SIN Kerberos pre-authentication**
+
+> ⚠️ *Trampa de examen:* **NTLM Relay**, **Fingerprint**, **PRINCE** y **Markov Chain** aparecen en esta tabla pero **no son ataques Kerberos**: NTLM Relay ataca NTLM y los otros tres son técnicas de password cracking (active online).
 
 ---
 
-# 05 — VULNERABILITY EXPLOITATION
+## 05 — VULNERABILITY EXPLOITATION
 
----
-
-## EXPLOITATION STEPS
+### EXPLOITATION STEPS
 
 |Step|Description|
 |---|---|
-|1|Identify the vulnerability|
-|2|Determine risk associated with vulnerability|
-|3|Determined capability of vulnerability|
-|4|Develop an exploit|
-|5|Select method for delivery — local or remote|
-|6|Generate and deliver payload|
-|7|Gain remote access|
+|1|Identify the vulnerability — identificar la vulnerabilidad|
+|2|Determine the risk associated with the vulnerability — determinar el riesgo asociado|
+|3|Determine the capability of the vulnerability — determinar el alcance de la vulnerabilidad|
+|4|Develop the exploit — desarrollar el exploit|
+|5|Select the method for delivery (local or remote) — elegir el método de entrega: local o remoto|
+|6|Generate and deliver the payload — generar y entregar el payload|
+|7|Gain remote access — obtener acceso remoto|
 
 ---
 
-## EXPLOIT DATABASE SITES
+### EXPLOIT DATABASE SITES
 
 |Site|Purpose|
 |---|---|
@@ -269,7 +301,7 @@ EXAM TRAP:
 
 ---
 
-## AI-POWERED EXPLOITATION TOOLS
+### AI-POWERED EXPLOITATION TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -278,25 +310,23 @@ EXAM TRAP:
 
 ---
 
-# 06 — METASPLOIT
+## 06 — METASPLOIT
 
----
-
-## METASPLOIT MODULES
+### METASPLOIT MODULES
 
 |Module|Description|
 |---|---|
 |Exploit|1. Configurar exploit activo 2. Verificar opciones del exploit 3. Seleccionar objetivo 4. Seleccionar payload 5. Lanzar exploit|
 |Payload|Establece canal de comunicaciones entre Metasploit y víctima; combina código arbitrario ejecutado debido al éxito del exploit; seleccionar: msf payload|
-|Auxiliary|Usado para acciones únicas: escaneo de puertos, DoS, fuzzing; Uso: use, exploit; show auxiliary — listar todos los módulos; exploit/run — lanzar comando|
-|NOPS|Generar instrucción sin operación para bloquear buffers; msf generate -t c 50 — generar NOP sled de 50 bytes|
+|Auxiliary|Usado para acciones puntuales (one-time actions): escaneo de puertos, DoS, fuzzing; Uso: use, exploit; show auxiliary — listar todos los módulos; exploit/run — lanzar comando|
+|NOPS|Genera instrucciones no-operation (NOP) para bloquear buffers; msf generate -t c 50 — generar NOP sled de 50 bytes|
 |Encoder|Ocultar/codificar payloads para evitar detección por AV, IDS; ofuscación; evasión de detección por firmas; polimorfismo — cambia payload cada vez que se genera|
 |Evasion|Modificar comportamiento y características de payloads/exploits para evitar detección; evasion/windows/windows_defender.exe; evasion/windows/antivirus_disable; evasion/unix/antivirus_disable|
 |Post-Exploitation|Usado después de compromiso exitoso del sistema; permite interacción adicional; post/windows/gather/enum_logged_on_users; post/linux/gather/enum_configs; post/windows/manage/portproxy|
 
 ---
 
-## PAYLOAD MODULE TYPES
+### PAYLOAD MODULE TYPES
 
 |Type|Description|
 |---|---|
@@ -310,11 +340,9 @@ EXAM TRAP:
 
 ---
 
-# 07 — BUFFER OVERFLOW
+## 07 — BUFFER OVERFLOW
 
----
-
-## BUFFER OVERFLOW — CORE CONCEPT
+### BUFFER OVERFLOW — CORE CONCEPT
 
 |Property|Detail|
 |---|---|
@@ -325,12 +353,12 @@ EXAM TRAP:
 
 ---
 
-## VULNERABLE PROGRAMS/APPLICATIONS
+### VULNERABLE PROGRAMS/APPLICATIONS
 
 |Vulnerability Factor|
 |---|
 |No se realizan verificaciones de límites|
-|Aplicaciones que usan versiones de lenguajes de programación antiguos|
+|Aplicaciones que usan versiones antiguas de lenguajes de programación|
 |Programas que usan funciones inseguras/vulnerables para validar tamaño de buffer|
 |Sin buenas prácticas de programación|
 |Sin filtrado y validación adecuados|
@@ -340,31 +368,30 @@ EXAM TRAP:
 
 ---
 
-## BUFFER OVERFLOW TYPES
+### BUFFER OVERFLOW TYPES
 
 |Type|Description|
 |---|---|
-|Stack-Based Overflow|Pila usada para asignación de memoria estática (LIFO); PUSH almacena datos, POP remueve datos; atacante toma control del registro EIP para reemplazar dirección de retorno y obtener acceso a shell|
-|Heap-Based Overflow|Memoria heap asignada dinámicamente en tiempo de ejecución; desbordamiento ocurre cuando se asigna bloque de memoria al heap; vulnerabilidad conduce a sobrescribir apuntadores de objetos; heap overflows son inconsistentes con diferentes técnicas de exploit|
+|Stack-Based Overflow|Pila usada para asignación de memoria estática (LIFO); PUSH almacena datos, POP retira datos; atacante toma control del registro EIP para reemplazar dirección de retorno y obtener acceso a shell|
+|Heap-Based Overflow|Memoria heap asignada dinámicamente en tiempo de ejecución; desbordamiento ocurre cuando se asigna bloque de memoria al heap; vulnerabilidad conduce a sobrescribir punteros a objetos; heap overflows son inconsistentes con diferentes técnicas de exploit|
 
 ---
 
-## x86 REGISTERS (STACK-BASED BUFFER OVERFLOW)
+### x86 REGISTERS (STACK-BASED BUFFER OVERFLOW)
 
 |Register|Full Name|Function|
 |---|---|---|
 |EBP|Extended Base Pointer|Almacena dirección del primer elemento de datos almacenado en la pila (StackBase)|
-|ESP|Extended Stack Pointer|Almacena dirección de la siguiente instrucción|
+|ESP|Extended Stack Pointer|Almacena la dirección del siguiente elemento de datos que se guardará en la pila (cima de la pila)|
 |EIP|Extended Instruction Pointer|Almacena dirección de la siguiente instrucción a ejecutarse|
 |ESI|Extended Source Index|Mantiene índice de origen para varias operaciones de cadena|
 |EDI|Extended Destination Index|Mantiene índice de destino para varias operaciones de cadena|
 
-EXAM TRAP:
-**EIP es el registro clave — sobrescribir EIP = ejecución de código**
+> ⚠️ *Trampa de examen:* **EIP es el registro clave — sobrescribir EIP = ejecución de código**
 
 ---
 
-## BUFFER OVERFLOW DETECTION TOOLS
+### BUFFER OVERFLOW DETECTION TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -377,36 +404,32 @@ EXAM TRAP:
 
 ---
 
-# 08 — WINDOWS BUFFER OVERFLOW
+## 08 — WINDOWS BUFFER OVERFLOW
 
----
-
-## WINDOWS BUFFER OVERFLOW STEPS
+### WINDOWS BUFFER OVERFLOW STEPS
 
 |Step|Description|
 |---|---|
-|Spiking|Paquetes TCP y UDP manipulados para hacer que falle; nc -nv ip port — establecer conexión; generar plantilla usando función STATS; generic_send_tcp ip port spike_script SKIPVAR SKIPSTR|
+|Spiking|Envía paquetes TCP y UDP manipulados (crafted) para hacer que el servidor falle (crash); nc -nv ip port — establecer conexión; generar plantilla usando función STATS; generic_send_tcp ip port spike_script SKIPVAR SKIPSTR|
 |Fuzzing|Envía gran cantidad de datos sobrescribiendo el registro EIP; ayuda a identificar número de bytes para que falle el servidor objetivo; ayuda a determinar ubicación del registro EIP para inyección de código; while loop en script Python; usar herramienta pattern_create de Ruby para generar bytes aleatorios; Metasploit pattern_offset para encontrar bytes aleatorios; sobrescribir registro EIP; configurar netcat: nc -nvlp 4444|
 |Identify Offset|Herramientas de Ruby de Metasploit pattern_create y pattern_offset para encontrar dónde se está sobrescribiendo el registro EIP|
 
 ---
 
-# 09 — ADVANCED EXPLOIT TECHNIQUES
+## 09 — ADVANCED EXPLOIT TECHNIQUES
 
----
-
-## EXPLOIT TECHNIQUES
+### EXPLOIT TECHNIQUES
 
 |Technique|Definition|
 |---|---|
 |Return Oriented Programming (ROP)|Reutilización de fragmentos de código que ya existen en el código, usualmente en libc o kernel32.dll|
 |Heap Spraying|Inundar espacio libre de memoria de proceso escribiendo múltiples copias de código malicioso|
-|JIT (Just-In-Time) Spraying|Ejecutar código arbitrario en sistema víctima vía función JIT compilation en navegadores modernos; atacante usa código JavaScript que contiene payload malicioso|
+|JIT (Just-In-Time) Spraying|Ejecutar código arbitrario en sistema víctima mediante la función de JIT compilation de los navegadores modernos; atacante usa código JavaScript que contiene payload malicioso|
 |Exploit Chaining|Combina múltiples exploits y vulnerabilidades|
 
 ---
 
-## AD DOMAIN MAPPING WITH BLOODHOUND
+### AD DOMAIN MAPPING WITH BLOODHOUND
 
 |Property|Detail|
 |---|---|
@@ -415,15 +438,13 @@ EXAM TRAP:
 
 ---
 
-# 10 — AD ENUMERATION WITH POWERVIEW
+## 10 — AD ENUMERATION WITH POWERVIEW
 
----
-
-## POST AD ENUMERATION COMMANDS
+### POST AD ENUMERATION COMMANDS
 
 |Command|Description|
 |---|---|
-|Get-ADomain / Get-NetDomain|Recupera información relacionada con el dominio actual incluyendo DCs|
+|Get-ADDomain / Get-NetDomain|Recupera información relacionada con el dominio actual incluyendo DCs|
 |Get-DomainSID|Recupera security IDs|
 |Get-DomainPolicy|Recupera información relacionada con las configuraciones de política de acceso del sistema del dominio|
 |(Get-DomainPolicy)."SystemAccess"|Recupera información relacionada con configuraciones de política en acceso del sistema del dominio|
@@ -433,28 +454,26 @@ EXAM TRAP:
 |Get-NetLoggedon -ComputerName|Usuario de dominio activo actual|
 |Get-UserProperty -Properties pwdlastset|Fecha y hora en que se estableció la contraseña por última vez para cada usuario del dominio|
 |Find-LocalAdminAccess / Invoke-EnumerateLocalAdmin|Recupera usuarios que tienen privilegios administrativos locales (requiere admin)|
-|Computer-NetSession -ComputerName|Recupera información del usuario actual logueado en la máquina|
+|Get-NetSession -ComputerName|Recupera información del usuario actual logueado en la máquina|
 
 ---
 
-## GHOSTPACK SEATBUCKET
+### GHOSTPACK SEATBELT
 
 |Property|Detail|
 |---|---|
-|Tool|GhostPack Seatbucket|
+|Tool|GhostPack Seatbelt|
 |Purpose|Identifica vulnerabilidades; recopila información incluyendo PowerShell, tickets Kerberos, y elementos en RecycleBin|
 
 ---
 
-# 11 — DOMAIN TRUST FORESTS
+## 11 — DOMAIN TRUST FORESTS
 
----
-
-## DOMAIN TRUST TYPES
+### DOMAIN TRUST TYPES
 
 |Trust Type|Description|
 |---|---|
-|One-Way Trust|Confianza unidireccional; permite a usuarios en dominio de confianza acceder a recursos del dominio que confía|
+|One-Way Trust|Confianza unidireccional; permite a usuarios del trusted domain (dominio de confianza) acceder a recursos del trusting domain (dominio que confía)|
 |Two-Way Trust|Permite a usuarios acceder a otro dominio y viceversa|
 
 |Property|Detail|
@@ -463,11 +482,9 @@ EXAM TRAP:
 
 ---
 
-# 12 — PRIVILEGE ESCALATION
+## 12 — PRIVILEGE ESCALATION
 
----
-
-## HORIZONTAL vs VERTICAL PRIVILEGE ESCALATION
+### HORIZONTAL vs VERTICAL PRIVILEGE ESCALATION
 
 |Type|Description|
 |---|---|
@@ -476,7 +493,7 @@ EXAM TRAP:
 
 ---
 
-## DLL HIJACKING
+### DLL HIJACKING
 
 |Property|Detail|
 |---|---|
@@ -486,7 +503,7 @@ EXAM TRAP:
 
 ---
 
-## DYLIB HIJACKING (macOS)
+### DYLIB HIJACKING (macOS)
 
 |Property|Detail|
 |---|---|
@@ -495,25 +512,25 @@ EXAM TRAP:
 
 ---
 
-## SPECTRE VULNERABILITY
+### SPECTRE VULNERABILITY
 
 |Property|Detail|
 |---|---|
 |Affected Processors|AMD, Apple, ARM, Intel, etc.|
-|Method|Engaña al procesador para que explote la ejecución especulativa y lea datos restringidos|
+|Method|Engaña al procesador para que explote la speculative execution (ejecución especulativa) y lea datos restringidos|
 
 ---
 
-## MELTDOWN VULNERABILITY
+### MELTDOWN VULNERABILITY
 
 |Property|Detail|
 |---|---|
-|Affected Processors|Todos ARM, Intel (desplegados por Apple)|
+|Affected Processors|Todos los procesadores Intel y ARM desplegados por Apple|
 |Method|Engaña al procesador para que acceda a memoria fuera de límites|
 
 ---
 
-## NAMED PIPE IMPERSONATION
+### NAMED PIPE IMPERSONATION
 
 |Property|Detail|
 |---|---|
@@ -523,7 +540,7 @@ EXAM TRAP:
 
 ---
 
-## UNSQUOTED SERVICE PATHS
+### UNSQUOTED SERVICE PATHS
 
 |Property|Detail|
 |---|---|
@@ -532,7 +549,7 @@ EXAM TRAP:
 
 ---
 
-## SERVICE OBJECT PERMISSIONS
+### SERVICE OBJECT PERMISSIONS
 
 |Property|Detail|
 |---|---|
@@ -542,7 +559,7 @@ EXAM TRAP:
 
 ---
 
-## PIVOTING
+### PIVOTING
 
 |Property|Detail|
 |---|---|
@@ -550,7 +567,7 @@ EXAM TRAP:
 
 ---
 
-## MISCONFIGURED NFS PRIVILEGE ESCALATION
+### MISCONFIGURED NFS PRIVILEGE ESCALATION
 
 |Step|Command/Action|
 |---|---|
@@ -567,18 +584,18 @@ EXAM TRAP:
 
 ---
 
-## UAC BYPASS
+### UAC BYPASS
 
 |Method|
 |---|
 |Metasploit vía inyección de memoria|
 |Clave de registro FodHelper|
 |Clave de registro Eventvwr|
-|Secuestro de manejador COM|
+|COM handler hijacking (secuestro del manejador COM)|
 
 ---
 
-## BOOT/LOGIN INITIALIZATION PRIVILEGE ESCALATION
+### BOOT/LOGIN INITIALIZATION PRIVILEGE ESCALATION
 
 |Platform|Method|
 |---|---|
@@ -590,7 +607,7 @@ EXAM TRAP:
 
 ---
 
-## DOMAIN POLICY MODIFICATION
+### DOMAIN POLICY MODIFICATION
 
 |Method|Description|
 |---|---|
@@ -599,17 +616,17 @@ EXAM TRAP:
 
 ---
 
-## DCSYNC ATTACK
+### DCSYNC ATTACK
 
 |Property|Detail|
 |---|---|
 |Method|El atacante obtiene cuenta privilegiada con derechos de replicación de dominio|
-|Result|DC virtual creado similar al AD original; permite hashes NTLM, ataques golden ticket, ataques Living off the Land|
+|Result|DC virtual creado similar al AD original; permite obtener hashes NTLM, ataques golden ticket, ataques Living off the Land|
 |Tool|mimikatz mimikatz "lsadump::dcsync /domain: (domain name) /user:Administrator"|
 
 ---
 
-## ADCS (ACTIVE DIRECTORY CERTIFICATE SERVICES) ABUSE
+### ADCS (ACTIVE DIRECTORY CERTIFICATE SERVICES) ABUSE
 
 |Property|Detail|
 |---|---|
@@ -619,7 +636,7 @@ EXAM TRAP:
 
 ---
 
-## OTHER PRIVILEGE ESCALATION TECHNIQUES
+### OTHER PRIVILEGE ESCALATION TECHNIQUES
 
 |Technique|Description|
 |---|---|
@@ -628,10 +645,10 @@ EXAM TRAP:
 |Application Shimming|Framework de compatibilidad de aplicaciones; evadir UAC e inyectar DLLs maliciosas|
 |Filesystem Permission Weakness|Explotar malas configuraciones del sistema de archivos|
 |Path Interception|Ejecutar aplicación desde ruta en lugar de la real|
-|Abusing Accessibility Features|Aprovechar herramientas de accesibilidad para escalamiento|
+|Abusing Accessibility Features|Aprovechar herramientas de accesibilidad para escalar privilegios|
 |SID-History Injection|Inyectar SID de administrador (Windows Security Identifier)|
 |COM Hijacking|Secuestrar referencias válidas de Component Object Model y agregar propias referencias para infectar sistema objetivo|
-|Scheduled Tasks (Windows)|Abusar del Programador de Tareas de Windows|
+|Scheduled Tasks (Windows)|Abusar del Windows Task Scheduler (Programador de tareas)|
 |Scheduled Tasks (Linux)|cron y crond|
 |Launch Daemon (macOS)|macOS launchd|
 |Plist Modification|Manipulación de plist de macOS|
@@ -647,11 +664,9 @@ EXAM TRAP:
 
 ---
 
-# 13 — PRIVILEGE ESCALATION TOOLS
+## 13 — PRIVILEGE ESCALATION TOOLS
 
----
-
-## PRIVILEGE ESCALATION TOOLS
+### PRIVILEGE ESCALATION TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -664,7 +679,7 @@ EXAM TRAP:
 
 ---
 
-## DLL/DYLIB HIJACKING DEFENSE TOOLS
+### DLL/DYLIB HIJACKING DEFENSE TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -673,11 +688,9 @@ EXAM TRAP:
 
 ---
 
-# 14 — MAINTAINING ACCESS
+## 14 — MAINTAINING ACCESS
 
----
-
-## BACKDOORS
+### BACKDOORS
 
 |Property|Detail|
 |---|---|
@@ -685,7 +698,7 @@ EXAM TRAP:
 
 ---
 
-## REMOTE CODE EXECUTION TECHNIQUES
+### REMOTE CODE EXECUTION TECHNIQUES
 
 |Technique|Description|
 |---|---|
@@ -705,7 +718,7 @@ EXAM TRAP:
 
 ---
 
-## KEYLOGGERS
+### KEYLOGGERS
 
 |Type|Description|
 |---|---|
@@ -719,14 +732,14 @@ EXAM TRAP:
 
 ---
 
-## SPYWARE
+### SPYWARE
 
 |Tool|Purpose|
 |---|---|
 |Spytech SpyAgent|Spyware|
 |Spyrix Personal Monitor|Spyware|
 
-### Spyware Types
+#### Spyware Types
 
 |Type|Examples/Details|
 |---|---|
@@ -734,7 +747,7 @@ EXAM TRAP:
 |Email Spyware|Monitoreo de correo electrónico|
 |Internet Spyware|Monitoreo de uso de internet|
 |Child Monitoring Spyware|Monitoreo parental|
-|Screen Capturing Spyware|Captura de capturas de pantalla|
+|Screen Capturing Spyware|Capturas de pantalla|
 |USB Spyware|Monitoreo basado en USB|
 |Audio Spyware|theOneSpy, Snooper|
 |Video Spyware|iSpy, Perfect IP Camera Viewer, Optiview VMS, Eyeline Video Surveillance Software|
@@ -743,7 +756,7 @@ EXAM TRAP:
 
 ---
 
-## ROOTKITS
+### ROOTKITS
 
 |Level|Description|
 |---|---|
@@ -760,12 +773,12 @@ EXAM TRAP:
 |FudModule Rootkit|Rootkit avanzado|
 |Fire Chili Rootkit|Explota log4shell|
 
-### Rootkit Detection
+#### Rootkit Detection
 
 |Method|
 |---|
-|Detección basada en integridad — firmas, tripwire, AIDE para baseline del sistema|
-|Análisis de volcados de memoria|
+|Integrity-based detection (detección basada en integridad) — firmas, Tripwire, AIDE para crear la baseline del sistema|
+|Analyzing memory dumps (análisis de volcados de memoria)|
 
 |Anti-Rootkit Tool|Purpose|
 |---|---|
@@ -776,12 +789,12 @@ EXAM TRAP:
 
 ---
 
-## NTFS ALTERNATE DATA STREAMS (ADS)
+### NTFS ALTERNATE DATA STREAMS (ADS)
 
 |Property|Detail|
 |---|---|
 |Full Name|Alternate Data Stream|
-|Mechanism|Forkear datos en archivos existentes; stream oculto de Windows|
+|Mechanism|Bifurcar (fork) datos dentro de archivos existentes; stream oculto de Windows (NTFS)|
 |Risk|Permite inyección de código malicioso en archivos|
 
 |Detection Tool|Purpose|
@@ -794,33 +807,33 @@ EXAM TRAP:
 
 ---
 
-## STEGANOGRAPHY
+### STEGANOGRAPHY
 
 |Property|Detail|
 |---|---|
 |Definition|Ocultar mensaje secreto dentro de mensaje ordinario, utilizando imagen gráfica como cubierta|
 
-### Steganography Tools by Media Type
+#### Steganography Tools by Media Type
 
 |Media Type|Tool|Purpose|
 |---|---|---|
-|Text|SNOW|Steganography de texto|
-|Images|OpenStego|Steganography de imágenes|
-|Images|StegOnline|Steganography de imágenes|
-|Images|Coagula|Steganography de imágenes|
-|Images|SSuite Picsel|Steganography de imágenes|
-|Images|CryptaPix|Steganography de imágenes|
-|Documents|StegoStick|Steganography de documentos|
-|Documents|StegJ|Steganography de documentos|
-|Documents|Office XML|Steganography de documentos|
-|Documents|SNOW|Steganography de documentos|
-|Documents|Data Stash|Steganography de documentos|
-|Video|OmniHide Pro|Steganography de video|
-|Audio|DeepSound|Steganography de audio|
-|Folder|GillSoft File Lock Pro|Steganography de carpetas|
-|Email|Spam Mimic|Steganography de correo electrónico|
+|Text|SNOW|Esteganografía de texto|
+|Images|OpenStego|Esteganografía de imágenes|
+|Images|StegOnline|Esteganografía de imágenes|
+|Images|Coagula|Esteganografía de imágenes|
+|Images|SSuite Picsel|Esteganografía de imágenes|
+|Images|CryptaPix|Esteganografía de imágenes|
+|Documents|StegoStick|Esteganografía de documentos|
+|Documents|StegJ|Esteganografía de documentos|
+|Documents|Office XML|Esteganografía de documentos|
+|Documents|SNOW|Esteganografía de documentos|
+|Documents|Data Stash|Esteganografía de documentos|
+|Video|OmniHide Pro|Esteganografía de video|
+|Audio|DeepSound|Esteganografía de audio|
+|Folder|GillSoft File Lock Pro|Esteganografía de carpetas|
+|Email|Spam Mimic|Esteganografía de correo electrónico|
 
-### Steganography Detection Tools
+#### Steganography Detection Tools
 
 |Tool|Purpose|
 |---|---|
@@ -833,11 +846,9 @@ EXAM TRAP:
 
 ---
 
-# 15 — DOMAIN DOMINANCE
+## 15 — DOMAIN DOMINANCE
 
----
-
-## DOMAIN DOMINANCE TECHNIQUES
+### DOMAIN DOMINANCE TECHNIQUES
 
 |Technique|Description|
 |---|---|
@@ -851,20 +862,18 @@ EXAM TRAP:
 
 ---
 
-# 16 — HIDING EVIDENCE
+## 16 — HIDING EVIDENCE
 
----
-
-## HIDING EVIDENCE OF COMPROMISE
+### HIDING EVIDENCE OF COMPROMISE
 
 |Step|Description|
 |---|---|
-|1|Deshabilitar auditoría|
-|2|Limpiar registros — Metasploit Meterpreter|
-|3|Manipular registros|
-|4|Cubrir pistas en la red/SO|
-|5|Eliminar archivos / ocultar artefactos|
-|6|Deshabilitar funcionalidad de Windows|
+|1|Disable auditing — deshabilitar la auditoría|
+|2|Clear logs — borrar logs (Metasploit Meterpreter)|
+|3|Manipulate logs — manipular logs|
+|4|Cover tracks on the network/OS — cubrir huellas en la red/SO|
+|5|Delete files / hiding artifacts — eliminar archivos / ocultar artefactos|
+|6|Disable Windows functionality — deshabilitar funcionalidades de Windows|
 
 |Property|Detail|
 |---|---|
@@ -872,53 +881,26 @@ EXAM TRAP:
 
 ---
 
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
 
-### MIMIKATZ — PASS THE TICKET
-
-|Item|Memorize|
+|Concepto|Qué recordar|
 |---|---|
-|Tool|Mimikatz|
-|Attack|Pass the ticket — roba Kerberos TGT de máquina de usuario|
+|Mimikatz — Pass the Ticket|Mimikatz realiza pass the ticket: roba el Kerberos TGT de la máquina del usuario|
+|Session hijacking — mail server con ISN|Cancelar la conexión en cuanto se recibe la respuesta para obtener el Initial Sequence Number (ISN); objetivo: servidor de correo que usa la IP para autenticar|
+|msfvenom LHOST|Especifica la dirección IP del atacante|
+|msfvenom LPORT|Especifica el puerto de escucha (por defecto: 4444)|
+|Rainbow table|Compara el hash con una lista de hashes conocidos|
+|Salt (mitigación)|Usar un valor salt previene los ataques de rainbow table|
 
 ---
 
-### SESSION HIJACKING — MAIL SERVER WITH ISN
-
-|Item|Memorize|
-|---|---|
-|Method|Cancelar conexión tan pronto como se reciba respuesta para obtener Initial Sequence Number (ISN)|
-|Target|Servidor de correo que usa IP para autenticación|
-
----
-
-### MSFVENOM PAYLOAD OPTIONS
-
-|Option|Purpose|
-|---|---|
-|LHOST|Especifica dirección IP del atacante|
-|LPORT|Especifica puerto de escucha (por defecto: 4444)|
-
----
-
-### RAINBOW TABLES AND SALT
-
-|Item|Memorize|
-|---|---|
-|Rainbow table|Comparación de hash con lista de hashes conocidos|
-|Mitigation|Usar valor salt para prevenir ataques de rainbow table|
-
----
-
-# EXAM FLASHCARDS
-
----
+## Flashcards
 
 |Term|Definition|
 |---|---|
 |SAM|Security Accounts Manager — base de datos de Windows que almacena contraseñas hasheadas |
 |NTLM|NT LAN Manager — esquema de autenticación predeterminado de Windows |
-|Kerberos|Autenticación de cryptography de clave secreta usando KDC, AS, y TGS |
+|Kerberos|Autenticación con secret key cryptography (criptografía de clave secreta) usando KDC, AS y TGS |
 |LLMNR|Link Local Multicast Name Resolution — protocolo de resolución de nombres de Windows |
 |NBT-NS|NetBIOS Name Service — protocolo de resolución de nombres de Windows |
 |AS-REP Roasting|Ataque que apunta a cuentas Kerberos sin pre-authentication |
@@ -939,7 +921,7 @@ EXAM TRAP:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 ---
 

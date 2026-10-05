@@ -1,8 +1,47 @@
-# OBJECTIVE 03 — CLOUD COMPUTING ATTACK TOOLS AND TECHNIQUES
+# Módulo 19 · Parte 3 — Cloud Attacks
+
+> **Módulo 19 — Cloud Computing** · Parte 3 de 4 · Técnicas y herramientas de ataque a la nube: recon y enumeración de storage, ataques a IAM y al metadata service, VMs y contenedores, APIs, evasión de logs y herramientas para AWS, Azure y GCP.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 03 — CLOUD COMPUTING ATTACK TOOLS AND TECHNIQUES](#objective-03--cloud-computing-attack-tools-and-techniques)
+- [CLOUD RECONNAISSANCE TECHNIQUES](#cloud-reconnaissance-techniques)
+- [CLOUD MISCONFIGURATION DISCOVERY 🔥](#cloud-misconfiguration-discovery-high-yield)
+- [CLOUD EXPLOITATION TECHNIQUES](#cloud-exploitation-techniques)
+- [CLOUD-SPECIFIC ATTACK TOOLS](#cloud-specific-attack-tools)
+- [CLOUD API ATTACKS 🔥](#cloud-api-attacks-high-yield)
+- [CLOUD ATTACK FLOW](#cloud-attack-flow)
+- [CLOUD LOG EVASION TECHNIQUES](#cloud-log-evasion-techniques)
+- [EXAM TRAPS 🔥](#exam-traps-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Cloud attack surface** — consola de gestión, APIs, IAM, storage, VMs, contenedores y metadata services (*Console + API + IAM = control*).
+- **Recon / OSINT** — Shodan y Censys (activos cloud expuestos), Amass (DNS enumeration), theHarvester (correos y dominios).
+- **Storage enumeration** — descubrir S3 buckets, Azure blobs y Google buckets públicos adivinando nombres; public storage = data leak.
+- **Privilege escalation in cloud** — se basa en POLÍTICAS (role chaining, policy abuse, misconfigured trust relationships), no en exploits de kernel.
+- **Metadata service** — endpoint interno accesible sin autenticación desde la VM: SSRF → metadata → credenciales.
+- **Credential harvesting** — phishing, malware, secretos filtrados en GitHub y abuso del metadata service.
+- **Container escape / image poisoning** — escape por privileged containers, vulnerabilidades del kernel o namespaces mal configurados; poisoning = imágenes con backdoor en registros públicos.
+- **Herramientas AWS** — Pacu (framework de explotación), Prowler (auditoría), CloudMapper (visualización); ScoutSuite = auditoría multi-cloud.
+- **Herramientas Azure / GCP** — MicroBurst (pentesting de Azure), Stormspotter (mapa de attack paths en Azure), GCPBucketBrute (enumeración de buckets de GCP).
+- **API attacks** — broken authentication, broken authorization, excessive data exposure e injection attacks.
+- **Cloud log evasion** — deshabilitar logging, borrar trails, rotar keys; el borrado de logs es una señal de alerta.
+- **Trampas** — VM escape NO es común, los ataques a IAM no necesitan exploits y los atacantes persisten con keys y roles.
 
 ---
 
-## CLOUD ATTACK SURFACE (EXAM FOUNDATION)
+## OBJECTIVE 03 — CLOUD COMPUTING ATTACK TOOLS AND TECHNIQUES
+
+### CLOUD ATTACK SURFACE
 
 |Attack Surface|
 |---|
@@ -14,16 +53,13 @@
 |Containers|
 |Metadata services|
 
-MEMORY HOOK:  
-**Console + API + IAM = control**
+> 🧠 *Para recordar:* **Console + API + IAM = control**
 
 ---
 
-# CLOUD RECONNAISSANCE TECHNIQUES
+## CLOUD RECONNAISSANCE TECHNIQUES
 
----
-
-## CLOUD ASSET DISCOVERY
+### CLOUD ASSET DISCOVERY
 
 |Technique|Explanation|
 |---|---|
@@ -34,7 +70,7 @@ MEMORY HOOK:
 
 ---
 
-## OSINT TOOLS FOR CLOUD RECON
+### OSINT TOOLS FOR CLOUD RECON
 
 |Tool|Purpose|
 |---|---|
@@ -43,29 +79,25 @@ MEMORY HOOK:
 |Amass|DNS enumeration|
 |theHarvester|Información de correo electrónico y dominio|
 
-MEMORY HOOK:  
-**Recon starts outside cloud**
+> 🧠 *Para recordar:* **El recon empieza fuera de la nube**
 
 ---
 
-# CLOUD MISCONFIGURATION DISCOVERY (TOP EXAM AREA)
+## CLOUD MISCONFIGURATION DISCOVERY (HIGH YIELD)
 
----
-
-## STORAGE ENUMERATION
+### STORAGE ENUMERATION
 
 |Target|Method|
 |---|---|
-|S3 buckets|Adivinanza de nombres|
+|S3 buckets|Name guessing (adivinar nombres de bucket)|
 |Azure blobs|Verificaciones de acceso público|
 |Google buckets|Enumeración|
 
-MEMORY HOOK:  
-**Public storage = data leak**
+> 🧠 *Para recordar:* **Public storage = data leak**
 
 ---
 
-## COMMON MISCONFIGURATIONS
+### COMMON MISCONFIGURATIONS
 
 |Misconfiguration|
 |---|
@@ -77,15 +109,11 @@ MEMORY HOOK:
 
 ---
 
-# CLOUD EXPLOITATION TECHNIQUES
+## CLOUD EXPLOITATION TECHNIQUES
 
----
+### IAM ATTACK TECHNIQUES (HIGH YIELD)
 
-## IAM ATTACK TECHNIQUES (VERY IMPORTANT)
-
----
-
-### CREDENTIAL HARVESTING
+#### CREDENTIAL HARVESTING
 
 |Method|
 |---|
@@ -94,32 +122,27 @@ MEMORY HOOK:
 |GitHub secrets leakage|
 |Abuso del metadata service|
 
-MEMORY HOOK:  
-**Credentials = cloud access**
+> 🧠 *Para recordar:* **Credenciales = acceso a la nube**
 
 ---
 
-### PRIVILEGE ESCALATION IN CLOUD
+#### PRIVILEGE ESCALATION IN CLOUD
 
 |Technique|
 |---|
 |Role chaining|
-|Abuso de políticas|
-|Relaciones de confianza mal configuradas|
+|Policy abuse (abuso de políticas)|
+|Misconfigured trust relationships (relaciones de confianza mal configuradas)|
 
-EXAM TRAP:  
-La escalada de privilegios en la nube se basa en POLÍTICAS, no en el kernel.
+> ⚠️ *Trampa de examen:* La escalada de privilegios en la nube se basa en POLÍTICAS, no en el kernel.
 
-MEMORY HOOK:  
-**Policies = power**
+> 🧠 *Para recordar:* **Políticas = poder**
 
 ---
 
-## METADATA SERVICE ATTACKS (HIGH-YIELD)
+### METADATA SERVICE ATTACKS (HIGH YIELD)
 
----
-
-### WHAT IS METADATA SERVICE
+#### WHAT IS METADATA SERVICE
 
 |Item|Explanation|
 |---|---|
@@ -128,7 +151,7 @@ MEMORY HOOK:
 
 ---
 
-### ATTACK METHOD
+#### ATTACK METHOD
 
 |Step|
 |---|
@@ -136,12 +159,11 @@ MEMORY HOOK:
 |Consultar el endpoint de metadata|
 |Extraer credenciales|
 
-MEMORY HOOK:  
-**SSRF → metadata → creds**
+> 🧠 *Para recordar:* **SSRF → metadata → creds**
 
 ---
 
-## CLOUD MALWARE INJECTION
+### CLOUD MALWARE INJECTION
 
 |Step|
 |---|
@@ -151,47 +173,42 @@ MEMORY HOOK:
 
 ---
 
-## VM ATTACK TECHNIQUES
+### VM ATTACK TECHNIQUES
 
 |Technique|
 |---|
-|Abuso de snapshots|
-|Extracción de imágenes de disco|
-|Clonación de VMs|
+|Snapshot abuse (abuso de snapshots)|
+|Disk image extraction (extracción de imágenes de disco)|
+|VM cloning (clonación de VMs)|
 
 ---
 
-## CONTAINER ATTACK TECHNIQUES
+### CONTAINER ATTACK TECHNIQUES
 
----
-
-### CONTAINER ESCAPE
+#### CONTAINER ESCAPE
 
 |Cause|
 |---|
-|Contenedores privilegiados|
-|Vulnerabilidades del kernel|
-|Namespaces mal configurados|
+|Privileged containers (contenedores privilegiados)|
+|Kernel vulnerabilities (vulnerabilidades del kernel)|
+|Misconfigured namespaces (namespaces mal configurados)|
 
-MEMORY HOOK:  
-**Container ≠ VM**
+> 🧠 *Para recordar:* **Container ≠ VM**
 
 ---
 
-### IMAGE POISONING
+#### IMAGE POISONING
 
 |Method|
 |---|
-|Imágenes con backdoors|
-|Registros públicos|
+|Backdoored images (imágenes con backdoors)|
+|Public registries (registros públicos)|
 
 ---
 
-# CLOUD-SPECIFIC ATTACK TOOLS (EXAM LIST)
+## CLOUD-SPECIFIC ATTACK TOOLS
 
----
-
-## AWS ATTACK TOOLS
+### AWS ATTACK TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -202,7 +219,7 @@ MEMORY HOOK:
 
 ---
 
-## AZURE ATTACK TOOLS
+### AZURE ATTACK TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -211,7 +228,7 @@ MEMORY HOOK:
 
 ---
 
-## GCP ATTACK TOOLS
+### GCP ATTACK TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -220,7 +237,7 @@ MEMORY HOOK:
 
 ---
 
-## GENERIC CLOUD TOOLS
+### GENERIC CLOUD TOOLS
 
 |Tool|Purpose|
 |---|---|
@@ -230,43 +247,34 @@ MEMORY HOOK:
 
 ---
 
-# CLOUD API ATTACKS (CRITICAL)
+## CLOUD API ATTACKS (HIGH YIELD)
 
----
-
-## API ATTACK TECHNIQUES
+### API ATTACK TECHNIQUES
 
 |Technique|
 |---|
-|Autenticación rota|
-|Autorización rota|
-|Exposición excesiva de datos|
-|Ataques de inyección|
+|Broken authentication (autenticación rota)|
+|Broken authorization (autorización rota)|
+|Excessive data exposure (exposición excesiva de datos)|
+|Injection attacks (ataques de inyección)|
 
-MEMORY HOOK:  
-**APIs are the cloud**
+> 🧠 *Para recordar:* **Las APIs son la nube**
 
 ---
 
-# CLOUD ATTACK FLOW (EXAM LOGIC)
+## CLOUD ATTACK FLOW
 
 1. OSINT y recon
-    
 2. Identificar mala configuración
-    
 3. Explotar IAM/API
-    
 4. Escalar privilegios
-    
 5. Persistir mediante keys o roles
-    
 
-MEMORY HOOK:  
-**Find → Misconfig → IAM → Persist**
+> 🧠 *Para recordar:* **Find → Misconfig → IAM → Persist**
 
 ---
 
-# CLOUD LOG EVASION TECHNIQUES
+## CLOUD LOG EVASION TECHNIQUES
 
 |Technique|
 |---|
@@ -274,43 +282,22 @@ MEMORY HOOK:
 |Eliminar trails|
 |Rotar keys|
 
-EXAM TRAP:  
-La eliminación de logs es una señal de alerta en los exámenes.
+> ⚠️ *Trampa de examen:* La eliminación de logs es una señal de alerta en los exámenes.
 
 ---
 
-# EXAM TRAPS (VERY IMPORTANT)
+## EXAM TRAPS (HIGH YIELD)
 
 |Trap|Correct Understanding|
 |---|---|
 |VM escape es común|Falso|
 |Los ataques IAM necesitan exploits|Falso|
-|Los ataques en la nube son basados en red|Falso|
+|Los ataques en la nube se basan en la red|Falso|
 |El cifrado detiene a los atacantes|Falso|
 
 ---
 
-# OBJECTIVE 03 — EXAM MEMORY BLOCK
-
-**Los ataques en la nube se centran en el uso indebido de IAM, el abuso de APIs y las malas configuraciones.  
-Los servicios de metadata exponen credenciales.  
-La mayoría de las escaladas de privilegios se basan en políticas.  
-Los atacantes persisten usando keys y roles.**
-
----
-
-## STATUS
-
-|Objective|Status|
-|---|---|
-|Recon|COMPLETE|
-|Exploitation|COMPLETE|
-|Tools|COMPLETE|
-|Exam readiness|HIGH|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -334,7 +321,7 @@ Los atacantes persisten usando keys y roles.**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** Un atacante descubre un bucket S3 accesible públicamente que contiene datos sensibles. ¿Qué técnica utilizó?
 - a) Privilege escalation

@@ -1,46 +1,83 @@
-# OBJECTIVE 04 — MOBILE DEVICE MANAGEMENT (MDM)
+# Módulo 17 · Parte 4 — MDM and BYOD
+
+> **Módulo 17 — Hacking Mobile Platforms** · Parte 4 de 5 · Mobile Device Management en entornos BYOD: objetivos, arquitectura, funcionalidades y políticas, containerization, acciones remotas, limitaciones y MDM vs EMM vs UEM.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 04 — MOBILE DEVICE MANAGEMENT (MDM)](#objective-04--mobile-device-management-mdm)
+- [MDM ARCHITECTURE](#mdm-architecture)
+- [MDM FUNCTIONALITIES 🔥](#mdm-functionalities-high-yield)
+- [SECURITY POLICIES ENFORCED BY MDM](#security-policies-enforced-by-mdm)
+- [CONTAINERIZATION 🔥](#containerization-high-yield)
+- [REMOTE ACTIONS VIA MDM](#remote-actions-via-mdm)
+- [MDM SECURITY LIMITATIONS 🔥](#mdm-security-limitations-high-yield)
+- [MDM ATTACK SURFACE 🔥](#mdm-attack-surface-high-yield)
+- [COMMON MDM SOLUTIONS](#common-mdm-solutions)
+- [MDM VS EMM VS UEM](#mdm-vs-emm-vs-uem)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **MDM (Mobile Device Management)** — monitoriza, gestiona y asegura los móviles de la organización: control + policy + enforcement.
+- **MDM architecture** — MDM Server (consola central) → MDM Agent (en el dispositivo) → Policy Engine (aplica las reglas), unidos por un Communication Channel seguro.
+- **Deployment models** — On-Premises (interno), Cloud-Based (proveedor), Hybrid.
+- **Funcionalidades** — device enrollment, policy enforcement, app management, content control, remote wipe/lock, location tracking, compliance monitoring.
+- **Containerization** — aísla datos y apps corporativos de los personales; permite selective wipe y es BYOD-friendly.
+- **Remote wipe vs Selective wipe** — remote wipe borra todo el dispositivo; selective wipe solo los datos corporativos y conserva los personales.
+- **App whitelisting vs blacklisting** — whitelisting solo permite apps aprobadas (más seguro, "whitelist beats blacklist"); blacklisting bloquea apps de riesgo conocidas.
+- **Jailbreak/root detection** — política MDM que detecta y marca/bloquea dispositivos comprometidos.
+- **MDM limitations (EXAM TRAP)** — no detiene zero-days ni ingeniería social; los dispositivos rooted/jailbroken evaden los controles; depende de que el usuario cumpla.
+- **MDM ⊂ EMM ⊂ UEM** — MDM = dispositivos; EMM = dispositivos + apps + contenido; UEM = todos los endpoints (móvil, escritorio, IoT).
+- **MDM solutions** — Microsoft Intune (MDM cloud de Microsoft), VMware Workspace ONE, IBM MaaS360, MobileIron, Cisco Meraki MDM.
 
 ---
 
-## MDM — CORE DEFINITION (EXAM)
+## OBJECTIVE 04 — MOBILE DEVICE MANAGEMENT (MDM)
+
+### MDM — CORE DEFINITION
 
 |Term|Definition|
 |---|---|
 |Mobile Device Management (MDM)|Solución de seguridad utilizada para monitorear, gestionar y asegurar dispositivos móviles desplegados en las organizaciones|
 
-MEMORY HOOK:  
-**MDM = control + policy + enforcement**
+> 🧠 *Para recordar:* **MDM = control + policy + enforcement**
 
 ---
 
-## WHY MDM IS REQUIRED (EXAM CONTEXT)
+### WHY MDM IS REQUIRED
 
 |Reason|
 |---|
 |Entornos BYOD|
-|Prevención de filtración de datos|
+|Prevención de fuga de datos (data leakage prevention)|
 |Control centralizado|
-|Aplicación de cumplimiento normativo|
+|Aplicación del cumplimiento normativo (compliance enforcement)|
 |Pérdida o robo de dispositivos|
 
 ---
 
-## MDM — PRIMARY OBJECTIVES (MUST MEMORIZE)
+### MDM — PRIMARY OBJECTIVES (HIGH YIELD)
 
 |Objective|
 |---|
-|Asegurar datos corporativos|
-|Aplicar políticas de seguridad|
-|Controlar acceso a dispositivos|
-|Monitorear actividad del dispositivo|
-|Habilitar acciones remotas|
+|Secure corporate data — asegurar los datos corporativos|
+|Enforce security policies — aplicar políticas de seguridad|
+|Control device access — controlar el acceso a los dispositivos|
+|Monitor device activity — monitorizar la actividad del dispositivo|
+|Enable remote actions — habilitar acciones remotas (Respond)|
 
-MEMORY HOOK:  
-**Secure, Enforce, Control, Monitor, Respond**
+> 🧠 *Para recordar:* **Secure, Enforce, Control, Monitor, Respond**
 
 ---
 
-# MDM ARCHITECTURE (EXAM)
+## MDM ARCHITECTURE
 
 |Component|Description|
 |---|---|
@@ -49,12 +86,11 @@ MEMORY HOOK:
 |Policy Engine|Aplica las reglas|
 |Communication Channel|Enlace seguro dispositivo-servidor|
 
-MEMORY HOOK:  
-**Server → Agent → Policy**
+> 🧠 *Para recordar:* **Server → Agent → Policy**
 
 ---
 
-## MDM DEPLOYMENT MODELS (EXAM)
+### MDM DEPLOYMENT MODELS
 
 |Model|Description|
 |---|---|
@@ -64,7 +100,7 @@ MEMORY HOOK:
 
 ---
 
-# MDM FUNCTIONALITIES (HIGH-YIELD TABLE)
+## MDM FUNCTIONALITIES (HIGH YIELD)
 
 |Function|Description|
 |---|---|
@@ -77,28 +113,26 @@ MEMORY HOOK:
 |Location tracking|Basado en GPS|
 |Compliance monitoring|Violaciones de políticas|
 
-MEMORY HOOK:  
-**Enroll → Control → Enforce → Wipe**
+> 🧠 *Para recordar:* **Enroll → Control → Enforce → Wipe**
 
 ---
 
-# SECURITY POLICIES ENFORCED BY MDM
+## SECURITY POLICIES ENFORCED BY MDM
 
 |Policy|
 |---|
-|Complejidad de contraseñas|
-|Tiempo de bloqueo de pantalla|
-|Aplicación de cifrado|
-|Detección de jailbreak/root|
-|Restricciones de aplicaciones|
-|Control de uso de red|
+|Password complexity — complejidad de contraseñas|
+|Screen lock timeout — tiempo de bloqueo de pantalla|
+|Encryption enforcement — cifrado obligatorio|
+|Jailbreak/root detection — detección de jailbreak/root|
+|App restrictions — restricciones de aplicaciones|
+|Network usage control — control del uso de la red|
 
-MEMORY HOOK:  
-**Password, Encrypt, Detect, Restrict**
+> 🧠 *Para recordar:* **Password, Encrypt, Detect, Restrict**
 
 ---
 
-## MDM — APP MANAGEMENT (EXAM)
+### MDM — APP MANAGEMENT
 
 |Feature|Description|
 |---|---|
@@ -107,36 +141,34 @@ MEMORY HOOK:
 |App containerization|Aislar aplicaciones corporativas|
 |App updates|Actualizaciones forzadas|
 
-MEMORY HOOK:  
-**Whitelist beats blacklist**
+> 🧠 *Para recordar:* **Whitelist beats blacklist**
 
 ---
 
-# CONTAINERIZATION (EXAM FAVORITE)
+## CONTAINERIZATION (HIGH YIELD)
 
-## CONTAINERIZATION — DEFINITION
+### CONTAINERIZATION — DEFINITION
 
 |Item|Memorize|
 |---|---|
 |Containerization|Aislar datos y aplicaciones corporativos de los datos personales en un dispositivo|
 
-MEMORY HOOK:  
-**Work separated from personal**
+> 🧠 *Para recordar:* **Work separated from personal**
 
 ---
 
-## BENEFITS OF CONTAINERIZATION
+### BENEFITS OF CONTAINERIZATION
 
 |Benefit|
 |---|
-|Aislamiento de datos|
-|Borrado selectivo|
-|Preservación de privacidad|
-|Compatible con BYOD|
+|Aislamiento de datos (data isolation)|
+|Borrado selectivo (selective wipe)|
+|Preservación de la privacidad|
+|Compatible con BYOD (BYOD-friendly)|
 
 ---
 
-# REMOTE ACTIONS VIA MDM (EXAM)
+## REMOTE ACTIONS VIA MDM
 
 |Action|
 |---|
@@ -146,38 +178,36 @@ MEMORY HOOK:
 |Password reset|
 |Factory reset|
 
-MEMORY HOOK:  
-**Lost device = wipe**
+> 🧠 *Para recordar:* **Lost device = wipe**
 
 ---
 
-# MDM SECURITY LIMITATIONS (EXAM TRAP)
+## MDM SECURITY LIMITATIONS (HIGH YIELD)
 
 |Limitation|
 |---|
-|No puede detener exploits de día cero|
-|Dispositivos rooted/jailbroken evaden los controles|
-|Depende del cumplimiento del usuario|
-|Limitado contra ingeniería social|
+|No puede detener zero-day exploits (exploits de día cero)|
+|Los dispositivos rooted/jailbroken evaden los controles|
+|Depende de que el usuario cumpla las políticas (user compliance)|
+|Limitado contra la ingeniería social|
 
-MEMORY HOOK:  
-**MDM ≠ invincible**
+> 🧠 *Para recordar:* **MDM ≠ invincible**
 
 ---
 
-# MDM ATTACK SURFACE (IMPORTANT)
+## MDM ATTACK SURFACE (HIGH YIELD)
 
 |Attack|
 |---|
-|Manipulación del agente|
-|Bypass de políticas|
-|Evasión de jailbreak|
-|Perfiles maliciosos|
-|Abuso de certificados|
+|Agent tampering — manipulación del agente MDM|
+|Policy bypass — eludir las políticas|
+|Jailbreak evasion — evadir la detección de jailbreak|
+|Malicious profiles — perfiles maliciosos|
+|Certificate abuse — abuso de certificados|
 
 ---
 
-# COMMON MDM SOLUTIONS (CEH EXPECTS RECOGNITION)
+## COMMON MDM SOLUTIONS
 
 |Tool|
 |---|
@@ -187,12 +217,11 @@ MEMORY HOOK:
 |MobileIron|
 |Cisco Meraki MDM|
 
-MEMORY HOOK:  
-**Intune = Microsoft**
+> 🧠 *Para recordar:* **Intune = Microsoft**
 
 ---
 
-# MDM VS EMM VS UEM (EXAM COMPARISON)
+## MDM VS EMM VS UEM
 
 |Term|Scope|
 |---|---|
@@ -200,33 +229,11 @@ MEMORY HOOK:
 |EMM|Dispositivos + aplicaciones + contenido|
 |UEM|Gestión unificada de endpoints|
 
-MEMORY HOOK:  
-**MDM ⊂ EMM ⊂ UEM**
+> 🧠 *Para recordar:* **MDM ⊂ EMM ⊂ UEM**
 
 ---
 
-# OBJECTIVE 04 — EXAM MEMORY BLOCK
-
-**MDM proporciona control centralizado sobre dispositivos móviles.  
-Aplica políticas de seguridad, gestiona aplicaciones y habilita acciones remotas.  
-Containerization separa datos corporativos y personales.  
-MDM mejora la seguridad pero no elimina todos los riesgos.**
-
----
-
-## OBJECTIVE 04 — STATUS
-
-|Item|Status|
-|---|---|
-|Conceptos de MDM|COMPLETADO|
-|Arquitectura|COMPLETADO|
-|Políticas|COMPLETADO|
-|Limitaciones|COMPLETADO|
-|Alineación con el examen|EXACTO|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -247,7 +254,7 @@ MDM mejora la seguridad pero no elimina todos los riesgos.**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es el propósito principal de containerization en MDM?
 - a) Aumentar el almacenamiento del dispositivo

@@ -1,14 +1,43 @@
-# MODULE 09 — OVERVIEW (EXAM CONTEXT)
+# Módulo 09 — Social Engineering
 
-|Item|Memorize|
-|---|---|
-|Module Number|09|
-|Module Name|Social Engineering|
-|Focus|Conceptos, tipos, técnicas de ataque, ataques impulsados por IA, contramedidas|
+> **Enfoque:** Conceptos y ciclo de vida de social engineering, principios psicológicos, tipos de ataques (phishing y variantes), insider threats, ataques impulsados por IA y contramedidas
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [OBJECTIVE 01 — SOCIAL ENGINEERING CONCEPTS](#objective-01--social-engineering-concepts)
+- [OBJECTIVE 03 — TYPES OF SOCIAL ENGINEERING ATTACKS](#objective-03--types-of-social-engineering-attacks)
+- [OBJECTIVE 03 (CONTINUED) — INSIDER THREATS](#objective-03-continued--insider-threats)
+- [OBJECTIVE 04 — AI-POWERED SOCIAL ENGINEERING](#objective-04--ai-powered-social-engineering)
+- [OBJECTIVE 05 — SOCIAL ENGINEERING COUNTERMEASURES](#objective-05--social-engineering-countermeasures)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Social engineering lifecycle** — 5 fases en orden: Research → Develop → Launch → Access → Analyze (el examen las reordena como distractores)
+- **Principios de social engineering** — Authority, Scarcity, Urgency, Social Proof, Likability, Reciprocity
+- **Reciprocity vs Quid pro quo** — reciprocity: el atacante hace un favor primero para que la víctima se sienta obligada; quid pro quo: ofrece un servicio a cambio de datos o credenciales
+- **Tailgating vs Piggybacking** — tailgating: entrar detrás de una persona autorizada SIN su consentimiento; piggybacking: CON consentimiento (la víctima sostiene la puerta)
+- **Phishing según el medio** — email masivo (phishing), dirigido (spear phishing), voz (vishing), SMS (smishing), mensajería instantánea (spimming)
+- **Pharming** — redirige a un sitio falso mediante DNS cache poisoning o modificación del archivo hosts; NO requiere que la víctima haga clic; se previene con DNSSEC
+- **Watering hole** — comprometer un sitio que frecuenta el grupo objetivo y esperar a que lo visiten
+- **Clone / Tabnabbing / Consent phishing** — clone reutiliza un email PREVIAMENTE legítimo; tabnabbing transforma pestañas INACTIVAS; consent phishing abusa de permisos OAuth, no de contraseñas
+- **Angler phishing** — cuenta falsa de soporte en redes sociales que publica enlaces maliciosos en respuestas/comentarios
+- **Insider threats** — Malicious, Negligent (el tipo MÁS COMÚN) y Compromised (sigue siendo insider threat aunque no actúe intencionadamente)
+- **Herramientas** — SET (framework multivector), ShellPhish (phishing en redes sociales), OhPhish (simulación de phishing), Netcraft/PhishTank (anti-phishing), QRTiger (QRL jacking)
+- **AI-powered social engineering** — deepfakes y voice cloning (ElevenLabs, Resemble.AI) permiten fraude de CEO y evadir la biometría de voz
 
 ---
 
-## LEARNING OBJECTIVES (DO NOT SKIP — EXAM LIST)
+## Objetivos de aprendizaje
 
 |Objective #|Description|
 |---|---|
@@ -20,40 +49,35 @@
 
 ---
 
-# OBJECTIVE 01 — SOCIAL ENGINEERING CONCEPTS
+## OBJECTIVE 01 — SOCIAL ENGINEERING CONCEPTS
 
----
-
-## SOCIAL ENGINEERING — CORE DEFINITION
+### SOCIAL ENGINEERING — CORE DEFINITION
 
 |Term|Definition|
 |---|---|
 |Social Engineering|Manipulación de personas para que realicen acciones o divulguen información confidencial, explotando la psicología humana en lugar de vulnerabilidades técnicas|
 
-MEMORY HOOK:  
-**Hacking humans, not machines**
+> 🧠 *Para recordar:* **Hacking humans, not machines**
 
 ---
 
-## SOCIAL ENGINEERING LIFECYCLE (EXAM CRITICAL)
+### SOCIAL ENGINEERING LIFECYCLE (HIGH YIELD)
 
 |Phase|Action|Detail|
 |---|---|---|
 |1. Research|Recopilar información|OSINT, redes sociales, registros públicos|
 |2. Develop|Crear vector de ataque|Personalizar el pretext, elegir objetivo|
-|3. Launch|Ejecutar el ataque|Entregar email, llamada o enfoque presencial|
+|3. Launch|Ejecutar el ataque|Enviar el email, hacer la llamada o acercarse en persona|
 |4. Access|Obtener entrada o datos|Credenciales, acceso físico, compromiso del sistema|
-|5. Analyze|Evaluar resultados|Assess qué se obtuvo, planificar próximos pasos|
+|5. Analyze|Evaluar resultados|Valorar qué se obtuvo, planificar próximos pasos|
 
-MEMORY HOOK:  
-**R-D-L-A-A = "Really Devious Lying Attacker Achieves"**
+> 🧠 *Para recordar:* **R-D-L-A-A = "Really Devious Lying Attacker Achieves"**
 
-EXAM TRAP:  
-Las fases del ciclo de vida son secuenciales — el examen puede reordenarlas como distractores.
+> ⚠️ *Trampa de examen:* Las fases del ciclo de vida son secuenciales — el examen puede reordenarlas como distractores.
 
 ---
 
-## SOCIAL ENGINEERING PRINCIPLES (CIALDINI'S 6 — VERY HIGH YIELD)
+### SOCIAL ENGINEERING PRINCIPLES (CIALDINI'S 6) (HIGH YIELD)
 
 |Principle|Definition|Attack Example|
 |---|---|---|
@@ -64,40 +88,36 @@ Las fases del ciclo de vida son secuenciales — el examen puede reordenarlas co
 |Likability|Las personas confían en quienes les caen bien|El atacante amistoso genera rapport antes de pedir información|
 |Reciprocity|Las personas devuelven favores|"Te ayudé — ¿puedes compartir tu inicio de sesión?"|
 
-MEMORY HOOK:  
-**A-S-U-S-L-R = "A Smart Undercover Spy Leverages Rapport"**
+> 🧠 *Para recordar:* **A-S-U-S-L-R = "A Smart Undercover Spy Leverages Rapport"**
 
-EXAM TRAP:  
-Reciprocity = hacer algo primero para que el objetivo se sienta obligado. No confundir con quid pro quo.
+> ⚠️ *Trampa de examen:* Reciprocity = hacer algo primero para que el objetivo se sienta obligado. No confundir con quid pro quo.
 
 ---
 
-# OBJECTIVE 03 — TYPES OF SOCIAL ENGINEERING ATTACKS
+## OBJECTIVE 03 — TYPES OF SOCIAL ENGINEERING ATTACKS
 
----
-
-## SOCIAL ENGINEERING ATTACKS — MASTER TABLE
+### SOCIAL ENGINEERING ATTACKS — MASTER TABLE
 
 |Attack|Medium|Description|Key Detail|
-|---|---|---|
+|---|---|---|---|
 |Phishing|Email|Emails fraudulentos masivos que suplantan entidades confiables|Objetivo amplio, baja especificidad|
 |Spear Phishing|Email|Phishing dirigido a individuos específicos|Usa información personal recopilada en la fase de Research|
-|Vishing|Voice/Phone|Phishing basado en voz utilizando llamadas telefónicas|A menudo con ID de llamada falsificado|
+|Vishing|Voice/Phone|Phishing basado en voz utilizando llamadas telefónicas|A menudo con caller ID falsificado|
 |Smishing|SMS/Mobile|Phishing a través de SMS o mensajes de texto|Enlaces cortos, lenguaje urgente|
-|Pharming|DNS/Network|Redirige tráfico al sitio web del atacante|DNS cache poisoning, modificaciones en archivos hosts|
-|Baiting|Physical/Media|Deja medios infectados (USB, CDs) para que las víctimas los encuentran|Explota la curiosidad|
+|Pharming|DNS/Network|Redirige tráfico al sitio web del atacante|DNS cache poisoning, modificación del archivo hosts|
+|Baiting|Physical/Media|Deja medios infectados (USB, CDs) para que las víctimas los encuentren|Explota la curiosidad|
 |Pretexting|In-person/Phone|El atacante crea un escenario fabricado (pretext) para ganar confianza|Ejemplos: soporte de TI, auditor, proveedor|
 |Tailgating|Physical|Sigue a una persona autorizada a través de una puerta asegurada|No se necesita consentimiento — simplemente entra detrás|
 |Piggybacking|Physical|Sigue a una persona autorizada CON consentimiento|La víctima sostiene la puerta abierta para el atacante|
 |Quid Pro Quo|Phone/Email|Ofrece un servicio a cambio de datos o credenciales|"Auditoría de seguridad gratuita — solo proporciona tu inicio de sesión"|
 |Honey Trap|Online/Romance|Usa atracción romántica o sexual para extraer información|Dirigido a ejecutivos, militares, gobierno|
 |Watering Hole|Web|Compromete un sitio web frecuentado por el grupo objetivo|Infecta el sitio, espera a que los objetivos lo visiten|
-|Diversion Theft|Physical/Logistics|Engaña al repartidor para enviar el paquete a la ubicación incorrecta|Redirige envíos o paquetes|
+|Diversion Theft|Physical/Logistics|Engaña al repartidor para que entregue el paquete en una ubicación incorrecta|Redirige envíos o paquetes|
 |Shoulder Surfing|Physical|Observa a la víctima ingresando PIN, contraseña o datos sensibles|Funciona en cafés, cajeros automáticos, aeropuertos|
 
 ---
 
-## ADVANCED PHISHING VARIANTS (EXAM FAVORITES)
+### ADVANCED PHISHING VARIANTS (HIGH YIELD)
 
 |Variant|Description|Key Detail|
 |---|---|---|
@@ -111,14 +131,13 @@ Reciprocity = hacer algo primero para que el objetivo se sienta obligado. No con
 MEMORY HOOK (ADVANCED VARIANTS):  
 **C-E-T-C-S-A = "Cow Eats Tab Cookies So A"**
 
-EXAM TRAP:  
-Clone phishing utiliza un email PREVIAMENTE legítimo — no es una creación nueva.  
-Tabnabbing se dirige a pestañas INACTIVAS, no activas.  
-Consent phishing explota OAuth, NO contraseñas directamente.
+> ⚠️ *Trampa de examen:* Clone phishing utiliza un email PREVIAMENTE legítimo — no es una creación nueva.  
+> Tabnabbing se dirige a pestañas INACTIVAS, no activas.  
+> Consent phishing explota OAuth, NO contraseñas directamente.
 
 ---
 
-## PHARMING — DEEP DIVE
+### PHARMING — DEEP DIVE
 
 |Technique|Description|
 |---|---|
@@ -126,15 +145,13 @@ Consent phishing explota OAuth, NO contraseñas directamente.
 |Hosts File Modification|Modifica el archivo hosts local para apuntar dominios a la IP del atacante|
 |Domain Spoofing|Registra dominios con apariencia similar|
 
-MEMORY HOOK:  
-**Pharming = "Phake DNS"**
+> 🧠 *Para recordar:* **Pharming = "Phake DNS"**
 
-EXAM TRAP:  
-Pharming NO requiere que la víctima haga clic en un enlace — funciona a nivel de DNS/red.
+> ⚠️ *Trampa de examen:* Pharming NO requiere que la víctima haga clic en un enlace — funciona a nivel de DNS/red.
 
 ---
 
-## SPIMMING
+### SPIMMING
 
 |Item|Memorize|
 |---|---|
@@ -143,7 +160,7 @@ Pharming NO requiere que la víctima haga clic en un enlace — funciona a nivel
 
 ---
 
-## QRL JACKING
+### QRL JACKING
 
 |Item|Memorize|
 |---|---|
@@ -153,19 +170,18 @@ Pharming NO requiere que la víctima haga clic en un enlace — funciona a nivel
 
 ---
 
-## ELICITATION
+### ELICITATION
 
 |Item|Memorize|
 |---|---|
 |Elicitation|Técnica de extracción de información a través de conversación casual y despreocupada|
 |Nature|Diálogo no confrontativo y natural|
 
-MEMORY HOOK:  
-**Elicitation = "Casual chat that steals data"**
+> 🧠 *Para recordar:* **Elicitation = "Casual chat that steals data"**
 
 ---
 
-## SOCIAL ENGINEERING TOOLS
+### SOCIAL ENGINEERING TOOLS
 
 |Tool|Use Case|Detail|
 |---|---|---|
@@ -178,11 +194,9 @@ MEMORY HOOK:
 
 ---
 
-# OBJECTIVE 03 (CONTINUED) — INSIDER THREATS
+## OBJECTIVE 03 (CONTINUED) — INSIDER THREATS
 
----
-
-## INSIDER THREATS — DEFINITION
+### INSIDER THREATS — DEFINITION
 
 |Term|Definition|
 |---|---|
@@ -190,7 +204,7 @@ MEMORY HOOK:
 
 ---
 
-## TYPES OF INSIDER THREATS
+### TYPES OF INSIDER THREATS
 
 |Type|Description|Motivation|
 |---|---|---|
@@ -198,43 +212,38 @@ MEMORY HOOK:
 |Negligent Insider|Causa incidentes de seguridad accidentalmente|Falta de capacitación, descuido|
 |Compromised Insider|Cuenta o credenciales tomadas por un atacante|Participante involuntario — credenciales robadas mediante phishing|
 
-MEMORY HOOK:  
-**M-N-C = "Malicious Needs Compensation"**
+> 🧠 *Para recordar:* **M-N-C = "Malicious Needs Compensation"**
 
-EXAM TRAP:  
-Compromised insider AÚN es una amenaza interna aunque no actuó intencionalmente.  
-Negligent insider es el tipo MÁS COMÚN.
+> ⚠️ *Trampa de examen:* Compromised insider AÚN es una amenaza interna aunque no actuó intencionalmente.  
+> Negligent insider es el tipo MÁS COMÚN.
 
 ---
 
-## INSIDER THREAT MOTIVATIONS
+### INSIDER THREAT MOTIVATIONS
 
 |Motivation|Description|
 |---|---|
 |Financial|Soborno, venta de datos, malversación|
 |Revenge|Empleado descontento buscando represalias|
 |Ideology|Creencias políticas o sociales|
-|Curiosity|Accidental a datos fuera del alcance del puesto|
+|Curiosity|Acceso accidental a datos fuera del alcance del puesto|
 |Coercion|Forzado por un actor de amenaza externo|
 
 ---
 
-# OBJECTIVE 04 — AI-POWERED SOCIAL ENGINEERING
+## OBJECTIVE 04 — AI-POWERED SOCIAL ENGINEERING
 
----
-
-## AI-POWERED SOCIAL ENGINEERING — CORE CONCEPT
+### AI-POWERED SOCIAL ENGINEERING — CORE CONCEPT
 
 |Term|Definition|
 |---|---|
 |AI-Powered Social Engineering|Usa inteligencia artificial para generar contenido falso realista (video, audio, texto) para engañar a gran escala|
 
-MEMORY HOOK:  
-**AI makes social engineering scalable and realistic**
+> 🧠 *Para recordar:* **AI makes social engineering scalable and realistic**
 
 ---
 
-## DEEPFAKES
+### DEEPFAKES
 
 |Item|Memorize|
 |---|---|
@@ -244,20 +253,20 @@ MEMORY HOOK:
 
 ---
 
-## AI DEEPFAKE TOOLS
+### AI DEEPFAKE TOOLS
 
 |Tool|Type|
 |---|---|
-|Synthesia|AI video generation — avatar-based|
-|DeepBrain AI|AI video generation|
-|Deepfakesweb|Deepfake video creation|
-|Deepfake Lab|Deepfake video creation|
-|Vidnaz|Deepfake video creation|
-|Hoodem|Deepfake creation|
+|Synthesia|Generación de video con IA — basada en avatares|
+|DeepBrain AI|Generación de video con IA|
+|Deepfakesweb|Creación de videos deepfake|
+|Deepfake Lab|Creación de videos deepfake|
+|Vidnaz|Creación de videos deepfake|
+|Hoodem|Creación de deepfakes|
 
 ---
 
-## AI VOICE CLONING TOOLS
+### AI VOICE CLONING TOOLS
 
 |Tool|Detail|
 |---|---|
@@ -268,20 +277,16 @@ MEMORY HOOK:
 |VEED.IO|Herramientas de IA para video y voz|
 |voice.ai|Cambiador y clonador de voz en tiempo real|
 
-MEMORY HOOK:  
-**"Eleven Labs Resembles Murf Playing at Voice"**
+> 🧠 *Para recordar:* **"Eleven Labs Resembles Murf Playing at Voice"**
 
-EXAM TRAP:  
-La clonación de voz con IA puede evadir autenticación basada en voz (biometría de voz).  
-Los deepfakes pueden usarse para fraude de CEO (llamada de video falsa aprobando una transferencia).
+> ⚠️ *Trampa de examen:* La clonación de voz con IA puede evadir autenticación basada en voz (biometría de voz).  
+> Los deepfakes pueden usarse para fraude de CEO (llamada de video falsa aprobando una transferencia).
 
 ---
 
-# OBJECTIVE 05 — SOCIAL ENGINEERING COUNTERMEASURES
+## OBJECTIVE 05 — SOCIAL ENGINEERING COUNTERMEASURES
 
----
-
-## SOCIAL ENGINEERING COUNTERMEASURES — MASTER TABLE
+### SOCIAL ENGINEERING COUNTERMEASURES — MASTER TABLE
 
 |Countermeasure|Description|
 |---|---|
@@ -293,72 +298,32 @@ Los deepfakes pueden usarse para fraude de CEO (llamada de video falsa aprobando
 |Least Privilege|Limitar el acceso solo a lo necesario|
 |Data Classification|Etiquetar y proteger datos sensibles|
 |Incident Response Plan|Establecer procedimientos para reportar ataques sospechosos|
-|Physical Security|Insignias, mantraps, controles de acceso para prevenir tailgating/piggybacking|
+|Physical Security|Tarjetas identificativas (badges), mantraps y controles de acceso para prevenir tailgating/piggybacking|
 |Multi-Factor Authentication|Reduce el impacto de credenciales comprometidas|
 |Patch Management|Previene ataques de watering hole y pharming|
 |DNS Security (DNSSEC)|Previene DNS cache poisoning (pharming)|
 |Content Inspection|Detectar medios deepfake usando herramientas de detección con IA|
 
-MEMORY HOOK:  
-**"Train, Simulate, Filter, Verify, Limit, Classify, Respond, Secure, Patch, DNS"**
+> 🧠 *Para recordar:* **"Train, Simulate, Filter, Verify, Limit, Classify, Respond, Secure, Patch, DNS"**
 
 ---
 
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
 
-### SPIMMING AND SMISHING
-
-|Term|Description|
+|Concepto|Qué recordar|
 |---|---|
 |Spimming|Spam enviado a través de plataformas de mensajería instantánea|
 |Smishing|Phishing a través de SMS/mensajes de texto|
-
----
-
-### WATERING HOLE
-
-|Item|Memorize|
-|---|---|
 |Watering hole|Infectar un sitio web que los usuarios probablemente visitarán|
-
----
-
-### MEDUSA AND HOOTSUITE
-
-|Tool|Purpose|
-|---|---|
 |MEDUSA|Herramienta OSINT para redes sociales|
 |Hootsuite|Plataforma de gestión de redes sociales|
-
----
-
-### EVILGINX
-
-|Item|Memorize|
-|---|---|
 |Evilginx|Herramienta MITM que suplanta un sitio web|
+|Clickjacking|Técnica que usa un iframe falso para engañar a los usuarios|
+|VAWTRAK|Trojan distribuido por email disfrazado de notificación de entrega de paquete|
 
 ---
 
-### CLICKJACKING
-
-|Item|Memorize|
-|---|---|
-|Clickjacking|Técnica de iframe falsa para engañar a los usuarios|
-
----
-
-### VAWTRAK
-
-|Item|Memorize|
-|---|---|
-|VAWTRAK|Email disfrazado de notificación de entrega de paquete; Trojan|
-
----
-
-# EXAM FLASHCARDS
-
----
+## Flashcards
 
 |Term|Quick Definition|
 |---|---|
@@ -385,7 +350,7 @@ MEMORY HOOK:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 ---
 

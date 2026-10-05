@@ -1,24 +1,56 @@
-# OBJECTIVE 04 — HASH FUNCTIONS AND MESSAGE DIGEST ALGORITHMS
+# Módulo 20 · Parte 4 — Hash Functions
+
+> **Módulo 20 — Cryptography** · Parte 4 de 6 · Hash functions y message digests (MD5, SHA-1, SHA-2, SHA-3, RIPEMD-160), HMAC, password hashing y salt
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 04 — HASH FUNCTIONS AND MESSAGE DIGEST ALGORITHMS](#objective-04--hash-functions-and-message-digest-algorithms)
+- [MESSAGE DIGEST ALGORITHMS](#message-digest-algorithms)
+- [HMAC (HASH-BASED MESSAGE AUTHENTICATION CODE)](#hmac-hash-based-message-authentication-code)
+- [PASSWORD HASHING 🔥](#password-hashing-high-yield)
+- [COMMON HASH ATTACKS](#common-hash-attacks)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Hash function** — convierte datos de cualquier tamaño en un valor de longitud fija; es unidireccional y **NO es cifrado**
+- **Hash = integrity** — un hash aporta integridad, no confidencialidad
+- **Propiedades** — deterministic, fixed output size, pre-image resistance, second pre-image resistance y collision resistance
+- **MD5** — salida de 128 bits; roto por colisiones, no usar para seguridad
+- **SHA-1** — salida de 160 bits; roto por collision attacks
+- **SHA-2** — SHA-224/256/384/512; seguro y estándar actual
+- **SHA-3 (Keccak)** — sponge construction; respaldo de SHA-2, no una variante suya ni su reemplazo automático
+- **RIPEMD-160** — salida de 160 bits; alternativa menos común a SHA
+- **HMAC** — hash + secret key: integrity + authentication, pero NO confidentiality; un hash simple no usa clave ni autentica
+- **Password hashing** — débil: MD5, SHA-1, hashes sin salt; fuerte: bcrypt (lento, con salt), scrypt (memory-hard), PBKDF2 (iterativo)
+- **Salt** — valor aleatorio añadido antes del hashing; derrota las rainbow tables (ataques precalculados)
 
 ---
 
-## WHAT IS A HASH FUNCTION (EXAM DEFINITION)
+## OBJECTIVE 04 — HASH FUNCTIONS AND MESSAGE DIGEST ALGORITHMS
 
-|Term|Definition|
+### WHAT IS A HASH FUNCTION
+
+|Término|Definición|
 |---|---|
 |Hash function|Una función matemática que convierte datos de tamaño arbitrario en un valor de longitud fija|
 
-MEMORY HOOK:  
-**Hash = huella digital de los datos**
+> 🧠 *Para recordar:* **Hash = huella digital de los datos**
 
-EXAM TRAP:  
-Hashing **NO** es cifrado.
+> ⚠️ *Trampa de examen:* Hashing **NO** es cifrado.
 
 ---
 
-## PURPOSE OF HASH FUNCTIONS
+### PURPOSE OF HASH FUNCTIONS
 
-|Purpose|
+|Propósito|
 |---|
 |Integridad de datos|
 |Almacenamiento de contraseñas|
@@ -27,270 +59,212 @@ Hashing **NO** es cifrado.
 
 ---
 
-## PROPERTIES OF A GOOD HASH FUNCTION (VERY IMPORTANT)
+### PROPERTIES OF A GOOD HASH FUNCTION (HIGH YIELD)
 
-|Property|Meaning|
+|Propiedad|Significado|
 |---|---|
-|Deterministic|Entrada相同的 → salida相同的|
+|Deterministic|Misma entrada → misma salida|
 |Fixed output size|Siempre la misma longitud|
 |Pre-image resistance|No se puede revertir el hash|
-|Second pre-image resistance|No se puede encontrar el mismo hash|
-|Collision resistance|No dos entradas comparten el mismo hash|
+|Second pre-image resistance|Dada una entrada, no se puede encontrar otra distinta con el mismo hash|
+|Collision resistance|No se pueden encontrar dos entradas distintas con el mismo hash|
 
-MEMORY HOOK:  
-**No hay reversión, no hay colisiones**
+> 🧠 *Para recordar:* **No hay reversión, no hay colisiones**
 
 ---
 
-## HASHING PROCESS (LOGIC FLOW)
+### HASHING PROCESS
 
 1. Mensaje de entrada
-    
 2. Algoritmo de hash
-    
 3. Valor hash de longitud fija
-    
 
 ---
 
-# MESSAGE DIGEST ALGORITHMS (EXAM LIST)
+## MESSAGE DIGEST ALGORITHMS
 
----
+### MD5 (MESSAGE DIGEST 5)
 
-## MD5 (MESSAGE DIGEST 5)
-
-|Property|Value|
+|Propiedad|Valor|
 |---|---|
 |Output size|128-bit|
-|Status|Roto|
-|Weakness|Colisiones|
+|Estado|Roto|
+|Debilidad|Collisions (colisiones)|
 
 LOGIC:
 
 - Produce el mismo hash para diferentes entradas
-    
 
-EXAM TRAP:  
-MD5 **no** debe usarse para seguridad.
+> ⚠️ *Trampa de examen:* MD5 **no** debe usarse para seguridad.
 
-MEMORY HOOK:  
-**MD5 = Mayormente Muerto (Mostly Dead)**
+> 🧠 *Para recordar:* **MD5 = Mayormente Muerto (Mostly Dead)**
 
 ---
 
-## SHA-1 (SECURE HASH ALGORITHM 1)
+### SHA-1 (SECURE HASH ALGORITHM 1)
 
-|Property|Value|
+|Propiedad|Valor|
 |---|---|
 |Output size|160-bit|
-|Status|Roto|
-|Weakness|Ataques de colisión|
+|Estado|Roto|
+|Debilidad|Collision attacks (ataques de colisión)|
 
-MEMORY HOOK:  
-**SHA-1 ya no es seguro**
+> 🧠 *Para recordar:* **SHA-1 ya no es seguro**
 
 ---
 
-## SHA-2 FAMILY
+### SHA-2 FAMILY
 
-Includes:
+Incluye:
 
-|Algorithm|Output|
+|Algoritmo|Salida|
 |---|---|
 |SHA-224|224-bit|
 |SHA-256|256-bit|
 |SHA-384|384-bit|
 |SHA-512|512-bit|
 
-STATUS:
+ESTADO ACTUAL:
 
 - Seguro
-    
 - Ampliamente utilizado
-    
 
-MEMORY HOOK:  
-**SHA-2 = estándar actual**
+> 🧠 *Para recordar:* **SHA-2 = estándar actual**
 
 ---
 
-## SHA-3 (KECCAK)
+### SHA-3 (KECCAK)
 
-|Property|Value|
+|Propiedad|Valor|
 |---|---|
-|Structure|Construcción sponge|
-|Purpose|Respaldo de SHA-2|
-|Status|Seguro|
+|Estructura|Sponge construction|
+|Propósito|Respaldo (backup) de SHA-2|
+|Estado|Seguro|
 
-MEMORY HOOK:  
-**SHA-3 ≠ variante de SHA-2**
+> 🧠 *Para recordar:* **SHA-3 ≠ variante de SHA-2**
 
-EXAM TRAP:  
-SHA-3 no reemplaza SHA-2 automáticamente.
+> ⚠️ *Trampa de examen:* SHA-3 no reemplaza SHA-2 automáticamente.
 
 ---
 
-## RIPEMD
+### RIPEMD-160
 
-|Property|Value|
+|Propiedad|Valor|
 |---|---|
 |Output size|160-bit|
-|Status|Menos común|
-|Usage|Alternativa a SHA|
+|Estado|Menos común|
+|Uso|Alternativa a SHA|
 
 ---
 
-# HMAC (HASH-BASED MESSAGE AUTHENTICATION CODE)
+## HMAC (HASH-BASED MESSAGE AUTHENTICATION CODE)
 
----
+### WHAT IS HMAC (HIGH YIELD)
 
-## WHAT IS HMAC (VERY IMPORTANT)
-
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Uses|Función hash + clave secreta|
-|Provides|Integridad + autenticación|
-|Does NOT provide|Confidencialidad|
+|Usa|Hash function + secret key|
+|Proporciona|Integrity + authentication|
+|NO proporciona|Confidentiality|
 
-MEMORY HOOK:  
-**HMAC = hash + clave**
+> 🧠 *Para recordar:* **HMAC = hash + clave**
 
-EXAM TRAP:  
-HMAC ≠ cifrado.
+> ⚠️ *Trampa de examen:* HMAC ≠ cifrado.
 
 ---
 
-## HMAC PROCESS (LOGIC)
+### HMAC PROCESS
 
 1. Mensaje + clave secreta
-    
 2. Función hash
-    
 3. Valor HMAC
-    
 
 ---
 
-## HASH VS HMAC (EXAM FAVORITE)
+### HASH VS HMAC (HIGH YIELD)
 
-|Feature|Hash|HMAC|
+|Característica|Hash|HMAC|
 |---|---|---|
-|Key used|No|Sí|
+|Usa clave|No|Sí|
 |Integrity|Sí|Sí|
 |Authentication|No|Sí|
 
 ---
 
-# PASSWORD HASHING (IMPORTANT SECURITY CONCEPT)
+## PASSWORD HASHING (HIGH YIELD)
 
----
+### WHY PASSWORDS ARE HASHED
 
-## WHY PASSWORDS ARE HASHED
-
-|Reason|
+|Motivo|
 |---|
 |Prevenir almacenamiento en texto plano|
 |Reducir el impacto de una filtración|
 
 ---
 
-## WEAK PASSWORD HASHING METHODS
+### WEAK PASSWORD HASHING METHODS
 
-|Method|
+|Método|
 |---|
 |MD5|
 |SHA-1|
-|Hashes sin salt|
+|Unsalted hashes (hashes sin salt)|
 
 ---
 
-## STRONG PASSWORD HASHING METHODS
+### STRONG PASSWORD HASHING METHODS
 
-|Method|Feature|
+|Método|Característica|
 |---|---|
 |bcrypt|Lento, con salt|
-|scrypt|Memoria-hard|
+|scrypt|Memory-hard (exige mucha memoria)|
 |PBKDF2|Iterativo|
 
-MEMORY HOOK:  
-**Hashing lento = seguridad fuerte**
+> 🧠 *Para recordar:* **Hashing lento = seguridad fuerte**
 
 ---
 
-## SALT (VERY IMPORTANT)
+### SALT (HIGH YIELD)
 
-|Term|Meaning|
+|Término|Significado|
 |---|---|
 |Salt|Valor aleatorio añadido antes del hashing|
 
-PURPOSE:
+PROPÓSITO:
 
 - Prevenir ataques de rainbow tables
-    
 
-MEMORY HOOK:  
-**Salt derrota ataques precalculados**
+> 🧠 *Para recordar:* **Salt derrota ataques precalculados**
 
 ---
 
-# COMMON HASH ATTACKS (PREVIEW)
+## COMMON HASH ATTACKS
 
-|Attack|
+|Ataque|
 |---|
-|Ataque de colisión|
-|Ataque de pre-imagen|
-|Ataque de rainbow tables|
+|Collision attack (ataque de colisión)|
+|Pre-image attack (ataque de pre-imagen)|
+|Rainbow table attack|
 
 ---
 
-# OBJECTIVE 04 — MEMORY CHECKLIST
+## Flashcards
 
-Debes recordar:
-
-- Hashing ≠ cifrado
-    
-- MD5 y SHA-1 están rotos
-    
-- SHA-2 y SHA-3 son seguros
-    
-- HMAC = hash + clave
-    
-- Salt previene rainbow tables
-    
-- Hash proporciona integridad, no confidencialidad
-    
-
----
-
-### STATUS
-
-Objective 04: COMPLETE
-
----
-
-Reply **next** para continuar con:
-
-**OBJECTIVE 05 — DIGITAL CERTIFICATES, PKI, AND APPLICATIONS OF CRYPTOGRAPHY**
-
----
-
-# EXAM FLASHCARDS
-
-| Term | Definition |
+| Término | Definición |
 |------|------------|
 | Hash Function | Función matemática que convierte datos arbitrarios en un valor de longitud fija; proporciona huella digital |
 | Pre-image Resistance | No se puede revertir el hash para recuperar la entrada original |
 | Second Pre-image Resistance | No se puede encontrar una entrada diferente que produzca el mismo hash |
-| Collision Resistance | No dos entradas diferentes producen el mismo hash |
+| Collision Resistance | No se pueden encontrar dos entradas diferentes que produzcan el mismo hash |
 | MD5 | Message Digest 5 — salida de 128-bit, roto, no debe usarse |
-| SHA-1 | Secure Hash Algorithm 1 — salida de 160-bit, roto debido a ataques de colisión |
+| SHA-1 | Secure Hash Algorithm 1 — salida de 160-bit, roto debido a collision attacks |
 | SHA-2 | Familia Secure Hash Algorithm 2 — salidas de 224/256/384/512-bit, seguro |
-| SHA-3 | Keccak — construcción sponge, respaldo de SHA-2, seguro |
-| RIPEMD | Hash de 160-bit, alternativa menos común a SHA |
+| SHA-3 | Keccak — sponge construction, respaldo de SHA-2, seguro |
+| RIPEMD-160 | Hash de 160-bit, alternativa menos común a SHA |
 | HMAC | Hash-based Message Authentication Code — hash + clave secreta proporciona integridad + autenticación |
 | Salt | Valor aleatorio añadido antes del hashing para prevenir ataques de rainbow tables |
 | bcrypt | Función de hashing de contraseñas lenta, con salt |
-| scrypt | Función de hashing de contraseñas memoria-hard |
+| scrypt | Función de hashing de contraseñas memory-hard |
 | PBKDF2 | Función de hashing de contraseñas iterativa |
 | Rainbow Table | Tablas de hash precalculadas para crackeo de contraseñas |
 | Collision Attack | Encontrar dos entradas que produzcan el mismo hash |
@@ -298,7 +272,7 @@ Reply **next** para continuar con:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es la diferencia principal entre hashing y cifrado?
 - a) El hashing es reversible, el cifrado no

@@ -1,8 +1,43 @@
-# OBJECTIVE 03 — SQL INJECTION METHODOLOGY
+# Módulo 15 · Parte 3 — SQLi Methodology
+
+> **Módulo 15 — SQL Injection** · Parte 3 de 5 · Las 7 fases de la metodología de SQL injection: detectar, identificar la BD, enumerar, extraer, evadir la autenticación, ejecutar comandos del SO y mantener el acceso.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [CEH CORE STATEMENT 🔥](#ceh-core-statement-high-yield)
+- [SQL INJECTION METHODOLOGY — PHASES](#sql-injection-methodology--phases)
+- [PHASE 1 — DETECT SQL INJECTION](#phase-1--detect-sql-injection)
+- [PHASE 2 — IDENTIFY DATABASE TYPE](#phase-2--identify-database-type)
+- [PHASE 3 — ENUMERATE DATABASE STRUCTURE](#phase-3--enumerate-database-structure)
+- [PHASE 4 — EXTRACT DATA](#phase-4--extract-data)
+- [PHASE 5 — BYPASS AUTHENTICATION](#phase-5--bypass-authentication)
+- [PHASE 6 — EXECUTE OS COMMANDS](#phase-6--execute-os-commands)
+- [PHASE 7 — MAINTAIN ACCESS](#phase-7--maintain-access)
+- [COMPLETE SQL INJECTION FLOW 🔥](#complete-sql-injection-flow-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Orden de las fases** — Detect → Identify DB → Enumerate → Extract → Bypass Auth → Execute OS Commands → Maintain Access (Persist).
+- **Phase 1 — Detect** — probar `'`, `"`, `' OR '1'='1`, `' AND 1=2--`; indicios de inyección: error de BD, cambio en la página o retardo en la respuesta.
+- **Phase 2 — Identify Database** — tras confirmar la SQLi, lo primero es el tipo/versión del DBMS: `@@version` (MySQL/MSSQL), `version()` (PostgreSQL), `banner from v$version` (Oracle).
+- **Phase 3 — Enumerate** — `information_schema` es la base de datos de metadatos: `information_schema.tables`, `.columns`, `.schemata`.
+- **Phase 4 — Extract** — nombres de usuario, password hashes, emails y tarjetas, mediante extracción UNION-based, blind o time-based (primero la estructura, luego los datos).
+- **Phase 5 — Bypass Authentication** — condición always-true o comentar el resto de la consulta: `' OR '1'='1--`, `admin'--`.
+- **Phase 6 — Execute OS Commands** — requiere que la BD permita ejecutar comandos y privilegios elevados: MSSQL `xp_cmdshell`, MySQL `INTO OUTFILE` (escribe archivos), Oracle Java stored procedures.
+- **Phase 7 — Maintain Access** — crear usuarios administradores, backdoors y web shells.
+- **HTTPS** — es seguridad de transporte: no indica (ni evita) una vulnerabilidad de SQLi.
 
 ---
 
-## CEH CORE STATEMENT (MEMORIZE)
+## CEH CORE STATEMENT (HIGH YIELD)
 
 |Item|Memorize|
 |---|---|
@@ -14,16 +49,15 @@
 
 |Phase No.|Phase|
 |---|---|
-|1|Detect SQL Injection|
-|2|Identify Database|
-|3|Enumerate Database Structure|
-|4|Extract Data|
-|5|Bypass Authentication|
-|6|Execute OS Commands|
-|7|Maintain Access|
+|1|Detect SQL Injection — detectar si hay inyección|
+|2|Identify Database — identificar el DBMS backend|
+|3|Enumerate Database Structure — enumerar la estructura de la BD|
+|4|Extract Data — extraer datos|
+|5|Bypass Authentication — evadir la autenticación|
+|6|Execute OS Commands — ejecutar comandos del sistema operativo|
+|7|Maintain Access — mantener el acceso|
 
-MEMORY HOOK:  
-**Detect → Identify → Enumerate → Extract → Bypass → Execute → Persist**
+> 🧠 *Para recordar:* **Detect → Identify → Enumerate → Extract → Bypass → Execute → Persist**
 
 ---
 
@@ -41,14 +75,14 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Single quote injection|
-|Boolean testing|
-|Time delay testing|
-|Error message observation|
+|Single quote injection — inyectar una comilla simple|
+|Boolean testing — probar condiciones verdaderas/falsas|
+|Time delay testing — probar retardos en la respuesta|
+|Error message observation — observar los mensajes de error|
 
 ---
 
-### TEST PAYLOADS (EXAM RECOGNITION)
+### TEST PAYLOADS
 
 |Payload|
 |---|
@@ -63,12 +97,11 @@ MEMORY HOOK:
 
 |Indicator|
 |---|
-|Database error|
-|Page content change|
-|Response delay|
+|Error de base de datos|
+|Cambio en el contenido de la página|
+|Retardo en la respuesta|
 
-MEMORY HOOK:  
-**Error / Change / Delay = injectable**
+> 🧠 *Para recordar:* **Error / Cambio / Retardo = inyectable**
 
 ---
 
@@ -86,13 +119,13 @@ MEMORY HOOK:
 
 |Method|
 |---|
-|Error message fingerprinting|
-|DB-specific functions|
-|Version banners|
+|Error message fingerprinting — identificar el DBMS por sus mensajes de error|
+|DB-specific functions — funciones propias de cada DBMS|
+|Version banners — banners de versión|
 
 ---
 
-### DB-SPECIFIC FUNCTIONS (EXAM MUST)
+### DB-SPECIFIC FUNCTIONS (HIGH YIELD)
 
 |Database|Function|
 |---|---|
@@ -103,8 +136,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Version function reveals DB**
+> 🧠 *Para recordar:* **La función de versión revela la BD**
 
 ---
 
@@ -122,22 +154,22 @@ MEMORY HOOK:
 
 |Target|
 |---|
-|Database name|
-|Table names|
-|Column names|
-|User privileges|
+|Nombre de la base de datos|
+|Nombres de tablas|
+|Nombres de columnas|
+|Privilegios de usuario|
 
 ---
 
-### INFORMATION_SCHEMA (CRITICAL)
+### INFORMATION_SCHEMA (HIGH YIELD)
 
 |Item|Description|
 |---|---|
-|information_schema|Metadata database|
+|information_schema|Base de datos de metadatos (metadata database)|
 
 ---
 
-### IMPORTANT TABLES (EXAM GOLD)
+### IMPORTANT TABLES (HIGH YIELD)
 
 |Table|
 |---|
@@ -147,8 +179,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Schema stores structure**
+> 🧠 *Para recordar:* **El schema guarda la estructura**
 
 ---
 
@@ -166,10 +197,10 @@ MEMORY HOOK:
 
 |Data|
 |---|
-|Usernames|
-|Password hashes|
-|Emails|
-|Credit card details|
+|Nombres de usuario|
+|Password hashes (hashes de contraseñas)|
+|Correos electrónicos|
+|Datos de tarjetas de crédito|
 
 ---
 
@@ -177,14 +208,13 @@ MEMORY HOOK:
 
 |Method|
 |---|
-|UNION-based extraction|
-|Blind extraction|
-|Time-based extraction|
+|UNION-based extraction — extracción con UNION|
+|Blind extraction — extracción por inferencia|
+|Time-based extraction — extracción mediante retardos|
 
 ---
 
-MEMORY HOOK:  
-**Structure first, data next**
+> 🧠 *Para recordar:* **Primero la estructura, luego los datos**
 
 ---
 
@@ -202,9 +232,9 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Always-true condition|
-|Commenting query|
-|Login logic manipulation|
+|Always-true condition — condición siempre verdadera|
+|Commenting query — comentar el resto de la consulta|
+|Login logic manipulation — manipular la lógica del login|
 
 ---
 
@@ -217,8 +247,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**TRUE bypasses auth**
+> 🧠 *Para recordar:* **TRUE evade la autenticación**
 
 ---
 
@@ -236,8 +265,8 @@ MEMORY HOOK:
 
 |Requirement|
 |---|
-|DB supports command execution|
-|High privileges|
+|La BD permite ejecutar comandos|
+|Privilegios elevados|
 
 ---
 
@@ -251,8 +280,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**DB → OS bridge**
+> 🧠 *Para recordar:* **Puente BD → SO**
 
 ---
 
@@ -270,13 +298,13 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Create admin users|
+|Crear usuarios administradores|
 |Backdoors|
 |Web shells|
 
 ---
 
-## COMPLETE SQL INJECTION FLOW (EXAM LOCK)
+## COMPLETE SQL INJECTION FLOW (HIGH YIELD)
 
 |Order|
 |---|
@@ -290,7 +318,7 @@ MEMORY HOOK:
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -303,7 +331,7 @@ MEMORY HOOK:
 | Phase 6 — Execute OS | Ejecutar comandos a nivel de sistema desde la base de datos (por ejemplo, xp_cmdshell, INTO OUTFILE) |
 | Phase 7 — Persist | Mantener acceso del atacante a través de usuarios administrador, backdoors o web shells |
 | `@@version` | Función de MySQL/MSSQL para recuperar información de versión de la base de datos |
-| `information_schema` | Base de datos de metadata que contiene información de tablas, columnas y esquemas en todas las bases de datos |
+| `information_schema` | Base de datos de metadatos que contiene información de tablas, columnas y esquemas en todas las bases de datos |
 | `information_schema.tables` | Consulta esta tabla para listar todas las tablas en la base de datos |
 | `information_schema.columns` | Consulta esta tabla para listar todas las columnas en las tablas |
 | `xp_cmdshell` | Stored procedure de MSSQL que permite ejecutar comandos del sistema operativo |
@@ -311,7 +339,7 @@ MEMORY HOOK:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es el orden correcto de las fases de la metodología de SQL injection?
 - a) Extract → Detect → Enumerate → Identify → Bypass → Execute → Persist

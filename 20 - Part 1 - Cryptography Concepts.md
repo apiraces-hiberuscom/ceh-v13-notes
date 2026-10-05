@@ -1,10 +1,39 @@
-# MÓDULO 20 — CRYPTOGRAPHY (CEHv13)
+# Módulo 20 · Parte 1 — Cryptography Concepts
 
-FUENTE: _CEHv13 – Module 20 – Cryptography_
+> **Módulo 20 — Cryptography** · Parte 1 de 6 · Qué es la criptografía, sus objetivos (CIA + N), symmetric vs asymmetric, GAK/key escrow y tipos de cipher
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [OBJECTIVE 01 — CRYPTOGRAPHY CONCEPTS AND ENCRYPTION ALGORITHMS](#objective-01--cryptography-concepts-and-encryption-algorithms)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Cryptography** — del griego *kryptos* (oculto) + *graphia* (escritura); convierte plaintext en ciphertext mediante encryption
+- **Objetivos (CIA + N)** — Confidentiality, Integrity, Authentication y Non-repudiation; el cifrado por sí solo no da authentication ni integrity
+- **Symmetric (secret-key)** — una sola clave para cifrar y descifrar: rápida y con poco CPU, pero con key distribution problem y sin authentication
+- **Asymmetric (public-key)** — par public key + private key: resuelve la distribución de claves y permite digital signatures, pero es lenta y no apta para datos masivos
+- **Flujo asymmetric** — se cifra con la public key del receptor y solo su private key descifra; la public key no descifra lo que ella cifra
+- **GAK / key escrow** — Government Access to Keys: un tercero custodia las claves para intercepción legal (key escrow ≠ backdoor, aunque el efecto es similar)
+- **Classical ciphers** — substitution (reemplaza caracteres) y transposition (reordena caracteres); ej. Caesar, Hill, Rail fence
+- **Block vs stream cipher** — block cifra bloques de tamaño fijo; stream cifra los datos bit a bit
+- **AES / Serpent** — AES usa bloque de 128 bits sea cual sea la clave; Serpent: bloque de 128 bits y claves de 128/192/256 bits
+- **Blowfish / IDEA** — Blowfish: bloque de 64 bits y clave de 32–448 bits; IDEA: bloque de 64 bits, clave de 128 bits, usado por PGP
+- **DROWN attack** — se mitiga deshabilitando SSLv2 (roto); usar TLS 1.2 o 1.3
+- **Side-channel attack** — intenta romper el cifrado monitorizando algo externo al algoritmo
 
 ---
 
-## LEARNING OBJECTIVES (EXAM-MANDATORY)
+## Objetivos de aprendizaje
 
 Debes ser capaz de:
 
@@ -13,20 +42,17 @@ Debes ser capaz de:
 |01|Explicar conceptos de Cryptography|
 |02|Entender diferentes algoritmos de encriptación|
 |03|Usar diferentes herramientas de Cryptography|
-|04|Aplicar aplicaciones de Cryptography|
+|04|Conocer las aplicaciones de Cryptography|
 |05|Describir ataques de Cryptography|
 |06|Usar herramientas de Cryptanalysis|
 
-MEMORY HOOK:  
-**Conceptos → Algoritmos → Herramientas → Aplicaciones → Ataques → Análisis**
+> 🧠 *Para recordar:* **Conceptos → Algoritmos → Herramientas → Aplicaciones → Ataques → Análisis**
 
 ---
 
-# OBJETIVO 01 — CRYPTOGRAPHY CONCEPTS AND ENCRYPTION ALGORITHMS
+## OBJECTIVE 01 — CRYPTOGRAPHY CONCEPTS AND ENCRYPTION ALGORITHMS
 
----
-
-## WHAT IS CRYPTOGRAPHY (DEFINITION — EXACT CEH MEANING)
+### WHAT IS CRYPTOGRAPHY
 
 |Término|Definición|
 |---|---|
@@ -35,16 +61,13 @@ MEMORY HOOK:
 ORIGEN (EXAM FACT):
 
 - Griego **kryptos** = oculto
-    
 - Griego **graphia** = escritura
-    
 
-MEMORY HOOK:  
-**Crypto = escritura oculta**
+> 🧠 *Para recordar:* **Crypto = escritura oculta**
 
 ---
 
-## WHAT ENCRYPTION DOES
+### WHAT ENCRYPTION DOES
 
 |Acción|Descripción|
 |---|---|
@@ -53,7 +76,7 @@ MEMORY HOOK:
 
 ---
 
-## CRYPTOGRAPHY PROCESS (LOGIC FLOW)
+### CRYPTOGRAPHY PROCESS
 
 |Paso|
 |---|
@@ -64,12 +87,11 @@ MEMORY HOOK:
 |Decryption algorithm + key|
 |Plaintext|
 
-EXAM TRAP:  
-Encryption **no elimina datos**, solo **transforma la representación**.
+> ⚠️ *Trampa de examen:* Encryption **no elimina datos**, solo **transforma la representación**.
 
 ---
 
-## OBJECTIVES OF CRYPTOGRAPHY (VERY HIGH YIELD)
+### OBJECTIVES OF CRYPTOGRAPHY (HIGH YIELD)
 
 |Objetivo|Significado|
 |---|---|
@@ -78,15 +100,13 @@ Encryption **no elimina datos**, solo **transforma la representación**.
 |Authentication|Se verifica la identidad del emisor/receptor|
 |Non-repudiation|El emisor no puede negar haber enviado el mensaje|
 
-MEMORY HOOK:  
-**CIA + N**
+> 🧠 *Para recordar:* **CIA + N**
 
-EXAM TRAP:  
-Encryption por sí sola ≠ authentication o integrity.
+> ⚠️ *Trampa de examen:* Encryption por sí sola ≠ authentication o integrity.
 
 ---
 
-## BASIC CRYPTOGRAPHY TERMINOLOGY
+### BASIC CRYPTOGRAPHY TERMINOLOGY
 
 |Término|Significado|
 |---|---|
@@ -99,13 +119,13 @@ Encryption por sí sola ≠ authentication o integrity.
 
 ---
 
-## TYPES OF CRYPTOGRAPHY (TOP-TIER EXAM CONTENT)
+### TYPES OF CRYPTOGRAPHY (HIGH YIELD)
 
 Cryptography se clasifica **según el número de claves utilizadas**.
 
 ---
 
-### 1. SYMMETRIC KEY CRYPTOGRAPHY
+#### 1. SYMMETRIC KEY CRYPTOGRAPHY
 
 |Propiedad|Descripción|
 |---|---|
@@ -117,16 +137,13 @@ Cryptography se clasifica **según el número de claves utilizadas**.
 LÓGICA:
 
 - El emisor encripta usando una clave secreta compartida
-    
 - El receptor desencripta usando la misma clave
-    
 
-MEMORY HOOK:  
-**Una clave → rápida → difícil de compartir**
+> 🧠 *Para recordar:* **Una clave → rápida → difícil de compartir**
 
 ---
 
-### 2. ASYMMETRIC KEY CRYPTOGRAPHY
+#### 2. ASYMMETRIC KEY CRYPTOGRAPHY
 
 |Propiedad|Descripción|
 |---|---|
@@ -138,16 +155,13 @@ MEMORY HOOK:
 LÓGICA:
 
 - La public key encripta
-    
 - La private key desencripta
-    
 
-MEMORY HOOK:  
-**Dos claves → intercambio seguro → más lenta**
+> 🧠 *Para recordar:* **Dos claves → intercambio seguro → más lenta**
 
 ---
 
-## ASYMMETRIC ENCRYPTION MESSAGE FLOW (EXAM LOGIC)
+### ASYMMETRIC ENCRYPTION MESSAGE FLOW
 
 |Paso|Descripción|
 |---|---|
@@ -157,14 +171,13 @@ MEMORY HOOK:
 |4|Garantiza confidentiality|
 |5|Las digital signatures garantizan authentication|
 
-EXAM TRAP:  
-La public key **no puede desencriptar** lo que ella misma encripta.
+> ⚠️ *Trampa de examen:* La public key **no puede desencriptar** lo que ella misma encripta.
 
 ---
 
-## STRENGTHS & WEAKNESSES (VERY COMMON MCQs)
+### STRENGTHS & WEAKNESSES (HIGH YIELD)
 
-### SYMMETRIC ENCRYPTION
+#### SYMMETRIC ENCRYPTION
 
 |Fortalezas|Debilidades|
 |---|---|
@@ -174,7 +187,7 @@ La public key **no puede desencriptar** lo que ella misma encripta.
 
 ---
 
-### ASYMMETRIC ENCRYPTION
+#### ASYMMETRIC ENCRYPTION
 
 |Fortalezas|Debilidades|
 |---|---|
@@ -182,29 +195,26 @@ La public key **no puede desencriptar** lo que ella misma encripta.
 |Digital signatures|Alto uso de CPU|
 |Authentication|No adecuada para datos masivos|
 
-MEMORY HOOK:  
-**Symmetric = rápida, Asymmetric = confianza**
+> 🧠 *Para recordar:* **Symmetric = rápida, Asymmetric = confianza**
 
 ---
 
-## GOVERNMENT ACCESS TO KEYS (GAK) — EXAM CONCEPT
+### GOVERNMENT ACCESS TO KEYS (GAK) — EXAM CONCEPT
 
 |Término|Explicación|
 |---|---|
-|GAK|Accceso gubernamental obligatorio a las claves de encriptación|
+|GAK|Acceso gubernamental obligatorio a las claves de encriptación|
 |Propósito|Intercepción legal|
 |Método|Key escrow|
 |Riesgo|Debilita la privacidad|
 
-MEMORY HOOK:  
-**Key escrow = una tercera parte guarda las claves**
+> 🧠 *Para recordar:* **Key escrow = una tercera parte guarda las claves**
 
-EXAM TRAP:  
-Key escrow ≠ backdoor (pero el efecto es similar).
+> ⚠️ *Trampa de examen:* Key escrow ≠ backdoor (pero el efecto es similar).
 
 ---
 
-## WHAT IS A CIPHER
+### WHAT IS A CIPHER
 
 |Definición|
 |---|
@@ -212,9 +222,9 @@ Key escrow ≠ backdoor (pero el efecto es similar).
 
 ---
 
-## TYPES OF CIPHERS
+### TYPES OF CIPHERS
 
-### CLASSICAL CIPHERS
+#### CLASSICAL CIPHERS
 
 |Tipo|Descripción|
 |---|---|
@@ -224,114 +234,50 @@ Key escrow ≠ backdoor (pero el efecto es similar).
 EJEMPLOS (EXAM):
 
 - Caesar cipher
-    
 - Hill cipher
-    
 - Rail fence cipher
-    
 
-MEMORY HOOK:  
-**Clásicos = letras**
+> 🧠 *Para recordar:* **Clásicos = letras**
 
 ---
 
-### MODERN CIPHERS
+#### MODERN CIPHERS
 
 Clasificados por:
 
-#### A. TIPO DE CLAVE UTILIZADA
+##### A. TIPO DE CLAVE UTILIZADA
 
 |Tipo|
 |---|
 |Symmetric|
 |Asymmetric|
 
-#### B. TIPO DE DATOS DE ENTRADA
+##### B. TIPO DE DATOS DE ENTRADA
 
 |Tipo|Descripción|
 |---|---|
 |Block cipher|Encripta bloques de tamaño fijo|
 |Stream cipher|Encripta datos bit por bit|
 
-MEMORY HOOK:  
-**Block = bloques, Stream = flujo**
+> 🧠 *Para recordar:* **Block = bloques, Stream = flujo**
 
 ---
 
-## OBJETIVO 01 — MEMORY CHECKLIST
+## Extras de examen (Boson Practice Test)
 
-Debes recordar:
-
-- Los objetivos de Cryptography = **CIA + N**
-    
-- Diferencias entre Symmetric y Asymmetric
-    
-- Encryption ≠ authentication
-    
-- La public key encripta, la private key desencripta
-    
-- Diferencia entre Block y Stream cipher
-    
-- El problema de distribución de claves
-    
-- Definición de key escrow
-    
-
----
-
-### STATUS
-
-Módulo 20  
-Objetivo 01: **COMPLETADO**
-
----
-
-
-## EXAM EXTRAS (Boson Practice Test)
-
-### BLOWFISH
-
-|Elemento|Memorizar|
+|Concepto|Qué recordar|
 |---|---|
 |Blowfish|Symmetric block cipher de 64 bits, clave de 32-448 bits|
-|Estándar|IDEA block cipher de 64 bits con clave de 128 bits — utilizado por PGP|
-
----
-
-### AES BLOCK SIZE
-
-|Elemento|Memorizar|
-|---|---|
-|AES|Tamaño de bloque de 128 bits independientemente de la longitud de la clave|
-
----
-
-### SERPENT
-
-|Elemento|Memorizar|
-|---|---|
+|IDEA|Block cipher de 64 bits con clave de 128 bits — utilizado por PGP|
+|AES block size|Bloque de 128 bits independientemente de la longitud de la clave|
 |Serpent|Symmetric block cipher de 128 bits con longitudes de clave de 128, 192 o 256 bits|
-
----
-
-### DROWN / SSLv2
-
-|Elemento|Memorizar|
-|---|---|
-|DROWN attack|Deshabilitar SSLv2|
+|DROWN attack|Contramedida: deshabilitar SSLv2 (DROWN explota servidores que todavía aceptan SSLv2)|
 |SSLv2|Extremadamente roto — se debe usar TLS 1.2 o 1.3|
+|Side-channel attack|Intento de romper la encriptación monitorizando algo externo al algoritmo|
 
 ---
 
-### SIDE-CHANNEL ATTACK
-
-|Elemento|Memorizar|
-|---|---|
-|Side-channel attack|Intento de romper la encriptación monitoreando algo externo al algoritmo|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Término | Definición |
 |------|------------|
@@ -357,7 +303,7 @@ Objetivo 01: **COMPLETADO**
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es la principal ventaja de la encryption symmetric sobre la asymmetric?
 - a) Mejor distribución de claves

@@ -1,64 +1,93 @@
-# OBJECTIVE 03 — ASYMMETRIC ENCRYPTION ALGORITHMS
+# Módulo 20 · Parte 3 — Asymmetric Encryption
+
+> **Módulo 20 — Cryptography** · Parte 3 de 6 · Algoritmos asymmetric (RSA, Diffie-Hellman, DSA, ElGamal, ECC), Perfect Forward Secrecy y proceso de digital signature
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 03 — ASYMMETRIC ENCRYPTION ALGORITHMS](#objective-03--asymmetric-encryption-algorithms)
+- [RSA (MOST IMPORTANT ASYMMETRIC ALGORITHM)](#rsa-most-important-asymmetric-algorithm)
+- [DIFFIE–HELLMAN (KEY EXCHANGE ONLY)](#diffiehellman-key-exchange-only)
+- [DIGITAL SIGNATURE ALGORITHM (DSA)](#digital-signature-algorithm-dsa)
+- [ELGAMAL](#elgamal)
+- [ELLIPTIC CURVE CRYPTOGRAPHY (ECC)](#elliptic-curve-cryptography-ecc)
+- [ASYMMETRIC ALGORITHMS COMPARISON 🔥](#asymmetric-algorithms-comparison-high-yield)
+- [DIGITAL SIGNATURE PROCESS](#digital-signature-process)
+- [PUBLIC KEY INFRASTRUCTURE (PKI) INTRODUCTION](#public-key-infrastructure-pki-introduction)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Asymmetric encryption** — dos claves relacionadas: public key para cifrar/verificar, private key para descifrar/firmar; lenta, no se usa para datos masivos
+- **RSA** — Rivest–Shamir–Adleman, basado en **integer factorization**, keys de 1024–4096 bits; cifra, firma y sirve para key exchange
+- **Debilidades de RSA** — key sizes pequeños, poor padding (PKCS#1) y side-channel attacks
+- **Diffie-Hellman** — SOLO key exchange (acuerda un shared secret para derivar symmetric keys); no cifra ni autentica → vulnerable a MITM
+- **DHE / ECDHE** — Diffie-Hellman ephemeral (claves temporales) → **Perfect Forward Secrecy (PFS)**
+- **DSA** — SOLO digital signatures, no cifra; basado en **discrete logarithms**
+- **ElGamal** — basado en Diffie-Hellman; cifra y firma, pero genera un ciphertext grande
+- **ECC** — claves mucho más pequeñas y más rápida que RSA: **256-bit ECC ≈ 3072-bit RSA**; móviles, IoT, TLS
+- **Digital signature** — hash del mensaje cifrado con la private key del emisor; el receptor lo verifica con la public key y compara hashes
+- **Comparativa** — RSA, ElGamal y ECC cifran, firman e intercambian claves; Diffie-Hellman solo key exchange; DSA solo firma
 
 ---
 
-## ASYMMETRIC ENCRYPTION (EXAM DEFINITION)
+## OBJECTIVE 03 — ASYMMETRIC ENCRYPTION ALGORITHMS
 
-|Property|Description|
+### ASYMMETRIC ENCRYPTION
+
+|Propiedad|Descripción|
 |---|---|
-|Keys|Utiliza dos claves matemáticamente relacionadas|
+|Claves|Utiliza dos claves matemáticamente relacionadas|
 |Public key|Utilizada para encryption o verification|
 |Private key|Utilizada para decryption o signing|
-|Speed|Lenta|
-|Primary use|Key exchange, autenticación, digital signatures|
+|Velocidad|Lenta|
+|Uso principal|Key exchange, authentication, digital signatures|
 
-MEMORY HOOK:
-**Public encrypts, private decrypts**
+> 🧠 *Para recordar:* **Public key encripta, private key desencripta**
 
-EXAM TRAP:
-Asymmetric encryption **no se utiliza para datos masivos**.
+> ⚠️ *Trampa de examen:* Asymmetric encryption **no se utiliza para datos masivos**.
 
 ---
 
-## WHY ASYMMETRIC CRYPTOGRAPHY IS NEEDED
+### WHY ASYMMETRIC CRYPTOGRAPHY IS NEEDED
 
-|Problem|Solution|
+|Problema|Solución|
 |---|---|
 |Distribución segura de claves|Public keys|
-|Autenticación|Digital signatures|
-|No repudiación|Propiedad de la private key|
+|Authentication|Digital signatures|
+|Non-repudiation (no repudio)|Posesión exclusiva de la private key|
 
 ---
 
-# RSA (MOST IMPORTANT ASYMMETRIC ALGORITHM)
+## RSA (MOST IMPORTANT ASYMMETRIC ALGORITHM)
 
----
+### RSA OVERVIEW
 
-## RSA OVERVIEW
-
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Full name|Rivest–Shamir–Adleman|
+|Nombre completo|Rivest–Shamir–Adleman|
 |Key size|1024–4096 bits|
-|Basado en|Factorización de enteros|
+|Basado en|Integer factorization (factorización de enteros)|
 |Utilizado para|Encryption, signatures, key exchange|
 
 LÓGICA:
 
-- Encrypt con public key
-    
-- Decrypt con private key
-    
+- Se cifra con la public key
+- Se descifra con la private key
 
-MEMORY HOOK:
-**RSA = factorizar números grandes**
+> 🧠 *Para recordar:* **RSA = factorizar números grandes**
 
-EXAM TRAP:
-RSA ≠ symmetric encryption.
+> ⚠️ *Trampa de examen:* RSA ≠ symmetric encryption.
 
 ---
 
-## RSA ATTACK WEAKNESSES (EXAM KNOWLEDGE)
+### RSA ATTACK WEAKNESSES
 
 |Debilidad|
 |---|
@@ -68,37 +97,31 @@ RSA ≠ symmetric encryption.
 
 ---
 
-# DIFFIE–HELLMAN (KEY EXCHANGE ONLY)
+## DIFFIE–HELLMAN (KEY EXCHANGE ONLY)
 
----
+### DIFFIE–HELLMAN OVERVIEW
 
-## DIFFIE–HELLMAN OVERVIEW
-
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Purpose|Key exchange seguro|
+|Propósito|Key exchange seguro|
 |Encryption|NO|
 |Authentication|NO|
-|Vulnerability|Ataque MITM|
+|Vulnerabilidad|MITM attack|
 
 LÓGICA:
 
 - Dos partes acuerdan un shared secret
-    
 - Utilizado para derivar symmetric keys
-    
 
-MEMORY HOOK:
-**DH comparte secrets, no mensajes**
+> 🧠 *Para recordar:* **DH comparte secrets, no mensajes**
 
-EXAM TRAP:
-Diffie-Hellman **no encripta datos**.
+> ⚠️ *Trampa de examen:* Diffie-Hellman **no encripta datos**.
 
 ---
 
-## EPHEMERAL DIFFIE–HELLMAN
+### EPHEMERAL DIFFIE–HELLMAN
 
-|Variant|Description|
+|Variante|Descripción|
 |---|---|
 |DHE|Ephemeral DH|
 |ECDHE|Elliptic Curve DHE|
@@ -106,82 +129,67 @@ Diffie-Hellman **no encripta datos**.
 Propósito:
 
 - Proporciona **Perfect Forward Secrecy (PFS)**
-    
 
-MEMORY HOOK:
-**Ephemeral = claves temporales**
+> 🧠 *Para recordar:* **Ephemeral = claves temporales**
 
 ---
 
-# DIGITAL SIGNATURE ALGORITHM (DSA)
+## DIGITAL SIGNATURE ALGORITHM (DSA)
 
----
+### DSA OVERVIEW
 
-## DSA OVERVIEW
-
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
-|Purpose|Solo digital signatures|
+|Propósito|Solo digital signatures|
 |Encryption|NO|
-|Basado en|Logaritmos discretos|
-|Utilizado para|Autenticación, integridad|
+|Basado en|Discrete logarithms (logaritmos discretos)|
+|Utilizado para|Authentication, integrity|
 
 LÓGICA:
 
 - Private key firma
-    
 - Public key verifica
-    
 
-MEMORY HOOK:
-**DSA = firmar, no encriptar**
+> 🧠 *Para recordar:* **DSA = firmar, no encriptar**
 
-EXAM TRAP:
-DSA no puede encriptar datos.
+> ⚠️ *Trampa de examen:* DSA no puede encriptar datos.
 
 ---
 
-# ELGAMAL
+## ELGAMAL
 
----
+### ELGAMAL OVERVIEW
 
-## ELGAMAL OVERVIEW
-
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
 |Basado en|Diffie–Hellman|
 |Uso|Encryption + signatures|
 |Desventaja|Ciphertext grande|
 
-MEMORY HOOK:
-**ElGamal = encriptación basada en DH**
+> 🧠 *Para recordar:* **ElGamal = encriptación basada en DH**
 
 ---
 
-# ELLIPTIC CURVE CRYPTOGRAPHY (ECC)
+## ELLIPTIC CURVE CRYPTOGRAPHY (ECC)
 
----
+### ECC OVERVIEW (VERY IMPORTANT MODERN CRYPTO)
 
-## ECC OVERVIEW (VERY IMPORTANT MODERN CRYPTO)
-
-|Property|Description|
+|Propiedad|Descripción|
 |---|---|
 |Basado en|Elliptic curves|
 |Key size|Mucho más pequeña|
-|Speed|Más rápida que RSA|
-|Security|Fuerte|
+|Velocidad|Más rápida que RSA|
+|Seguridad|Fuerte|
 
 LÓGICA:
 
 - 256-bit ECC ≈ 3072-bit RSA
-    
 
-MEMORY HOOK:
-**ECC = claves pequeñas, alta seguridad**
+> 🧠 *Para recordar:* **ECC = claves pequeñas, alta seguridad**
 
 ---
 
-## ECC USE CASES
+### ECC USE CASES
 
 |Uso|
 |---|
@@ -190,14 +198,13 @@ MEMORY HOOK:
 |TLS|
 |Digital signatures|
 
-EXAM TRAP:
-ECC ≠ reemplazo de RSA por algoritmo, sino por eficiencia.
+> ⚠️ *Trampa de examen:* ECC no sustituye a RSA por ser un algoritmo «mejor», sino por eficiencia: misma seguridad con claves más pequeñas.
 
 ---
 
-# ASYMMETRIC ALGORITHMS COMPARISON (EXAM FAVORITE)
+## ASYMMETRIC ALGORITHMS COMPARISON (HIGH YIELD)
 
-|Algorithm|Encrypt|Sign|Key Exchange|
+|Algoritmo|Cifra (encrypt)|Firma (sign)|Key exchange|
 |---|---|---|---|
 |RSA|Sí|Sí|Sí|
 |Diffie–Hellman|No|No|Sí|
@@ -207,73 +214,36 @@ ECC ≠ reemplazo de RSA por algoritmo, sino por eficiencia.
 
 ---
 
-# DIGITAL SIGNATURE PROCESS (EXAM LOGIC)
+## DIGITAL SIGNATURE PROCESS
 
 |Paso|
 |---|
 |Hash del mensaje|
-|Encrypt del hash con private key|
+|Cifrar el hash con la private key del emisor|
 |Enviar mensaje + firma|
-|Receiver descifra el hash con public key|
+|El receptor descifra el hash con la public key del emisor|
 |Comparar hashes|
 
-MEMORY HOOK:
-**Sign = private, verify = public**
+> 🧠 *Para recordar:* **Firmar = private, verificar = public**
 
 ---
 
-# PUBLIC KEY INFRASTRUCTURE (PKI) INTRODUCTION
+## PUBLIC KEY INFRASTRUCTURE (PKI) INTRODUCTION
 
----
-
-## PKI COMPONENTS (PREVIEW FOR NEXT OBJECTIVE)
+### PKI COMPONENTS
 
 |Componente|
 |---|
 |Certificate Authority (CA)|
 |Digital certificates|
 |Public keys|
-|Cadenas de confianza|
+|Trust chains (cadenas de confianza)|
 
-MEMORY HOOK:
-**PKI = sistema de confianza**
-
----
-
-# OBJECTIVE 03 — MEMORY CHECKLIST
-
-Debes recordar:
-
-- RSA = encryption + signatures
-    
-- Diffie-Hellman = solo key exchange
-    
-- DSA = solo signatures
-    
-- ECC = claves más pequeñas, más rápida
-    
-- Public key encripta
-    
-- Private key descifra/firma
-    
-- Asymmetric crypto es lenta
-    
+> 🧠 *Para recordar:* **PKI = sistema de confianza**
 
 ---
 
-### STATUS
-
-Objetivo 03: COMPLETADO
-
----
-
-Responde **next** para continuar con:
-
-**OBJECTIVE 04 — HASH FUNCTIONS AND MESSAGE DIGEST ALGORITHMS (MD5, SHA-1, SHA-2, SHA-3, HMAC)**
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Término | Definición |
 |------|------------|
@@ -292,7 +262,7 @@ Responde **next** para continuar con:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué algoritmo asimétrico se utiliza ÚNICAMENTE para key exchange y no puede encriptar datos?
 - a) RSA

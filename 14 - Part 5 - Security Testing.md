@@ -1,4 +1,46 @@
-# OBJECTIVE 05 — WEB APPLICATION SECURITY TESTING TECHNIQUES
+# Módulo 14 · Parte 5 — Security Testing
+
+> **Módulo 14 — Hacking Web Applications** · Parte 5 de 5 · Técnicas de pruebas de seguridad de web applications: tipos de testing, entrada, autenticación, sesiones, autorización, cliente, errores, file upload, lógica de negocio, APIs y herramientas.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [1. WEB APPLICATION SECURITY TESTING — CEH DEFINITION](#1-web-application-security-testing--ceh-definition)
+- [2. SECURITY TESTING GOALS](#2-security-testing-goals)
+- [3. TYPES OF WEB APPLICATION SECURITY TESTING](#3-types-of-web-application-security-testing)
+- [4. INPUT VALIDATION TESTING](#4-input-validation-testing)
+- [5. AUTHENTICATION TESTING](#5-authentication-testing)
+- [6. SESSION MANAGEMENT TESTING](#6-session-management-testing)
+- [7. AUTHORIZATION TESTING](#7-authorization-testing)
+- [8. CLIENT-SIDE TESTING](#8-client-side-testing)
+- [9. ERROR HANDLING AND LOGGING TESTING](#9-error-handling-and-logging-testing)
+- [10. FILE UPLOAD TESTING](#10-file-upload-testing)
+- [11. BUSINESS LOGIC TESTING](#11-business-logic-testing)
+- [12. API SECURITY TESTING](#12-api-security-testing)
+- [13. AUTOMATED VS MANUAL TESTING](#13-automated-vs-manual-testing)
+- [14. WEB APPLICATION SECURITY TESTING TOOLS](#14-web-application-security-testing-tools)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Black-box / White-box / Gray-box** — sin conocimiento / conocimiento completo del código fuente / conocimiento parcial (Black = Blind, White = All, Gray = Some).
+- **Input Validation Testing** — prueba parámetros de URL, campos de formulario, cookies, HTTP headers y payloads JSON/XML; detecta SQLi, XSS, command y LDAP injection.
+- **Authentication Testing** — fortaleza de contraseñas, login bypass, account lockout, default credentials, sin MFA; herramientas: Burp Suite, THC Hydra, Medusa, Ncrack.
+- **Session Management Testing** — aleatoriedad del session ID, secure flags y timeout; ataques: session fixation (el atacante fija un session ID conocido antes del login), session hijacking, cookie theft.
+- **AuthN ≠ AuthZ** — Authentication verifica la identidad; Authorization Testing prueba qué puede hacer el usuario ya autenticado (IDOR, privilege escalation, forced browsing, parameter tampering).
+- **Client-Side Testing** — la seguridad en el cliente NO basta: siempre validación en el servidor (también busca hardcoded secrets y lógica expuesta).
+- **Error handling** — verbose errors, stack traces e información de depuración → information disclosure que ayuda al reconocimiento.
+- **File Upload Testing** — tipo, tamaño y permisos de ejecución del archivo; evita el web shell upload (p. ej. un PHP disfrazado de imagen).
+- **Business Logic Testing / automated vs manual** — workflow bypass, transaction tampering, race conditions; el testing automatizado (rápido, escalable) suele no detectarlos, el manual (preciso, contextual) sí.
+- **Herramientas** — Burp Suite (intercepción y pruebas), OWASP ZAP (vulnerability scanning), Nikto (web server), SQLmap (SQL injection), Acunetix (escaneo automatizado).
+- **Objetivos del Módulo 14 (repaso)** — 1 Web application concepts · 2 Web application threats · 3 Hacking methodology · 4 APIs and webhooks · 5 Security testing.
+- **Gancho del módulo** — **Concept → Threat → Method → API → Test**.
 
 ---
 
@@ -29,8 +71,7 @@
 |White-box testing|Conocimiento completo del código fuente|
 |Gray-box testing|Conocimiento parcial|
 
-MEMORY HOOK:  
-**Black = Blind, White = All, Gray = Some**
+> 🧠 *Para recordar:* **Black = Blind, White = All, Gray = Some**
 
 ---
 
@@ -48,11 +89,11 @@ MEMORY HOOK:
 
 |Parameter|
 |---|
-|URL parameters|
-|Form fields|
+|Parámetros de URL|
+|Campos de formulario|
 |Cookies|
-|HTTP headers|
-|JSON/XML payloads|
+|HTTP headers (cabeceras)|
+|Payloads JSON/XML|
 
 ---
 
@@ -72,14 +113,13 @@ MEMORY HOOK:
 |Technique|
 |---|
 |Inyección de caracteres especiales|
-|Prueba de valores límite|
+|Boundary value testing — prueba de valores límite|
 |Entrada inesperada|
-|Manipulación de codificación|
+|Manipulación de la codificación (encoding)|
 
 ---
 
-MEMORY HOOK:  
-**Input = attack surface**
+> 🧠 *Para recordar:* **Input = superficie de ataque (attack surface)**
 
 ---
 
@@ -98,9 +138,9 @@ MEMORY HOOK:
 |Area|
 |---|
 |Fortaleza de contraseñas|
-|Bypass de inicio de sesión|
+|Login bypass — eludir el inicio de sesión|
 |Reutilización de credenciales|
-|Bloqueo de cuentas|
+|Account lockout — bloqueo de cuentas|
 
 ---
 
@@ -108,7 +148,7 @@ MEMORY HOOK:
 
 |Weakness|
 |---|
-|Credenciales predeterminadas|
+|Default credentials — credenciales por defecto|
 |Contraseñas débiles|
 |Sin MFA|
 |Credenciales predecibles|
@@ -126,8 +166,7 @@ MEMORY HOOK:
 
 ---
 
-MEMORY HOOK:  
-**Weak auth = takeover**
+> 🧠 *Para recordar:* **Autenticación débil = account takeover**
 
 ---
 
@@ -166,13 +205,12 @@ MEMORY HOOK:
 |Focus|
 |---|
 |Aleatoriedad del Session ID|
-|Flags seguros|
-|Aplicación de timeout|
+|Secure flags — flags de seguridad de las cookies|
+|Timeout enforcement — expiración de la sesión|
 
 ---
 
-MEMORY HOOK:  
-**Steal session = steal user**
+> 🧠 *Para recordar:* **Robar la sesión = robar al usuario**
 
 ---
 
@@ -190,8 +228,8 @@ MEMORY HOOK:
 
 |Area|
 |---|
-|Acceso basado en roles|
-|Escalada de privilegios|
+|Role-based access — acceso basado en roles|
+|Privilege escalation — escalada de privilegios|
 |IDOR|
 
 ---
@@ -200,14 +238,13 @@ MEMORY HOOK:
 
 |Technique|
 |---|
-|Manipulación de parámetros|
-|Navegación forzada|
+|Parameter tampering — manipulación de parámetros|
+|Forced browsing — navegación forzada|
 |Manipulación de roles|
 
 ---
 
-MEMORY HOOK:  
-**AuthN ≠ AuthZ**
+> 🧠 *Para recordar:* **AuthN ≠ AuthZ**
 
 ---
 
@@ -237,7 +274,7 @@ MEMORY HOOK:
 |Issue|
 |---|
 |Validación del lado del cliente|
-|Secretos hardcodeados|
+|Hardcoded secrets — secretos escritos en el código|
 |Lógica expuesta|
 
 ---
@@ -255,7 +292,7 @@ MEMORY HOOK:
 
 |Focus|
 |---|
-|Mensajes de error detallados|
+|Verbose error messages — mensajes de error detallados|
 |Stack traces|
 |Información de depuración|
 
@@ -265,7 +302,7 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Divulgación de información|
+|Information disclosure — divulgación de información|
 |Apoyo al reconocimiento|
 
 ---
@@ -293,14 +330,13 @@ MEMORY HOOK:
 
 |Focus|
 |---|
-|Bypass de flujo de trabajo|
-|Manipulación de transacciones|
-|Condiciones de carrera|
+|Workflow bypass — saltarse el flujo de trabajo|
+|Transaction tampering — manipulación de transacciones|
+|Race conditions — condiciones de carrera|
 
 ---
 
-MEMORY HOOK:  
-**Logic flaws bypass security**
+> 🧠 *Para recordar:* **Los logic flaws eluden los controles de seguridad**
 
 ---
 
@@ -334,66 +370,19 @@ MEMORY HOOK:
 
 ---
 
-## 14. WEB APPLICATION SECURITY TESTING TOOLS (MASTER LIST)
+## 14. WEB APPLICATION SECURITY TESTING TOOLS
 
 |Tool|Purpose|
 |---|---|
 |Burp Suite|Intercepción y pruebas|
-|OWASP ZAP|Vulnerability scanning|
-|Nikto|Web server scanning|
+|OWASP ZAP|Vulnerability scanning — escaneo de vulnerabilidades|
+|Nikto|Escaneo de web servers|
 |SQLmap|SQL injection|
-|Acunetix|Automated scanning|
+|Acunetix|Escaneo automatizado|
 
 ---
 
-## FINAL MODULE 14 MEMORY BLOCK (EXAM LOCK)
-
-### OBJECTIVES
-
-|#|Topic|
-|---|---|
-|1|Web application concepts|
-|2|Web application threats|
-|3|Hacking methodology|
-|4|APIs and webhooks|
-|5|Security testing|
-
-### CORE MEMORY HOOK
-
-**Concept → Threat → Method → API → Test**
-
----
-
-## MODULE 14 STATUS
-
-|Item|Status|
-|---|---|
-|Pages covered|100%|
-|Concepts skipped|0|
-|Tools covered|All|
-|Commands covered|All expected|
-|CEH alignment|Exact|
-
----
-
-### MODULE 14 COMPLETE
-
-Next available:
-
-- **Module 15 – Hacking Wireless Networks**
-    
-- **Module 16 – Hacking Mobile Platforms**
-    
-- **Deep-dive revision tables**
-    
-- **Exam rapid-fire Q&A**
-    
-
-Say **which module** or **revision mode** you want next.
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -414,7 +403,7 @@ Say **which module** or **revision mode** you want next.
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** Un penetration tester recibe el código fuente de la aplicación y el esquema de la base de datos antes de que comience la prueba. ¿Qué enfoque de prueba es este?
 - a) Black-box testing

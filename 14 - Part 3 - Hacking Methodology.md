@@ -1,6 +1,46 @@
-# OBJECTIVE 03 — METODOLOGÍA DE HACKING DE WEB APPLICATIONS
+# Módulo 14 · Parte 3 — Hacking Methodology
 
-## CEH CORE PRINCIPLE (MEMORIZE)
+> **Módulo 14 — Hacking Web Applications** · Parte 3 de 5 · Las 8 fases de la metodología de hacking de web applications, con el objetivo, las técnicas y las herramientas de cada fase.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [CEH CORE PRINCIPLE 🔥](#ceh-core-principle-high-yield)
+- [PHASES OF WEB APPLICATION HACKING](#phases-of-web-application-hacking)
+- [PHASE 1 — INFORMATION GATHERING](#phase-1--information-gathering)
+- [PHASE 2 — WEB APPLICATION FOOTPRINTING](#phase-2--web-application-footprinting)
+- [PHASE 3 — VULNERABILITY SCANNING](#phase-3--vulnerability-scanning)
+- [PHASE 4 — WEB APPLICATION ENUMERATION](#phase-4--web-application-enumeration)
+- [PHASE 5 — EXPLOITATION](#phase-5--exploitation)
+- [PHASE 6 — POST-EXPLOITATION](#phase-6--post-exploitation)
+- [PHASE 7 — MAINTAINING ACCESS](#phase-7--maintaining-access)
+- [PHASE 8 — COVERING TRACKS](#phase-8--covering-tracks)
+- [COMPLETE METHODOLOGY FLOW 🔥](#complete-methodology-flow-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Orden de las 8 fases** — Information Gathering → Web Application Footprinting → Vulnerability Scanning → Web Application Enumeration → Exploitation → Post-Exploitation → Maintaining Access → Covering Tracks.
+- **Versión corta** — Recon → Footprint → Scan → Enumerate → Exploit → Post-exploit → Persist → Cover (**I F S E E P M C**).
+- **Information Gathering (fase 1)** — Whois (propietario del dominio), Nslookup/Dig (DNS), Netcraft (hosting y SO), Google Dorks (datos sensibles expuestos).
+- **Web Application Footprinting (fase 2)** — identifica el tech stack con Wappalyzer, BuiltWith, WhatWeb y Netcraft; es **recon pasivo**, no scanning.
+- **Vulnerability Scanning (fase 3)** — Nikto (web server), Nessus, OpenVAS, Acunetix; salida: CVE IDs, severidad y componentes afectados. **Scanner ≠ exploit**.
+- **Web Application Enumeration (fase 4)** — es **activa**: directorios, archivos, parámetros, roles y APIs.
+- **Dirb / Gobuster** — directory brute-forcing y content discovery; **wfuzz** — parameter fuzzing.
+- **Exploitation (fase 5)** — SQLmap (SQL injection automatizada), Metasploit (exploit framework), Burp Suite (explotación manual), BeEF (browser exploitation).
+- **Post-Exploitation (fase 6)** — credential harvesting, data exfiltration y lateral movement (Meterpreter, Mimikatz).
+- **Maintaining Access (fase 7)** — backdoors, web shells y scheduled tasks; la persistencia ≠ la explotación inicial.
+- **Covering Tracks (fase 8)** — borrado y modificación de logs, timestamp manipulation.
+
+---
+
+## CEH CORE PRINCIPLE (HIGH YIELD)
 
 |Item|Memorize|
 |---|---|
@@ -8,7 +48,7 @@
 
 ---
 
-## PHASES OF WEB APPLICATION HACKING (EXAM ORDER)
+## PHASES OF WEB APPLICATION HACKING
 
 |Phase No.|Phase Name|
 |---|---|
@@ -21,8 +61,7 @@
 |7|Maintaining Access|
 |8|Covering Tracks|
 
-MEMORY HOOK:  
-**I F S E E P M C**
+> 🧠 *Para recordar:* **I F S E E P M C**
 
 ---
 
@@ -40,29 +79,27 @@ MEMORY HOOK:
 
 |Category|
 |---|
-|Domain name|
-|IP address|
-|Server location|
-|Hosting provider|
-|Technologies used|
+|Nombre de dominio|
+|Dirección IP|
+|Ubicación del servidor|
+|Proveedor de hosting|
+|Tecnologías utilizadas|
 
 ---
 
-### Tools (CEH-EXPECTED)
+### Tools
 
 |Tool|Purpose|
 |---|---|
-|Whois|Domain ownership|
-|Nslookup|DNS records|
-|Dig|DNS enumeration|
-|Netcraft|Hosting and OS info|
-|Google Dorks|Sensitive data discovery|
+|Whois|Propietario del dominio|
+|Nslookup|Registros DNS|
+|Dig|Enumeración DNS|
+|Netcraft|Información de hosting y SO|
+|Google Dorks|Descubrimiento de datos sensibles expuestos|
 
 ---
 
-### Memory Hook
-
-**Who owns it → Where it is → What runs it**
+> 🧠 *Para recordar:* **Quién es el dueño → Dónde está → Qué ejecuta** (Who owns it → Where it is → What runs it)
 
 ---
 
@@ -80,10 +117,10 @@ MEMORY HOOK:
 
 |Item|
 |---|
-|Web server type|
+|Tipo de web server|
 |OS|
 |CMS|
-|Programming language|
+|Lenguaje de programación|
 |Framework|
 
 ---
@@ -92,10 +129,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Wappalyzer|Tech stack detection|
-|BuiltWith|Framework identification|
-|WhatWeb|Server fingerprinting|
-|Netcraft|OS and server details|
+|Wappalyzer|Detección del tech stack|
+|BuiltWith|Identificación de frameworks|
+|WhatWeb|Fingerprinting del servidor|
+|Netcraft|Detalles del SO y del servidor|
 
 ---
 
@@ -104,7 +141,7 @@ MEMORY HOOK:
 |Trap|Correct|
 |---|---|
 |Footprinting = scanning|NO|
-|Footprinting = passive recon|YES|
+|Footprinting = recon pasivo|SÍ|
 
 ---
 
@@ -122,8 +159,8 @@ MEMORY HOOK:
 
 |Type|
 |---|
-|Automated scanners|
-|Signature-based scanners|
+|Scanners automatizados|
+|Signature-based scanners — basados en firmas|
 
 ---
 
@@ -131,10 +168,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Nikto|Web server vulnerabilities|
-|Nessus|General vulnerability scanning|
-|OpenVAS|Vulnerability detection|
-|Acunetix|Web app scanning|
+|Nikto|Vulnerabilidades del web server|
+|Nessus|Escaneo de vulnerabilidades general|
+|OpenVAS|Detección de vulnerabilidades|
+|Acunetix|Escaneo de web applications|
 
 ---
 
@@ -143,13 +180,12 @@ MEMORY HOOK:
 |Output|
 |---|
 |CVE IDs|
-|Vulnerability severity|
-|Affected components|
+|Severidad de la vulnerabilidad|
+|Componentes afectados|
 
 ---
 
-MEMORY HOOK:  
-**Scanner ≠ exploit**
+> 🧠 *Para recordar:* **Scanner ≠ exploit**
 
 ---
 
@@ -167,10 +203,10 @@ MEMORY HOOK:
 
 |Target|
 |---|
-|Directories|
-|Files|
-|Parameters|
-|User roles|
+|Directorios|
+|Archivos|
+|Parámetros|
+|Roles de usuario|
 |APIs|
 
 ---
@@ -179,10 +215,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|Dirb|Directory brute-force|
-|Gobuster|Content discovery|
-|Burp Suite|Parameter analysis|
-|wfuzz|Parameter fuzzing|
+|Dirb|Directory brute-force — fuerza bruta de directorios|
+|Gobuster|Content discovery — descubrimiento de contenido|
+|Burp Suite|Análisis de parámetros|
+|wfuzz|Parameter fuzzing — fuzzing de parámetros|
 
 ---
 
@@ -190,8 +226,8 @@ MEMORY HOOK:
 
 |Trap|Correct|
 |---|---|
-|Enumeration is passive|NO|
-|Enumeration is active|YES|
+|La enumeración es pasiva|NO|
+|La enumeración es activa|SÍ|
 
 ---
 
@@ -221,10 +257,10 @@ MEMORY HOOK:
 
 |Tool|Purpose|
 |---|---|
-|SQLmap|SQL injection exploitation|
-|Metasploit|Exploit framework|
-|Burp Suite|Manual exploitation|
-|BeEF|Browser exploitation|
+|SQLmap|Explotación de SQL injection|
+|Metasploit|Exploit framework — framework de explotación|
+|Burp Suite|Explotación manual|
+|BeEF|Browser exploitation — explotación del navegador|
 
 ---
 
@@ -232,9 +268,9 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Data compromise|
-|Shell access|
-|Privilege escalation|
+|Compromiso de datos|
+|Acceso a una shell|
+|Privilege escalation — escalada de privilegios|
 
 ---
 
@@ -252,9 +288,9 @@ MEMORY HOOK:
 
 |Activity|
 |---|
-|Credential harvesting|
-|Data exfiltration|
-|Lateral movement|
+|Credential harvesting — recolección de credenciales|
+|Data exfiltration — exfiltración de datos|
+|Lateral movement — movimiento lateral|
 
 ---
 
@@ -264,7 +300,7 @@ MEMORY HOOK:
 |---|
 |Meterpreter|
 |Mimikatz|
-|Custom scripts|
+|Scripts personalizados|
 
 ---
 
@@ -284,13 +320,13 @@ MEMORY HOOK:
 |---|
 |Backdoors|
 |Web shells|
-|Scheduled tasks|
+|Scheduled tasks — tareas programadas|
 
 ---
 
 ### Exam Note
 
-Persistence ≠ initial exploitation
+La persistencia (persistence) ≠ la explotación inicial (initial exploitation)
 
 ---
 
@@ -308,13 +344,13 @@ Persistence ≠ initial exploitation
 
 |Technique|
 |---|
-|Log deletion|
-|Log modification|
-|Timestamp manipulation|
+|Log deletion — borrado de logs|
+|Log modification — modificación de logs|
+|Timestamp manipulation — manipulación de marcas de tiempo|
 
 ---
 
-## COMPLETE METHODOLOGY FLOW (EXAM GOLD)
+## COMPLETE METHODOLOGY FLOW (HIGH YIELD)
 
 |Order|
 |---|
@@ -329,7 +365,7 @@ Persistence ≠ initial exploitation
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -350,7 +386,7 @@ Persistence ≠ initial exploitation
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Cuál es el orden correcto de las 8 fases en la metodología de hacking de web applications de CEH?
 - a) Footprint → Recon → Scan → Enumerate → Exploit → Post-exploit → Persist → Cover

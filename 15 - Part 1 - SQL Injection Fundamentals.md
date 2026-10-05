@@ -1,8 +1,51 @@
-# MODULE 15 — SQL INJECTION
+# Módulo 15 · Parte 1 — SQL Injection Fundamentals
+
+> **Módulo 15 — SQL Injection** · Parte 1 de 5 · Qué es SQL injection, por qué funciona, dónde se produce, payloads básicos de authentication bypass y símbolos de comentario.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [WHAT IS SQL INJECTION](#what-is-sql-injection)
+- [WHY SQL INJECTION IS DANGEROUS](#why-sql-injection-is-dangerous)
+- [SQL — BASIC CONCEPTS](#sql--basic-concepts)
+- [WHERE SQL INJECTION OCCURS](#where-sql-injection-occurs)
+- [UNDERSTANDING NORMAL SQL QUERY 🔥](#understanding-normal-sql-query-high-yield)
+- [UNDERSTANDING SQL INJECTION QUERY](#understanding-sql-injection-query)
+- [SQL INJECTION — CORE PRINCIPLE](#sql-injection--core-principle)
+- [SQL INJECTION ATTACK GOALS](#sql-injection-attack-goals)
+- [APPLICATION TECHNOLOGIES AFFECTED](#application-technologies-affected)
+- [DATABASE TYPES TARGETED](#database-types-targeted)
+- [HTTP METHODS USED IN SQL INJECTION](#http-methods-used-in-sql-injection)
+- [SQL INJECTION — BASIC LOGIC FLOW](#sql-injection--basic-logic-flow)
+- [COMMON SQL INJECTION TEST STRINGS](#common-sql-injection-test-strings)
+- [COMMENT SYMBOLS IN SQL 🔥](#comment-symbols-in-sql-high-yield)
+- [Extras de examen (Boson Practice Test)](#extras-de-examen-boson-practice-test)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **SQL Injection** — explota la entrada de usuario no sanitizada para ejecutar consultas SQL maliciosas en la base de datos.
+- **Causa raíz** — la entrada del usuario se concatena en la consulta SQL sin una validación adecuada.
+- **`' OR '1'='1` / `' OR 1=1--`** — payloads clásicos siempre-true: la cláusula WHERE siempre es verdadera → **authentication bypass**.
+- **`--` vs `/* */`** — `--` es comentario de una línea, `/* */` de varias líneas; ambos hacen que se ignore el resto de la consulta.
+- **Injection points** — formularios de login, campos de búsqueda, parámetros de URL, cookies y HTTP headers (cualquier entrada que toque SQL).
+- **GET vs POST** — GET lleva los parámetros en la URL (query string); POST, en el body de la petición.
+- **Lenguaje irrelevante** — ASP, ASP.NET, PHP, JSP, Python, Ruby o Perl: el objetivo es la base de datos (MySQL, MSSQL, Oracle, PostgreSQL, SQLite).
+- **Impactos** — authentication/authorization bypass, information disclosure, data manipulation, data deletion y remote code execution.
+- **Error Message Disclosure** — los errores verbosos de la BD revelan su estructura interna al atacante.
+- **DELETE vs DROP** — DELETE elimina datos (filas); DROP elimina objetos (tablas, bases de datos).
+- **Spacing technique** — usar espaciado extra en la consulta para evadir las firmas de IDS/WAF.
 
 ---
 
-## LEARNING OBJECTIVES (EXAM MUST-MEMORIZE)
+## Objetivos de aprendizaje
 
 |#|Objective|
 |---|---|
@@ -13,12 +56,11 @@
 |5|Explicar contramedidas de SQL injection|
 |6|Usar diferentes herramientas de detección de SQL injection|
 
-MEMORY HOOK:  
-**Concept → Types → Method → Evasion → Defense → Tools**
+> 🧠 *Para recordar:* **Concept → Types → Method → Evasion → Defense → Tools**
 
 ---
 
-## WHAT IS SQL INJECTION (CEH DEFINITION)
+## WHAT IS SQL INJECTION
 
 |Item|Memorize Exactly|
 |---|---|
@@ -30,19 +72,18 @@ MEMORY HOOK:
 
 |Impact|
 |---|
-|Bypass de autenticación|
-|Bypass de autorización|
-|Divulgación de información|
-|Manipulación de datos|
-|Eliminación de datos|
-|Ejecución remota de código|
+|Authentication bypass — evadir la autenticación|
+|Authorization bypass — evadir la autorización|
+|Information disclosure — divulgación de información|
+|Data manipulation — manipulación de datos|
+|Data deletion — eliminación de datos|
+|Remote code execution — ejecución remota de código|
 
-MEMORY HOOK:  
-**Bypass → Read → Modify → Delete → Execute**
+> 🧠 *Para recordar:* **Bypass → Read → Modify → Delete → Execute**
 
 ---
 
-## SQL — BASIC CONCEPTS (NO ASSUMPTIONS)
+## SQL — BASIC CONCEPTS
 
 ### WHAT IS SQL
 
@@ -65,8 +106,7 @@ MEMORY HOOK:
 |CREATE|Crear objetos|
 |DROP|Eliminar objetos|
 
-MEMORY HOOK:  
-**S I U D C D**
+> 🧠 *Para recordar:* **S I U D C D**
 
 ---
 
@@ -80,12 +120,11 @@ MEMORY HOOK:
 |Cookies|
 |HTTP headers|
 
-MEMORY HOOK:  
-**En cualquier lugar donde la entrada toque SQL**
+> 🧠 *Para recordar:* **En cualquier lugar donde la entrada toque SQL**
 
 ---
 
-## UNDERSTANDING NORMAL SQL QUERY (EXAM CRITICAL)
+## UNDERSTANDING NORMAL SQL QUERY (HIGH YIELD)
 
 ### NORMAL LOGIN QUERY
 
@@ -133,12 +172,11 @@ MEMORY HOOK:
 |La cláusula WHERE siempre se evalúa como verdadera|
 |La autenticación se evita|
 
-MEMORY HOOK:  
-**Una condición verdadera rompe la lógica**
+> 🧠 *Para recordar:* **Una condición verdadera rompe la lógica**
 
 ---
 
-## SQL INJECTION — CORE PRINCIPLE (EXAM SENTENCE)
+## SQL INJECTION — CORE PRINCIPLE
 
 |Memorize|
 |---|
@@ -170,8 +208,7 @@ MEMORY HOOK:
 |Ruby|
 |Perl|
 
-MEMORY HOOK:  
-**El lenguaje es irrelevante — SQL es el objetivo**
+> 🧠 *Para recordar:* **El lenguaje es irrelevante — SQL es el objetivo**
 
 ---
 
@@ -206,12 +243,11 @@ MEMORY HOOK:
 |4|La base de datos ejecuta el SQL inyectado|
 |5|El atacante obtiene control|
 
-MEMORY HOOK:  
-**Input → Query → Execute → Control**
+> 🧠 *Para recordar:* **Input → Query → Execute → Control**
 
 ---
 
-## COMMON SQL INJECTION TEST STRINGS (EXAM RECOGNITION)
+## COMMON SQL INJECTION TEST STRINGS
 
 |Payload|
 |---|
@@ -223,20 +259,18 @@ MEMORY HOOK:
 
 ---
 
-## COMMENT SYMBOLS IN SQL (VERY IMPORTANT)
+## COMMENT SYMBOLS IN SQL (HIGH YIELD)
 
 |Symbol|Meaning|
 |---|---|
 |--|Comentario de una sola línea|
 |/* */|Comentario de múltiples líneas|
 
-MEMORY HOOK:  
-**Comment = ignorar el resto de la consulta**
+> 🧠 *Para recordar:* **Comment = ignorar el resto de la consulta**
 
 ---
 
-
-## EXAM EXTRAS (Boson Practice Test)
+## Extras de examen (Boson Practice Test)
 
 ### SQL INJECTION SPACING TECHNIQUE
 
@@ -248,7 +282,7 @@ MEMORY HOOK:
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -268,7 +302,7 @@ MEMORY HOOK:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué payload SQL se usa comúnmente para prober vulnerabilidades de authentication bypass?
 - a) `' OR 1=1--`

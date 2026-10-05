@@ -1,32 +1,69 @@
-# OBJETIVO 04 — CONTROLES Y CONTRAMEDIDAS DE CLOUD SECURITY
+# Módulo 19 · Parte 4 — Cloud Security
+
+> **Módulo 19 — Cloud Computing** · Parte 4 de 4 · Controles y contramedidas de cloud security: shared responsibility model, IAM, seguridad de red, datos, storage y cómputo, logging, incident response, disaster recovery, compliance y herramientas defensivas.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [CLOUD SECURITY RESPONSIBILITY MODEL 🔥](#cloud-security-responsibility-model-high-yield)
+- [IDENTITY AND ACCESS MANAGEMENT (IAM) CONTROLS](#identity-and-access-management-iam-controls)
+- [CLOUD NETWORK SECURITY CONTROLS](#cloud-network-security-controls)
+- [CLOUD DATA SECURITY CONTROLS](#cloud-data-security-controls)
+- [CLOUD STORAGE SECURITY CONTROLS](#cloud-storage-security-controls)
+- [CLOUD COMPUTE SECURITY CONTROLS](#cloud-compute-security-controls)
+- [CLOUD MONITORING AND LOGGING](#cloud-monitoring-and-logging)
+- [CLOUD INCIDENT RESPONSE](#cloud-incident-response)
+- [CLOUD BACKUP AND DISASTER RECOVERY](#cloud-backup-and-disaster-recovery)
+- [CLOUD COMPLIANCE AND GOVERNANCE](#cloud-compliance-and-governance)
+- [CLOUD SECURITY TOOLS (DEFENSIVE)](#cloud-security-tools-defensive)
+- [CLOUD COUNTERMEASURE SUMMARY FLOW](#cloud-countermeasure-summary-flow)
+- [EXAM TRAPS](#exam-traps)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Shared responsibility model** — proveedor = security OF the cloud (data centers, hardware, red, hypervisor, seguridad física); cliente = security IN the cloud (datos, IAM, SO y apps, cifrado, parches).
+- **Responsabilidad del cliente** — el cliente SÍ responde de las brechas por misconfiguration; la mala configuración de IAM causa la mayoría de las brechas.
+- **IAM** — primera línea de defensa: least privilege, MFA, roles en lugar de access keys, key rotation, conditional access y evitar la cuenta root.
+- **Security Groups vs NACLs** — Security Groups = stateful, a nivel de instancia; Network ACLs = stateless, a nivel de subnet.
+- **Data protection** — encryption at rest y in transit (TLS), KMS, HSM y customer-managed keys con rotación automática; el cifrado solo protege si las claves están seguras.
+- **Storage hardening** — desactivar el acceso público, bucket policies, access logging y object versioning; el storage público es la causa más común de filtraciones.
+- **Container security** — los contenedores comparten el kernel: trusted images, image scanning, runtime monitoring y least privilege.
+- **CloudTrail vs CloudWatch vs GuardDuty** — CloudTrail = registro de la actividad de API; CloudWatch = monitorización de recursos y métricas; GuardDuty = detección de amenazas.
+- **Herramientas defensivas** — nativas: GuardDuty (AWS), Defender for Cloud (Azure), Security Command Center (GCP); Prisma Cloud y Wiz = CSPM.
+- **Disaster recovery models** — backup and restore → pilot light → warm standby → multi-site (más disponibilidad = más coste).
+- **Cloud incident response** — detectar → contener → analizar la causa raíz → erradicar → recuperar → revisión post-incidente.
+- **Logging** — los atacantes borran logs para cubrir sus huellas: habilitar logs por defecto, centralizarlos y proteger su integridad.
 
 ---
 
-## MODELO DE RESPONSABILIDAD EN CLOUD SECURITY (ABSOLUTAMENTE CRÍTICO)
+## CLOUD SECURITY RESPONSIBILITY MODEL (HIGH YIELD)
 
-### MODELO DE RESPONSABILIDAD COMPARTIDA
+### SHARED RESPONSIBILITY MODEL
 
 |Cloud Provider Responsible For|Customer Responsible For|
 |---|---|
 |Data centers físicos|Datos|
 |Hardware|Configuración de IAM|
 |Infraestructura de red|SO y aplicaciones|
-|Hypervisor|Encryption|
-|Seguridad física|Gestión de parches|
+|Hypervisor|Cifrado (encryption)|
+|Seguridad física|Gestión de parches (patch management)|
 
-MEMORY HOOK:  
-**El proveedor asegura la nube, el cliente asegura lo que está en la nube**
+> 🧠 *Para recordar:* **Provider = security OF the cloud · Customer = security IN the cloud** (el proveedor protege la nube; el cliente, lo que pone en ella)
 
-EXAM TRAP:  
-Los clientes SON responsables de las filtraciones de datos causadas por mala configuración.
+> ⚠️ *Trampa de examen:* Los clientes SON responsables de las filtraciones de datos causadas por mala configuración.
 
 ---
 
-## CONTROLES DE IDENTITY AND ACCESS MANAGEMENT (IAM)
+## IDENTITY AND ACCESS MANAGEMENT (IAM) CONTROLS
 
----
-
-### CONTROLES DE SEGURIDAD IAM
+### IAM SECURITY CONTROLS
 
 |Control|Purpose|
 |---|---|
@@ -36,76 +73,66 @@ Los clientes SON responsables de las filtraciones de datos causadas por mala con
 |Key rotation|Reducir el tiempo de vida de las credenciales|
 |Conditional access|Restricciones basadas en contexto|
 
-MEMORY HOOK:  
-**IAM es la primera línea de defensa**
+> 🧠 *Para recordar:* **IAM es la primera línea de defensa**
 
 ---
 
-### MEJORES PRÁCTICAS DE IAM
+### IAM BEST PRACTICES
 
 |Practice|
 |---|
 |Evitar uso de cuenta root|
 |Aplicar MFA|
-|Usar roles en lugar de claves|
+|Usar roles en lugar de access keys|
 |Auditorías regulares de permisos|
 
 ---
 
-## CONTROLES DE CLOUD NETWORK SECURITY
+## CLOUD NETWORK SECURITY CONTROLS
 
----
-
-### SEGURIDAD DE RED VIRTUAL
+### VIRTUAL NETWORK SECURITY
 
 |Control|Explanation|
 |---|---|
-|Security Groups|Firewall con estado|
-|Network ACLs|Filtrado sin estado|
+|Security Groups|Firewall stateful (con estado) a nivel de instancia|
+|Network ACLs (NACLs)|Filtrado stateless (sin estado) a nivel de subnet|
 |Private subnets|Reducir exposición|
 |Bastion hosts|Acceso administrativo seguro|
 
-MEMORY HOOK:  
-**Security Groups = firewall de instancia**
+> 🧠 *Para recordar:* **Security Groups = firewall de instancia**
 
-EXAM TRAP:  
-Los Security Groups son STATEFUL; los NACLs son STATELESS.
+> ⚠️ *Trampa de examen:* Los Security Groups son STATEFUL; los NACLs son STATELESS.
 
 ---
 
-## CONTROLES DE CLOUD DATA SECURITY
+## CLOUD DATA SECURITY CONTROLS
 
----
-
-### MECANISMOS DE PROTECCIÓN DE DATOS
+### DATA PROTECTION MECHANISMS
 
 |Mechanism|Purpose|
 |---|---|
 |Encryption at rest|Proteger datos almacenados|
-|Encryption in transit|Segurar transferencia de datos|
-|Key management services|Control centralizado de claves|
+|Encryption in transit|Proteger la transferencia de datos (TLS/SSL)|
+|Key management services (KMS)|Control centralizado de claves|
 |Tokenization|Reducir exposición de datos sensibles|
 
 ---
 
-### GESTIÓN DE CLAVES
+### KEY MANAGEMENT
 
 |Control|
 |---|
-|Customer-managed keys|
-|Rotación automática de claves|
+|Customer-managed keys (claves gestionadas por el cliente)|
+|Automatic key rotation (rotación automática de claves)|
 |Hardware Security Modules (HSMs)|
 
-MEMORY HOOK:  
-**Las claves protegen los datos encriptados**
+> 🧠 *Para recordar:* **Las claves protegen los datos cifrados**
 
 ---
 
-## CONTROLES DE CLOUD STORAGE SECURITY
+## CLOUD STORAGE SECURITY CONTROLS
 
----
-
-### ENDURECIMIENTO DE ALMACENAMIENTO
+### STORAGE HARDENING
 
 |Control|
 |---|
@@ -114,16 +141,13 @@ MEMORY HOOK:
 |Access logging|
 |Object versioning|
 
-EXAM TRAP:  
-La exposición pública de almacenamiento es la causa más común de filtraciones en la nube.
+> ⚠️ *Trampa de examen:* La exposición pública de almacenamiento es la causa más común de filtraciones en la nube.
 
 ---
 
-## CONTROLES DE CLOUD COMPUTE SECURITY
+## CLOUD COMPUTE SECURITY CONTROLS
 
----
-
-### ENDURECIMIENTO DE VM
+### VM HARDENING
 
 |Control|
 |---|
@@ -134,25 +158,22 @@ La exposición pública de almacenamiento es la causa más común de filtracione
 
 ---
 
-### SEGURIDAD DE CONTENEDORES
+### CONTAINER SECURITY
 
 |Control|
 |---|
-|Imágenes confiables|
+|Trusted images (imágenes de confianza)|
 |Image scanning|
 |Runtime monitoring|
-|Contenedores con least privilege|
+|Least privilege containers (contenedores con mínimo privilegio)|
 
-MEMORY HOOK:  
-**Los contenedores comparten el kernel**
-
----
-
-## MONITOREO Y LOGGING EN LA NUBE
+> 🧠 *Para recordar:* **Los contenedores comparten el kernel**
 
 ---
 
-### SERVICIOS DE LOGGING
+## CLOUD MONITORING AND LOGGING
+
+### LOGGING SERVICES
 
 |Service|Purpose|
 |---|---|
@@ -163,7 +184,7 @@ MEMORY HOOK:
 
 ---
 
-### MEJORES PRÁCTICAS DE LOGGING
+### LOGGING BEST PRACTICES
 
 |Practice|
 |---|
@@ -172,40 +193,28 @@ MEMORY HOOK:
 |Proteger integridad de logs|
 |Monitorear anomalías|
 
-EXAM TRAP:  
-Los atacantes eliminan logs para cubrir sus huellas.
+> ⚠️ *Trampa de examen:* Los atacantes eliminan logs para cubrir sus huellas.
 
 ---
 
-## RESPUESTA A INCIDENTES EN LA NUBE
+## CLOUD INCIDENT RESPONSE
 
----
-
-### PASOS DE RESPUESTA A INCIDENTES
+### INCIDENT RESPONSE STEPS
 
 1. Detectar incidente
-    
 2. Contener recursos afectados
-    
 3. Analizar causa raíz
-    
 4. Erradicar amenaza
-    
 5. Recuperar servicios
-    
 6. Realizar revisión post-incidente
-    
 
-MEMORY HOOK:  
-**Detectar → Contener → Recuperar**
+> 🧠 *Para recordar:* **Detectar → Contener → Recuperar**
 
 ---
 
-## BACKUP Y DISASTER RECOVERY EN LA NUBE
+## CLOUD BACKUP AND DISASTER RECOVERY
 
----
-
-### CONTROLES DE BACKUP
+### BACKUP CONTROLS
 
 |Control|
 |---|
@@ -216,25 +225,22 @@ MEMORY HOOK:
 
 ---
 
-### MODELOS DE DISASTER RECOVERY
+### DISASTER RECOVERY MODELS
 
-|Model|
-|---|
-|Backup and restore|
-|Pilot light|
-|Warm standby|
-|Multi-site|
+|Model|Qué es|
+|---|---|
+|Backup and restore|Solo copias de seguridad que se restauran tras el desastre (menor disponibilidad y coste)|
+|Pilot light|Infraestructura mínima siempre en ejecución|
+|Warm standby|Entorno completo a escala reducida|
+|Multi-site|Entornos completos en varias ubicaciones (mayor disponibilidad y coste)|
 
-MEMORY HOOK:  
-**Mayor disponibilidad = mayor costo**
-
----
-
-## CUMPLIMIENTO Y GOBERNANZA EN LA NUBE
+> 🧠 *Para recordar:* **Mayor disponibilidad = mayor costo**
 
 ---
 
-### CONTROLES DE GOBERNANZA
+## CLOUD COMPLIANCE AND GOVERNANCE
+
+### GOVERNANCE CONTROLS
 
 |Control|
 |---|
@@ -245,7 +251,7 @@ MEMORY HOOK:
 
 ---
 
-### ESTÁNDARES DE CUMPLIMIENTO (LISTA DE EXAMEN)
+### COMPLIANCE STANDARDS
 
 |Standard|
 |---|
@@ -256,11 +262,9 @@ MEMORY HOOK:
 
 ---
 
-## HERRAMIENTAS DE CLOUD SECURITY (DEFENSIVAS)
+## CLOUD SECURITY TOOLS (DEFENSIVE)
 
----
-
-### HERRAMIENTAS NATIVAS DE SEGURIDAD EN LA NUBE
+### CLOUD NATIVE SECURITY TOOLS
 
 |Platform|Tool|
 |---|---|
@@ -270,66 +274,40 @@ MEMORY HOOK:
 
 ---
 
-### HERRAMIENTAS DE TERCEROS
+### THIRD-PARTY TOOLS
 
 |Tool|Purpose|
 |---|---|
-|Prisma Cloud|CSPM|
+|Prisma Cloud|CSPM (Cloud Security Posture Management)|
 |Wiz|Análisis de riesgos en la nube|
 |Lacework|Monitoreo de comportamiento|
 
 ---
 
-## FLUJO RESUMEN DE CONTRAMEDIDAS EN LA NUBE
+## CLOUD COUNTERMEASURE SUMMARY FLOW
 
 1. Endurecer IAM
-    
 2. Asegurar red
-    
-3. Encriptar datos
-    
+3. Cifrar datos
 4. Monitorear continuamente
-    
 5. Responder rápidamente
-    
 
-MEMORY HOOK:  
-**IAM → Red → Datos → Monitorear**
+> 🧠 *Para recordar:* **IAM → Red → Datos → Monitorear**
 
 ---
 
-## OBJETIVO 04 — BLOQUE DE MEMORIA PARA EL EXAMEN
-
-**La seguridad en la nube depende de la responsabilidad compartida.  
-La mala configuración de IAM causa la mayoría de las filtraciones.  
-El logging y monitoreo detectan ataques.  
-El encryption protege los datos, pero las claves deben estar seguras.**
-
----
-
-## EXAM TRAPS (FINAL)
+## EXAM TRAPS
 
 |Trap|Reality|
 |---|---|
 |El proveedor maneja toda la seguridad|Falso|
-|El encryption previene filtraciones|Falso|
+|El cifrado (encryption) previene filtraciones|Falso|
 |Los logs son opcionales|Falso|
 |La nube es inherentemente segura|Falso|
 
 ---
 
-## ESTADO DEL MÓDULO 19
-
-|Section|Status|
-|---|---|
-|Attacks|COMPLETE|
-|Tools|COMPLETE|
-|Countermeasures|COMPLETE|
-|Exam readiness|VERY HIGH|
-
----
-
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -339,22 +317,22 @@ El encryption protege los datos, pero las claves deben estar seguras.**
 | MFA | Multi-Factor Authentication — previene el abuso de credenciales |
 | Security Groups | Firewalls con estado que controlan el tráfico a nivel de instancia |
 | NACLs | Network Access Control Lists — filtrado sin estado a nivel de subnet |
-| Encryption at Rest | Proteger datos almacenados utilizando encryption |
-| Encryption in Transit | Segurar datos durante la transferencia utilizando TLS/SSL |
-| KMS | Key Management Service — control centralizado de claves de encryption |
+| Encryption at Rest | Proteger los datos almacenados mediante cifrado |
+| Encryption in Transit | Proteger los datos durante la transferencia mediante TLS/SSL |
+| KMS | Key Management Service — control centralizado de claves de cifrado |
 | HSM | Hardware Security Module — hardware criptográfico dedicado |
 | CloudTrail | Servicio de AWS que registra actividad de API |
 | CloudWatch | Servicio de AWS para monitoreo de recursos y métricas |
 | GuardDuty | Servicio nativo de AWS para detección de amenazas |
-| Defender for Cloud | Herramienta nativa de Azure |
+| Defender for Cloud | Herramienta nativa de seguridad de Azure |
 | CSPM | Cloud Security Posture Management — Prisma Cloud, Wiz |
 | Immutable Backups | Backups que no pueden ser modificados ni eliminados |
 | Pilot Light | Modelo de disaster recovery que mantiene infraestructura mínima en ejecución |
-| Warm Standby | Modelo de disaster recovery con entorno completo reducido |
+| Warm Standby | Modelo de disaster recovery con un entorno completo a escala reducida |
 
 ---
 
-# PREGUNTAS DE PRÁCTICA
+## Preguntas de práctica
 
 **1.** En cloud security, ¿cuál es la diferencia principal entre Security Groups y NACLs?
 - a) Security Groups son stateless, NACLs son stateful

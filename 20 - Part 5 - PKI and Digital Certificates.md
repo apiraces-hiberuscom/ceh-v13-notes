@@ -1,170 +1,184 @@
-# OBJECTIVE 05 — DIGITAL CERTIFICATES AND PKI
+# Módulo 20 · Parte 5 — PKI and Digital Certificates
+
+> **Módulo 20 — Cryptography** · Parte 5 de 6 · PKI: CA, RA, digital certificates, CRL/OCSP, emisión y validación, trust chain y tipos de certificado
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [WHY PKI EXISTS](#why-pki-exists)
+- [WHAT IS PKI](#what-is-pki)
+- [CORE PKI COMPONENTS 🔥](#core-pki-components-high-yield)
+- [HOW PKI WORKS 🔥](#how-pki-works-high-yield)
+- [TRUST CHAIN 🔥](#trust-chain-high-yield)
+- [SELF-SIGNED CERTIFICATES](#self-signed-certificates)
+- [TYPES OF DIGITAL CERTIFICATES](#types-of-digital-certificates)
+- [APPLICATIONS OF PKI 🔥](#applications-of-pki-high-yield)
+- [DIGITAL SIGNATURES VS CERTIFICATES 🔥](#digital-signatures-vs-certificates-high-yield)
+- [COMMON PKI ATTACKS](#common-pki-attacks)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **PKI (Public Key Infrastructure)** — marco que gestiona digital certificates, public keys y relaciones de confianza; resuelve el problema de confiar en una public key
+- **CA (Certificate Authority)** — trusted third party que emite y firma certificados (trust anchor); no es un proveedor de cifrado
+- **RA (Registration Authority)** — verifica la identidad y aprueba las solicitudes de certificado en nombre de la CA
+- **Digital certificate** — vincula identidad y public key: subject name, subject public key, issuer, validity period, serial number y firma de la CA
+- **CRL vs OCSP** — CRL: lista de certificados revocados mantenida por la CA; OCSP: estado en tiempo real por consulta, más rápido
+- **Emisión** — generar key pair → la RA verifica la identidad → la CA firma → se emite el certificado
+- **Validación** — firma de la CA → trust chain → expiración → estado de revocación
+- **Trust chain** — Root CA (pre-confiada) → Intermediate CA → end-entity certificate; el navegador confía en las CAs, no en los sitios
+- **Self-signed certificate** — issuer = subject; no confiable por defecto, solo para pruebas
+- **DV < OV < EV** — niveles de validación; EV es el más alto
+- **Certificate vs digital signature** — el certificado prueba QUIÉN (identidad); la firma, hecha con la private key, prueba QUÉ (el mensaje)
+- **CA compromise** — si la CA se ve comprometida, toda la PKI se derrumba
 
 ---
 
-## WHY PKI EXISTS (START HERE)
+## WHY PKI EXISTS
 
 ### THE CORE PROBLEM PKI SOLVES
 
-|Problem|
+|Problema|
 |---|
 |¿Cómo confías en que una clave pública realmente pertenece a la entidad real?|
 
 Ejemplo de problema (EXAM SCENARIO):
 
 - El atacante te da **su** clave pública
-    
 - Afirma que pertenece a un banco
-    
 - Cifras datos → el atacante descifra
-    
 
-MEMORY HOOK:  
-**Public keys need trust**
+> 🧠 *Para recordar:* **Las public keys necesitan confianza**
 
 ---
 
-## WHAT IS PKI (DEFINITION)
+## WHAT IS PKI
 
-|Term|CEH Definition|
+|Término|Definición CEH|
 |---|---|
 |Public Key Infrastructure (PKI)|Un marco que gestiona certificados digitales, claves públicas y relaciones de confianza|
 
 PKI PROPORCIONA:
 
-- Autenticación
-    
-- Integridad
-    
-- Confidencialidad
-    
-- No repudio
-    
+- Authentication
+- Integrity
+- Confidentiality
+- Non-repudiation
 
-MEMORY HOOK:  
-**PKI = trust framework**
+> 🧠 *Para recordar:* **PKI = trust framework (marco de confianza)**
 
 ---
 
-## CORE PKI COMPONENTS (ABSOLUTELY EXAM-CRITICAL)
-
----
+## CORE PKI COMPONENTS (HIGH YIELD)
 
 ### 1. CERTIFICATE AUTHORITY (CA)
 
-|Property|Explanation|
+|Propiedad|Explicación|
 |---|---|
-|Role|Tercera parte de confianza|
-|Function|Emite y firma certificados|
-|Trust|Confianza implícita por parte de los sistemas|
+|Rol|Trusted third party (tercero de confianza)|
+|Función|Emite y firma certificados|
+|Confianza|Los sistemas confían en ella implícitamente|
 
 Ejemplos:
 
 - DigiCert
-    
 - GlobalSign
-    
 - Let's Encrypt
-    
 
-MEMORY HOOK:  
-**CA = trust anchor**
+> 🧠 *Para recordar:* **CA = trust anchor**
 
-EXAM TRAP:  
-CA ≠ encryption provider.
+> ⚠️ *Trampa de examen:* CA ≠ proveedor de cifrado (emite y firma certificados; no cifra tus datos).
 
 ---
 
 ### 2. DIGITAL CERTIFICATE
 
-|Property|Explanation|
+|Propiedad|Explicación|
 |---|---|
-|Contains|Clave pública + identidad|
-|Issued by|CA|
-|Purpose|Vincular la identidad con la clave|
+|Contiene|Public key + identidad|
+|Emitido por|CA|
+|Propósito|Vincular la identidad con la public key|
 
 ---
 
-### WHAT A DIGITAL CERTIFICATE CONTAINS (EXAM FAVORITE)
+### WHAT A DIGITAL CERTIFICATE CONTAINS (HIGH YIELD)
 
-|Field|
+|Campo|
 |---|
-|Nombre del sujeto|
-|Clave pública del sujeto|
-|Emisor (CA)|
-|Período de validez|
-|Número de serie|
-|Firma digital de la CA|
+|Subject name (nombre del sujeto)|
+|Subject public key (clave pública del sujeto)|
+|Issuer (emisor: la CA)|
+|Validity period (período de validez)|
+|Serial number (número de serie)|
+|Digital signature de la CA|
 
-MEMORY HOOK:  
-**Certificate = ID card for public key**
+> 🧠 *Para recordar:* **Certificate = DNI de la public key**
 
 ---
 
 ### 3. REGISTRATION AUTHORITY (RA)
 
-|Property|Explanation|
+|Propiedad|Explicación|
 |---|---|
-|Role|Verifica la identidad|
-|Function|Aprueba solicitudes de certificados|
-|Relation|Trabaja en nombre de la CA|
+|Rol|Verifica la identidad|
+|Función|Aprueba solicitudes de certificados|
+|Relación|Trabaja en nombre de la CA|
 
-MEMORY HOOK:  
-**RA = identity checker**
+> 🧠 *Para recordar:* **RA = verificador de identidad**
 
 ---
 
 ### 4. CERTIFICATE REVOCATION LIST (CRL)
 
-|Property|Explanation|
+|Propiedad|Explicación|
 |---|---|
-|Purpose|Lista de certificados revocados|
-|Reason|Certificados comprometidos o expirados|
-|Maintained by|CA|
+|Propósito|Lista de certificados revocados|
+|Motivo|Certificados comprometidos o invalidados antes de su fecha de expiración|
+|Mantenida por|CA|
 
-MEMORY HOOK:  
-**CRL = blacklist of certs**
+> 🧠 *Para recordar:* **CRL = lista negra de certificados**
 
 ---
 
 ### 5. ONLINE CERTIFICATE STATUS PROTOCOL (OCSP)
 
-|Property|Explanation|
+|Propiedad|Explicación|
 |---|---|
-|Purpose|Estado del certificado en tiempo real|
-|Faster than|CRL|
-|Query-based|Sí|
+|Propósito|Estado del certificado en tiempo real|
+|Más rápido que|CRL|
+|Basado en consultas|Sí|
 
-MEMORY HOOK:  
-**OCSP = live cert check**
+> 🧠 *Para recordar:* **OCSP = comprobación del certificado en vivo**
 
-EXAM TRAP:  
-OCSP does NOT replace certificates.
+> ⚠️ *Trampa de examen:* OCSP NO reemplaza a los certificados (solo consulta su estado).
 
 ---
 
-## HOW PKI WORKS (STEP-BY-STEP LOGIC — MEMORIZE)
-
----
+## HOW PKI WORKS (HIGH YIELD)
 
 ### CERTIFICATE ISSUANCE PROCESS
 
-|Step|Description|
+|Paso|Descripción|
 |---|---|
-|1|El usuario genera un par de claves|
+|1|El usuario genera un key pair (par de claves)|
 |2|Envía la clave pública a la RA|
 |3|La RA verifica la identidad|
 |4|La CA firma la clave pública|
 |5|Se emite el certificado|
 
-MEMORY HOOK:  
-**Generate → Verify → Sign → Trust**
+> 🧠 *Para recordar:* **Generar → Verificar → Firmar → Confiar**
 
 ---
 
-### CERTIFICATE VALIDATION PROCESS (VERY IMPORTANT)
+### CERTIFICATE VALIDATION PROCESS (HIGH YIELD)
 
-|Step|Description|
+|Paso|Descripción|
 |---|---|
 |1|El cliente recibe el certificado|
 |2|Verifica la firma de la CA|
@@ -172,161 +186,111 @@ MEMORY HOOK:
 |4|Verifica la expiración|
 |5|Verifica el estado de revocación|
 
-MEMORY HOOK:  
-**Signature → Chain → Time → Revocation**
+> 🧠 *Para recordar:* **Firma → Cadena → Fecha → Revocación**
 
 ---
 
-## TRUST CHAIN (MOST CONFUSING PART — SIMPLIFIED)
-
----
+## TRUST CHAIN (HIGH YIELD)
 
 ### TRUST CHAIN EXPLAINED
 
-|Level|
+|Nivel|
 |---|
 |Root CA|
 |Intermediate CA|
-|Certificado de entidad final|
+|End-entity certificate (certificado de entidad final)|
 
 LÓGICA:
 
 - La Root CA es pre-confiada
-    
 - La Root firma la Intermediate
-    
 - La Intermediate firma el sitio web
-    
 
-MEMORY HOOK:  
-**Trust flows downward**
+> 🧠 *Para recordar:* **La confianza fluye hacia abajo**
 
-EXAM TRAP:  
-Browsers do NOT trust websites directly — they trust CAs.
+> ⚠️ *Trampa de examen:* Los navegadores NO confían directamente en los sitios web — confían en las CAs.
 
 ---
 
 ## SELF-SIGNED CERTIFICATES
 
-|Property|Explanation|
+|Propiedad|Explicación|
 |---|---|
-|Issuer|Igual que el sujeto|
-|Trust|NO es confiable por defecto|
-|Usage|Pruebas|
+|Issuer|Igual que el subject|
+|Confianza|NO es confiable por defecto|
+|Uso|Pruebas|
 
-MEMORY HOOK:  
-**Self-signed = no external trust**
-
----
-
-## TYPES OF DIGITAL CERTIFICATES (EXAM LIST)
+> 🧠 *Para recordar:* **Self-signed = sin confianza externa**
 
 ---
+
+## TYPES OF DIGITAL CERTIFICATES
 
 ### BASED ON VALIDATION LEVEL
 
-|Type|Description|
+|Tipo|Descripción|
 |---|---|
 |DV|Domain Validation|
 |OV|Organization Validation|
 |EV|Extended Validation|
 
-MEMORY HOOK:  
-**DV < OV < EV**
+> 🧠 *Para recordar:* **DV < OV < EV**
 
 ---
 
 ### BASED ON PURPOSE
 
-|Certificate|
+|Certificado|
 |---|
 |Certificado SSL/TLS|
-|Certificado de firma de código|
+|Code signing certificate (firma de código)|
 |Certificado de email (S/MIME)|
-|Certificado de autenticación de cliente|
+|Client authentication certificate (autenticación de cliente)|
 
 ---
 
-## APPLICATIONS OF PKI (EXAM QUESTIONS LOVE THIS)
+## APPLICATIONS OF PKI (HIGH YIELD)
 
-|Application|
+|Aplicación|
 |---|
 |SSL/TLS|
 |Email seguro|
 |Firmas digitales|
-|Tarjetas inteligentes|
+|Smart cards (tarjetas inteligentes)|
 |Autenticación VPN|
 
-MEMORY HOOK:  
-**PKI everywhere trust matters**
+> 🧠 *Para recordar:* **PKI allí donde importa la confianza**
 
 ---
 
-## DIGITAL SIGNATURES VS CERTIFICATES (CONFUSION ZONE)
+## DIGITAL SIGNATURES VS CERTIFICATES (HIGH YIELD)
 
-|Feature|Digital Signature|Certificate|
+|Característica|Digital signature|Certificate|
 |---|---|---|
-|Purpose|Verificar mensaje|Verificar identidad|
-|Uses key|Clave privada|Clave pública|
-|Issued by|Usuario|CA|
+|Propósito|Verificar el mensaje|Verificar la identidad|
+|Clave usada|Private key|Public key|
+|Emitido por|Usuario|CA|
 
-MEMORY HOOK:  
-**Cert proves WHO, signature proves WHAT**
+> 🧠 *Para recordar:* **El certificado prueba QUIÉN, la firma prueba QUÉ**
 
 ---
 
-## COMMON PKI ATTACKS (EXAM PREVIEW)
+## COMMON PKI ATTACKS
 
-|Attack|
+|Ataque|
 |---|
-|CA falsa|
-|Suplantación de certificados|
-|Compromiso de CA|
+|Fake CA (CA falsa)|
+|Certificate spoofing (suplantación de certificados)|
+|CA compromise (compromiso de la CA)|
 |Man-in-the-middle|
 
-EXAM TRAP:  
-If CA is compromised, PKI collapses.
+> ⚠️ *Trampa de examen:* Si la CA se ve comprometida, toda la PKI se derrumba.
 
 ---
 
-## OBJECTIVE 05 — MEMORY CHECKLIST (CRITICAL)
+## Flashcards
 
-Debes recordar:
-
-- PKI = marco de confianza
-    
-- La CA firma certificados
-    
-- Los certificados vinculan la identidad con la clave pública
-    
-- Cadena de confianza = Root → Intermediate → Entidad final
-    
-- CRL = lista de certificados revocados
-    
-- OCSP = estado del certificado en tiempo real
-    
-- Los certificados autofirmados no son confiables
-    
-- PKI resuelve el problema de confianza de claves públicas
-    
-
----
-
-### STATUS
-
-Objective 05: COMPLETE (PKI-focused)
-
----
-
-Reply **next** to continue with:
-
-**OBJECTIVE 06 — CRYPTOGRAPHY ATTACKS AND CRYPTANALYSIS TECHNIQUES (birthday attack, brute force, side-channel, MITM, padding oracle, downgrade attacks)**
-
----
-
-# EXAM FLASHCARDS
-
-| Term | Definition |
+| Término | Definición |
 |------|------------|
 | PKI | Public Key Infrastructure — marco que gestiona certificados digitales, claves públicas y confianza |
 | Certificate Authority (CA) | Tercera parte de confianza que emite y firma certificados digitales |
@@ -348,7 +312,7 @@ Reply **next** to continue with:
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** ¿Qué problema resuelve PKI?
 - a) Almacenamiento de contraseñas

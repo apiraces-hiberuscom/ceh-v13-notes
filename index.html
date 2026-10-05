@@ -130,6 +130,12 @@ a:hover{text-decoration:underline}
 .content tbody tr:hover{background:var(--bg-hover)}
 .content a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border .15s}
 .content a:hover{border-bottom-color:var(--accent)}
+.content h1,.content h2,.content h3{scroll-margin-top:16px}
+.content details{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 16px;margin:16px 0}
+.content details summary{cursor:pointer;color:var(--text-secondary);font-size:.9rem}
+.content details[open] summary{margin-bottom:10px}
+.content details ul{margin:0}
+.content details li{margin-bottom:2px;font-size:.88rem}
 
 /* MEMORY HOOKS & EXAM TRAPS */
 .content p:has(strong:first-child) {margin-top:16px}
@@ -340,10 +346,11 @@ const MODULES = [
   {id:'m15',num:'15',title:'SQL Injection',files:['15 - Part 1 - SQL Injection Fundamentals.md','15 - Part 2 - SQLi Types.md','15 - Part 3 - SQLi Methodology.md','15 - Part 4 - SQLi Evasion.md','15 - Part 5 - SQLi Countermeasures.md']},
   {id:'m16',num:'16',title:'Hacking Wireless Networks',files:['16 - Part 1 - Wireless Concepts.md','16 - Part 2 - Wireless Encryption.md','16 - Part 3 - Wireless Attacks.md','16 - Part 4 - Wireless Hacking Methodology.md','16 - Part 5 - Wireless Countermeasures.md']},
   {id:'m17',num:'17',title:'Hacking Mobile Platforms',files:['17 - Part 1 - Mobile Attack Vectors.md','17 - Part 2 - Android Threats.md','17 - Part 3 - iOS Threats.md','17 - Part 4 - MDM and BYOD.md','17 - Part 5 - Mobile Security Tools.md']},
-  {id:'m18',num:'18',title:'Hacking IoT & OT',files:['18 - Part 1 - IoT Concepts.md','18 - Part 2 - OT and SCADA.md','18 - Part 3 - IoT Threats.md','18 - Part 4 - IoT Hacking Methodology.md','18 - Part 5 - IoT Countermeasures.md']},
+  {id:'m18',num:'18',title:'Hacking IoT & OT',files:['18 - Part 1 - IoT Concepts.md','18 - Part 2 - IoT Threats and Attacks.md','18 - Part 3 - IoT Hacking Tools and Techniques.md','18 - Part 4 - OT Concepts and Attacks.md','18 - Part 5 - IoT and OT Countermeasures.md']},
   {id:'m19',num:'19',title:'Cloud Computing',files:['19 - Part 1 - Cloud Concepts.md','19 - Part 2 - Cloud Threats.md','19 - Part 3 - Cloud Attacks.md','19 - Part 4 - Cloud Security.md']},
-  {id:'m20',num:'20',title:'Cryptography',files:['20 - Part 1 - Symmetric and Asymmetric.md','20 - Part 2 - Hashing.md','20 - Part 3 - PKI.md','20 - Part 4 - Wireless Crypto.md','20 - Part 5 - Email and Disk Crypto.md','20 - Part 6 - Cryptographic Attacks.md']},
+  {id:'m20',num:'20',title:'Cryptography',files:['20 - Part 1 - Cryptography Concepts.md','20 - Part 2 - Symmetric Encryption.md','20 - Part 3 - Asymmetric Encryption.md','20 - Part 4 - Hash Functions.md','20 - Part 5 - PKI and Digital Certificates.md','20 - Part 6 - Cryptographic Attacks.md']},
   {id:'extra',num:'EX',title:'Web Servers Deep Dive',files:['Extra - Web Servers Deep Dive.md']},
+  {id:'repaso',num:'RF',title:'Repaso final',files:['REPASO-FINAL.md']},
   {id:'quiz',num:'QZ',title:'Quiz Mode (674)',files:[]}
 ];
 
@@ -355,7 +362,7 @@ const STUDY_PLAN = [
   {label:'Week 5 - Web (heavy)',modules:['m14','m15']},
   {label:'Week 6 - Wireless & Mobile',modules:['m16','m17']},
   {label:'Week 7 - IoT, Cloud, Crypto',modules:['m18','m19','m20']},
-  {label:'Week 8 - Review',modules:['extra','quiz']}
+  {label:'Week 8 - Review',modules:['repaso','extra','quiz']}
 ];
 
 let currentModule = 'home';
@@ -447,7 +454,7 @@ function navigateTo(moduleId,fileIdx){
 
 async function loadModule(m,fileIdx){
   const cacheKey=m.id+'_'+fileIdx;
-  if(moduleCache[cacheKey]){renderContent(moduleCache[cacheKey]);return}
+  if(moduleCache[cacheKey]){renderContent(moduleCache[cacheKey],fileIdx);return}
   try{
     const allContent=[];
     for(const file of m.files){
@@ -456,7 +463,7 @@ async function loadModule(m,fileIdx){
       allContent.push(await resp.text());
     }
     moduleCache[cacheKey]=allContent.join('\n\n---\n\n');
-    renderContent(moduleCache[cacheKey]);
+    renderContent(moduleCache[cacheKey],fileIdx);
   }catch(e){
     const content=document.getElementById('contentArea');
     content.className='content';
@@ -464,7 +471,40 @@ async function loadModule(m,fileIdx){
   }
 }
 
-function renderContent(md){
+/* Heading ids follow GitHub's rules so the per-note index links work. A module page joins several
+   note files (each starting with its own H1), so ids and in-page links get a per-file suffix. */
+function slugify(text){return text.trim().toLowerCase().replace(/[^\p{L}\p{N}_\- ]/gu,'').replace(/ /g,'-')}
+function addHeadingAnchors(content){
+  let file=-1,seen={};
+  for(const el of content.children){
+    if(el.tagName==='H1'){file++;seen={}}
+    const suffix=file>0?'--f'+file:'';
+    if(/^H[1-6]$/.test(el.tagName)){
+      const base=slugify(el.textContent);let slug=base;
+      while(slug in seen){seen[base]++;slug=base+'-'+seen[base]}
+      seen[slug]=0;
+      el.id=slug+suffix;
+    }
+    el.querySelectorAll('a[href^="#"]').forEach(a=>a.setAttribute('href',a.getAttribute('href')+suffix));
+  }
+}
+document.getElementById('contentArea').addEventListener('click',e=>{
+  const a=e.target.closest('a');
+  if(!a)return;
+  const href=a.getAttribute('href')||'';
+  if(href.startsWith('#')){
+    const target=document.getElementById(decodeURIComponent(href.slice(1)));
+    if(target){e.preventDefault();target.scrollIntoView({block:'start'})}
+    return;
+  }
+  const file=decodeURIComponent(href.split('#')[0]);
+  if(!/^[a-z]+:/i.test(href)&&file.endsWith('.md')){
+    const m=MODULES.find(x=>x.files.includes(file));
+    if(m){e.preventDefault();navigateTo(m.id,m.files.indexOf(file))}
+  }
+});
+
+function renderContent(md,fileIdx){
   const content=document.getElementById('contentArea');
   marked.setOptions({
     gfm:true,
@@ -477,7 +517,12 @@ function renderContent(md){
   let html=marked.parse(md);
   content.innerHTML=html;
   content.className='content';
-  document.getElementById('contentWrap').scrollTop=0;
+  addHeadingAnchors(content);
+  const wrap=document.getElementById('contentWrap');
+  wrap.style.scrollBehavior='auto';
+  wrap.scrollTop=0;
+  if(fileIdx>0)content.querySelectorAll(':scope > h1')[fileIdx]?.scrollIntoView({block:'start'});
+  wrap.style.scrollBehavior='';
   content.querySelectorAll('pre code').forEach(block=>hljs.highlightElement(block));
 }
 
@@ -538,8 +583,11 @@ async function buildSearchIndex(){
         if(!resp.ok)continue;
         const text=await resp.text();
         const lines=text.split('\n');
-        let currentSection='';
+        let currentSection='',inToc=false;
         lines.forEach((line,i)=>{
+          if(line.trim()==='<!-- toc -->')inToc=true;
+          if(line.trim()==='<!-- /toc -->'){inToc=false;return}
+          if(inToc)return;
           if(line.startsWith('#'))currentSection=line.replace(/^#+\s*/,'');
           if(line.trim().length>20){
             chunks.push({module:m.id,moduleTitle:m.title,num:m.num,file:file,section:currentSection,text:line.trim(),line:i});

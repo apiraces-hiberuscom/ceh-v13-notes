@@ -1,18 +1,58 @@
-# MODULE 14 – HACKING WEB APPLICATIONS
+# Módulo 14 · Parte 1 — Foundations
 
-## PART 1: FOUNDATIONS (PAGES 1–14)
+> **Módulo 14 — Hacking Web Applications** · Parte 1 de 5 · Conceptos base de web applications: funcionamiento, arquitectura de 3 capas, web services (SOAP/REST, UDDI, WSDL) y el vulnerability stack de 7 capas.
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+- [2. WEB APPLICATION – CEH DEFINITION](#2-web-application--ceh-definition)
+- [3. HOW WEB APPLICATIONS WORK](#3-how-web-applications-work)
+- [4. ADVANTAGES OF WEB APPLICATIONS](#4-advantages-of-web-applications)
+- [5. WHY WEB APPLICATIONS ARE VULNERABLE](#5-why-web-applications-are-vulnerable)
+- [6. WEB APPLICATION ARCHITECTURE (3-LAYER MODEL)](#6-web-application-architecture-3-layer-model)
+- [7. WEB SERVICES – CEH DEFINITION](#7-web-services--ceh-definition)
+- [8. WEB SERVICE ROLES 🔥](#8-web-service-roles-high-yield)
+- [9. WEB SERVICE OPERATIONS (PUB–FIND–BIND)](#9-web-service-operations-pubfindbind)
+- [10. TYPES OF WEB SERVICES](#10-types-of-web-services)
+- [11. SOAP VS REST](#11-soap-vs-rest)
+- [12. WEB SERVICE COMPONENTS](#12-web-service-components)
+- [13. VULNERABILITY STACK (7 LAYERS) 🔥](#13-vulnerability-stack-7-layers-high-yield)
+- [14. LAYER-WISE ATTACK FOCUS 🔥](#14-layer-wise-attack-focus-high-yield)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Web Application** — programa que se ejecuta en el browser y hace de interfaz con el web server vía HTTP/HTTPS (arquitectura cliente–servidor).
+- **3-layer architecture** — Presentation Layer (UI, browser) → Business Logic Layer (web server + application server) → Database Layer (DBMS).
+- **Client-side validation** — NO es seguridad: se puede eludir; siempre hace falta validación en el servidor.
+- **Static vs dynamic content** — el estático lo devuelve el web server directamente; el dinámico se reenvía al application server (y a la base de datos si hace falta).
+- **Causa raíz** — CEH vincula la mayoría de los ataques web con **entrada del usuario + mala validación**.
+- **Web service roles** — Service Provider (aloja y publica), Service Requester (consume), Service Registry (almacena las descripciones).
+- **Publish → Find → Bind (PFB)** — orden de las operaciones de un web service.
+- **SOAP vs REST** — SOAP: solo XML, estricto, más lento; REST: JSON o XML sobre HTTP, ligero y más rápido.
+- **UDDI / WSDL / WS-Security** — service registry / descripción del servicio / seguridad de los mensajes SOAP.
+- **Vulnerability stack (7 capas)** — L7 web app → L6 third-party components → L5 web server → L4 database → L3 OS → L2 network → L1 IPS/IDS.
+- **Ataques por capa** — L7 XSS y validación de entrada, L4 SQL injection, L3 privilege escalation, L2 DoS, L1 IDS evasion.
+- **Objetivos del módulo (C-T-M-A-S)** — Concepts, Threats, Methodology, APIs, Security.
 
 ---
 
-## 1. MODULE OBJECTIVES (MEMORIZE VERBATIM)
+## Objetivos de aprendizaje
 
 |Objective ID|Objective|
 |---|---|
-|O1|Resumir los conceptos de web application|
-|O2|Demostrar las amenazas de web application|
-|O3|Explicar la metodología de hacking de web application|
-|O4|Explicar web API y webhooks|
-|O5|Resumir las técnicas utilizadas en la seguridad de web applications|
+|O1|Summarize web application concepts — resumir los conceptos de web applications|
+|O2|Demonstrate web application threats — demostrar las amenazas de web applications|
+|O3|Explain web application hacking methodology — explicar la metodología de hacking de web applications|
+|O4|Explain web API and webhooks — explicar web API y webhooks|
+|O5|Summarize techniques used in web application security — resumir las técnicas de seguridad de web applications|
 
 **Memory Hook:**  
 **C-T-M-A-S** → _Concepts, Threats, Methodology, APIs, Security_
@@ -28,19 +68,14 @@
 **Key CEH Properties**
 
 - Se ejecuta dentro de un **browser**
-    
 - Utiliza **arquitectura cliente–servidor**
-    
 - Maneja **contenido dinámico**
-    
 - Se comunica a través de **HTTP/HTTPS**
-    
 - Se interconecta con **bases de datos y servicios**
-    
 
 ---
 
-## 3. HOW WEB APPLICATIONS WORK (EXAM FLOW)
+## 3. HOW WEB APPLICATIONS WORK
 
 |Step|Description|
 |---|---|
@@ -58,7 +93,7 @@
 
 ---
 
-## 4. ADVANTAGES OF WEB APPLICATIONS (EXAM LIST)
+## 4. ADVANTAGES OF WEB APPLICATIONS
 
 |Advantage|
 |---|
@@ -124,15 +159,10 @@ La validación del lado del cliente **NO ES SEGURIDAD**
 **Technologies**
 
 - Java
-    
 - PHP
-    
 - Python
-    
 - .NET
-    
 - Node.js
-    
 
 ---
 
@@ -156,7 +186,7 @@ Los ataques a bases de datos ≠ ataques al web server, pero **las web apps expo
 
 ---
 
-## 8. WEB SERVICE ROLES (EXAM FAVORITE)
+## 8. WEB SERVICE ROLES (HIGH YIELD)
 
 |Role|Description|
 |---|---|
@@ -188,7 +218,7 @@ Los ataques a bases de datos ≠ ataques al web server, pero **las web apps expo
 
 ---
 
-## 11. SOAP VS REST (EXAM TABLE)
+## 11. SOAP VS REST
 
 |Feature|SOAP|REST|
 |---|---|---|
@@ -209,38 +239,38 @@ Los ataques a bases de datos ≠ ataques al web server, pero **las web apps expo
 
 ---
 
-## 13. VULNERABILITY STACK (7 LAYERS – VERY IMPORTANT)
+## 13. VULNERABILITY STACK (7 LAYERS) (HIGH YIELD)
 
 |Layer|Target|
 |---|---|
-|Layer 7|Lógica de la web application|
-|Layer 6|Componentes de terceros|
+|Layer 7|Web application logic — lógica de la web application|
+|Layer 6|Third-party components — componentes de terceros|
 |Layer 5|Web server|
-|Layer 4|Base de datos|
-|Layer 3|Sistema operativo|
-|Layer 2|Red|
-|Layer 1|IPS/IDS|
+|Layer 4|Database — base de datos|
+|Layer 3|Operating system — sistema operativo|
+|Layer 2|Network — red|
+|Layer 1|IPS/IDS (Security)|
 
 **Memory Hook:**  
 **App → Third-Party → Web → DB → OS → Network → Security**
 
 ---
 
-## 14. LAYER-WISE ATTACK FOCUS (EXAM GOLD)
+## 14. LAYER-WISE ATTACK FOCUS (HIGH YIELD)
 
 |Layer|Typical Attacks|
 |---|---|
-|7|XSS, validación de entradas|
-|6|Abuso de pasarela de pago (payment gateway)|
-|5|Mala configuración del servidor|
+|7|XSS, input validation (validación de entradas)|
+|6|Payment gateway abuse — abuso de la pasarela de pago|
+|5|Server misconfiguration — mala configuración del servidor|
 |4|SQL injection|
-|3|Elevación de privilegios (privilege escalation)|
+|3|Privilege escalation — escalada de privilegios|
 |2|DoS|
-|1|Evasión de IDS|
+|1|IDS evasion — evasión de IDS|
 
 ---
 
-# EXAM FLASHCARDS
+## Flashcards
 
 | Term | Definition |
 |------|------------|
@@ -260,7 +290,7 @@ Los ataques a bases de datos ≠ ataques al web server, pero **las web apps expo
 
 ---
 
-# PRACTICE QUESTIONS
+## Preguntas de práctica
 
 **1.** En la arquitectura de 3 capas de web application del CEH, ¿qué capa es responsable de ejecutar la lógica de negocio y el procesamiento de decisiones?
 - a) Presentation Layer

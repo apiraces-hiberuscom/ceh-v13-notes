@@ -1,179 +1,204 @@
-# OBJETIVO 06 — ATAQUES A CRIPTOGRAFÍA Y CRIPTANÁLISIS
+# Módulo 20 · Parte 6 — Cryptographic Attacks
+
+> **Módulo 20 — Cryptography** · Parte 6 de 6 · Cryptanalysis y ataques criptográficos (COA, KPA, CPA, CCA, birthday, side-channel, padding oracle, downgrade, replay) y herramientas
+
+<!-- toc -->
+<details>
+<summary><b>Índice</b></summary>
+
+- [Lo esencial para el examen](#lo-esencial-para-el-examen)
+- [OBJECTIVE 06 — CRYPTOGRAPHY ATTACKS AND CRYPTANALYSIS](#objective-06--cryptography-attacks-and-cryptanalysis)
+- [CLASIFICACIÓN DE CRYPTOGRAPHY ATTACKS 🔥](#clasificación-de-cryptography-attacks-high-yield)
+- [BRUTE-FORCE ATTACK](#brute-force-attack)
+- [DICTIONARY ATTACK](#dictionary-attack)
+- [RAINBOW TABLE ATTACK](#rainbow-table-attack)
+- [BIRTHDAY ATTACK 🔥](#birthday-attack-high-yield)
+- [COLLISION ATTACK](#collision-attack)
+- [MAN-IN-THE-MIDDLE (MITM) EN CRIPTOGRAFÍA](#man-in-the-middle-mitm-en-criptografía)
+- [SIDE-CHANNEL ATTACKS 🔥](#side-channel-attacks-high-yield)
+- [PADDING ORACLE ATTACK 🔥](#padding-oracle-attack-high-yield)
+- [DOWNGRADE ATTACK](#downgrade-attack)
+- [REPLAY ATTACK](#replay-attack)
+- [CRYPTOGRAPHY MISCONFIGURATION ATTACKS](#cryptography-misconfiguration-attacks)
+- [HERRAMIENTAS COMUNES DE CRIPTOGRAFÍA](#herramientas-comunes-de-criptografía)
+- [Flashcards](#flashcards)
+- [Preguntas de práctica](#preguntas-de-práctica)
+
+</details>
+<!-- /toc -->
+
+## Lo esencial para el examen
+
+- **Cryptanalysis** — analizar sistemas criptográficos para hallar debilidades (algoritmos, claves, implementación) y recuperar plaintext o claves sin autorización
+- **Ciphertext-only attack (COA)** — el atacante solo tiene ciphertext: es el ataque más difícil
+- **Known-plaintext attack (KPA)** — tiene pares plaintext + ciphertext (p. ej. cabeceras de archivo conocidas) para recuperar la clave
+- **Chosen-plaintext (CPA) vs chosen-ciphertext (CCA)** — CPA elige plaintext y observa el ciphertext (encryption oracle); CCA elige ciphertext y observa el descifrado (padding oracle)
+- **Birthday attack** — busca colisiones de hash con la birthday paradox: esfuerzo ≈ **2^(n/2)** para un hash de n bits
+- **Collision attack** — dos entradas → mismo hash; afecta a MD5 y SHA-1 (rotos) y permite falsificar digital signatures
+- **MITM en criptografía** — explota el key exchange sin autenticar (Diffie-Hellman); defensa: autenticación
+- **Side-channel attacks** — explotan fugas físicas, no matemáticas: timing attack, power analysis, EM analysis, acoustic
+- **Padding oracle attack** — explota los mensajes de error de padding en modo CBC para inferir el plaintext
+- **Downgrade / replay attack** — downgrade fuerza cripto débil (TLS → SSL) por backward compatibility (defensa: deshabilitar protocolos legacy); replay se frena con nonces y timestamps
+- **Repaso del módulo** — el salting derrota las rainbow tables; AES es seguro; ECC usa claves más pequeñas; PKI resuelve el problema de confianza; CRL (lista) vs OCSP (tiempo real)
+- **Herramientas** — Hashcat y John the Ripper (password cracking), Cain & Abel (recuperación de credenciales), OpenSSL (`enc`, `dgst`, `genrsa`, `req`), CrypTool (aprendizaje)
 
 ---
 
-## QUÉ ES CRIPTANÁLISIS (DEFINICIÓN DE EXAMEN)
+## OBJECTIVE 06 — CRYPTOGRAPHY ATTACKS AND CRYPTANALYSIS
+
+### QUÉ ES CRYPTANALYSIS
 
 |Término|Definición|
 |---|---|
-|Cryptanalysis|El proceso de analizar sistemas criptográficos para descubrir debilidades y recuperar texto plano o claves sin autorización|
+|Cryptanalysis|El proceso de analizar sistemas criptográficos para descubrir debilidades y recuperar el plaintext o las claves sin autorización|
 
-MEMORY HOOK:  
-**Cryptoanalysis = breaking crypto**
+> 🧠 *Para recordar:* **Cryptanalysis = romper la criptografía**
 
 ---
 
-## OBJETIVOS DEL CRIPTANÁLISIS
+### OBJETIVOS DEL CRYPTANALYSIS
 
 |Objetivo|
 |---|
-|Recuperar texto plano|
+|Recuperar el plaintext|
 |Descubrir claves secretas|
-|Omitir protecciones criptográficas|
+|Eludir (bypass) las protecciones criptográficas|
 
 ---
 
-# CLASIFICACIÓN DE ATAQUES A CRIPTOGRAFÍA (FAVORITO DEL EXAMEN)
+## CLASIFICACIÓN DE CRYPTOGRAPHY ATTACKS (HIGH YIELD)
 
----
+### SEGÚN EL CONOCIMIENTO DEL ATACANTE
 
-## SEGÚN EL CONOCIMIENTO DEL ATACANTE
-
----
-
-### CIPHERTEXT-ONLY ATTACK (COA)
+#### CIPHERTEXT-ONLY ATTACK (COA)
 
 |Propiedad|Descripción|
 |---|---|
-|Attacker has|Solo ciphertext|
-|Goal|Recuperar texto plano|
-|Difficulty|El más difícil|
+|El atacante tiene|Solo ciphertext|
+|Objetivo|Recuperar el plaintext|
+|Dificultad|El más difícil|
 
-MEMORY HOOK:  
-**Ciphertext only = blind attack**
+> 🧠 *Para recordar:* **Ciphertext-only = ataque a ciegas**
 
 ---
 
-### KNOWN-PLAINTEXT ATTACK (KPA)
+#### KNOWN-PLAINTEXT ATTACK (KPA)
 
 |Propiedad|Descripción|
 |---|---|
-|Attacker has|Pares de texto plano + ciphertext|
-|Goal|Recuperar clave|
-|Example|Encabezados de archivos conocidos|
+|El atacante tiene|Pares plaintext + ciphertext|
+|Objetivo|Recuperar la clave|
+|Ejemplo|Cabeceras de archivo conocidas|
 
-MEMORY HOOK:  
-**Known plaintext leaks structure**
+> 🧠 *Para recordar:* **El known plaintext revela la estructura**
 
 ---
 
-### CHOSEN-PLAINTEXT ATTACK (CPA)
+#### CHOSEN-PLAINTEXT ATTACK (CPA)
 
 |Propiedad|Descripción|
 |---|---|
-|Attacker can|Elegir texto plano|
-|Observes|Ciphertext|
-|Example|Encryption oracle|
+|El atacante puede|Elegir el plaintext|
+|Observa|El ciphertext|
+|Ejemplo|Encryption oracle|
 
-MEMORY HOOK:  
-**Chosen input = strong attacker**
+> 🧠 *Para recordar:* **Entrada elegida = atacante fuerte**
 
 ---
 
-### CHOSEN-CIPHERTEXT ATTACK (CCA)
+#### CHOSEN-CIPHERTEXT ATTACK (CCA)
 
 |Propiedad|Descripción|
 |---|---|
-|Attacker can|Elegir ciphertext|
-|Observes|Salida descifrada|
-|Example|Padding oracle|
+|El atacante puede|Elegir el ciphertext|
+|Observa|La salida descifrada|
+|Ejemplo|Padding oracle|
 
-MEMORY HOOK:  
-**Chosen ciphertext = very powerful**
+> 🧠 *Para recordar:* **Chosen ciphertext = muy potente**
 
 ---
 
-# BRUTE-FORCE ATTACK
+## BRUTE-FORCE ATTACK
 
 |Propiedad|Descripción|
 |---|---|
-|Method|Probar todas las claves posibles|
-|Effective against|Tamaños de clave pequeños|
-|Prevented by|Claves fuertes|
+|Método|Probar todas las claves posibles|
+|Eficaz contra|Key sizes pequeños|
+|Se previene con|Claves fuertes|
 
-MEMORY HOOK:  
-**Short key = brute-force bait**
+> 🧠 *Para recordar:* **Clave corta = presa fácil del brute force**
 
 ---
 
-# DICTIONARY ATTACK
+## DICTIONARY ATTACK
 
 |Propiedad|Descripción|
 |---|---|
-|Method|Adivinar claves/contraseñas|
-|Uses|Listas de palabras|
-|Target|Contraseñas débiles|
+|Método|Adivinar claves/contraseñas|
+|Usa|Wordlists (listas de palabras)|
+|Objetivo|Contraseñas débiles|
 
 ---
 
-# RAINBOW TABLE ATTACK
+## RAINBOW TABLE ATTACK
 
 |Propiedad|Descripción|
 |---|---|
-|Target|Hashes de contraseñas|
-|Method|Tablas de hashes precalculadas|
-|Defense|Salting|
+|Objetivo|Password hashes (hashes de contraseñas)|
+|Método|Tablas de hashes precalculadas|
+|Defensa|Salting|
 
-MEMORY HOOK:  
-**Salt defeats rainbow tables**
-
----
-
-# BIRTHDAY ATTACK (MUY ALTO RENDIMIENTO)
+> 🧠 *Para recordar:* **El salt derrota las rainbow tables**
 
 ---
 
-## QUÉ ES UN BIRTHDAY ATTACK
+## BIRTHDAY ATTACK (HIGH YIELD)
+
+### QUÉ ES UN BIRTHDAY ATTACK
 
 |Concepto|Explicación|
 |---|---|
-|Based on|Paradoja del cumpleaños|
-|Targets|Funciones de hash|
-|Goal|Encontrar colisiones|
+|Basado en|Birthday paradox (paradoja del cumpleaños)|
+|Ataca a|Hash functions|
+|Objetivo|Encontrar collisions (colisiones)|
 
 LÓGICA:
 
 - Es más fácil encontrar colisiones que invertir hashes
-    
 
 REGLA DEL EXAMEN:
 
 - Para hash de n bits, resistencia a colisiones ≈ 2^(n/2)
-    
 
-MEMORY HOOK:  
-**Hash length ÷ 2 = collision effort**
+> 🧠 *Para recordar:* **Bits del hash ÷ 2 = exponente del esfuerzo de colisión (2^(n/2))**
 
 ---
 
-# COLLISION ATTACK
+## COLLISION ATTACK
 
 |Propiedad|Descripción|
 |---|---|
-|Goal|Dos entradas → mismo hash|
-|Affects|MD5, SHA-1|
-|Impact|Falsificación de firmas digitales|
+|Objetivo|Dos entradas → mismo hash|
+|Afecta a|MD5, SHA-1|
+|Impacto|Falsificación de digital signatures|
 
 ---
 
-# MAN-IN-THE-MIDDLE (MITM) EN CRIPTOGRAFÍA
+## MAN-IN-THE-MIDDLE (MITM) EN CRIPTOGRAFÍA
 
 |Propiedad|Descripción|
 |---|---|
-|Target|Intercambio de claves|
-|Affects|Diffie-Hellman|
-|Defense|Autenticación|
+|Objetivo|Key exchange (intercambio de claves)|
+|Afecta a|Diffie-Hellman|
+|Defensa|Autenticación|
 
-MEMORY HOOK:  
-**DH without auth = MITM risk**
-
----
-
-# SIDE-CHANNEL ATTACKS (IMPORTANTE)
+> 🧠 *Para recordar:* **DH sin autenticación = riesgo de MITM**
 
 ---
 
-## QUÉ ES UN SIDE-CHANNEL ATTACK
+## SIDE-CHANNEL ATTACKS (HIGH YIELD)
+
+### QUÉ ES UN SIDE-CHANNEL ATTACK
 
 |Explicación|
 |---|
@@ -181,7 +206,7 @@ MEMORY HOOK:
 
 ---
 
-## TIPOS DE SIDE-CHANNEL ATTACKS
+### TIPOS DE SIDE-CHANNEL ATTACKS
 
 |Tipo|Fuga|
 |---|---|
@@ -190,69 +215,62 @@ MEMORY HOOK:
 |EM analysis|Señales electromagnéticas|
 |Acoustic|Sonido|
 
-MEMORY HOOK:  
-**Not math, physics**
+> 🧠 *Para recordar:* **No es matemática, es física**
 
 ---
 
-# PADDING ORACLE ATTACK (MUY IMPORTANTE)
+## PADDING ORACLE ATTACK (HIGH YIELD)
 
----
+### A QUÉ ATACA
 
-## QUÉ OBJETIVO
-
-|Target|
+|Objetivo|
 |---|
-|Modos de cifrado por bloques|
-|Modo CBC|
+|Block cipher modes (modos de cifrado por bloques)|
+|CBC mode|
 
 ---
 
-## CÓMO FUNCIONA (NIVEL ALTO)
+### CÓMO FUNCIONA (VISIÓN GENERAL)
 
 |Paso|
 |---|
-|Observar mensajes de error de relleno|
+|Observar los mensajes de error de padding|
 |Modificar ciphertext|
-|Inferir texto plano|
+|Inferir el plaintext|
 
-EXAM TRAP:  
-Los mensajes de error filtran información.
+> ⚠️ *Trampa de examen:* Los mensajes de error filtran información.
 
-MEMORY HOOK:  
-**Errors leak secrets**
+> 🧠 *Para recordar:* **Los errores filtran secretos**
 
 ---
 
-# DOWNGRADE ATTACK
+## DOWNGRADE ATTACK
 
 |Propiedad|Descripción|
 |---|---|
-|Goal|Forzar criptografía débil|
-|Example|Degradación de SSL → TLS|
-|Defense|Deshabilitar protocolos heredados|
+|Objetivo|Forzar criptografía débil|
+|Ejemplo|Downgrade de TLS → SSL (p. ej. POODLE fuerza SSL 3.0)|
+|Defensa|Deshabilitar protocolos legacy (heredados)|
 
-MEMORY HOOK:  
-**Backward compatibility = weakness**
+> 🧠 *Para recordar:* **Backward compatibility = debilidad**
 
 ---
 
-# REPLAY ATTACK
+## REPLAY ATTACK
 
 |Propiedad|Descripción|
 |---|---|
-|Method|Reutilizar datos capturados|
-|Target|Protocolos de autenticación|
-|Defense|Nonces, marcas de tiempo|
+|Método|Reutilizar datos capturados|
+|Objetivo|Protocolos de autenticación|
+|Defensa|Nonces, timestamps (marcas de tiempo)|
 
-MEMORY HOOK:  
-**Replay stops with freshness**
+> 🧠 *Para recordar:* **El replay se frena con frescura (nonces, timestamps)**
 
 ---
 
-# ATAQUES POR CONFIGURACIÓN INCORRECTA DE CRIPTOGRAFÍA
+## CRYPTOGRAPHY MISCONFIGURATION ATTACKS
 
-|Configuración incorrecta|
+|Misconfiguration (configuración incorrecta)|
 |---|
 |Algoritmos débiles|
 |Claves cortas|
@@ -260,28 +278,25 @@ MEMORY HOOK:
 |IVs reutilizados|
 |Modo ECB|
 
-MEMORY HOOK:  
-**Crypto fails in implementation**
+> 🧠 *Para recordar:* **La criptografía falla en la implementación**
 
 ---
 
-# HERRAMIENTAS COMUNES DE CRIPTOGRAFÍA (RECONOCIMIENTO CEH)
+## HERRAMIENTAS COMUNES DE CRIPTOGRAFÍA
 
----
-
-## HERRAMIENTAS DE CRIPTANÁLISIS
+### HERRAMIENTAS DE CRYPTANALYSIS
 
 |Herramienta|Propósito|
 |---|---|
-|Hashcat|Ruptura de contraseñas|
-|John the Ripper|Ruptura de contraseñas|
+|Hashcat|Password cracking (crackeo de contraseñas)|
+|John the Ripper|Password cracking (crackeo de contraseñas)|
 |Cain & Abel|Recuperación de credenciales|
 |OpenSSL|Operaciones criptográficas|
 |CrypTool|Aprendizaje de criptografía|
 
 ---
 
-## COMANDOS OPENSSL (SOLO RECONOCIMIENTO)
+### COMANDOS OPENSSL
 
 |Comando|Propósito|
 |---|---|
@@ -290,83 +305,18 @@ MEMORY HOOK:
 |openssl genrsa|Generar clave RSA|
 |openssl req|Crear CSR|
 
-MEMORY HOOK:  
-**OpenSSL = crypto Swiss army knife**
+> 🧠 *Para recordar:* **OpenSSL = la navaja suiza de la criptografía**
 
 ---
 
-# OBJETIVO 06 — BLOQUE DE MEMORIA DEL EXAMEN
-
-**El criptanálisis explota debilidades en algoritmos, claves e implementaciones.  
-Los ataques de cumpleaños objetivan colisiones de hashes.  
-Los ataques MITM explotan el intercambio de claves sin autenticar.  
-Los side-channel attacks explotan fugas físicas.  
-Los padding oracle attacks explotan mensajes de error.  
-El salting, la autenticación y algoritmos fuertes mitigan ataques.**
-
----
-
-# MÓDULO 20 — LISTA DE VERIFICACIÓN FINAL (MUY IMPORTANTE)
-
-Debes recordar:
-
-- Colisión de hash = birthday attack
-    
-- Diffie-Hellman vulnerable a MITM
-    
-- MD5 y SHA-1 están rotos
-    
-- AES es seguro
-    
-- ECC usa claves más pequeñas
-    
-- PKI resuelve el problema de confianza
-    
-- CRL vs OCSP
-    
-- Padding oracle objetiva CBC
-    
-- Salting derrota rainbow tables
-    
-
----
-
-## ESTADO DEL MÓDULO 20
-
-|Sección|Estado|
-|---|---|
-|Objective 01|COMPLETO|
-|Objective 02|COMPLETO|
-|Objective 03|COMPLETO|
-|Objective 04|COMPLETO|
-|Objective 05|COMPLETO|
-|Objective 06|COMPLETO|
-
----
-
-Ahora has **completado completamente el Módulo 20 – Criptografía**.
-
-Opciones siguientes:
-
-- **Hoja de trucos ultracondensada para el examen del Módulo 20**
-    
-- **Preguntas completas de examen simulado CEH (énfasis en criptografía)**
-    
-- **Continuar al siguiente módulo CEH**
-    
-- **Ejercicio exclusivo de PKI con escenarios**
-    
-
----
-
-# TARJETAS DE MEMORIA DEL EXAMEN
+## Flashcards
 
 | Término | Definición |
 |------|------------|
-| Cryptanalysis | Analizar sistemas criptográficos para descubrir debilidades y recuperar texto plano/claves |
+| Cryptanalysis | Analizar sistemas criptográficos para descubrir debilidades y recuperar plaintext/claves |
 | Ciphertext-Only Attack (COA) | El atacante tiene solo ciphertext — tipo de ataque más difícil |
-| Known-Plaintext Attack (KPA) | El atacante tiene pares de texto plano-ciphertext para recuperar la clave |
-| Chosen-Plaintext Attack (CPA) | El atacante elige texto plano y observa ciphertext |
+| Known-Plaintext Attack (KPA) | El atacante tiene pares plaintext-ciphertext para recuperar la clave |
+| Chosen-Plaintext Attack (CPA) | El atacante elige plaintext y observa el ciphertext |
 | Chosen-Ciphertext Attack (CCA) | El atacante elige ciphertext y observa la salida descifrada |
 | Brute-Force Attack | Probar todas las claves posibles — efectivo contra tamaños de clave pequeños |
 | Dictionary Attack | Adivinar contraseñas usando listas de palabras |
@@ -375,8 +325,8 @@ Opciones siguientes:
 | Collision Attack | Encontrar dos entradas que producen el mismo hash — afecta MD5, SHA-1 |
 | MITM in Crypto | Man-in-the-Middle explotando intercambio de claves sin autenticar (Diffie-Hellman) |
 | Side-Channel Attack | Explota fugas físicas — timing, energía, EM, acústico |
-| Padding Oracle Attack | Explota mensajes de error en modo CBC para inferir texto plano |
-| Downgrade Attack | Forzar criptografía débil explotando compatibilidad hacia atrás |
+| Padding Oracle Attack | Explota mensajes de error de padding en modo CBC para inferir el plaintext |
+| Downgrade Attack | Forzar criptografía débil explotando la backward compatibility (compatibilidad hacia atrás) |
 | Replay Attack | Reutilizar datos de autenticación capturados |
 | Timing Attack | Medir tiempo de ejecución para deducir claves secretas |
 | Power Analysis | Analizar consumo de energía para extraer claves |
@@ -384,7 +334,7 @@ Opciones siguientes:
 
 ---
 
-# PREGUNTAS DE PRÁCTICA
+## Preguntas de práctica
 
 **1.** ¿Cuál es la resistencia a colisiones de una función hash de n bits según el birthday attack?
 - a) 2^n operaciones
