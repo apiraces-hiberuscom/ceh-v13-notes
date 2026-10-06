@@ -70,6 +70,19 @@
 
 ### SEGÚN EL CONOCIMIENTO DEL ATACANTE
 
+#### TABLA RESUMEN
+
+|Tipo de ataque|Lo que el atacante TIENE|Lo que el atacante BUSCA|
+|---|---|---|
+|**Ciphertext-only** (solo texto cifrado)|Textos cifrados (mensajes interceptados)|La clave secreta o los textos claros originales|
+|**Known-plaintext** (texto claro conocido)|Varios pares de texto claro y su correspondiente texto cifrado|La clave secreta para descifrar otros mensajes|
+|**Chosen-plaintext** (texto claro elegido)|Acceso al sistema de cifrado para elegir textos claros y obtener sus textos cifrados|Descubrir la clave secreta analizando las respuestas|
+|**Chosen-ciphertext** (texto cifrado elegido)|Acceso al sistema de descifrado para introducir textos cifrados y obtener sus textos claros|Descubrir la clave secreta o descifrar otros textos cifrados|
+
+> 🧠 *Para recordar:* **Cuanto más controla el atacante, más fácil el ataque: COA (solo mira) → KPA (conoce pares) → CPA (elige qué cifrar) → CCA (elige qué descifrar)**
+
+---
+
 #### CIPHERTEXT-ONLY ATTACK (COA)
 
 |Propiedad|Descripción|
